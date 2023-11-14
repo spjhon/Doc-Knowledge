@@ -35,15 +35,12 @@ const config = {
   },
 
   presets: [
-
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: 'docs',
-          path: 'docs',
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: './sidebars.js',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -61,16 +58,15 @@ const config = {
         },
       }),
     ],
-
   ],
 
   plugins: [
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'docs2',
-        path: 'docs2',
-        routeBasePath: 'docs2',
+        id: 'react',
+        path: 'react',
+        routeBasePath: 'react',
         sidebarPath: './sidebars.js',
         // ... other options
       },
@@ -81,8 +77,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-car.jpg',
-
+      image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: 'My Site',
         logo: {
@@ -94,7 +89,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorials',
+            label: 'Docusaurus',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -103,13 +98,19 @@ const config = {
             position: 'right',
           },
           {
-            label:'docs2',
-            to:'/docs2/prueba',
-            activeBaseRegex: `/docs2/`,
-          },
+            type: 'docSidebar',
+            docsPluginId: 'react',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'React'
+          }
+          /*{
+            label:'React',
+            to:'/react/prueba',
+            activeBaseRegex: `/react/`,
+          },*/
         ],
       },
-
       footer: {
         style: 'dark',
         links: [
