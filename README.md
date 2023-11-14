@@ -1,3 +1,3 @@
-# Doc-React
+# Doc-Knowledge
 
-React knowledge base. Using Docusaurus
+General knowledge that has pass through my brain.
