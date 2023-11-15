@@ -101,3 +101,28 @@ Certainly! Here's another set of 10 different types of websites that freelancers
     - Websites that enable individuals or businesses to raise funds for projects, products, or causes by gathering contributions from a large number of people.
 
 This list emphasizes the versatility of freelancers in catering to specific niches and industries, demonstrating their ability to adapt to diverse client needs.
+
+
+## Questions asked to clients
+
+what are the top 3-4 services you offer that you what highlighted
+
+what are all the other services however small
+
+what two services are your top money makers so we can have sections dedicated to them to rank the home page for them
+
+what are the 3 qualities that separate you from the competition. 100% money back guarantee? 5 year warranty? Licensed? Etc.
+
+what other things do you want people to know about you and your business
+
+your story. Who are you. About the company. Why are you the experts, what are your qualifications, and a little about you and the company.
+
+any stats? Like 100+ some thing made, 1000k houses painted, etc.
+
+is there a step process to get started working with you clients should know?
+
+pricing if needed
+
+Then I send them 3-4 Wordpress demo themes from themeforest in different styles and ask them which styles they liked the best and I use that to send to my designer to make a site based on that style.
+
+I use the I do I asked for in the site design and how I arrange the site. Then I use chatGPT to write the content for me and I use this service to proofread my AI content with human eyes and optimize my text for keywords were going for
