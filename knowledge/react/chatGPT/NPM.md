@@ -1,4 +1,4 @@
-# Questions answered by chatGPT about NPM
+# NPM (Node Package Manager)
 
 Use this in the CMD of windows
 
