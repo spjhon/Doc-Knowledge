@@ -49,3 +49,16 @@ To turn React into a more complete framework for building an e-commerce site, yo
     - **React Helmet:** For managing the head of your HTML document and optimizing your site for search engines.
 
 Remember that the choice of tools and libraries can depend on your specific requirements, team expertise, and the scale of your e-commerce project. This list provides a starting point, and you may need to tailor it based on your project's unique needs.
+
+React Router: https://reactrouter.com/
+Redux: https://redux.js.org/
+Webpack: https://webpack.js.org/
+Babel: https://babeljs.io/
+Axios: https://axios-http.com/
+ESLint: https://eslint.org/
+Prettier: https://prettier.io/
+Jest: https://jestjs.io/
+Enzyme: https://enzymejs.github.io/enzyme/
+Storybook: https://storybook.js.org/
+Redux Thunk: https://github.com/reduxjs/redux-thunk
+Redux Saga: https://redux-saga.js.org/

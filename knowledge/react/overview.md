@@ -293,3 +293,13 @@ import { StrictMode } from "react";
 <StrictMode>
 <Game />
 </StrictMode>
+
+***
+
+import Square from '@site/src/components/tick-toc-build.js';
+
+<StrictMode>
+<Square />
+</StrictMode>
+
+***
