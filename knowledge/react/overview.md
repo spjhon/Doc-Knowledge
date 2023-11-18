@@ -70,6 +70,8 @@ function MyButton() {
 
 Para manejar MDX que es react components en markdown, consultar [MDX Official](https://mdxjs.com/)
 
+**Importante**: Los children cuando se pasan al componente, solo se pasa el children el componente que manda el children, asi llega al componente y sigue derecho al menos que se le quiera hacer algo.
+
 ```jsx
 export const Highlight = ({children, color}) => (
   <span
@@ -295,11 +297,12 @@ import { StrictMode } from "react";
 </StrictMode>
 
 ***
+Este codigo de abajo es el principio del tutorial de react el cual muestra un ejemplo basico de como asignar props y children ademas de una muestra de validacion de props que recomendo el eslint de react.
 
-import Square from '@site/src/components/tick-toc-build.js';
+import Board from '@site/src/components/tick-toc-build.js';
 
 <StrictMode>
-<Square />
+<Board />
 </StrictMode>
 
 ***
