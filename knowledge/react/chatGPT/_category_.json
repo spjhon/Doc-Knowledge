@@ -1,8 +1,0 @@
-{
-  "label": "chatGPT Questions",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "Questions answered by chatGPT"
-  }
-}

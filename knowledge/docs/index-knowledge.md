@@ -66,3 +66,167 @@ Por orden alfabetico:
 
 ### Categorizacion de las stars en github
 
+#### Resources
+
+- **awesome-medusajs**
+  - A curated list of awesome resources related to MedusaJS 😎
+  - JavaScript
+
+- **Awesome-NextJs**
+  - Curated list of awesome things related to NextJs.
+  - Unknown
+
+- **design-resources-for-developers**
+  - Curated list of design and UI resources from stock photos, web templates, CSS frameworks, UI libraries, tools and much more
+  - Unknown
+
+- **awesome-react-components**
+  - Curated List of React Components & Libraries.
+  - Unknown
+
+- **react-glow**
+  - Unknown
+
+- **awesome-react**
+  - A collection of awesome things regarding React ecosystem
+  - Unknown
+
+- **Font-Awesome**
+  - The iconic SVG, font, and CSS toolkit
+  - JavaScript
+
+- **eslint-config-canonical**
+  - The most comprehensive ES code style guide.
+  - JavaScript
+
+- **tips**
+  - Most commonly used git tips and tricks.
+  - JavaScript
+
+- **svgr**
+  - Transform SVGs into React components 🦁
+  - TypeScript
+
+- **html5-boilerplate**
+  - A professional front-end template for building fast, robust, and adaptable web apps or sites.
+  - JavaScript
+
+- **intergram**
+  - Free live chat widget linked to your Telegram messenger
+  - JavaScript
+
+- **Next-js-Boilerplate**
+  - 🚀🎉📚 Boilerplate and Starter for Next.js 14+ with App Router and Page Router support, Tailwind CSS 3.3 and TypeScript ⚡️ Made with developer experience first: Next.js + TypeScript + ESLint + Prettie…
+  - TypeScript
+
+- **kathamo**
+  - A collection of reusable GraphQL components with a GraphCMS backend
+  - TypeScript
+
+- **react-switch**
+  - A draggable toggle-switch component for React. Check out the demo at:
+  - JavaScript
+
+- **react-pdf-viewer**
+  - A React component to view a PDF document
+  - TypeScript
+
+- **sorting-visualizer**
+  - Sorting Algorithms Visualizer
+  - TypeScript
+
+- **awesome-javascript**
+  - 🐢 A collection of awesome browser-side JavaScript libraries, resources and shiny things.
+  - Unknown
+
+- **Front-End-Performance-Checklist**
+  - 🎮 The only Front-End Performance Checklist that runs faster than the others
+  - Unknown
+
+- **awesome-nextjs**
+  - 📔 📚 A curated list of awesome resources : books, videos, articles about using Next.js (A minimalistic framework for universal server-rendered React applications)
+  - Unknown
+
+- **Awesome-NextJs**
+  - Curated list of awesome things related to NextJs.
+  - Unknown
+
+- **tooltips**
+  - A lightweight and powerful solution that doesn't rely on JavaScript and compresses to just 0.7kb (Brotli). Easy to customize and implement, with no impact on performance.
+  - SCSS
+
+#### Pattern Libraries
+
+- **[30-seconds-of-code / Chalarangelo](https://github.com/Chalarangelo/30-seconds-of-code)**
+Short code snippets for all your development needs
+
+- **[30-seconds-of-css / Chalarangelo](https://github.com/Chalarangelo/30-seconds-of-css)**
+Short CSS code snippets for all your development needs
+
+- **[30-seconds-of-react / Chalarangelo](https://github.com/Chalarangelo/30-seconds-of-react)**
+Short React code snippets for all your development needs
+
+- **[clean-code-javascript / ryanmcdermott](https://github.com/ryanmcdermott/clean-code-javascript)**
+🛁 Clean Code concepts adapted for JavaScript
+
+- **[clean-react / rmanguinho](https://github.com/rmanguinho/clean-react)**
+Sistema em ReactJs usando Hooks, Typescript, TDD, Clean Architecture, Design Patterns e SOLID principles
+
+- **[css-cheat-sheet / AdamMarsden](https://github.com/AdamMarsden/css-cheat-sheet)**
+CSS Cheat Sheet - A reference for CSS goodness.
+
+- **[css-docs / eludadev](https://github.com/eludadev/css-docs)**
+CSS Selectors, Flexbox, Grid, Box Model, visually explained.
+
+- **[css-reference / jgthms](https://github.com/jgthms/css-reference)**
+CSS Reference: a free visual guide to the most popular CSS properties
+
+- **[es6-cheatsheet / DrkSephy](https://github.com/DrkSephy/es6-cheatsheet)**
+ES2015 [ES6] cheatsheet containing tips, tricks, best practices and code snippets
+
+- **[essential-js-design-patterns / addyosmani](https://github.com/addyosmani/essential-js-design-patterns)**
+Repo for my 'Learning JavaScript Design Patterns' book
+
+- **[Front-End-Checklist / thedaviddias](https://github.com/thedaviddias/Front-End-Checklist)**
+🗂 The perfect Front-End Checklist for modern websites and meticulous developers
+
+- **[HEAD / joshbuchea](https://github.com/joshbuchea/HEAD)**
+A simple guide to HTML `<head>` elements
+
+- **[javascript / airbnb](https://github.com/airbnb/javascript)**
+JavaScript Style Guide
+
+- **[javascript-algorithms / trekhleb](https://github.com/trekhleb/javascript-algorithms)**
+📝 Algorithms and data structures implemented in JavaScript with explanations and links to further readings
+
+- **[javascript-fundamentals / GoranKukic](https://github.com/GoranKukic/javascript-fundamentals)**
+
+- **[javascript-patterns / chuanxshi](https://github.com/chuanxshi/javascript-patterns)**
+JavaScript Design Patterns
+
+- **[javascript-testing-best-practices / goldbergyoni](https://github.com/goldbergyoni/javascript-testing-best-practices)**
+📗🌐 🚢 Comprehensive and exhaustive JavaScript & Node.js testing best practices (July 2023)
+
+- **[JavaScript / TheAlgorithms](https://github.com/TheAlgorithms/JavaScript)**
+Algorithms and Data Structures implemented in JavaScript for beginners, following best practices.
+
+- **[jstips / loverajoel](https://github.com/loverajoel/jstips)**
+This is about useful JS tips!
+
+- **[modern-js-cheatsheet / mbeaudru](https://github.com/mbeaudru/modern-js-cheatsheet)**
+Cheatsheet for the JavaScript knowledge you will frequently encounter in modern projects.
+
+- **[nodebestpractices / goldbergyoni](https://github.com/goldbergyoni/nodebestpractices)**
+✅ The Node.js best practices list (July 2023)
+
+- **[passport-api-docs / jwalton](https://github.com/jwalton/passport-api-docs)**
+Documentation for Passport.js.
+
+- **[project-based-learning / practical-tutorials](https://github.com/practical-tutorials/project-based-learning)**
+Curated list of project-based tutorials
+
+- **[project-guidelines / elsewhencode](https://github.com/elsewhencode/project-guidelines)**
+A set of best practices for JavaScript projects
+
+- **[wtfjs / denysdovhan](https://github.com/denysdovhan/wtfjs)**
+🤪 A list of funny and tricky JavaScript examples
