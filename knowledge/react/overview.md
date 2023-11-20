@@ -2,11 +2,23 @@
 sidebar_position: 1
 ---
 
-# REACT OVERVIEW
+# REACT Overview
 
 React es una libreria que posee un DOM virtual con el cual puede renderizar componentes individualmente, al ser una libreria necesita librerias extra para su completa funcionalidad.
 
-*Estas notas son extraidas de la pagina 1 de la documentacion oficial de react y son un ejemplo de como manipular lo que las funciones retornan y como agregar estilos y atributos a los HTML tags especiales llamados JSX.*
+***
+
+## Recomendaciones Generales y Tips Alrededor de la libreria React
+
+Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experiencia adquirida con la libreria.
+
+- Ojo con la inmutabilidad cuando se trabaja con los estados (recuerda el .slide() y el ...history en el ejemplo de tick-toc).
+
+- La clave de react es la re-renderizacion de un componente y como sus estados van cambiando.
+
+- Si se llama el componente que use useState varias veces, habran varios estados diferentes.
+
+- Las funciones que utilicen "use" se consideran "hooks".
 
 - Un componente en REACT es una funcion que retorna HTML al DOM virtual.
 
@@ -20,6 +32,14 @@ React es una libreria que posee un DOM virtual con el cual puede renderizar comp
 
 - Para agregar estilo se utiliza className, no se utiliza class como en html normalmente se haria.
 
+- Se puede almacenar jsx en variables y generar condicionales para que muestre uno u otro contenido, estas condiconales pueden ser incluso comparativos de tipo &&.
+
+- Se puede utilizar map para mapear todos los elementos que se encuentren en objetos, vengan de funciones, fetch, etc. (siempre agregar un key).
+
+***
+
+## Como pasar datos dinamicos
+
 - Gracias a javascript se le puede agregar datos dinamicos como en el siguiente ejemplo, esto es util cuando se extrae info desde un objeto:
 
 ```jsx
@@ -29,6 +49,10 @@ return (
   </h1>
 );
 ```
+
+***
+
+## Como pasar atributos
 
 - Este es un ejemplo de como pasar atributos a un JSX tag
 
@@ -41,34 +65,9 @@ return (
 );
 ```
 
-- Se puede almacenar jsx en variables y generar condicionales para que muestre uno u otro contenido, estas condiconales pueden ser incluso comparativos de tipo &&.
+***
 
-- Se puede utilizar map para mapear todos los elementos que se encuentren en objetos, vengan de funciones, fetch, etc. (siempre agregar un key)
-
-- Se puede adicionar eventos y devolver estos eventos en el return
-
-```jsx
-function MyButton() {
-  function handleClick() {
-    alert('You clicked me!');
-  }
-
-  return (
-    <button onClick={handleClick}>
-      Click me
-    </button>
-  );
-}
-```
-
-
-- Si se llama el componente que use useState varias veces, habran varios estados diferentes.
-
-- Las funciones que utilicen "use" se consideran "hooks".
-
-- **Importante:** Para compartir estados entre componentes, SE DEBE DE MOVER EL STATE AL COMPONENTE SUPERIOR MAS CERCANO y los states pasan como props a cada boton y cada boton queda atado al state principal, a esto se le llama "lifting state up".
-
-Para manejar MDX que es react components en markdown, consultar [MDX Official](https://mdxjs.com/)
+## Como pasar children
 
 **Importante**: Los children cuando se pasan al componente, solo se pasa el children el componente que manda el children, asi llega al componente y sigue derecho al menos que se le quiera hacer algo.
 
@@ -104,6 +103,9 @@ export const Highlight = ({children, color}) => (
 
 I can write **Markdown** alongside my _JSX_!
 
+***
+
+## Ejemplo basico de state con botones
 
 Este es otro ejemplo, este es un ejemplo basico de state con botones
 
@@ -131,6 +133,9 @@ function handleClick() {
 
 <MyButton />
 ```
+
+Para manejar MDX que es react components en markdown, consultar [MDX Official](https://mdxjs.com/)
+
 import { useState } from 'react';
 
 export const MyButton = () => {
@@ -151,8 +156,12 @@ function handleClick() {
 }
 
 <h4>Boton Solito</h4>
+
 <MyButton />
 
+***
+
+## Ejemplo de botones actualizandosen separadamente (Cada uno con su propio state)
 
 Ahora este ejemplo es un componente (App) que llama el componente de arriba y utiliza el otro componente (Button2) que se encuentra como funcion dentro de app y renderiza desde app
 
@@ -213,6 +222,12 @@ export const MyApp = () => {
 }
 
 <MyApp />
+
+***
+
+## Botones actualizandosen al mismo tiempo (Lifting the state up)
+
+- **Importante:** Para compartir estados entre componentes, SE DEBE DE MOVER EL STATE AL COMPONENTE SUPERIOR MAS CERCANO y los states pasan como props a cada boton y cada boton queda atado al state principal, a esto se le llama "lifting state up".
 
 Se observa dos botones pero con state diferente, el siguiente ejemplo posee states independientes:
 
@@ -275,6 +290,10 @@ export const MyApp2 = () => {
 
 <MyApp2 />
 
+***
+
+## Componente importado externamente
+
 El siguiente es un ejemplo de como importar un componente y utilizarlo en el mdx
 ```jsx
 import Game from '@site/src/components/tick-toc.js';
@@ -287,6 +306,7 @@ import { StrictMode } from "react";
 ```
 
 El codigo se encuentra en tick-toc.js y es importado gracias a un feature de mdx (el @site)
+**Importante:** Ojo con la inmutabilidad de los estados, hacer copia mas no modificar.
 
 import Game from '@site/src/components/tick-toc.js';
 
@@ -297,6 +317,7 @@ import { StrictMode } from "react";
 </StrictMode>
 
 ***
+
 Este codigo de abajo es el principio del tutorial de react el cual muestra un ejemplo basico de como asignar props y children ademas de una muestra de validacion de props que recomendo el eslint de react.
 
 import Board from '@site/src/components/tick-toc-build.js';

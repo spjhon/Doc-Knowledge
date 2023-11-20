@@ -1,3 +1,7 @@
+---
+sidebar_position: 0
+---
+
 # Index del conocimiento adquido en desarrollo web
 
 - La finalidad de este flujo de conocimiento es tener a la mano todo el conocimiento necesario para crear un e-commerce en produccion.

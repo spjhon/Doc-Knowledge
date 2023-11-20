@@ -81,6 +81,26 @@ const config = {
         // ... other options
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'web',
+        path: 'web',
+        routeBasePath: 'web',
+        sidebarPath: './sidebars.js',
+        // ... other options
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'javascript',
+        path: 'javascript',
+        routeBasePath: 'javascript',
+        sidebarPath: './sidebars.js',
+        // ... other options
+      },
+    ],
   ],
 
   themeConfig:
@@ -106,6 +126,20 @@ const config = {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
             position: 'right',
+          },
+          {
+            type: 'docSidebar',
+            docsPluginId: 'web',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'WebDev'
+          },
+          {
+            type: 'docSidebar',
+            docsPluginId: 'javascript',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'JavaScript'
           },
           {
             type: 'docSidebar',
