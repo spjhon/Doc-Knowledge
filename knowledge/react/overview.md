@@ -308,7 +308,7 @@ import { StrictMode } from "react";
 El codigo se encuentra en tick-toc.js y es importado gracias a un feature de mdx (el @site)
 **Importante:** Ojo con la inmutabilidad de los estados, hacer copia mas no modificar.
 
-import Game from '@site/src/components/tick-toc.js';
+import Game from '@site/src/components/tick-toc.jsx';
 
 import { StrictMode } from "react";
 
@@ -320,7 +320,7 @@ import { StrictMode } from "react";
 
 Este codigo de abajo es el principio del tutorial de react el cual muestra un ejemplo basico de como asignar props y children ademas de una muestra de validacion de props que recomendo el eslint de react.
 
-import Board from '@site/src/components/tick-toc-build.js';
+import Board from '@site/src/components/tick-toc-build.jsx';
 
 <StrictMode>
 <Board />

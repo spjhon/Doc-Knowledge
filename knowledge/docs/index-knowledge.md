@@ -42,18 +42,18 @@ A partir de estas 4 bases combinadas y escalables se referencia todo el conocimi
 
 ***
 
-### Categorizacion de los bookmarks
-
 ### Categorizacion de la documentacion (Stack)
+
+[Ir al stack](/web/the-stack)
 
 ### Categorizacion de los repositorios
 
 Por orden alfabetico:
 
 - Book: Cada repositorio es un libro, cada libro dice en su readme que conocimiento y herramientas contiene.
-    - CSS in Depth
-    - Escential Guide HTML5
-    - Javascript CookBook third edition
+- CSS in Depth
+- Escential Guide HTML5
+- Javascript CookBook third edition
 - Doc: El docusaurus con escrituras propias.
 - Examples: Ejemplos dividido en vanilla javascript, react, next. Extraidos de los blogs y articulos, cada ejemplo lleva un readme con el conocimiento adquirido.
 - Forked: repositorios para utilizar en futuros projectos.
