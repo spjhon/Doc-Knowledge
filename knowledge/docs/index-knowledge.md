@@ -24,6 +24,18 @@ Para su facilidad en un inicio sera escrita en español, luego se hara la traduc
 
 Para no generar una repeticion de datos, aca solo habra index de las categorias de bookmarks que se coleccionan mas no cada bookmark individual, los mismo para la documentacion y conocimiento de cada herramienta y el lenguaje javascript, solo categorizacion.
 
+#### **JavaScript**
+
+El conocimiento de referencia de javascript para no perderse entre toda la info de internet sera:
+
+- MDN
+- JavaScript.info
+- Articulos individuales de ciertas fucniones para profundizar en las herramientas mas utilizadas como por ejemplo flexbox o grid en CSS y las funciones y objetos en JavaScript.
+
+#### **CSS**
+
+- Articulos individuales de ciertas fucniones para profundizar en las herramientas mas utilizadas como por ejemplo flexbox o grid en CSS y las funciones y objetos en JavaScript.
+
 ***
 
 ### Flujo
