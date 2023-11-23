@@ -13,28 +13,18 @@ React es una libreria que posee un DOM virtual con el cual puede renderizar comp
 Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experiencia adquirida con la libreria.
 
 - Ojo con la inmutabilidad cuando se trabaja con los estados (recuerda el .slide() y el ...history en el ejemplo de tick-toc).
-
 - La clave de react es la re-renderizacion de un componente y como sus estados van cambiando.
-
 - Si se llama el componente que use useState varias veces, habran varios estados diferentes.
-
 - Las funciones que utilicen "use" se consideran "hooks".
-
 - Un componente en REACT es una funcion que retorna HTML al DOM virtual.
-
 - Un componente no puede retormar mas de un tag, en caso de varios tags envolvelos en un wrapper or a fragment.
-
 - Se recomienda aplicar (ejemplo en github examples-react) atomic design in order to create the components.
-
 - Los componentes en REACT siempre deben de tener una letra mayuscula al principio para diferenciarlos de elementos HTML normales.
-
 - Una diferencia entre el JSX con HTML es que hay que cerrar todos los tags, y que solo se puede devolver un solo componente (envoltura).
-
 - Para agregar estilo se utiliza className, no se utiliza class como en html normalmente se haria.
-
 - Se puede almacenar jsx en variables y generar condicionales para que muestre uno u otro contenido, estas condiconales pueden ser incluso comparativos de tipo &&.
-
 - Se puede utilizar map para mapear todos los elementos que se encuentren en objetos, vengan de funciones, fetch, etc. (siempre agregar un key).
+- Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like if statements, &&, and ? : operators.
 
 ***
 

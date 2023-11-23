@@ -40,3 +40,7 @@ For each piece of state in your application:
 - If you can’t find a component where it makes sense to own the state, create a new component solely for holding the state and add it somewhere in the hierarchy above the common parent component.
 
 ## Step 5: Add inverse data flow
+
+- En este paso, resulta que si se coloca un input o cualquier cosa que cambie de estado por el usuario ocualquier otra cosa, hay que avisarle al responsable de controlar ese estado para que actuelice el state, esto es por diseño de react para que no hayan cambios de states sin rastrear.
+
+El onChange es parte de la tabla de eventos HTML, segun veo se aplica los atributos de eventos html directamente en el JSX.

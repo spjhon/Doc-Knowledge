@@ -8,11 +8,11 @@ Focus on JamStack (JavaScript, Api, Markup)
 
 Tools used in the whole chain to create three types of websites when need it.
 
-**NEXTjs: for Server Sider Rendering (Render the page from the server at request), next also do client side and Static Site Generation (look remix)** 
+**NEXTjs: for Server Sider Rendering (Render the page from the server at request), next also do client side and Static Site Generation (look remix)**
 
 **REACTjs: for Client Side Rendering (When the whole app is send to the client and the client device do the job)**
 
-**ASTROjs: Static Site Rendering (When the site is created at build time from the framework).**        
+**ASTROjs: Static Site Rendering (When the site is created at build time from the framework).**
 
 Tool to the client:
 
@@ -98,6 +98,7 @@ Herramientas están en los favoritos de microsoft edge al igual que las referenc
 - Passportjs: para autenticación
 - Lax.js: para animaciones scroll 
 - Fontfaceobserver: Control when render fonts on the browser.
+- Require js
 
 ***
 
