@@ -25,6 +25,12 @@ Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experi
 - Se puede almacenar jsx en variables y generar condicionales para que muestre uno u otro contenido, estas condiconales pueden ser incluso comparativos de tipo &&.
 - Se puede utilizar map para mapear todos los elementos que se encuentren en objetos, vengan de funciones, fetch, etc. (siempre agregar un key).
 - Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like if statements, &&, and ? : operators.
+- De acuerdo a como exporte el componente es como se importa en otro lado:
+
+|  Syntax |            Export statement           |             Import statement            |
+|:-------:|:-------------------------------------:|:---------------------------------------:|
+| Default | `export default function Button() {}` | `import Button from './Button.js';`     |
+| Named   | `export function Button() {}`         | `import { Button } from './Button.js';` |
 
 ***
 
