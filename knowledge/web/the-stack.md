@@ -7,11 +7,8 @@ sidebar_position: 1
 Focus on JamStack (JavaScript, Api, Markup)
 
 Tools used in the whole chain to create three types of websites when need it.
-
 **NEXTjs: for Server Sider Rendering (Render the page from the server at request), next also do client side and Static Site Generation (look remix)**
-
 **REACTjs: for Client Side Rendering (When the whole app is send to the client and the client device do the job)**
-
 **ASTROjs: Static Site Rendering (When the site is created at build time from the framework).**
 
 Tool to the client:
@@ -24,7 +21,7 @@ Tool to the client:
 
 ## Hosting
 
-### Hosting Front-end:
+### Hosting Front-end
 
 - DigitalOcean app
 - DigitalOcean Droplets
@@ -71,9 +68,10 @@ Herramientas están en los favoritos de microsoft edge al igual que las referenc
 - Atomic Design Components
 - KSS for pattern library and css documentation
 
-#### Pre-processors:
+#### Pre-processors
+
 - SCSS
-- SASS 
+- SASS
 
 ***
 
@@ -81,7 +79,7 @@ Herramientas están en los favoritos de microsoft edge al igual que las referenc
 
 - three.js: para animaciones 3d
 - prism, Highlight.js: para highlight codigo en la pagina web
-- markdown-it: para administrar contenido markdown-it, a parte esta 
+- markdown-it: para administrar contenido markdown-it, a parte esta
 - markdown-it hightlight y markdown-it-attrs para atributos.
 - lodash: funciones varias dentro de javascript.
 - animejs: para animaciones
@@ -96,13 +94,14 @@ Herramientas están en los favoritos de microsoft edge al igual que las referenc
 - Clerk: para autenticación
 - Firebase: autenticación y base de datos
 - Passportjs: para autenticación
-- Lax.js: para animaciones scroll 
+- Lax.js: para animaciones scroll
 - Fontfaceobserver: Control when render fonts on the browser.
 - Require js
+- gsap js for animation (pricing)
 
 ***
 
-**npm** 
+- **npm**
 
 npm is the package manager for Node.js, and it's used to install and manage dependencies in your project.
 
@@ -110,9 +109,9 @@ npm is the package manager for Node.js, and it's used to install and manage depe
 
 ***
 
-### JavaScript FRAMEWORKS:
+### JavaScript FRAMEWORKS
 
-#### React js Libraries:
+#### React js Libraries
 
 - Vite
 - Tailwind, css modules
@@ -127,30 +126,37 @@ A nice combination:
 - React developer Tools
 
 **Data Fetching:**
-   - **Axios or Fetch:** For making HTTP requests to your server or external APIs to fetch data.
-   - **GraphQL (with Apollo Client or Relay):** If you prefer a more efficient and flexible way to query and manipulate data.
+
+- **Axios or Fetch:** For making HTTP requests to your server or external APIs to fetch data.
+- **GraphQL (with Apollo Client or Relay):** If you prefer a more efficient and flexible way to query and manipulate data.
 
 **Authentication:**
-   - **Firebase Authentication or Auth0:** To handle user authentication and secure access to certain parts of your e-commerce application.
+
+- **Firebase Authentication or Auth0:** To handle user authentication and secure access to certain parts of your e-commerce application.
 
 **Forms:**
-   - **Formik or React Hook Form:** For managing forms and form validation within your application.
+
+- **Formik or React Hook Form:** For managing forms and form validation within your application.
 
 **Testing:**
-   - **Jest and React Testing Library:** For testing your React components and ensuring the reliability of your application.
+
+- **Jest and React Testing Library:** For testing your React components and ensuring the reliability of your application.
 
 **Internationalization (i18n):**
-   - **React-Intl or i18next:** If you plan to support multiple languages and need tools for internationalization.
+
+- **React-Intl or i18next:** If you plan to support multiple languages and need tools for internationalization.
 
 **Caching:**
-    - **Redis or Memcached:** For caching frequently accessed data and improving performance.
 
- **Web Analytics:**
-    - **Google Analytics or Mixpanel:** To gather insights into user behavior and improve your site based on analytics data.
+- **Redis or Memcached:** For caching frequently accessed data and improving performance.
+
+**Web Analytics:**
+
+- **Google Analytics or Mixpanel:** To gather insights into user behavior and improve your site based on analytics data.
 
 **SEO Optimization:**
-    - **React Helmet:** For managing the head of your HTML document and optimizing your site for search engines.
 
+**React Helmet:** For managing the head of your HTML document and optimizing your site for search engines.
 
 ***
 
@@ -158,26 +164,26 @@ A nice combination:
 
 **ESLint and Prettier:**
 
-   - **ESLint:** ESLint is a linter for JavaScript and JSX, which helps maintain code quality by catching common errors and enforcing coding standards.
+- **ESLint:** ESLint is a linter for JavaScript and JSX, which helps maintain code quality by catching common errors and enforcing coding standards.
    Gotcha, thanks! I’m not sure there is an easy way to do this. You might consider some kind of custom ESLint plugin to throw errors at build time. Maybe based on a list from the storybook project or something. Honestly it seems like more trouble than it’s worth though.
-   - **Prettier:** Prettier is a code formatter that helps maintain consistent code style across your project.
+- **Prettier:** Prettier is a code formatter that helps maintain consistent code style across your project.
 
 ***
 
-#### Next js Libraries:
+#### Next js Libraries
 
 - React query + zusand (replace of redux)
 - Swup (page transition)
 
 ***
 
-#### Astro js Libraries:
+#### Astro js Libraries
 
 - Astro integrations
 
 ***
 
-#### Component libraries:
+#### Component libraries
 
 - Mantine ui
 - Material ui
@@ -187,27 +193,28 @@ A nice combination:
 
 ### Back-End
 
-#### Node js (environment):
+#### Node js (environment)
 
 - Express
 - Nustjs (for advanced)
 - Nests js framework build on top of express
 
-#### Databases:
+#### Databases
 
 - SQLite: Small database
 - SQL - Postgre:  For relational databases
 - MongoBd: For non-relational
 
-#### ORM: 
+#### ORM
 
 Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, axios.
 
-####  For apis:
+#### For apis
 
 - Supabase
 
-#### CMS:
+#### CMS
+
 - Strapi (RestApi, GraphQL)
 - Directus
 - Payload
@@ -228,23 +235,23 @@ Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, ax
 
 ***
 
-### Conteiners apps:
+### Conteiners apps
 
 - Docker
 
-##### Orchestration and load balancing:
+#### Orchestration and load balancing
 
 - Kubernetes
 
 ***
 
-#### Web Security:
+#### Web Security
 
 ***
 
-### Module Bundler: 
+### Module Bundler
 
-- **Webpack:** It is a module bundler for JavaScript applications. Webpack takes your JavaScript, CSS, and other assets and bundles them together in a way that's optimized for the web. It's often used to handle tasks like transpiling modern JavaScript (using Babel), bundling and minifying CSS, and optimizing images. 
+- **Webpack:** It is a module bundler for JavaScript applications. Webpack takes your JavaScript, CSS, and other assets and bundles them together in a way that's optimized for the web. It's often used to handle tasks like transpiling modern JavaScript (using Babel), bundling and minifying CSS, and optimizing images.
 
 - **Babel:** Babel is a JavaScript compiler that allows you to use the latest ECMAScript features (like arrow functions, template literals, etc.) in your code and converts it to a version of JavaScript that can run in older browsers. It's crucial when working with React because it enables the use of JSX (JavaScript XML), which is a syntax extension for JavaScript recommended by React.
 
