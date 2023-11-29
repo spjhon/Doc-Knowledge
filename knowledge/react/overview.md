@@ -4,6 +4,9 @@ sidebar_position: 1
 
 # REACT Overview
 
+import { useState } from 'react';
+import { StrictMode } from "react";
+
 React es una libreria que posee un DOM virtual con el cual puede renderizar componentes individualmente, al ser una libreria necesita librerias extra para su completa funcionalidad.
 
 ***
@@ -33,7 +36,7 @@ Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experi
 | Named   | `export function Button() {}`         | `import { Button } from './Button.js';` |
 
 - In JSX, `{cond ? <A /> : <B />}` means “if cond, render `<A />`, otherwise `<B />`”.
-- In JSX, `{cond && <A />}` means “if cond, render `<A />`, otherwise nothing”.
+- In JSX, `{cond && <A />}` means “if cond, render `<A />`, otherwise nothing”. **No coloques números en el lado izquierdo del operador &&.**
 - The shortcuts are common, but you don’t have to use them if you prefer plain if.
 - Un set en react es un peticion de hacer un re-render con los nuevos states.
 - En react los on son los eventos html que estan listados en w3schools.
@@ -89,22 +92,6 @@ export const Highlight = ({children, color}) => (
 <Highlight color="#25c2a0">Docusaurus green</Highlight> and <Highlight color="#1877F2">Facebook blue</Highlight> are my favorite colors.
 ```
 
-export const Highlight = ({children, color}) => (
-  <span
-    style={{
-      backgroundColor: color,
-      borderRadius: '5px',
-      color: '#fff',
-      padding: '0.2rem',
-    }}>
-    {children}
-  </span>
-);
-
-<Highlight color="#25c2a0">Docusaurus green</Highlight> and <Highlight color="#1877F2">Facebook blue</Highlight> are my favorite colors.
-
-I can write **Markdown** alongside my _JSX_!
-
 ***
 
 ## Ejemplo basico de state con botones
@@ -138,28 +125,13 @@ function handleClick() {
 
 Para manejar MDX que es react components en markdown, consultar [MDX Official](https://mdxjs.com/)
 
-import { useState } from 'react';
+import MyButton from '@site/src/components/react-components/simpleButton.jsx';
 
-export const MyButton = () => {
-  
-  const [count, setCount] = useState(2);
+### Este Boton tiene su propio state
 
-function handleClick() {
-    setCount(count + 1);
-  }
-
-  return (
-    <>
-    <button onClick={handleClick} >
-      esto es un boton {count}
-    </button>
-    </>
-  );
-}
-
-<h4>Boton Solito</h4>
-
+<StrictMode>
 <MyButton />
+</StrictMode>
 
 ***
 
@@ -198,32 +170,13 @@ export const MyApp = () => {
 <MyApp />
 ```
 
-export const MyApp = () => {
+import MyButton2 from '@site/src/components/react-components/simpleButton2.jsx';
 
-  function MyButton2() {
-  const [count, setCount] = useState(0);
+### Este Boton tiene states independientes
 
-  function handleClick() {
-    setCount(count + 1);
-  }
-
-  return (
-    <button onClick={handleClick}>
-      Clicked {count} times
-    </button>
-  );
-}
-
-  return (
-    <div>
-      <h4>Counters that update separately</h4>
-      <MyButton />
-      <MyButton2 />
-    </div>
-  );
-}
-
-<MyApp />
+<StrictMode>
+<MyButton2 />
+</StrictMode>
 
 ***
 
@@ -264,39 +217,20 @@ export const MyApp2 = () => {
 
 ```
 
-export const MyButton3 = ({ count, onClick }) => {
-  return (
-    <>
-    <button onClick={onClick}>
-      Clicked {count} times
-    </button>
-    </>
-  );
-}
+import MyApp2 from '@site/src/components/react-components/liftingState.jsx';
 
-export const MyApp2 = () => {
-  const [count, setCount] = useState(0);
+### Este Boton tiene states sincronizados
 
-  function handleClick() {
-    setCount(count + 1);
-  }
-
-  return (
-    <div>
-      <h4>Counters that update together</h4>
-      <MyButton3 count={count} onClick={handleClick} />
-      <MyButton3 count={count} onClick={handleClick} />
-    </div>
-  );
-}
-
+<StrictMode>
 <MyApp2 />
+</StrictMode>
 
 ***
 
 ## Componente importado externamente
 
 El siguiente es un ejemplo de como importar un componente y utilizarlo en el mdx
+
 ```jsx
 import Game from '@site/src/components/tick-toc.js';
 
@@ -311,8 +245,6 @@ El codigo se encuentra en tick-toc.js y es importado gracias a un feature de mdx
 **Importante:** Ojo con la inmutabilidad de los estados, hacer copia mas no modificar.
 
 import Game from '@site/src/components/tick-toc.jsx';
-
-import { StrictMode } from "react";
 
 <StrictMode>
 <Game />
