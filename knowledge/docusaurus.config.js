@@ -101,6 +101,16 @@ const config = {
         // ... other options
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'astro',
+        path: 'astro',
+        routeBasePath: 'astro',
+        sidebarPath: './sidebars.js',
+        // ... other options
+      },
+    ],
   ],
 
   themeConfig:
@@ -154,6 +164,13 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'CSS'
+          },
+          {
+            type: 'docSidebar',
+            docsPluginId: 'astro',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'Astro'
           }
           /*{
             label:'React',
