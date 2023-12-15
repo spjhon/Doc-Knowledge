@@ -15,6 +15,7 @@ React es una libreria que posee un DOM virtual con el cual puede renderizar comp
 
 Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experiencia adquirida con la libreria.
 
+- (de gridder) react no puede imprimir otras cosas que no sean numeros y letras en las crulys {} de return, objetos no, arrays no, booleanos no; dentro de las curlyes se pueden meter funciones y llamadas pero que porsupuesto terminen en primitivos como numeros y letras
 - Ojo con la inmutabilidad cuando se trabaja con los estados (recuerda el .slide() y el ...history en el ejemplo de tick-toc).
 - La clave de react es la re-renderizacion de un componente y como sus estados van cambiando.
 - Si se llama el componente que use useState varias veces, habran varios estados diferentes.
