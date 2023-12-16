@@ -41,6 +41,7 @@ Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experi
 - The shortcuts are common, but you don’t have to use them if you prefer plain if.
 - Un set en react es un peticion de hacer un re-render con los nuevos states.
 - En react los on son los eventos html que estan listados en w3schools.
+- Tip acerca de imagenes, las imagenes que son de menos de 5kb son convertidas a codigo e incluidas en el jsx de react.
 
 ***
 
