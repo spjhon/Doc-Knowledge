@@ -43,6 +43,7 @@ Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experi
 - Un set en react es un peticion de hacer un re-render con los nuevos states.
 - En react los on son los eventos html que estan listados en w3schools.
 - Tip acerca de imagenes, las imagenes que son de menos de 5kb son convertidas a codigo e incluidas en el jsx de react.
+- Los componentes que son parientes NO SE DEBEN DE COMUNICAR ENTRE ELLOS, SIEMPRE UTILIZE LOS PARENTS.
 
 ***
 
