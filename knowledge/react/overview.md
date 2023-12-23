@@ -17,6 +17,8 @@ Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experi
 
 - (de gridder) react no puede imprimir otras cosas que no sean numeros y letras en las crulys {} de return, objetos no, arrays no, booleanos no; dentro de las curlyes se pueden meter funciones y llamadas pero que porsupuesto terminen en primitivos como numeros y letras
 - Ojo con la inmutabilidad cuando se trabaja con los estados (recuerda el .slide() y el ...history en el ejemplo de tick-toc).
+- React trata diferente a los Numbers, Strings, Null, Undefind y Booleanos a los Arrays y los Objects
+- JavaScript tiene una particularidad, si un object tiene dos llaves con el mismo nombre, una sobre-escribe a la otra (LAS LLAVES EN LOS OBJECTS DEBEN DE SER UNICAS)
 - The **spread** syntax: The dots literally mean “gather the remaining parameters into an array”.
 - La clave de react es la re-renderizacion de un componente y como sus estados van cambiando.
 - Si se llama el componente que use useState varias veces, habran varios estados diferentes.
