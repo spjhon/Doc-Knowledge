@@ -63,6 +63,30 @@ Va en tres fases:
 
 ***
 
+## Cuando Utilizar useContext vs useState
+
+### Cuando utilizar useState
+
+- **Form inputs:** If your component has form inputs, use the useState Hook to manage their state. This allows you to keep track of user input and update the UI accordingly.
+
+- **Conditional rendering:** If you have components that need to change their state based on user actions or some other condition, use the useState Hook to manage the component’s state and re-render the component when the state changes.
+
+- **UI components:** If UI components need to change their state based on user interaction, such as dropdown menus, tabs, or accordions, use the useState Hook to manage the component’s state and update the UI accordingly.
+
+- **Toggling:** If you have components that need to toggle between two or more states, such as a modal or a tooltip, use the useState hook to manage the component’s state and toggle between the different states.
+
+### Cuando utilizar useContext
+
+- **Global data:** If you have data that needs to be accessed by multiple components throughout your application, such as the current user object, theme, or localization settings, you can use the React Context API to share this data across your components.
+
+- **Avoiding prop drilling:** If you pass props down multiple levels of the component tree, especially when the intermediate components do not directly use the props, it might be a good idea to use React Context API to avoid prop drilling and simplify your component code.
+
+- **Large-scale applications:** If you’re building a large-scale application with many components and complex data flows, React Context API can help you manage your state and data more efficiently and make your code more maintainable.
+
+- **Cross-cutting concerns:** If you have cross-cutting concerns in your application, such as error handling or authentication, that need to be applied across multiple components, using React Context API can make managing these concerns easier and keeps your code organized.
+
+***
+
 ## Como pasar datos dinamicos
 
 - Gracias a javascript se le puede agregar datos dinamicos como en el siguiente ejemplo, esto es util cuando se extrae info desde un objeto:
