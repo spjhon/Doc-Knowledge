@@ -47,6 +47,20 @@ Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experi
 - Tip acerca de imagenes, las imagenes que son de menos de 5kb son convertidas a codigo e incluidas en el jsx de react.
 - Los componentes que son parientes NO SE DEBEN DE COMUNICAR ENTRE ELLOS, SIEMPRE UTILIZE LOS PARENTS.
 
+## Tips acerca de useEffect
+
+## Tips acerca de context
+
+Va en tres fases:
+
+1. Crear context.
+2. Specify the data that will be shared
+3. "Consume" the data in a component
+
+- Se utiliza un provider: Component used to specify what data we want to share.
+
+- Context no es remplazo de Redux, redux es organizacion de info, context es como distribuirla.
+
 ***
 
 ## Como pasar datos dinamicos
