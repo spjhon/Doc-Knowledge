@@ -47,8 +47,6 @@ Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experi
 - Tip acerca de imagenes, las imagenes que son de menos de 5kb son convertidas a codigo e incluidas en el jsx de react.
 - Los componentes que son parientes NO SE DEBEN DE COMUNICAR ENTRE ELLOS, SIEMPRE UTILIZE LOS PARENTS.
 
-## Tips acerca de useEffect
-
 ## Tips acerca de context
 
 Va en tres fases:
@@ -84,6 +82,36 @@ Va en tres fases:
 - **Large-scale applications:** If you’re building a large-scale application with many components and complex data flows, React Context API can help you manage your state and data more efficiently and make your code more maintainable.
 
 - **Cross-cutting concerns:** If you have cross-cutting concerns in your application, such as error handling or authentication, that need to be applied across multiple components, using React Context API can make managing these concerns easier and keeps your code organized.
+
+***
+
+## Tips acerca de useEffect
+
+### Ojo con useEffect
+
+Debido a que useEffect solo corre una vez, durante el primer render, esto puede generar bugs cuando se utiliza otras funciones dentro de useEffect. Entonces EVITAR:
+
+- Posible bug anytime your useEffect contains a function that refers to a variable.
+- Por eso esta el slint rule que dice que se debe de meter la variable dentro del array final de la arrow function para que al cambiar esta variable, haya un re-renderizado y utilizacion del useEffect otra vez con la variable actualizada.
+- oJO con el slint que no siempre tiene la razon.
+- Entonces para arreglar el problema se debe de utilizar (despues de analizar el flujo de datos a travez del provider) useCallback en el provider.
+- Una forma de pasar un listener con click al body desde un use effect es crear una funcion listener y ahi si asignarle un eventlistener normalito al body o a donde quiera y para que no hayan 20.000 asiganciones de eventos a un elemento pues se utiliza el cleanUp para remover el evento asignado y que solo haya una sola asignacion. Bendito react.
+Entonces: La idea es que el cleanUp es para eliminar las asignaciones que se hacer cada vez que corre useEffect.
+
+#### Restricciones de useEffect
+
+- No se puede return numbers
+- No se puede return strings
+- No se puede utilizar async await dentro de useEffect
+- Si puede retornar funciones
+
+##### Algo para tener en cuenta
+
+Se le puede aplicar una funcion llamada clean up que se coloca como return del useEffect para que cuando vuelva y se ejecute el useEffect vaya a esa funcion de cleanUp
+
+***
+
+## Tips Acerca de Routing, Navigation, Reusability
 
 ***
 
