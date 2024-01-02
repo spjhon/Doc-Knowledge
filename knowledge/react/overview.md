@@ -24,6 +24,7 @@ Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experi
 - Si se llama el componente que use useState varias veces, habran varios estados diferentes.
 - Las funciones que utilicen "use" se consideran "hooks".
 - Un componente en REACT es una funcion que retorna HTML al DOM virtual.
+- Un underline element es un componente que el html que devuelve es el mismo que el nombre de la funcion y el nombre del componente.
 - Un componente no puede retormar mas de un tag, en caso de varios tags envolvelos en un wrapper or a fragment.
 - Se recomienda aplicar (ejemplo en github examples-react) atomic design in order to create the components.
 - Los componentes en REACT siempre deben de tener una letra mayuscula al principio para diferenciarlos de elementos HTML normales.
