@@ -29,6 +29,7 @@ Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experi
 - Se recomienda aplicar (ejemplo en github examples-react) atomic design in order to create the components.
 - Los componentes en REACT siempre deben de tener una letra mayuscula al principio para diferenciarlos de elementos HTML normales.
 - Una diferencia entre el JSX con HTML es que hay que cerrar todos los tags, y que solo se puede devolver un solo componente (envoltura).
+- En cuanto a los proptypes se utiliza el node para los children pero toca espera haber typescript que tal va.
 - Para agregar estilo se utiliza className, no se utiliza class como en html normalmente se haria.
 - Se puede almacenar jsx en variables y generar condicionales para que muestre uno u otro contenido, estas condiconales pueden ser incluso comparativos de tipo &&.
 - Se puede utilizar map para mapear todos los elementos que se encuentren en objetos, vengan de funciones, fetch, etc. (siempre agregar un key).
