@@ -114,6 +114,10 @@ Entonces: La idea es que el cleanUp es para eliminar las asignaciones que se hac
 
 Se le puede aplicar una funcion llamada clean up que se coloca como return del useEffect para que cuando vuelva y se ejecute el useEffect vaya a esa funcion de cleanUp
 
+## Tips acerca de useRef
+
+Se utiliza para hacer referencia aun elemento del DOM desde el elemento que se utiliza
+
 ***
 
 ## Tips Acerca de Routing, Navigation, Reusability

@@ -11,3 +11,6 @@ useEffect
 - cuando un state en especifico cambie
 
 Ver videos de Stephen Gridder en la seccion de books con api para mas info.
+
+useRef
+:Allows a component to get a reference to a DOM element that it creates.
