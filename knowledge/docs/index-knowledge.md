@@ -12,9 +12,9 @@ Este conocimiento esta distribuido en:
 
 2. **Repositorios con Books, Docs, Cursos Udemy, Ejemplos Blogs, Ejemplos Youtube, Stars**
 
-3. **Storybook library con todos los componentes creados y prueba de componentes pre-fabricados como lo es MaterialUI y mantine**
+3. **Storybook library con todos los componentes creados y prueba de componentes pre-fabricados como lo es MaterialUI y mantine Ademas de conocidos patterns**
 
-4. **Respositorio con un DOCUSAURO (anterior mente se utilizaba mindmaps pero no es seguro a futuro (vendor-lock)) que contiene conocimiento que se encuentra muy esparcido en otras fuentes y es mas facil o es necesario un resumen como por ejemplo las diferentes formas de crear e invocar un funcion o las diferentes formas de crear o invocar un objeto.**
+4. **Respositorio con un DOCUSAURO (anterior mente se utilizaba mindmaps pero no es seguro a futuro (vendor-lock)) que contiene conocimiento que se encuentra muy esparcido en otras fuentes y es mas facil o es necesario un resumen como por ejemplo las diferentes formas de crear e invocar un funcion o las diferentes formas de crear o invocar un objeto. Ademas de conocidos patterns**
 
 ***
 
