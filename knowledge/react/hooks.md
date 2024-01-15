@@ -14,3 +14,9 @@ Ver videos de Stephen Gridder en la seccion de books con api para mas info.
 
 useRef
 :Allows a component to get a reference to a DOM element that it creates.
+
+useContext
+:para crear un provider y pasar states entre componentes.
+
+useReducer
+:Defines state in a component, just like useState, es parecido a redux, entendiendo este, se entiende redux

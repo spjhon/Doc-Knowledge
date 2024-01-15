@@ -124,6 +124,10 @@ Se utiliza para hacer referencia aun elemento del DOM desde el elemento que se u
 
 ***
 
+## Tips acerca de Reducers
+
+***
+
 ## Como pasar datos dinamicos
 
 - Gracias a javascript se le puede agregar datos dinamicos como en el siguiente ejemplo, esto es util cuando se extrae info desde un objeto:
