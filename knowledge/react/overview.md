@@ -126,6 +126,9 @@ Se utiliza para hacer referencia aun elemento del DOM desde el elemento que se u
 
 ## Tips acerca de Reducers
 
+- Tambien produce state pero es mas utilizado para con componentes que esten relacionados entre si.
+- De acuerdo al ejemplo de grider es cuando es cuando un state esta dentro de otro
+
 ***
 
 ## Como pasar datos dinamicos
