@@ -140,6 +140,15 @@ Se utiliza para hacer referencia aun elemento del DOM desde el elemento que se u
 
 ***
 
+## Tips acerca de REDUX
+
+En redux existen slices y la store
+
+- De por si una app tiene una sola store y es donde estan guardados todos los states
+- los componentes que se suscriban a la store va a ser re-renderizados cuando el respectivo state cambie y para eso es els useSelector
+
+***
+
 ## Como pasar datos dinamicos
 
 - Gracias a javascript se le puede agregar datos dinamicos como en el siguiente ejemplo, esto es util cuando se extrae info desde un objeto:
