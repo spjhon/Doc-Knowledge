@@ -128,6 +128,15 @@ Se utiliza para hacer referencia aun elemento del DOM desde el elemento que se u
 
 - Tambien produce state pero es mas utilizado para con componentes que esten relacionados entre si.
 - De acuerdo al ejemplo de grider es cuando es cuando un state esta dentro de otro
+- El dispatch es una funcion que retorna el nuevo state asi que:
+- Lo que sea que retorne el dispatch va a ser el nuevo state
+- Si retorna nada, pues el state va a ser undefined
+- No async/await, no request, no promises, no outside variables
+
+### Enorme consejo
+
+- Ponga toda la logica de la actualizacion de los states dentro del reducer mas no en el dispach o en el payload ya que se puede equivoar otro dev al escribir toda la logica cada vez que haga un dispatch
+- Lo mas recomendable es mandar a travez del payload solo los datos desnudos mas no mandar logica alguna.
 
 ***
 
