@@ -146,6 +146,7 @@ En redux existen slices y la store
 
 - De por si una app tiene una sola store y es donde estan guardados todos los states
 - los componentes que se suscriban a la store va a ser re-renderizados cuando el respectivo state cambie y para eso es els useSelector
+- Se puede utilizar el metodo getState() para ver que hay dentor de la store
 
 ***
 
