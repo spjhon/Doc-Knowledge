@@ -24,6 +24,10 @@ Para su facilidad en un inicio sera escrita en español, luego se hara la traduc
 
 Para no generar una repeticion de datos, aca solo habra index de las categorias de bookmarks que se coleccionan mas no cada bookmark individual, los mismo para la documentacion y conocimiento de cada herramienta y el lenguaje javascript, solo categorizacion.
 
+#### Para tener en cuenta:
+
+The post explores the significant issue of knowledge loss within organizations, emphasizing its impact on communication structures and system design. The author introduces the concept of 'Biological Data Storage' to represent the critical role of employees as carriers of knowledge and experience. It discusses the use of metrics like 'Time to Problem Resolution' and 'Knowledge Transfer Rate' to assess organizational effectiveness and knowledge transfer efficiency. Techniques such as documentation, Architecture Decision Records (ADRs), EventStorming, and BPMN (Business Process Model and Notation) are recommended for capturing and preserving knowledge. The post highlights the need for a cultural shift in organizations towards open communication and active knowledge sharing to combat the loss of expertise when experienced members depart.
+
 #### **JavaScript**
 
 El conocimiento de referencia de javascript para no perderse entre toda la info de internet sera:

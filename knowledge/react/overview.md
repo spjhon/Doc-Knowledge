@@ -132,6 +132,8 @@ Se utiliza para hacer referencia aun elemento del DOM desde el elemento que se u
 - Lo que sea que retorne el dispatch va a ser el nuevo state
 - Si retorna nada, pues el state va a ser undefined
 - No async/await, no request, no promises, no outside variables
+- Si se desea resetear un state pues se retorna un objeto nuevo con valores reseteados
+- Siempre meter la logica en el reducer y dejar el dispatch y el payload lo mas limpio posible
 
 ### Enorme consejo
 
