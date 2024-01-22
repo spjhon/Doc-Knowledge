@@ -20,3 +20,9 @@ useContext
 
 useReducer
 :Defines state in a component, just like useState, es parecido a redux, entendiendo este, se entiende redux
+
+useDispatch
+: es para traer el dispatch desde una store de redux y poder enviar un type y un payload a travez de actions
+
+useSelector
+: Este es para traer un state del store y asi utilizarlo
