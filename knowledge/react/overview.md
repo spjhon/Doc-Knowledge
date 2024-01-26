@@ -153,6 +153,19 @@ En redux existen slices y la store
 
 ***
 
+## Tips acerca de DATA-FETCHING
+
+Se puede hacer de dos formas:
+
+1. Async thunk functions (en el ejercicio de gridder se utilizo para los users)
+2. Redux Toolkit query (en el ejercicio de gridder se utilizo para los albunes y las fotos)
+
+**Ojo*: Nunca haga request desde un reducer NUNCA. Reducers siempre deben de ser sincronos mas no asincronos.
+
+- Para hacer fetching es una operacion asyncrona osea que hay un periodo de pendiente un periodo de success debe de haber un periodo de error. Osea tres states.
+
+***
+
 ## Como pasar datos dinamicos
 
 - Gracias a javascript se le puede agregar datos dinamicos como en el siguiente ejemplo, esto es util cuando se extrae info desde un objeto:
