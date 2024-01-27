@@ -160,9 +160,12 @@ Se puede hacer de dos formas:
 1. Async thunk functions (en el ejercicio de gridder se utilizo para los users)
 2. Redux Toolkit query (en el ejercicio de gridder se utilizo para los albunes y las fotos)
 
+- thunks estan deprecated utilizar solo redux toolkit
+
 **Ojo*: Nunca haga request desde un reducer NUNCA. Reducers siempre deben de ser sincronos mas no asincronos.
 
 - Para hacer fetching es una operacion asyncrona osea que hay un periodo de pendiente un periodo de success debe de haber un periodo de error. Osea tres states.
+- Los thunks son utilizados para manejar operaciones asyncronas en redux ya que redux no puede tener asyncronia, ademas un thunk despacha actions automaticamente a medida que los datos asyncronos llegan, actualizando los states de forma syncrona y de inmediato
 
 ***
 
