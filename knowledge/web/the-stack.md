@@ -263,6 +263,16 @@ Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, ax
 
 ### Accesibility: Aria and keyboard navigation
 
+Researching headless components, I found that there are a couple of popular libraries:
+
+- **Radix UI:** My favorite. Well tested, accessible, and has one of the best component API-s I’ve seen. It does have some problems when testing it’s components with React Testing Library, and does not support IE very well.
+- **Reach UI:** pretty good and reliable, from the authors of react-router and Remix. Not a lot of components, but covers most use cases.
+- **Headless UI:** a small number of components. Well tested, work best with Tailwind CSS. Only drawback is that it’s not that easy to change the functionality and behavior of the components.
+- **Downshift:** By Kent C. Dodds. Focuses on autocomplete, select, combobox, and multi combobox components. Well tested, accessible, and gives you total control over styling and functionality. I chose it for our combobox and autocomplete components, and learned a lot from their implementation.
+- **React-aria:** By Adobe. I don’t know too much about it, but it looks interesting.
+- **Reakit**
+- **Ariakit**
+
 ***
 
 ### TaskRunners: pm2 nginx gulp grunt
