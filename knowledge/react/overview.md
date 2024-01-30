@@ -150,6 +150,7 @@ En redux existen slices y la store
 - los componentes que se suscriban a la store va a ser re-renderizados cuando el respectivo state cambie y para eso es els useSelector
 - Se puede utilizar el metodo getState() para ver que hay dentor de la store
 - cuando se esta disenando el state para redux pensar en el derived state: Values that we can calculate using existing state.
+- **CONSEJO PARA NEXT JS:** fetch data in server components and mutate in client components
 
 ***
 
