@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Website speed optimization
 
 In terms of site speed optimization there’s a few things you can do:

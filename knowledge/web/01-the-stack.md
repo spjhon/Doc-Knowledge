@@ -7,8 +7,9 @@ sidebar_position: 1
 Focus on JamStack (JavaScript, Api, Markup)
 
 Tools used in the whole chain to create three types of websites when need it.
+
 **NEXTjs: for Server Sider Rendering (Render the page from the server at request), next also do client side and Static Site Generation (look remix)**
-**REACTjs: for Client Side Rendering (When the whole app is send to the client and the client device do the job)**
+**REACTjs: for Client Side Rendering (When the whole app is send to the client and the client device do the job), use vite**
 **ASTROjs: Static Site Rendering (When the site is created at build time from the framework).**
 
 Tool to the client:
@@ -16,19 +17,6 @@ Tool to the client:
 - The browser (Safari for apple, brave, chrome, firefox, edge), all websites must work in this browsers.
 
 - Infrastructure: HTTP Hypertext Transfer Protocol.
-
-***
-
-## Hosting
-
-### Hosting Front-end
-
-- DigitalOcean app
-- DigitalOcean Droplets
-- Vercel
-- Cloudfare pages
-- Railway (it's cheaper)
-- Netlify
 
 ***
 
@@ -59,7 +47,7 @@ Herramientas están en los favoritos de microsoft edge al igual que las referenc
 
 - Package Manager: NPM
 
-### CSS
+## CSS
 
 **Libraries and metodologies:**
 
@@ -68,36 +56,34 @@ Herramientas están en los favoritos de microsoft edge al igual que las referenc
 - Atomic Design Components
 - KSS for pattern library and css documentation
 
-#### Pre-processors
+### Pre-processors
 
 - SCSS
 - SASS
 
 ***
 
-### JAVASCRIPT Libraries
+## JavaScript
 
-- three.js: para animaciones 3d
-- prism, Highlight.js: para highlight codigo en la pagina web
-- markdown-it: para administrar contenido markdown-it, a parte esta
-- markdown-it hightlight y markdown-it-attrs para atributos.
-- lodash: funciones varias dentro de javascript.
-- animejs: para animaciones
-- motion ui: For transitions
-- moment js: todo para con el tiempo y fechas
-- d3js, chartjs: para graficas
-- underscorejs: para arrays
-- fuse: para búsquedas
-- pdfjs: para crear pdfs
-- pixi: para 2d rendered image
-- Auth0: para autenticación.
-- Clerk: para autenticación
-- Firebase: autenticación y base de datos
-- Passportjs: para autenticación
-- Lax.js: para animaciones scroll
-- Fontfaceobserver: Control when render fonts on the browser.
-- Require js
-- gsap js for animation (pricing)
+### JavaScript Libraries
+
+- **three.js:** para animaciones 3d
+- **prism, Highlight.js:** para highlight codigo en la pagina web
+- **markdown-it:** para administrar contenido markdown-it, a parte esta markdown-it hightlight y markdown-it-attrs para atributos.
+- **lodash:** funciones varias dentro de javascript.
+- **animejs:** para animaciones
+- **motion ui:** For transitions
+- **moment js:** todo para con el tiempo y fechas
+- **d3js, chartjs:** para graficas
+- **underscorejs:** para arrays
+- **fuse:** para búsquedas
+- **pdfjs:** para crear pdfs
+- **pixi.js** PixiJS is an open source, web-based rendering system that provides blazing fast performance for games, data visualization, and other graphics intensive projects.
+- **Passportjs:** para autenticación
+- **Lax.js:** para animaciones scroll
+- **Fontfaceobserver:** Control when render fonts on the browser.
+- **Require js**
+- **Gsap.js:** for animation (pricing)
 
 ***
 
@@ -109,30 +95,33 @@ npm is the package manager for Node.js, and it's used to install and manage depe
 
 ***
 
-### JavaScript FRAMEWORKS
+## JavaScript FRAMEWORKS
 
-#### React js Libraries
+### React js Libraries
 
 - Vite
 - Tailwind, css modules
 - React-router: If your application involves multiple pages or views, React Router is a common library for adding navigation to your React applications.
 - React spring
 - React typical
-- Frammer for animations
+- Frammer Motion for animations
 - Redux (big apps), it's mostly deprecated **As November 2023 it's recommended use zusand for state management and react query for data fetching.** RTK and zusand for client state, and RTK query and react query for server state.
+
 A nice combination:
+
 - Rtk-rtk-query
 - Zustand-react query
 - React developer Tools
 
 **Data Fetching:**
 
-- **Axios or Fetch:** For making HTTP requests to your server or external APIs to fetch data.
 - **GraphQL (with Apollo Client or Relay):** If you prefer a more efficient and flexible way to query and manipulate data.
 
 **Authentication:**
 
-- **Firebase Authentication or Auth0:** To handle user authentication and secure access to certain parts of your e-commerce application.
+- **Auth0:** para autenticación.
+- **Firebase:** autenticación y base de datos
+- **Clerk:** para autenticación
 
 **Forms:**
 
@@ -160,30 +149,20 @@ A nice combination:
 
 ***
 
-### VsCode Extentions
-
-**ESLint and Prettier:**
-
-- **ESLint:** ESLint is a linter for JavaScript and JSX, which helps maintain code quality by catching common errors and enforcing coding standards.
-   Gotcha, thanks! I’m not sure there is an easy way to do this. You might consider some kind of custom ESLint plugin to throw errors at build time. Maybe based on a list from the storybook project or something. Honestly it seems like more trouble than it’s worth though.
-- **Prettier:** Prettier is a code formatter that helps maintain consistent code style across your project.
-
-***
-
-#### Next js Libraries
+### Next js Libraries
 
 - React query + zusand (replace of redux)
 - Swup (page transition)
 
 ***
 
-#### Astro js Libraries
+### Astro js Libraries
 
 - Astro integrations
 
 ***
 
-#### Component libraries
+### Component libraries
 
 - Mantine ui
 - Material ui
@@ -191,29 +170,50 @@ A nice combination:
 
 ***
 
-### Back-End
+### VsCode Extentions
 
-#### Node js (environment)
+Check the expoerted list or check VSCode directly.
+
+***
+
+## Back-End
+
+### Hosting
+
+#### Hosting Front-end
+
+- DigitalOcean app
+- DigitalOcean Droplets
+- Vercel
+- Cloudfare pages
+- Railway (it's cheaper)
+- Netlify
+
+#### Domain
+
+- Name-Cheap para compra de dominio
+
+### Node js (environment)
 
 - Express
 - Nustjs (for advanced)
 - Nests js framework build on top of express
 
-#### Databases
+### Databases
 
 - SQLite: Small database
-- SQL - Postgre:  For relational databases
+- MySQL - Postgre:  For relational databases
 - MongoBd: For non-relational
 
-#### ORM
+### ORM
 
 Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, axios.
 
-#### For apis
+### For apis
 
 - Supabase
 
-#### CMS
+### CMS
 
 - Strapi (RestApi, GraphQL)
 - Directus
@@ -221,47 +221,53 @@ Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, ax
 - Sanity
 - Ghost
 
-#### For ecommerce
+### For ecommerce
 
 - Shopify (to build, carts, checkouts, manage clients info)
 - Medusa (same as Shopify but is self-hosted)
 - Wompi (payment processing)
 
-#### Hosting backend
+### Hosting backend
 
 - Fly.io
 - DigitalOcean Droplet
 - Azure app service for containers
+- Cloudinary: para imagenes
+- Digital Ocean Spaces or AWS S3: para imagenes y videos y pdfs [ver este video de Fazt](https://www.youtube.com/watch?v=7Ycf3FYcF_A)
 
 ***
 
-### Conteiners apps
+## Conteiners apps
 
 - Docker
 
-#### Orchestration and load balancing
+### Orchestration and load balancing
 
 - Kubernetes
 
 ***
 
-#### Web Security
+## Web Security
 
 ***
 
-### Module Bundler
+## Module Bundler
 
 - **Webpack:** It is a module bundler for JavaScript applications. Webpack takes your JavaScript, CSS, and other assets and bundles them together in a way that's optimized for the web. It's often used to handle tasks like transpiling modern JavaScript (using Babel), bundling and minifying CSS, and optimizing images.
 
 - **Babel:** Babel is a JavaScript compiler that allows you to use the latest ECMAScript features (like arrow functions, template literals, etc.) in your code and converts it to a version of JavaScript that can run in older browsers. It's crucial when working with React because it enables the use of JSX (JavaScript XML), which is a syntax extension for JavaScript recommended by React.
 
+-**TurboPack:** El que utiliza next js
 ***
 
-### Testing: jest
+## Testing: jest
+
+- Tener en cuenta Unit Testing
+- Integration Testing
 
 ***
 
-### Accesibility: Aria and keyboard navigation
+## Accesibility: Aria and keyboard navigation
 
 Researching headless components, I found that there are a couple of popular libraries:
 
@@ -275,6 +281,6 @@ Researching headless components, I found that there are a couple of popular libr
 
 ***
 
-### TaskRunners: pm2 nginx gulp grunt
+## TaskRunners: pm2 nginx gulp grunt
 
 ***

@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Seting up the enviroment
 
 Yes, when web developers talk about setting up an environment for a web development project, they generally refer to configuring the necessary tools, runtime environments, and dependencies required for the project. This setup may include:

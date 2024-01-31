@@ -1,4 +1,8 @@
-# GENERAL PROGRAMMING
+---
+sidebar_position: 7
+---
+
+# General Glosary
 
 ## Notation
 

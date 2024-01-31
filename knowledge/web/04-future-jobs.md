@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Job Opportunities in the future
 
 Predicting the future with certainty is challenging, but there are certain trends and areas that show promise for being less competitive or potentially lucrative in the future. Keep in mind that any field can become competitive as it evolves, but as of my last knowledge update in January 2022, here are some areas that might have potential:

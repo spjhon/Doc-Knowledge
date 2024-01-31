@@ -74,16 +74,6 @@ const config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'css',
-        path: 'css',
-        routeBasePath: 'css',
-        sidebarPath: './sidebars.js',
-        // ... other options
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
         id: 'web',
         path: 'web',
         routeBasePath: 'web',
@@ -157,13 +147,6 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'React'
-          },
-          {
-            type: 'docSidebar',
-            docsPluginId: 'css',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'CSS'
           },
           {
             type: 'docSidebar',

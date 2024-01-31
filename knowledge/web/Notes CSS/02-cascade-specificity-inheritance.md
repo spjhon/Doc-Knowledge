@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Cascade vs Specificity vs Inheritance CSS
 
 Cascade, specificity, and inheritance are key concepts in Cascading Style Sheets (CSS) that govern how styles are applied to HTML elements. These concepts help determine which styles take precedence when there are conflicting rules. Let's explore each of these concepts:

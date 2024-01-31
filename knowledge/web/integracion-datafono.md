@@ -1,4 +1,4 @@
-# integracion datafono con web browser
+# Integracion datafono con web browser
 
 Para buscar información sobre este tipo de configuraciones en inglés, puedes utilizar términos como:
 

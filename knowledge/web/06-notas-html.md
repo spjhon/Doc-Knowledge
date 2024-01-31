@@ -1,4 +1,8 @@
-# HTML
+---
+sidebar_position: 6
+---
+
+# Notes HTML
 
 - El input es el mas complejo de los elemenots html por las formas que puede coger
 
