@@ -1,8 +1,12 @@
+---
+sidebar_position: 4
+---
+
 # Ways to attach an event listener en javascript
 
 Attaching an event handler in web development typically involves using JavaScript to specify a function that should be executed when a particular event occurs on an HTML element. Here's a basic guide on how to attach an event handler:
 
-### Method 1: Inline Event Handling
+## Method 1: Inline Event Handling
 
 You can attach an event handler directly in the HTML markup using the `on` attribute. For example:
 
@@ -12,7 +16,7 @@ You can attach an event handler directly in the HTML markup using the `on` attri
 
 In this example, the `myFunction` function will be called when the button is clicked.
 
-### Method 2: DOM Level 0 Event Handling
+## Method 2: DOM Level 0 Event Handling
 
 You can also attach event handlers using JavaScript in a script tag or an external script file. This is often considered better practice, as it separates your HTML and JavaScript. Here's an example:
 
@@ -42,7 +46,7 @@ You can also attach event handlers using JavaScript in a script tag or an extern
 </html>
 ```
 
-### Method 3: DOM Level 2 Event Handling
+## Method 3: DOM Level 2 Event Handling
 
 The DOM Level 2 method allows you to add multiple event listeners to an element. This is a more flexible approach:
 

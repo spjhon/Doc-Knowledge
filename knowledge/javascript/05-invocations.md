@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Invocation in javascript
 
 In this section its a small cheat-sheet of how different features of javascript are invoke and used, the most importanst are FUNCTIONS, OBJECTS, EXPORTS/IMPORTS.

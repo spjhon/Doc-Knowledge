@@ -4,6 +4,8 @@ sidebar_position: 0
 
 # Index del conocimiento adquido en desarrollo web
 
+- Se recomienda para cualquier reunion o un momento que se necesite tomar notas, utilizar el Cornell note-taking system and template.
+
 - La finalidad de este flujo de conocimiento es tener a la mano todo el conocimiento necesario para crear un e-commerce en produccion.
 
 Este conocimiento esta distribuido en:
@@ -15,6 +17,8 @@ Este conocimiento esta distribuido en:
 3. **Storybook library con todos los componentes creados y prueba de componentes pre-fabricados como lo es MaterialUI y mantine Ademas de conocidos patterns**
 
 4. **Respositorio con un DOCUSAURO (anterior mente se utilizaba mindmaps pero no es seguro a futuro (vendor-lock)) que contiene conocimiento que se encuentra muy esparcido en otras fuentes y es mas facil o es necesario un resumen como por ejemplo las diferentes formas de crear e invocar una funcion o las diferentes formas de crear o invocar un objeto. Ademas de conocidos patterns**
+
+5. **Las explicaciones (tips) que no se puedan colocar en el codigo directamente o que sea un resumen de un tema colocarlo en el docusauro**
 
 ***
 
@@ -46,7 +50,7 @@ El conocimiento de referencia de javascript para no perderse entre toda la info 
 
 ### Flujo
 
-El flujo de conocimiento es el siguiene
+El flujo de conocimiento es el siguiente:
 
 - La documentacion (paginas web en booksmarks) de cada lenguaje, framework y libreria dicta la utilizacion de cada herramienta individual pero no trabajando juntas. La lista completa de las documentaciones se puede extraer del "stack".
 
@@ -123,7 +127,7 @@ Feel free to use this concise table in your Markdown document!
 | [express](https://github.com/expressjs/express)                                       | Fast, unopinionated, minimalist web framework for node.                                                                 |
 | [fastapi](https://github.com/tiangolo/fastapi)                                        | FastAPI framework, high performance, easy to learn, fast to code, ready for production.                                  |
 | [flask](https://github.com/pallets/flask)                                             | The Python micro framework for building web applications.                                                               |
-| [git](https://github.com/git/git)                                                     | Git Source Code Mirror - This is a publish-only repository but pull requests can be turned into patches to the mailing list via GitGitGadget (https://gitgitgadget.github.io/). Please follow Documen… |
+| [git](https://github.com/git/git)                                                     | Git Source Code Mirror - This is a publish-only repository but pull requests can be turned into patches to the mailing list via GitGitGadget. Please follow Documen… |
 | [ionic-framework](https://github.com/ionic-team/ionic-framework)                        | A powerful cross-platform UI toolkit for building native-quality iOS, Android, and Progressive Web Apps with HTML, CSS, and JavaScript. |
 | [markdown-it](https://github.com/markdown-it/markdown-it)                              | Markdown parser, done right. 100% CommonMark support, extensions, syntax plugins & high speed.                           |
 | [medusa](https://github.com/medusajs/medusa)                                          | Building blocks for digital commerce.                                                                                  |
@@ -135,7 +139,7 @@ Feel free to use this concise table in your Markdown document!
 | [storybook](https://github.com/storybookjs/storybook)                                  | Storybook is a frontend workshop for building UI components and pages in isolation. Made for UI development, testing, and documentation. |
 | [three.js](https://github.com/mrdoob/three.js)                                        | JavaScript 3D Library.                                                                                                 |
 | [TypeScript](https://github.com/microsoft/TypeScript)                                  | TypeScript is a superset of JavaScript that compiles to clean JavaScript output.                                         |
-| [wiki](https://github.com/requarks/wiki)                                              | Wiki.js | A modern and powerful wiki app built on Node.js.                                                                     |
+| [wiki](https://github.com/requarks/wiki)                                              | Wiki.js |
 
 #### Checklists
 
@@ -214,7 +218,7 @@ Feel free to use this concise table in your Markdown document!
 | **Project Title**                                                     | **Description**                                                                                                         |
 |-----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | [30-Days-Of-JavaScript](https://github.com/Asabeneh/30-Days-Of-JavaScript)             | 30 days of JavaScript programming challenge is a step-by-step guide to learn JavaScript programming language in 30 days. This challenge may take more than 100 days; please just follow your own pace… |
-| [30-Days-Of-React](https://github.com/Asabeneh/30-Days-Of-React)                 | 30 Days of React challenge is a step-by-step guide to learn React in 30 days. These videos may help too: https://www.youtube.com/channel/UC7PNRuno1rzYPb1xLa4yktw |
+| [30-Days-Of-React](https://github.com/Asabeneh/30-Days-Of-React)                 | 30 Days of React challenge is a step-by-step guide to learn React in 30 days. These videos may help too: [link](https://www.youtube.com/channel/UC7PNRuno1rzYPb1xLa4yktw) |
 | [bulletproof-react](https://github.com/alan2207/bulletproof-react)                 | 🛡️ ⚛️ A simple, scalable, and powerful architecture for building production-ready React applications.                   |
 | [computer-science](https://github.com/ossu/computer-science)                   | 🎓 Path to a free self-taught education in Computer Science!                                                              |
 | [freeCodeCamp](https://github.com/freeCodeCamp/freeCodeCamp)                   | freeCodeCamp.org's open-source codebase and curriculum. Learn to code for free.                                       |

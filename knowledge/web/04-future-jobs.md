@@ -133,7 +133,7 @@ Trend 8. Providing better performance
 Trend 9. Better UX for a perfect CX
 Trend 10. The rise of B2B online marketplace
 
-### MOST IN DEMAND WEBSITES SUITABLE FOR STRAPI BACKEND
+### Most in demand websites suitable for Strapi Backend
 
 E-commerce Store: E-commerce has been a consistently high-demand area, especially with the rise of online shopping and the growth of the digital marketplace.
 

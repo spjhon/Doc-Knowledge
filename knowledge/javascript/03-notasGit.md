@@ -1,4 +1,4 @@
-# Git
+# Notas Git
 
 Para probar que la clave local funciona, escriba ssh -T `git@github.com` en el terminal:
 

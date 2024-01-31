@@ -1,6 +1,10 @@
-# DOM Document Object Model
+---
+sidebar_position: 7
+---
 
-## **EVEN-TARGETS**
+# Notas DOM Document Object Model
+
+## **Event-Targets**
 
 - La estructura más externa del entorno del navegador es la ventana o window, que representa una instancia de la ventana del navegador en la que se carga la página web.
 
@@ -44,7 +48,7 @@ Las propiedades de HTMLtokenList que es basicamete todo lo que se puede hacer co
 
 - Un elemento puede estar hecho de diferentes interfaces no tiene que ser directament jerarquico.
 
-## **EVENTS**
+## **Events**
 
 - Los eventos se pueden adiconar tanto a elementos como a nodos
 
@@ -60,7 +64,7 @@ Las propiedades de HTMLtokenList que es basicamete todo lo que se puede hacer co
 
 - Los eventos se pueden dar: desde HTML: `<element onload="myScript">`, desde JavaScript: `object.onload = function(){myScript};`, o desde eventListener: `object.addEventListener("load", myScript);`
 
-## **coockies**
+## **Coockies**
 
 Cookies vs Local Storage
 Cookies are for client-server (browser-server) applications.

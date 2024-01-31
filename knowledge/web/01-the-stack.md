@@ -106,6 +106,7 @@ npm is the package manager for Node.js, and it's used to install and manage depe
 - React typical
 - Frammer Motion for animations
 - Redux (big apps), it's mostly deprecated **As November 2023 it's recommended use zusand for state management and react query for data fetching.** RTK and zusand for client state, and RTK query and react query for server state.
+- React Hook Form: Para utilizar una aproximacion de tipo no controlada (uncontrolled input forms) para evitar el re-renderizado del componente de tipo form cuando se esta tecleando. tambien se puede utilizar React Server Actions para el manejo de la forms.
 
 A nice combination:
 

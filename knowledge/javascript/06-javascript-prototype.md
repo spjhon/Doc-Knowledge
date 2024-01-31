@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 # Prototype Chain
 
 Using `object.prototype` directly in code is less common in modern JavaScript development because it can lead to confusion and makes the code less beginner-friendly. Let me explain why:

@@ -1,4 +1,10 @@
+---
+sidebar_position: 2
+---
+
 # JavaScript Syntax Cheatsheet
+
+- **Este es un cheat sheet basico bajado de internet**
 
 ## ``// /* */`` Slashes and Stars for Comments
 
@@ -295,4 +301,4 @@ The double-curlies `{{display: 'block'}}` is actually putting a JavaScript objec
 
 ## Other Topics (probably other cheat-sheets or other JavaScript references available online)
 
-Regular expressions, prototypical inheritance, expressions, `null` and `undefined` and `NaN`, variable scope, built-in functions, browser/DOM functions, `this`,
+Regular expressions, prototypical inheritance, expressions, `null` and `undefined` and `NaN`, variable scope, built-in functions, browser/DOM functions, `this`.
