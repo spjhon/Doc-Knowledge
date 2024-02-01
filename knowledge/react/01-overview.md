@@ -11,14 +11,15 @@ React es una libreria que posee un DOM virtual con el cual puede renderizar comp
 
 ***
 
+## Basics
+
+- La finalidad de react es utilizar functions y el sistema de import y exports de javascript para retornar partes de html con extras que se pueden observar en el object al hacer un render (se utiliza react.createElement) por parte de la libreria REACT.
+
 ## Recomendaciones Generales y Tips Alrededor de la libreria React
 
 Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experiencia adquirida con la libreria.
 
-- (de gridder) react no puede imprimir (osea retornar del componente) otras cosas que no sean numeros y letras en las crulys {} de return, objetos no, arrays no, booleanos no; dentro de las curlyes se pueden meter funciones y llamadas pero que por supuesto terminen en primitivos como numeros y letras.
-- Lo que hace babel es que retorna un object con toda la info del componente como los children, el tipo de tag y otros.
 - Ojo con la inmutabilidad cuando se trabaja con los estados (recuerda el .slide() y el ...history en el ejemplo de tick-toc).
-- React trata diferente a los Numbers, Strings, Null, Undefind y Booleanos a los Arrays y los Objects.
 - JavaScript tiene una particularidad, si un object tiene dos llaves con el mismo nombre, una sobre-escribe a la otra (LAS LLAVES EN LOS OBJECTS DEBEN DE SER UNICAS).
 - The **spread** syntax: The dots literally mean “gather the remaining parameters into an array”, cuando se utiliza como parametro
 - La clave de react es la re-renderizacion de un componente y como sus estados van cambiando.
