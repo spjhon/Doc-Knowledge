@@ -15,6 +15,13 @@ React es una libreria que posee un DOM virtual con el cual puede renderizar comp
 
 - La finalidad de react es utilizar functions y el sistema de import y exports de javascript para retornar partes de html con extras que se pueden observar en el object al hacer un render (se utiliza react.createElement) por parte de la libreria REACT.
 
+- Los primeros pasos se explican en el primer ejercicio del curso Grider en donde se explica como se manejar las curlyes y el paso de props.
+
+- Creacion de projecto (vite)
+- Como react se importa y se inyecta en el projecto?
+- Que es un componente y sus dos partes principales?
+- Que es el JSX, la diferencia y las reglas para cuando se escribe JSX en el return del componente
+
 ## Recomendaciones Generales y Tips Alrededor de la libreria React
 
 Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experiencia adquirida con la libreria.
