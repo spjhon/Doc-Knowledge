@@ -18,9 +18,9 @@ React es una libreria que posee un DOM virtual con el cual puede renderizar comp
 Los primeros pasos se explican en el primer ejercicio del curso Grider en donde se explica como se manejar las curlyes y el paso de props
 
 - Creacion de projecto (vite)
-- Como react se importa y se inyecta en el projecto?
-- Que es un componente y sus dos partes principales?
-- Que es el JSX, reglas y la diferencia y las reglas para cuando se escribe JSX en el return del componente
+- Como react se importa y se inyecta en el projecto
+- Que es un componente y sus dos partes principales
+- El JSX, reglas y la diferencia y las reglas para cuando se escribe JSX en el return del componente
 - Se recomienda saber como funciona el sistema de imports y exports de javascript
 - Como reutilizar un componente y que este componente se adapte a la forma que uno desea y estos deseos se comunican a travez del sistema de props.
 - Conditional rendering
@@ -30,7 +30,7 @@ Los primeros pasos se explican en el primer ejercicio del curso Grider en donde 
 
 **
 
-- **Where are the examples?:**
+- **Donde encontrar ejemplos?:**
 
 - Exercise 01 and 02 from react examples that comes form the official React Docs [Link](https://react.dev/learn)
 - Exercise 01 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/001-Vite-basics/README.md)
@@ -40,42 +40,41 @@ Los primeros pasos se explican en el primer ejercicio del curso Grider en donde 
 
 ## State en React
 
-### **Exercise 03 Grider** [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/003-Vite-Animals(basic%20useState)/README.md)
-
 En react se maneja el sistema de states para poder rastrear el estado de un componente en un determinado momento o debido a las acciones de un usuario
 
 - Uso basico de useState
 - INMUTABILIDAD DEL STATE Modificar los arrays y objects con el spread sytax ... para no modficar un state sino crear uno nuevo siempre.
-- Se explica como utilizar el map para mapear componentes
-- se explica como pasar imagenes a un objeto para ser manipuladas
-- se explica el sistema de eventos y el sistema de state.
+- Utilizacion del .map para el mapeo de elementos.
+- Como pasar imagenes a un objeto para ser manipuladas
+- Sistema de eventos y el sistema de state
 - Como utilizar y donde poner handleClicks
 - Component lifecicle
 - Re-rendering of a component
+- fetching con axios
+- inputs patterns
+- event object management
+- se recomienda saber sobre los HTTP (Hypertext Transfer Protocol) status codes and HTTP en general [Link](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
+**
+
+- **Donde encontrar ejemplos?:**
+
+- Exercise 03 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/003-Vite-Animals(basic%20useState)/README.md)
+- Exercise 04 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/004-Vite-Pics(axios)/README.md)
 
 ***
 
-- Los componentes en REACT siempre deben de tener una letra mayuscula al principio para diferenciarlos de elementos HTML normales.
-- Una diferencia entre el JSX con HTML es que hay que cerrar todos los tags, y que solo se puede devolver un solo componente (envoltura).
+***
+
 - En cuanto a los proptypes se utiliza el node para los children pero toca espera haber typescript que tal va.
-- Para agregar estilo se utiliza className, no se utiliza class como en html normalmente se haria.
 - Se puede almacenar jsx en variables y generar condicionales para que muestre uno u otro contenido, estas condiconales pueden ser incluso comparativos de tipo &&.
-- Se puede utilizar map para mapear todos los elementos que se encuentren en objetos, vengan de funciones, fetch, etc. (siempre agregar un key).
 - Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like if statements, &&, and ? : operators.
-- De acuerdo a como exporte el componente es como se importa en otro lado:
-
-|  Syntax |            Export statement           |             Import statement            |
-|:-------:|:-------------------------------------:|:---------------------------------------:|
-| Default | `export default function Button() {}` | `import Button from './Button.js';`     |
-| Named   | `export function Button() {}`         | `import { Button } from './Button.js';` |
-
 - In JSX, `{cond ? <A /> : <B />}` means “if cond, render `<A />`, otherwise `<B />`”.
 - In JSX, `{cond && <A />}` means “if cond, render `<A />`, otherwise nothing”. **No coloques números en el lado izquierdo del operador &&.**
 - The shortcuts are common, but you don’t have to use them if you prefer plain if.
-- Un set en react es un peticion de hacer un re-render con los nuevos states.
-- En react los on son los eventos html que estan listados en w3schools.
-- Tip acerca de imagenes, las imagenes que son de menos de 5kb son convertidas a codigo e incluidas en el jsx de react.
 - Los componentes que son parientes NO SE DEBEN DE COMUNICAR ENTRE ELLOS, SIEMPRE UTILIZE LOS PARENTS.
+
+***
 
 ## Tips acerca de context
 
