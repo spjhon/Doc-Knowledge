@@ -15,43 +15,46 @@ React es una libreria que posee un DOM virtual con el cual puede renderizar comp
 
 - La finalidad de react es utilizar functions y el sistema de import y exports de javascript para retornar partes de html con extras que se pueden observar en el object al hacer un render (se utiliza react.createElement) por parte de la libreria REACT.
 
-### **Los primeros pasos se explican en el primer ejercicio del curso Grider en donde se explica como se manejar las curlyes y el paso de props**
+Los primeros pasos se explican en el primer ejercicio del curso Grider en donde se explica como se manejar las curlyes y el paso de props
 
 - Creacion de projecto (vite)
 - Como react se importa y se inyecta en el projecto?
 - Que es un componente y sus dos partes principales?
 - Que es el JSX, reglas y la diferencia y las reglas para cuando se escribe JSX en el return del componente
 - Se recomienda saber como funciona el sistema de imports y exports de javascript
-
-### **Lo siguiente se explica en el ejercicio 2 del curso de grider**
-
 - Como reutilizar un componente y que este componente se adapte a la forma que uno desea y estos deseos se comunican a travez del sistema de props.
 - Conditional rendering
 - Utilizacion de una libreria para el estilizado llamada Bulma
 - Se explica la jerarquia de los componente y que es un componente padre y que es un componente children
 - Introduccion a destructuring
 
+**
+
+- **Where are the examples?:**
+
+- Exercise 01 and 02 from react examples that comes form the official React Docs [Link](https://react.dev/learn)
+- Exercise 01 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/001-Vite-basics/README.md)
+- Exercise 02 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/002-Vite-Pads(basic%20components%20and%20pops)/README.md)
+
+***
+
 ## State en React
+
+### **Exercise 03 Grider** [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/003-Vite-Animals(basic%20useState)/README.md)
 
 En react se maneja el sistema de states para poder rastrear el estado de un componente en un determinado momento o debido a las acciones de un usuario
 
-## Recomendaciones Generales y Tips Alrededor de la libreria React
+- Uso basico de useState
+- INMUTABILIDAD DEL STATE Modificar los arrays y objects con el spread sytax ... para no modficar un state sino crear uno nuevo siempre.
+- Se explica como utilizar el map para mapear componentes
+- se explica como pasar imagenes a un objeto para ser manipuladas
+- se explica el sistema de eventos y el sistema de state.
+- Como utilizar y donde poner handleClicks
+- Component lifecicle
+- Re-rendering of a component
 
-Esta seccion esta dedicada a tips que se van aprendiendo a lo largo de la experiencia adquirida con la libreria.
+***
 
-- Ojo con la inmutabilidad cuando se trabaja con los estados (recuerda el .slide() y el ...history en el ejemplo de tick-toc).
-- JavaScript tiene una particularidad, si un object tiene dos llaves con el mismo nombre, una sobre-escribe a la otra (LAS LLAVES EN LOS OBJECTS DEBEN DE SER UNICAS).
-- The **spread** syntax: The dots literally mean “gather the remaining parameters into an array”, cuando se utiliza como parametro
-- La clave de react es la re-renderizacion de un componente y como sus estados van cambiando.
-- Si se llama el componente que use useState varias veces, habran varios estados diferentes.
-- Las funciones que utilicen "use" se consideran "hooks".
-- Un componente en REACT es una funcion que retorna HTML al DOM virtual.
-- React no renderiza o print bools, nulls o undefined, entonces es util para esconder divs, o decir que no renderizen.
--algo interesante a tener en cuenta cuando al onClick se le pasa el handleclick directamente sin funciones arrow, devuleve el event object.
-- Todo handleClick debe de ser definido en donde esta el state que modificay pasarlo por el sistema de props
-- Un underline element es un componente que el html que devuelve es el mismo que el nombre de la funcion y el nombre del componente.
-- Un componente no puede retormar mas de un tag, en caso de varios tags envolvelos en un wrapper or a fragment.
-- Se recomienda aplicar (ejemplo en github examples-react) atomic design in order to create the components.
 - Los componentes en REACT siempre deben de tener una letra mayuscula al principio para diferenciarlos de elementos HTML normales.
 - Una diferencia entre el JSX con HTML es que hay que cerrar todos los tags, y que solo se puede devolver un solo componente (envoltura).
 - En cuanto a los proptypes se utiliza el node para los children pero toca espera haber typescript que tal va.

@@ -40,3 +40,7 @@ result of the cascade.
 - **Conditional Rendering:**
 
 : En como dentro de un componente antes del return se pueden proponer varias condiciones y el resutlado guardarlo en una variable que se envia luego al return
+
+- **Derived state:**
+
+: Es un cuando de un state se pueden hacer varias cosas sin necesidad de un nuevo state
