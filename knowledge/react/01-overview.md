@@ -69,79 +69,36 @@ En react se maneja el sistema de states para poder rastrear el estado de un comp
 
 ***
 
-***
+## useEffect for fetching
 
-- En cuanto a los proptypes se utiliza el node para los children pero toca espera haber typescript que tal va.
-- Se puede almacenar jsx en variables y generar condicionales para que muestre uno u otro contenido, estas condiconales pueden ser incluso comparativos de tipo &&.
-- Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like if statements, &&, and ? : operators.
-- In JSX, `{cond ? <A /> : <B />}` means “if cond, render `<A />`, otherwise `<B />`”.
-- In JSX, `{cond && <A />}` means “if cond, render `<A />`, otherwise nothing”. **No coloques números en el lado izquierdo del operador &&.**
-- The shortcuts are common, but you don’t have to use them if you prefer plain if.
-- Los componentes que son parientes NO SE DEBEN DE COMUNICAR ENTRE ELLOS, SIEMPRE UTILIZE LOS PARENTS.
+- json server
+- useEffect for fetching
+- Los tres argumentos para el [] del use effect
+- Uso de condicionales &&, ||, or.
+- Basic CRUD
+- Data persistence (with the use of api.html to simulate request and responses)
 
-***
+**
 
-## Tips acerca de context
-
-Va en tres fases:
-
-1. Crear context.
-2. Specify the data that will be shared
-3. "Consume" the data in a component
-
-- Se utiliza un provider: Component used to specify what data we want to share.
-
-- Context no es remplazo de Redux, redux es organizacion de info, context es como distribuirla.
+- **Donde encontrar ejemplos?:**
+- Exercise 05-1 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-BooksConApi(Persistent%20Data)/README.md)
 
 ***
 
-## Cuando Utilizar useContext vs useState
+## Context for props
 
-### Cuando utilizar useState
+El sistema de context es simple, es crear un provider que puede ser llamado desde cualquier componente gracias al useContext hook
 
-- **Form inputs:** If your component has form inputs, use the useState Hook to manage their state. This allows you to keep track of user input and update the UI accordingly.
+- Introduccion al sistema de context
+- Introduccion a centralized store
+- App vs Component state
 
-- **Conditional rendering:** If you have components that need to change their state based on user actions or some other condition, use the useState Hook to manage the component’s state and re-render the component when the state changes.
+**
 
-- **UI components:** If UI components need to change their state based on user interaction, such as dropdown menus, tabs, or accordions, use the useState Hook to manage the component’s state and update the UI accordingly.
-
-- **Toggling:** If you have components that need to toggle between two or more states, such as a modal or a tooltip, use the useState hook to manage the component’s state and toggle between the different states.
-
-### Cuando utilizar useContext
-
-- **Global data:** If you have data that needs to be accessed by multiple components throughout your application, such as the current user object, theme, or localization settings, you can use the React Context API to share this data across your components.
-
-- **Avoiding prop drilling:** If you pass props down multiple levels of the component tree, especially when the intermediate components do not directly use the props, it might be a good idea to use React Context API to avoid prop drilling and simplify your component code.
-
-- **Large-scale applications:** If you’re building a large-scale application with many components and complex data flows, React Context API can help you manage your state and data more efficiently and make your code more maintainable.
-
-- **Cross-cutting concerns:** If you have cross-cutting concerns in your application, such as error handling or authentication, that need to be applied across multiple components, using React Context API can make managing these concerns easier and keeps your code organized.
+- **Donde encontrar ejemplos?:**
+- Exercise 05-2 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-BooksConContext/README.md)
 
 ***
-
-## Tips acerca de useEffect
-
-### Ojo con useEffect
-
-Debido a que useEffect solo corre una vez, durante el primer render, esto puede generar bugs cuando se utiliza otras funciones dentro de useEffect. Entonces EVITAR:
-
-- Posible bug anytime your useEffect contains a function that refers to a variable.
-- Por eso esta el slint rule que dice que se debe de meter la variable dentro del array final de la arrow function para que al cambiar esta variable, haya un re-renderizado y utilizacion del useEffect otra vez con la variable actualizada.
-- oJO con el slint que no siempre tiene la razon.
-- Entonces para arreglar el problema se debe de utilizar (despues de analizar el flujo de datos a travez del provider) useCallback en el provider.
-- Una forma de pasar un listener con click al body desde un use effect es crear una funcion listener y ahi si asignarle un eventlistener normalito al body o a donde quiera y para que no hayan 20.000 asiganciones de eventos a un elemento pues se utiliza el cleanUp para remover el evento asignado y que solo haya una sola asignacion. Bendito react.
-Entonces: La idea es que el cleanUp es para eliminar las asignaciones que se hacer cada vez que corre useEffect.
-
-#### Restricciones de useEffect
-
-- No se puede return numbers
-- No se puede return strings
-- No se puede utilizar async await dentro de useEffect
-- Si puede retornar funciones
-
-##### Algo para tener en cuenta
-
-Se le puede aplicar una funcion llamada clean up que se coloca como return del useEffect para que cuando vuelva y se ejecute el useEffect vaya a esa funcion de cleanUp
 
 ## Tips acerca de useRef
 
