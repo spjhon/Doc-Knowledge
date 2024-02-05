@@ -54,6 +54,9 @@ En react se maneja el sistema de states para poder rastrear el estado de un comp
 - inputs patterns
 - event object management
 - se recomienda saber sobre los HTTP (Hypertext Transfer Protocol) status codes and HTTP en general [Link](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+- En las diapositivas de grider desde la 23 hasta la 30 del repositorio de grider se explica como modificar arrays y objects cuando estos estan en el state
+- Tener en cuenta que hay procedimientos para add, update, delete etc diferentes tanto para arrays como para objects.
+- Collapsing two handlers into one
 
 **
 
@@ -61,6 +64,8 @@ En react se maneja el sistema de states para poder rastrear el estado de un comp
 
 - Exercise 03 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/003-Vite-Animals(basic%20useState)/README.md)
 - Exercise 04 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/004-Vite-Pics(axios)/README.md)
+- Exercise 05 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-Books(add%20render%20elements)/README.md)
+- Inmutabilidad del state y como hacer un update correcto con el state [Link](https://state-updates.vercel.app/)
 
 ***
 

@@ -84,6 +84,7 @@ Herramientas están en los favoritos de microsoft edge al igual que las referenc
 - **Fontfaceobserver:** Control when render fonts on the browser.
 - **Require js**
 - **Gsap.js:** for animation (pricing)
+- **fabricjs** for and writing
 
 ***
 

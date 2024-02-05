@@ -44,3 +44,7 @@ result of the cascade.
 - **Derived state:**
 
 : Es un cuando de un state se pueden hacer varias cosas sin necesidad de un nuevo state
+
+- **High Order Components:**
+
+: Concretely, a higher-order component is a function that takes a component and returns a new component. Higher-order components are not commonly used in modern React code. In order to reuse logic, React hooks are mainly used now.
