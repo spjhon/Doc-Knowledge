@@ -92,6 +92,8 @@ El sistema de context es simple, es crear un provider que puede ser llamado desd
 - Introduccion al sistema de context
 - Introduccion a centralized store
 - App vs Component state
+- Custom hook
+- useCallback y su uso dentro de useEffect para hacer fetching
 
 **
 
