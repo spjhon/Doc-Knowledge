@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # Tips Adding Interactivity
@@ -24,9 +24,9 @@ sidebar_position: 3
 
 - Any screen update in a React app happens in three steps:
 
-    - Trigger
-    - Render
-    - Commit
+  - Trigger
+  - Render
+  - Commit
 
 - When React re-renders a component:
 
@@ -170,6 +170,8 @@ export default function Counter() {
 - What happens if you replace state after updating it
 - Naming conventions
 
+***
+
 ### Updating Objects in State
 
 - Treat all state in React as immutable.
@@ -189,6 +191,8 @@ export default function Counter() {
 #### Updating a nested object
 
 - Write concise update logic with Immer
+
+***
 
 ### Updating Arrays in State
 

@@ -23,6 +23,7 @@ Los primeros pasos se explican en el primer ejercicio del curso Grider en donde 
 - El JSX, reglas y la diferencia y las reglas para cuando se escribe JSX en el return del componente
 - Se recomienda saber como funciona el sistema de imports y exports de javascript
 - Como reutilizar un componente y que este componente se adapte a la forma que uno desea y estos deseos se comunican a travez del sistema de props.
+- Valores predeterminados en los props en caso de que no llegue ningun prop.
 - Conditional rendering
 - Utilizacion de una libreria para el estilizado llamada Bulma
 - Se explica la jerarquia de los componente y que es un componente padre y que es un componente children
@@ -33,6 +34,8 @@ Los primeros pasos se explican en el primer ejercicio del curso Grider en donde 
 - **Donde encontrar ejemplos?:**
 
 - Exercise 01 and 02 from react examples that comes form the official React Docs [Link](https://react.dev/learn)
+- Tips from the docs: [Link](/react/FromDocs/describingUI)
+- Link to Adding Interactivity [Link](/react/FromDocs/adingInteractivity)
 - Exercise 01 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/001-Vite-basics/README.md)
 - Exercise 02 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/002-Vite-Pads(basic%20components%20and%20pops)/README.md)
 

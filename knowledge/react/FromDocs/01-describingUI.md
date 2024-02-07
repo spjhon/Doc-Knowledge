@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # Tips Describin the UI
@@ -100,13 +100,13 @@ const listItems = people.map(person =>
 
 ### Your First Component
 
-#### Lo que tiene que saber
+- **Lo que tiene que saber:**
 
 - What a component is
 - What role components play in a React application
 - How to write your first React component
 
-#### Puntos Imporatantes
+- **Puntos Imporatantes**
 
 - React lets you create components, reusable UI elements for your app.
 - In a React app, every piece of UI is a component.
@@ -118,7 +118,7 @@ const listItems = people.map(person =>
 
 ### Importing and Exporting Components
 
-#### Lo que tiene que saber
+- **Lo que tiene que saber:**
 
 - What a root component file is
 - How to import and export a component
@@ -127,7 +127,7 @@ const listItems = people.map(person =>
 - How to split components into multiple files
 - If you use a framework with file-based routing, such as Next.js, your root component will be different for every page.
 
-#### Puntos Imporatantes
+- **Puntos Imporatantes:**
 
 - What a root component file is
 - How to import and export a component
@@ -138,13 +138,13 @@ const listItems = people.map(person =>
 
 ### Writing Markup with JSX
 
-#### Lo que tiene que saber
+- **Lo que tiene que saber:**
 
 - Why React mixes markup with rendering logic
 - How JSX is different from HTML
 - How to display information with JSX
 
-#### Puntos Imporatantes
+- **Puntos Imporatantes:**
 
 - React components group rendering logic together with markup because they are related.
 - JSX is similar to HTML, with a few differences. You can use a converter if you need to.
@@ -152,14 +152,14 @@ const listItems = people.map(person =>
 
 ### JavaScript in JSX with Curly Braces
 
-#### Lo que tiene que saber
+- **Lo que tiene que saber:**
 
 - How to pass strings with quotes
 - How to reference a JavaScript variable inside JSX with curly braces
 - How to call a JavaScript function inside JSX with curly braces
 - How to use a JavaScript object inside JSX with curly braces
 
-#### Puntos Imporatantes
+- **Puntos Imporatantes:**
 
 - JSX attributes inside quotes are passed as strings.
 - Curly braces let you bring JavaScript logic and variables into your markup.
@@ -168,7 +168,7 @@ const listItems = people.map(person =>
 
 ### Passing Props to a Component
 
-#### Lo que tiene que saber
+- **Lo que tiene que saber:**
 
 - How to pass props to a component
 - How to read props from a component
@@ -176,7 +176,7 @@ const listItems = people.map(person =>
 - How to pass some JSX to a component
 - How props change over time
 
-#### Puntos Imporatantes
+- **Puntos Imporatantes:**
 
 - To pass props, add them to the JSX, just like you would with HTML attributes.
 - To read props, use the `function Avatar({ person, size })` destructuring syntax.
@@ -188,7 +188,7 @@ const listItems = people.map(person =>
 
 ### Conditional Rendering
 
-#### Lo que tiene que saber
+- **Lo que tiene que saber:**
 
 - How to return different JSX depending on a condition
 - How to conditionally include or exclude a piece of JSX
@@ -196,13 +196,13 @@ const listItems = people.map(person =>
 
 ### Rendering Lists
 
-#### Lo que tiene que saber
+- **Lo que tiene que saber**
 
 - How to render components from an array using JavaScript’s map()
 - How to render only specific components using JavaScript’s filter()
 - When and why to use React keys
 
-#### Puntos Imporatantes
+- **Puntos Imporatantes**
 
 - How to move data out of components and into data structures like arrays and objects.
 - How to generate sets of similar components with JavaScript’s map().
@@ -211,17 +211,17 @@ const listItems = people.map(person =>
 
 ### Keeping Components Pure
 
-#### Lo que tiene que saber
+- **Lo que tiene que saber:**
 
 - What purity is and how it helps you avoid bugs
 - How to keep components pure by keeping changes out of the render phase
 - How to use Strict Mode to find mistakes in your components
 
-#### Puntos Importantes
+- **Puntos Importantes:**
 
 - A component must be pure, meaning:
-    - It minds its own business. It should not change any objects or variables that existed before rendering.
-    - Same inputs, same output. Given the same inputs, a component should always return the same JSX.
+  - It minds its own business. It should not change any objects or variables that existed before rendering.
+  - Same inputs, same output. Given the same inputs, a component should always return the same JSX.
 - Rendering can happen at any time, so components should not depend on each others’ rendering sequence.
 - You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, “set” state instead of mutating preexisting objects.
 - Strive to express your component’s logic in the JSX you return. When you need to “change things”, you’ll usually want to do it in an event handler. As a last resort, you can useEffect.
@@ -229,13 +229,13 @@ const listItems = people.map(person =>
 
 ### Understanding Your UI as a Tree
 
-#### Lo que tiene que saber
+- **Lo que tiene que saber:**
 
 - How React “sees” component structures
 - What a render tree is and what it is useful for
 - What a module dependency tree is and what it is useful for
 
-#### Puntos Importantes
+- **Puntos Importantes**
 
 - Trees are a common way to represent the relationship between entities. They are often used to model UI.
 - Render trees represent the nested relationship between React components across a single render.

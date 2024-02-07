@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Correct State Update
 
 Certainly! In modern functional React, you often work with arrays and objects in a declarative manner. Here are examples for each operation (add, delete, update, filter, find) with explanatory comments:

@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Side Effects
 
 so, in a react app, its forbidden the use of eventlisteners on a component that does not have state, but if the necessity of add an eventlistener without an state its big, its called a side effect and the way to handle it its to have those event listeners inside the useEffect. em I right?

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 # Tips Manage State
@@ -137,7 +137,7 @@ sidebar_position: 4
 
 #### Use cases for context
 
-##### Recap
+- **Recap:**
 
 - Context lets a component provide some information to the entire tree below it.
 - To pass context:
@@ -162,7 +162,7 @@ sidebar_position: 4
 
 #### Moving all wiring into a single file
 
-##### Recap
+- **Recap:**
 
 - You can combine reducer with context to let any component read and update state above it.
 - To provide state and the dispatch function to components below:
@@ -172,6 +172,6 @@ sidebar_position: 4
 3. Use either context from components that need to read them.
 
 - You can further declutter the components by moving all wiring into one file.
-    - You can export a component like TasksProvider that provides context.
-    - You can also export custom Hooks like useTasks and useTasksDispatch to read it.
+- You can export a component like TasksProvider that provides context.
+- You can also export custom Hooks like useTasks and useTasksDispatch to read it.
 - You can have many context-reducer pairs like this in your app
