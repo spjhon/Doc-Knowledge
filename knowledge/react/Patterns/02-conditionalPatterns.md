@@ -104,3 +104,14 @@ Conditional rendering in React involves rendering different content or component
    ```
 
 Choose the pattern that best fits your specific use case and coding style. The key is to keep your code readable and maintainable.
+
+## From Grider
+
+- Uso de && y !!
+![eventHandlers](../../src/images/041%20como%20funciona%20&&%20en%20javascript.jpg)
+
+- Examples of the OR operator
+![ORoperator](../../src/images/042%20examples%20of%20the%20and%20operator.jpg)
+
+- Examples of the AND operator
+![ANDoperator](../../src/images/043%20examples%20of%20the%20or%20operator.jpg)

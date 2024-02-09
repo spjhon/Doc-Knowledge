@@ -24,7 +24,6 @@ Los primeros pasos se explican en el primer ejercicio del curso Grider en donde 
 - Se recomienda saber como funciona el sistema de imports y exports de javascript
 - Como reutilizar un componente y que este componente se adapte a la forma que uno desea y estos deseos se comunican a travez del sistema de props.
 - Valores predeterminados en los props en caso de que no llegue ningun prop.
-- Conditional rendering
 - Utilizacion de una libreria para el estilizado llamada Bulma
 - Se explica la jerarquia de los componente y que es un componente padre y que es un componente children
 - Introduccion a destructuring
@@ -46,13 +45,15 @@ If you want to cutomize, use PORPS, if you want to change something on the scree
 
 En react se maneja el sistema de states para poder rastrear el estado de un componente en un determinado momento o debido a las acciones de un usuario
 
+- Conditional Rendering
+- - Link to Conditional Paterns [Link](/react/Patterns/conditionalPatterns)
 - Uso basico de useState
 - INMUTABILIDAD DEL STATE Modificar los arrays y objects con el spread sytax ... para no modficar un state sino crear uno nuevo siempre.
 - Utilizacion del .map para el mapeo de elementos.
 - Como pasar imagenes a un objeto para ser manipuladas
 - Sistema de eventos y el sistema de state
 - Como utilizar y donde poner handleClicks
-- Component lifecicle
+- Component lifecicle (look for useEffect)
 - Re-rendering of a component
 - fetching con axios
 - inputs patterns

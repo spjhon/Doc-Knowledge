@@ -64,6 +64,4 @@ In this example:
 
 This is a basic example, and you can adapt it for various events and more complex scenarios in your React functional components.
 
-## Patter de controlled input
-
 ## Pattern de deteccion de click fuera de un elemento

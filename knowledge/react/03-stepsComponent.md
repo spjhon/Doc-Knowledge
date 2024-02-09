@@ -52,3 +52,16 @@ For each piece of state in your application:
 El onChange es parte de la tabla de eventos HTML, segun veo se aplica los atributos de eventos html directamente en el JSX.
 
 ## According to Grider
+
+### State as Design Process
+
+Del video 181 State Design Process
+
+- Preguntas a hacerse cuando se le esta buscando state en un componente
+![When to use State](../src/images/037%20when%20to%20useState%20questions.jpg)
+
+- Pasos para crear State
+![Pasos para crear State](../src/images/038%20STEPS%20TO%20CREATE%20STATES.jpg)
+
+- Tipos de State
+![Tipos de State](../src/images/039%20Types%20of%20State.jpg)

@@ -150,3 +150,9 @@ In this example:
 4. The current checked status is displayed below the checkbox.
 
 This approach allows you to control and manage the state of the checkbox in your React functional component.
+
+- Donde poner los eventHandlers
+![eventHandlers](../../src/images/040%20where%20to%20put%20eventHandler.jpg)
+
+- Long vs Short Event Handlers
+![eventHandlerslongvsshort](../../src/images/044%20long%20vs%20short%20eventHandlers.jpg)
