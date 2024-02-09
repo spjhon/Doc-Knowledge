@@ -1,4 +1,4 @@
-## Como pasar datos dinamicos
+# Basics from Docs
 
 - Gracias a javascript se le puede agregar datos dinamicos como en el siguiente ejemplo, esto es util cuando se extrae info desde un objeto:
 

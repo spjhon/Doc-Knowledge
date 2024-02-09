@@ -63,5 +63,3 @@ In this example:
 3. The `onClick` attribute in the `<button>` element is set to the `handleButtonClick` function, so it will be called when the button is clicked.
 
 This is a basic example, and you can adapt it for various events and more complex scenarios in your React functional components.
-
-## Pattern de deteccion de click fuera de un elemento

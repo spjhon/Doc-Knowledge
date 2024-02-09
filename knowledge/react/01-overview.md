@@ -17,16 +17,21 @@ React es una libreria que posee un DOM virtual con el cual puede renderizar comp
 
 Los primeros pasos se explican en el primer ejercicio del curso Grider en donde se explica como se manejar las curlyes y el paso de props, tambien la seccion "Describing the UI" from the docs
 
-- Creacion de projecto (vite)
+- Setup basico y creacion de projecto (vite)
+- JSX y sus diferencias con HTML
+- Que hay dentro de un projecto react (en este caso creado con vite)
+- Como react hace basico render desde un html como root
+- Que es un componente y sus dos partes principales [React Basic Patterns](/react/Patterns/reactPatterns)
 - Como react se importa y se inyecta en el projecto
-- Que es un componente y sus dos partes principales
-- El JSX, reglas y la diferencia y las reglas para cuando se escribe JSX en el return del componente
-- Se recomienda saber como funciona el sistema de imports y exports de javascript
+- Reglas de como pasar atributos html al componente e introduccion al sistema de props
+
 - Como reutilizar un componente y que este componente se adapte a la forma que uno desea y estos deseos se comunican a travez del sistema de props.
+- Como colocar styles basicos al menos los que van in-line
 - Valores predeterminados en los props en caso de que no llegue ningun prop.
 - Utilizacion de una libreria para el estilizado llamada Bulma
 - Se explica la jerarquia de los componente y que es un componente padre y que es un componente children
 - Introduccion a destructuring
+- Se explica como el sistema de imports y exports es escencial a la hora de modularizar los componentes
 
 **
 
@@ -46,9 +51,9 @@ If you want to cutomize, use PORPS, if you want to change something on the scree
 En react se maneja el sistema de states para poder rastrear el estado de un componente en un determinado momento o debido a las acciones de un usuario
 
 - Conditional Rendering
-- - Link to Conditional Paterns [Link](/react/Patterns/conditionalPatterns)
+- - Link to Conditional Paterns [Conditional Patterns](/react/Patterns/conditionalPatterns)
 - Uso basico de useState
-- INMUTABILIDAD DEL STATE Modificar los arrays y objects con el spread sytax ... para no modficar un state sino crear uno nuevo siempre.
+- INMUTABILIDAD DEL STATE Modificar los arrays y objects con el spread sytax ... para no modficar un state sino crear uno nuevo siempre. [How to update state](/react/Patterns/stateUpdate)
 - Utilizacion del .map para el mapeo de elementos.
 - Como pasar imagenes a un objeto para ser manipuladas
 - Sistema de eventos y el sistema de state
@@ -56,7 +61,7 @@ En react se maneja el sistema de states para poder rastrear el estado de un comp
 - Component lifecicle (look for useEffect)
 - Re-rendering of a component
 - fetching con axios
-- inputs patterns
+- inputs patterns [Input Patterns](/react/Patterns/controlledInputs)
 - event object management
 - se recomienda saber sobre los HTTP (Hypertext Transfer Protocol) status codes and HTTP en general [Link](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 - En las diapositivas de grider desde la 23 hasta la 30 del repositorio de grider se explica como modificar arrays y objects cuando estos estan en el state
@@ -132,6 +137,9 @@ Se utiliza para hacer referencia aun elemento del DOM desde el elemento que se u
 - How to use Icons with react-icons
 - The children Prop
 - How to create an accordeon
+- Grider Method of create state for a component
+
+**
 
 - **Donde encontrar ejemplos?:**
 

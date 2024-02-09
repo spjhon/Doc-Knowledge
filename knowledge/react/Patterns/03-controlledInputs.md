@@ -8,6 +8,8 @@ sidebar_position: 3
 
 ![Guia de 5 pasos de grider](../../src/images/018%20como%20manejar%20INPUTS.jpg)
 
+***
+
 ## Text Input
 
 In functional components in React, controlled inputs refer to form elements whose values are controlled by the state of the component. This means that the input's value is not only determined by the user's interaction but is also tied to a piece of state managed by the component.
@@ -55,6 +57,8 @@ In this example:
 4. The current value of the input is displayed below the input field.
 
 By using controlled inputs, you can easily manage and manipulate the state of your form elements in a React functional component.
+
+***
 
 ## Select Input
 
@@ -105,6 +109,8 @@ In this example:
 
 This way, the state of the `<select>` element is controlled by the React component, making it a controlled input.
 
+***
+
 ## Checkbox input
 
 Certainly! Here's an example of a functional React component with a controlled checkbox:
@@ -150,6 +156,8 @@ In this example:
 4. The current checked status is displayed below the checkbox.
 
 This approach allows you to control and manage the state of the checkbox in your React functional component.
+
+***
 
 - Donde poner los eventHandlers
 ![eventHandlers](../../src/images/040%20where%20to%20put%20eventHandler.jpg)

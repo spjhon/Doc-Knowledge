@@ -18,8 +18,6 @@ Este conocimiento esta distribuido en:
 
 4. **Respositorio con un DOCUSAURO (anterior mente se utilizaba mindmaps pero no es seguro a futuro (vendor-lock)) que contiene conocimiento que se encuentra muy esparcido en otras fuentes y es mas facil o es necesario un resumen como por ejemplo las diferentes formas de crear e invocar una funcion o las diferentes formas de crear o invocar un objeto. Ademas de conocidos patterns**
 
-5. **Las explicaciones (tips) que no se puedan colocar en el codigo directamente o que sea un resumen de un tema colocarlo en el docusauro**
-
 ***
 
 ## Notas
@@ -34,18 +32,6 @@ El mayor asset de una organizacion tecnologica y mas aun de desarrollo de codigo
 
 The post explores the significant issue of knowledge loss within organizations, emphasizing its impact on communication structures and system design. The author introduces the concept of 'Biological Data Storage' to represent the critical role of employees as carriers of knowledge and experience. It discusses the use of metrics like 'Time to Problem Resolution' and 'Knowledge Transfer Rate' to assess organizational effectiveness and knowledge transfer efficiency. Techniques such as documentation, Architecture Decision Records (ADRs), EventStorming, and BPMN (Business Process Model and Notation) are recommended for capturing and preserving knowledge. The post highlights the need for a cultural shift in organizations towards open communication and active knowledge sharing to combat the loss of expertise when experienced members depart.
 
-#### **JavaScript**
-
-El conocimiento de referencia de javascript para no perderse entre toda la info de internet sera:
-
-- MDN
-- JavaScript.info
-- Articulos individuales de ciertas fucniones para profundizar en las herramientas mas utilizadas como por ejemplo flexbox o grid en CSS y las funciones y objetos en JavaScript.
-
-#### **CSS**
-
-- Articulos individuales de ciertas fucniones para profundizar en las herramientas mas utilizadas como por ejemplo flexbox o grid en CSS y las funciones y objetos en JavaScript.
-
 ***
 
 ### Flujo
@@ -56,9 +42,20 @@ El flujo de conocimiento es el siguiente:
 
 - Para ello se tiene los libros (repositorios github), cursos udemy (repositorios github), articulos de blogs (Examples repositorios github) y ejemplos youtube (repositorios github), sin embargo estos muestran ejemplos de herramientas trabajando juntas pero no todas herramientas, por ello se debe documentar en cada projecto que conocimiento se esta aplicando para futura referencia.
 
+#### Como hacer los cursos o aprender de un libro
+
+Se debe de crear un repositorio con un README.md que este ligado al docusauro, debe de haber un minimo de tres secciones (como funciona la app, temas tratados y tips), la seccion de temas tratados debe de ser igual a parte del index del docusauro en su seccion respectiva.
+
 - Componente creado utilizando el conocimiento de mas arriba, probado y en mejora continua en storybooks.
 
 - Repositorio DOCUSAURO que contiene conocimiento que no puede ser alamcenado en ninguno de los medios anteriores y con un util index de todo lo anterior.
+
+#### Como llenar el docusaurio
+
+Cada vez que se realize un curso o se lea un libro, en el docusauro se va a registrar la informacion aprendida en forma de index en el overview de cada gran tema, parte de este index debe de coincidir con el index de cada README.md de cada libro o curso, los tips debem de quedar en el readme al menos que sean tips importantes y si el tema en especifico es complejo y se requiere mucho en el uso diario como el useEffect de react, se porcede a crear su propia seccion en el docusauro con el fin de recopilar en un solo sito la informacion de interes como por ejemplo los patterns de React.
+
+- Cada gran tema debe de llevar un overview
+- Dentro del overview debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index.
 
 A partir de estas 4 bases combinadas y escalables se referencia todo el conocimiento requerido para crear un projecto en produccion.
 
@@ -87,6 +84,8 @@ Por orden alfabetico:
 ### Categorizacion de los componentes en storybook
 
 ### Categorizacion de las stars en github
+
+***
 
 #### Resources - Curated Lists - Collections
 
