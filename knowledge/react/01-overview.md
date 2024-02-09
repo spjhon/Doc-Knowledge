@@ -11,11 +11,11 @@ React es una libreria que posee un DOM virtual con el cual puede renderizar comp
 
 ***
 
-## Basics
+## Basics (UI)
 
 - La finalidad de react es utilizar functions y el sistema de import y exports de javascript para retornar partes de html con extras que se pueden observar en el object al hacer un render (se utiliza react.createElement) por parte de la libreria REACT.
 
-Los primeros pasos se explican en el primer ejercicio del curso Grider en donde se explica como se manejar las curlyes y el paso de props
+Los primeros pasos se explican en el primer ejercicio del curso Grider en donde se explica como se manejar las curlyes y el paso de props, tambien la seccion "Describing the UI" from the docs
 
 - Creacion de projecto (vite)
 - Como react se importa y se inyecta en el projecto
@@ -35,13 +35,14 @@ Los primeros pasos se explican en el primer ejercicio del curso Grider en donde 
 
 - Exercise 01 and 02 from react examples that comes form the official React Docs [Link](https://react.dev/learn)
 - Tips from the docs: [Link](/react/FromDocs/describingUI)
-- Link to Adding Interactivity [Link](/react/FromDocs/adingInteractivity)
 - Exercise 01 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/001-Vite-basics/README.md)
 - Exercise 02 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/002-Vite-Pads(basic%20components%20and%20pops)/README.md)
 
 ***
 
 ## State en React
+
+If you want to cutomize, use PORPS, if you want to change something on the screen use STATE
 
 En react se maneja el sistema de states para poder rastrear el estado de un componente en un determinado momento o debido a las acciones de un usuario
 
@@ -65,6 +66,7 @@ En react se maneja el sistema de states para poder rastrear el estado de un comp
 
 - **Donde encontrar ejemplos?:**
 
+- Link to Adding Interactivity [Link](/react/FromDocs/adingInteractivity)
 - Exercise 03 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/003-Vite-Animals(basic%20useState)/README.md)
 - Exercise 04 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/004-Vite-Pics(axios)/README.md)
 - Exercise 05 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-Books(add%20render%20elements)/README.md)
@@ -80,11 +82,14 @@ En react se maneja el sistema de states para poder rastrear el estado de un comp
 - Uso de condicionales &&, ||, or.
 - Basic CRUD
 - Data persistence (with the use of api.html to simulate request and responses)
+- Side Effects
 
 **
 
 - **Donde encontrar ejemplos?:**
+
 - Exercise 05-1 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-BooksConApi(Persistent%20Data)/README.md)
+- Side Effects and how useEffect helps [Link](/react/sideEffects)
 
 ***
 
@@ -101,6 +106,7 @@ El sistema de context es simple, es crear un provider que puede ser llamado desd
 **
 
 - **Donde encontrar ejemplos?:**
+
 - Exercise 05-2 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-BooksConContext/README.md)
 
 ***
@@ -117,17 +123,18 @@ Se utiliza para hacer referencia aun elemento del DOM desde el elemento que se u
 - Navigation Context
 - Internal Link
 - Hook useNavigation
+- Pages are react components but no intended for re-use.
 
 ### Reusability
 
-- How to use props to configure buttons
+- How to use props to configure buttons (classNames library)
+- How to use Icons with react-icons
 - The children Prop
+- How to create an accordeon
 
 - **Donde encontrar ejemplos?:**
 
 - Exercise 06 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/006-Vite-DropDownAcordeon(routingReusability)/README.md)
-
-***
 
 ***
 
