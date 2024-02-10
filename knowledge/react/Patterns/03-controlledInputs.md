@@ -159,6 +159,122 @@ This approach allows you to control and manage the state of the checkbox in your
 
 ***
 
+## Slider Input
+
+For a controlled slider input, you can follow a similar approach as the other controlled inputs. Here's an example of a functional React component with a controlled slider:
+
+```jsx
+import React, { useState } from 'react';
+
+const ControlledSliderExample = () => {
+  // State to hold the value of the slider
+  const [sliderValue, setSliderValue] = useState(50);
+
+  // Event handler to update the state when the slider changes
+  const handleSliderChange = (event) => {
+    setSliderValue(Number(event.target.value));
+  };
+
+  return (
+    <div>
+      {/* Controlled slider */}
+      <input
+        type="range"
+        value={sliderValue}
+        onChange={handleSliderChange}
+        min="0"
+        max="100"
+      />
+
+      {/* Display the current slider value */}
+      <p>Slider value: {sliderValue}</p>
+    </div>
+  );
+};
+
+export default ControlledSliderExample;
+```
+
+In this example:
+
+1. We use the `useState` hook to create a piece of state (`sliderValue`) that will hold the value of the slider.
+
+2. The `<input>` element with `type="range"` is a controlled slider because its `value` attribute is set to the `sliderValue` state.
+
+3. The `onChange` event handler (`handleSliderChange`) is triggered whenever the user moves the slider. It updates the `sliderValue` state with the current value of the slider.
+
+4. The current value of the slider is displayed below the slider input.
+
+***
+
+## Radio Button Input
+
+For a controlled radio button input, you can use a similar approach. Here's an example:
+
+```jsx
+import React, { useState } from 'react';
+
+const ControlledRadioButtonExample = () => {
+  // State to hold the selected value of the radio button
+  const [selectedOption, setSelectedOption] = useState('option1');
+
+  // Event handler to update the state when a radio button is selected
+  const handleRadioChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  return (
+    <div>
+      {/* Controlled radio buttons */}
+      <label>
+        <input
+          type="radio"
+          value="option1"
+          checked={selectedOption === 'option1'}
+          onChange={handleRadioChange}
+        />
+        Option 1
+      </label>
+      <label>
+        <input
+          type="radio"
+          value="option2"
+          checked={selectedOption === 'option2'}
+          onChange={handleRadioChange}
+        />
+        Option 2
+      </label>
+      <label>
+        <input
+          type="radio"
+          value="option3"
+          checked={selectedOption === 'option3'}
+          onChange={handleRadioChange}
+        />
+        Option 3
+      </label>
+
+      {/* Display the current selected value */}
+      <p>Selected option: {selectedOption}</p>
+    </div>
+  );
+};
+
+export default ControlledRadioButtonExample;
+```
+
+In this example:
+
+1. We use the `useState` hook to create a piece of state (`selectedOption`) that will hold the selected value of the radio button.
+
+2. Each `<input>` element with `type="radio"` is a controlled radio button because its `checked` attribute is set based on the comparison of `selectedOption` with the specific option value.
+
+3. The `onChange` event handler (`handleRadioChange`) is triggered whenever the user selects a different radio button. It updates the `selectedOption` state with the current selected value.
+
+4. The current selected value is displayed below the radio buttons.
+
+***
+
 - Donde poner los eventHandlers
 ![eventHandlers](../../src/images/040%20where%20to%20put%20eventHandler.jpg)
 

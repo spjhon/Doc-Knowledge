@@ -13,7 +13,7 @@ useEffect
 Ver videos de Stephen Gridder en la seccion de books con api para mas info.
 
 useRef
-:Allows a component to get a reference to a DOM element that it creates.
+:Allows a component to get a reference to a DOM element that it creates.  es un hook que se utiliza para mantener mutable un objeto mutable que persiste a lo largo de los re-renderizados del componente, pero sin provocar un re-render cuando cambia su valor.
 
 useContext
 :para crear un provider y pasar states entre componentes.

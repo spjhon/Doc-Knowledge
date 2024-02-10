@@ -51,7 +51,7 @@ If you want to cutomize, use PORPS, if you want to change something on the scree
 En react se maneja el sistema de states para poder rastrear el estado de un componente en un determinado momento o debido a las acciones de un usuario
 
 - Conditional Rendering
-- - Link to Conditional Paterns [Conditional Patterns](/react/Patterns/conditionalPatterns)
+- Link to Conditional Paterns [Conditional Patterns](/react/Patterns/conditionalPatterns)
 - Uso basico de useState
 - INMUTABILIDAD DEL STATE Modificar los arrays y objects con el spread sytax ... para no modficar un state sino crear uno nuevo siempre. [How to update state](/react/Patterns/stateUpdate)
 - Utilizacion del .map para el mapeo de elementos.
@@ -117,12 +117,6 @@ El sistema de context es simple, es crear un provider que puede ser llamado desd
 
 ***
 
-## useRef para manipulacion del DOM
-
-Se utiliza para hacer referencia aun elemento del DOM desde el elemento que se utiliza
-
-***
-
 ## Routing, Navigation, Reusability
 
 - Paths
@@ -137,7 +131,16 @@ Se utiliza para hacer referencia aun elemento del DOM desde el elemento que se u
 - How to use Icons with react-icons
 - The children Prop
 - How to create an accordeon
-- Grider Method of create state for a component
+- Grider Method of create state for a component (video 181 y 197) [How to create state](/react/stepsComponent)
+- How to create a dropdown (en dropdown se utiliza un panel como ejemplo de un componente sin state standard)
+
+## useRef para manipulacion del DOM
+
+- Se utiliza para hacer referencia a un elemento del DOM desde el elemento que se utiliza
+- useRef is a React Hook that lets you reference a value that’s not needed for rendering
+- La idea de useRef es asignar un valor sin que este origine un re-render y se mantenga entre re-renders.
+- Manipulaicon del DOM por medio de useRef
+- **OJO:** No utilize el ref para acciones destructivas del DOM como agregar o quitar nodos, solo pasa cosas no destructivas como fucus o scroll o cosas asi.
 
 **
 
