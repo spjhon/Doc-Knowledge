@@ -52,3 +52,7 @@ result of the cascade.
 - **Underlined Element:**
 
 : Es un elemento que es la base de otro elemento que se manipula por medio de JSX
+
+- **React Portals:**
+
+: Un portal en React te permite renderizar un conjunto de elementos hijos en un nodo DOM que está fuera de la jerarquía de padres directos del componente que estás utilizando. En términos más simples, los portales te permiten renderizar componentes en un lugar del DOM diferente al contenedor directo del componente actual.

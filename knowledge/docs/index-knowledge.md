@@ -50,11 +50,13 @@ Se debe de crear un repositorio con un README.md que este ligado al docusauro, d
 
 ##### Como comentar los componentes
 
-- En la parte de arriba de la funcion del componente agregar el comentario "ALGORITMO" y explicar en pasos que le entra al componente que hace el componente que modifica (context o redux functions) y que devuelve.
-
+- En la parte de arriba de la funcion del componente agregar el comentario "LO QUE ENTRA", "ALGORITMO"  "LO QUE RETORNA" y explicar en pasos que le entra al componente que hace el componente que modifica (context o redux functions) y que devuelve.
 - Agregar peros y tips para que si se lee el componente 8 meses despues, sea entendible que es lo que hace.
+- Cada funcion, handleClick, variable que se declare dentor del componente debe de tener un comentario expicativo
+- En la declaracion de los states decir todos los posibles estados de cada state.
+- Si la o las funciones dentro del componente son muy complejas se puede agregar otro bloque de "LO QUE ENTRA", "ALGORITMO"  "LO QUE RETORNA"
 
-- Repositorio DOCUSAURO que contiene conocimiento que no puede ser alamcenado en ninguno de los medios anteriores y con un util index de todo lo anterior.
+- Un Repositorio DOCUSAURO que contiene conocimiento que no puede ser alamcenado en ninguno de los medios anteriores y con un util index de todo lo anterior.
 
 #### Como llenar el docusaurio
 
