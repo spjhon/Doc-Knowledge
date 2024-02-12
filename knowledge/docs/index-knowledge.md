@@ -46,7 +46,13 @@ El flujo de conocimiento es el siguiente:
 
 Se debe de crear un repositorio con un README.md que este ligado al docusauro, debe de haber un minimo de tres secciones (como funciona la app, temas tratados y tips), la seccion de temas tratados debe de ser igual a parte del index del docusauro en su seccion respectiva.
 
-- Componente creado utilizando el conocimiento de mas arriba, probado y en mejora continua en storybooks.
+- Componente creado utilizando el conocimiento de mas arriba, probado y en mejora continua en storybooks. (opcional)
+
+##### Como comentar los componentes
+
+- En la parte de arriba de la funcion del componente agregar el comentario "ALGORITMO" y explicar en pasos que le entra al componente que hace el componente que modifica (context o redux functions) y que devuelve.
+
+- Agregar peros y tips para que si se lee el componente 8 meses despues, sea entendible que es lo que hace.
 
 - Repositorio DOCUSAURO que contiene conocimiento que no puede ser alamcenado en ninguno de los medios anteriores y con un util index de todo lo anterior.
 

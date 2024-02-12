@@ -133,6 +133,8 @@ El sistema de context es simple, es crear un provider que puede ser llamado desd
 - How to create an accordeon
 - Grider Method of create state for a component (video 181 y 197) [How to create state](/react/stepsComponent)
 - How to create a dropdown (en dropdown se utiliza un panel como ejemplo de un componente sin state standard)
+- Modal (uso de portals)
+- Table (sorting table)
 
 ## useRef para manipulacion del DOM
 
