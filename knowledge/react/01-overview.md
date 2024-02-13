@@ -156,10 +156,8 @@ El sistema de context es simple, es crear un provider que puede ser llamado desd
 ## Tips acerca de Reducers
 
 - Tambien produce state pero es mas utilizado para con componentes que esten relacionados entre si.
-- De acuerdo al ejemplo de grider es cuando es cuando un state esta dentro de otro
-- El dispatch es una funcion que retorna el nuevo state asi que:
-- Lo que sea que retorne el dispatch va a ser el nuevo state
-- Si retorna nada, pues el state va a ser undefined
+- De acuerdo al ejemplo de grider es cuando hay varios states relacionados o que hayan muchos cambios al mismo state, entonces se crea una store centralizada y funciones encargadas de la modificacion de estos states y hacer todos los cambios respectivos por medio del sistema de context.
+- El reducer es una alternativa a useState cuando un componente tiene varios states, el reducer es mas local, para global state se recomienda REDUX.
 - No async/await, no request, no promises, no outside variables
 - Si se desea resetear un state pues se retorna un objeto nuevo con valores reseteados
 - Siempre meter la logica en el reducer y dejar el dispatch y el payload lo mas limpio posible
@@ -168,6 +166,12 @@ El sistema de context es simple, es crear un provider que puede ser llamado desd
 
 - Ponga toda la logica de la actualizacion de los states dentro del reducer mas no en el dispach o en el payload ya que se puede equivoar otro dev al escribir toda la logica cada vez que haga un dispatch
 - Lo mas recomendable es mandar a travez del payload solo los datos desnudos mas no mandar logica alguna.
+
+**
+
+- **Donde encontrar ejemplos?:**
+
+- Exercise 08 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/008-Vite-Reducers/README.md)
 
 ***
 
@@ -180,6 +184,19 @@ En redux existen slices y la store
 - Se puede utilizar el metodo getState() para ver que hay dentor de la store
 - cuando se esta disenando el state para redux pensar en el derived state: Values that we can calculate using existing state.
 - **CONSEJO PARA NEXT JS:** fetch data in server components and mutate in client components
+
+### Temas tratados
+
+- Introduccion a Redux
+- Creacion de Slices
+- Como utilizar useDispatch para mandar ordenes a los Slices y que se guarde en el store
+- Creacion de extraReducers
+
+**
+
+- **Donde encontrar ejemplos?:**
+
+- Exercise 09 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/009-Vite-Redux/README.md)
 
 ***
 
