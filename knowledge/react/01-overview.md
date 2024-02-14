@@ -153,7 +153,7 @@ El sistema de context es simple, es crear un provider que puede ser llamado desd
 
 ***
 
-## Tips acerca de Reducers
+## Reducers para multi-state administracion
 
 - Tambien produce state pero es mas utilizado para con componentes que esten relacionados entre si.
 - De acuerdo al ejemplo de grider es cuando hay varios states relacionados o que hayan muchos cambios al mismo state, entonces se crea una store centralizada y funciones encargadas de la modificacion de estos states y hacer todos los cambios respectivos por medio del sistema de context.
@@ -175,7 +175,7 @@ El sistema de context es simple, es crear un provider que puede ser llamado desd
 
 ***
 
-## Tips acerca de REDUX
+## REDUX para Global State
 
 En redux existen slices y la store
 
@@ -190,17 +190,21 @@ En redux existen slices y la store
 - Introduccion a Redux
 - Creacion de Slices
 - Como utilizar useDispatch para mandar ordenes a los Slices y que se guarde en el store
+- Como utilizar el state del store
 - Creacion de extraReducers
+- Como utilizar correctamente la destructuracion de useSelector
+- La diferencia entre mutar un state y asignar nuevos valores a un state
 
 **
 
 - **Donde encontrar ejemplos?:**
 
 - Exercise 09 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/009-Vite-Redux/README.md)
+- Exercise 10 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/010ManaginSlicesRedux)
 
 ***
 
-## Tips acerca de DATA-FETCHING
+## DATA-FETCHING
 
 Se puede hacer de dos formas:
 
