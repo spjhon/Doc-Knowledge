@@ -192,6 +192,7 @@ En redux existen slices y la store
 - Como utilizar useDispatch para mandar ordenes a los Slices y que se guarde en el store
 - Como utilizar el state del store
 - Creacion de extraReducers
+- useSelector
 - Como utilizar correctamente la destructuracion de useSelector
 - La diferencia entre mutar un state y asignar nuevos valores a un state
 
