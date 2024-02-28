@@ -113,13 +113,13 @@ npm is the package manager for Node.js, and it's used to install and manage depe
 - Sonner
 - DnD kit
 - Frammer Motion for animations
-- Redux (big apps), it's mostly deprecated **As November 2023 it's recommended use zusand for state management and react query for data fetching.** RTK and zusand for client state, and RTK query and react query for server state.
+- Redux (big apps), it's mostly deprecated **As November 2023 it's recommended use zusand for state management and react query for data fetching.** RTK and zusand for client state, and SWR and react query for server state.
 - React Hook Form: Para utilizar una aproximacion de tipo no controlada (uncontrolled input forms) para evitar el re-renderizado del componente de tipo form cuando se esta tecleando. tambien se puede utilizar React Server Actions para el manejo de la forms.
 
 A nice combination:
 
 - Rtk-rtk-query
-- Zustand-react query
+- Zustand-react-query-SWR
 - React developer Tools
 
 **Data Fetching:**
@@ -160,7 +160,7 @@ A nice combination:
 
 ### Next js Libraries
 
-- React query + zusand (replace of redux)
+- React query + zusand + SWR (replace of redux)
 - Swup (page transition)
 
 ***

@@ -219,4 +219,8 @@ Se puede hacer de dos formas:
 - Para hacer fetching es una operacion asyncrona osea que hay un periodo de pendiente un periodo de success debe de haber un periodo de error. Osea tres states.
 - Los thunks son utilizados para manejar operaciones asyncronas en redux ya que redux no puede tener asyncronia, ademas un thunk despacha actions automaticamente a medida que los datos asyncronos llegan, actualizando los states de forma syncrona y de inmediato
 
+- **Donde encontrar ejemplos?:**
+
+- Exercise 11 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/011APIsAsyncInterface/README.md)
+
 ***
