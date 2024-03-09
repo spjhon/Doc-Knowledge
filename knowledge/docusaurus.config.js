@@ -74,9 +74,9 @@ const config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'web',
-        path: 'web',
-        routeBasePath: 'web',
+        id: 'webs',
+        path: 'webs',
+        routeBasePath: 'webs',
         sidebarPath: './sidebars.js',
         // ... other options
       },
@@ -101,6 +101,17 @@ const config = {
         // ... other options
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'typescript',
+        path: 'typescript',
+        routeBasePath: 'typescript',
+        sidebarPath: './sidebars.js',
+        // ... other options
+      },
+    ],
+    
   ],
 
   themeConfig:
@@ -129,7 +140,7 @@ const config = {
           },
           {
             type: 'docSidebar',
-            docsPluginId: 'web',
+            docsPluginId: 'webs',
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'WebDev'
@@ -154,10 +165,18 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Astro'
+          },
+          {
+            type: 'docSidebar',
+            docsPluginId: 'typescript',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'TypeScript'
           }
+          
           /*{
             label:'React',
-            to:'/react/prueba',
+            to:'/react',
             activeBaseRegex: `/react/`,
           },*/
         ],
