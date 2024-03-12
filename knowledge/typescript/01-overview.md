@@ -23,8 +23,3 @@ TypeScript is 4 things (from the book):
 **Language service**
 **Only active during develpment**
 **Does not provide any performance optimization**
-
-## Herramientas dentro de typescript
-
-- Interfacez para definir types en objects (primera parte de curso grider)
-- Definiciones de types en las funciones (primera parte de curso grider)

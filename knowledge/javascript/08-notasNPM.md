@@ -38,3 +38,5 @@ axios es un ejemplo de una dependencia de producción, ya que es una biblioteca 
 Entonces si se esta trabajando con las dependencias globales se puede ejecutar directamente los comandos desde el cli (por ejemplo ts-node -v o ts-node index.ts) pero si se esta trabajando con las dependencias locales se debe de utilizar npm para consultar o npx para ejecutar (por ejemplo npm ts-node -v y para ejecutar npx ts-node index.ts).
 
 Y tener en cuenta de instalar --save para las dependencias normales y --save-dev para las dependencias de desarrollador.
+
+Comando a tener en cuenta npm install ts-node typescript --save-dev.
