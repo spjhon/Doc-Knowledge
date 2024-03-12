@@ -9,7 +9,7 @@ Curso: Udemy: TypeScrit: Complete developers guide (stephen grider).
 
 Docs: [Link a Docs](https://www.typescriptlang.org/docs/).
 
-Definicion
+## Definicion
 
 Lenguage tipado para el control de estructura y typos en javascript con el fin de ejercer una mejor esctructura a la hora de crea codigo.
 
@@ -23,3 +23,8 @@ TypeScript is 4 things (from the book):
 **Language service**
 **Only active during develpment**
 **Does not provide any performance optimization**
+
+## Herramientas dentro de typescript
+
+- Interfacez para definir types en objects (primera parte de curso grider)
+- Definiciones de types en las funciones (primera parte de curso grider)
