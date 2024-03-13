@@ -44,11 +44,11 @@ El flujo de conocimiento es el siguiente:
 
 #### Como hacer los cursos o aprender de un libro
 
-Se debe de crear un repositorio con un README.md que este ligado al docusauro, debe de haber un minimo de tres secciones (como funciona la app, temas tratados y tips), la seccion de temas tratados debe de ser igual a parte del index del docusauro en su seccion respectiva.
+Se debe de crear un repositorio con un README.md que este ligado al docusauro, debe de haber un minimo de tres secciones (**como funciona la app**, **temas tratados** y **tips**), la seccion de temas tratados debe de ser igual a parte del index del docusauro en su seccion respectiva.
 
-- Componente creado utilizando el conocimiento de mas arriba, probado y en mejora continua en storybooks. (opcional)
+- Componente creado utilizando el conocimiento de mas arriba, probado y en mejora continua en storybooks. (cuando es REACT)
 
-##### Como comentar los componentes
+##### Como comentar los componentes en REACT
 
 - En la parte de arriba de la funcion del componente agregar el comentario "LO QUE ENTRA", "ALGORITMO"  "LO QUE RETORNA" y explicar en pasos que le entra al componente que hace el componente que modifica (context o redux functions) y que devuelve.
 - Agregar peros y tips para que si se lee el componente 8 meses despues, sea entendible que es lo que hace.
@@ -58,12 +58,27 @@ Se debe de crear un repositorio con un README.md que este ligado al docusauro, d
 
 - Un Repositorio DOCUSAURO que contiene conocimiento que no puede ser alamcenado en ninguno de los medios anteriores y con un util index de todo lo anterior.
 
-#### Como llenar el docusaurio
+#### Como llenar el DOCUSAURO
 
 Cada vez que se realize un curso o se lea un libro, en el docusauro se va a registrar la informacion aprendida en forma de index en el overview de cada gran tema, parte de este index debe de coincidir con el index de cada README.md de cada libro o curso, los tips debem de quedar en el readme al menos que sean tips importantes y si el tema en especifico es complejo y se requiere mucho en el uso diario como el useEffect de react, se porcede a crear su propia seccion en el docusauro con el fin de recopilar en un solo sito la informacion de interes como por ejemplo los patterns de React.
 
 - Cada gran tema debe de llevar un overview
-- Dentro del overview debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index.
+- Dentro del overview debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index que dirijan a los ejemplos dados en los libros o cursos en sus propios repositorios, la estructura que se recomienda dentro del docusauro ademas de overview es:
+
+**Definir estos terminos:**
+
+**Concepto (Concept):** Un concepto en programación se refiere a una idea o abstracción fundamental que subyace en el diseño y la implementación del software. Por ejemplo, en la programación orientada a objetos, los conceptos como clases, objetos, herencia y polimorfismo son fundamentales.
+
+**Sintaxis (Syntax):**
+La sintaxis se refiere a las reglas que gobiernan la estructura y el formato del código en un lenguaje de programación específico. Esto incluye cómo se escriben las instrucciones, cómo se organizan las expresiones y cómo se definen las estructuras de control. Por ejemplo, en el lenguaje Python, la sintaxis incluye reglas sobre el uso de indentación para delimitar bloques de código.
+
+**Característica (Feature):**
+Una característica se refiere a una funcionalidad específica o habilidad que proporciona un programa o una parte de un programa. Puede ser una capacidad para realizar cierta tarea, una interfaz de usuario específica, o cualquier otro aspecto que agrega valor al software. Por ejemplo, una característica de un editor de texto podría ser la capacidad de resaltar la sintaxis del código.
+
+**Patrón (Pattern):**
+En programación, un patrón se refiere a una solución generalmente aplicable a un problema recurrente dentro de un contexto específico. Los patrones de diseño son ejemplos comunes de esto, proporcionando soluciones probadas para problemas como la gestión de objetos, la estructuración de código o la comunicación entre componentes. Por ejemplo, el patrón de diseño "Singleton" se utiliza para garantizar que una clase solo tenga una instancia en toda la aplicación.
+
+En resumen, mientras que los conceptos son ideas fundamentales, la sintaxis se refiere a cómo se escriben estas ideas en un lenguaje de programación específico. Las características son las capacidades que proporciona un programa, mientras que los patrones son soluciones generales a problemas recurrentes en el desarrollo de software.
 
 A partir de estas 4 bases combinadas y escalables se referencia todo el conocimiento requerido para crear un projecto en produccion.
 
