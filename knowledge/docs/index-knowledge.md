@@ -63,17 +63,17 @@ Se debe de crear un repositorio con un README.md que este ligado al docusauro, d
 Cada vez que se realize un curso o se lea un libro, en el docusauro se va a registrar la informacion aprendida en forma de index en el overview de cada gran tema, parte de este index debe de coincidir con el index de cada README.md de cada libro o curso, los tips debem de quedar en el readme al menos que sean tips importantes y si el tema en especifico es complejo y se requiere mucho en el uso diario como el useEffect de react, se porcede a crear su propia seccion en el docusauro con el fin de recopilar en un solo sito la informacion de interes como por ejemplo los patterns de React.
 
 - Cada gran tema debe de llevar un overview
-- Dentro del overview debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index que dirijan a los ejemplos dados en los libros o cursos en sus propios repositorios, la estructura que se recomienda dentro del docusauro ademas de overview es:
+- Dentro del **overview** debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index que dirijan a los ejemplos dados en los libros o cursos en sus propios repositorios, la estructura que se recomienda dentro del docusauro ademas de overview es:
 
-**Definir estos terminos:**
+**Definir estos terminos:** El orden de esta separaion de conocimento es con el fin de jerarquizar, por ejemplo en REACT, se describen las caracteristicas de la library y de estas caracteristicas se desprenden conceptos especificos y de ahi se procede a observar la sintaxis y por ultimo la utilizacion de todo junto en la creacion de patterns que hagan un trabajo en especifico.
+
+**Característica (Feature):**
+Una característica se refiere a una funcionalidad específica o habilidad que proporciona un programa o una parte de un programa. Puede ser una capacidad para realizar cierta tarea, una interfaz de usuario específica, o cualquier otro aspecto que agrega valor al software. Por ejemplo, una característica de un editor de texto podría ser la capacidad de resaltar la sintaxis del código.
 
 **Concepto (Concept):** Un concepto en programación se refiere a una idea o abstracción fundamental que subyace en el diseño y la implementación del software. Por ejemplo, en la programación orientada a objetos, los conceptos como clases, objetos, herencia y polimorfismo son fundamentales.
 
 **Sintaxis (Syntax):**
 La sintaxis se refiere a las reglas que gobiernan la estructura y el formato del código en un lenguaje de programación específico. Esto incluye cómo se escriben las instrucciones, cómo se organizan las expresiones y cómo se definen las estructuras de control. Por ejemplo, en el lenguaje Python, la sintaxis incluye reglas sobre el uso de indentación para delimitar bloques de código.
-
-**Característica (Feature):**
-Una característica se refiere a una funcionalidad específica o habilidad que proporciona un programa o una parte de un programa. Puede ser una capacidad para realizar cierta tarea, una interfaz de usuario específica, o cualquier otro aspecto que agrega valor al software. Por ejemplo, una característica de un editor de texto podría ser la capacidad de resaltar la sintaxis del código.
 
 **Patrón (Pattern):**
 En programación, un patrón se refiere a una solución generalmente aplicable a un problema recurrente dentro de un contexto específico. Los patrones de diseño son ejemplos comunes de esto, proporcionando soluciones probadas para problemas como la gestión de objetos, la estructuración de código o la comunicación entre componentes. Por ejemplo, el patrón de diseño "Singleton" se utiliza para garantizar que una clase solo tenga una instancia en toda la aplicación.
