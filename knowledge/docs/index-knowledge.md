@@ -44,7 +44,9 @@ El flujo de conocimiento es el siguiente:
 
 #### Como hacer los cursos o aprender de un libro
 
-Se debe de crear un repositorio con un README.md que este ligado al docusauro, debe de haber un minimo de tres secciones (**como funciona la app**, **temas tratados** y **tips**), la seccion de temas tratados debe de ser igual a parte del index del docusauro en su seccion respectiva.
+Se debe de crear un repositorio con un README.md que contenga todos los capitulos del libro o partes del curso que este ligado al docusauro, debe de haber un minimo de tres secciones por capitulo (**como funciona la app**, **temas tratados** y **tips**), esto para dar una vision resumida de cada capitulo ademas por supuesto de sus respectivas carpetas por capitulo o seccion del libro.
+
+En el docusauro se va a colocar toda la teoria aprendida para tenerla toda en un solo sitio, al ser varios libros o cursos, la idea es condensar el conocimiento teorico en el docusaurio y mantener el conocimiento practico en cada repositorio de cada libro o curso.
 
 - Componente creado utilizando el conocimiento de mas arriba, probado y en mejora continua en storybooks. (cuando es REACT)
 
@@ -60,10 +62,10 @@ Se debe de crear un repositorio con un README.md que este ligado al docusauro, d
 
 #### Como llenar el DOCUSAURO
 
-Cada vez que se realize un curso o se lea un libro, en el docusauro se va a registrar la informacion aprendida en forma de index en el overview de cada gran tema, parte de este index debe de coincidir con el index de cada README.md de cada libro o curso, los tips debem de quedar en el readme al menos que sean tips importantes y si el tema en especifico es complejo y se requiere mucho en el uso diario como el useEffect de react, se porcede a crear su propia seccion en el docusauro con el fin de recopilar en un solo sito la informacion de interes como por ejemplo los patterns de React.
+Cada vez que se realize un curso o se lea un libro, en el docusauro se va a registrar la informacion TEORICA aprendida en forma de index en el overview de cada gran tema, si el tema en especifico es complejo y se requiere mucho en el uso diario como el useEffect de react, se porcede a crear su propia seccion en el docusauro con el fin de recopilar en un solo sito la informacion de interes como por ejemplo los patterns de React.
 
 - Cada gran tema debe de llevar un overview
-- Dentro del **overview** debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index que dirijan a los ejemplos dados en los libros o cursos en sus propios repositorios, la estructura que se recomienda dentro del docusauro ademas de overview es:
+- Dentro del **overview** debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index que dirijan a los ejemplos dados en los libros o cursos en sus propios repositorios, la estructura que se recomienda dentro del docusauro en archivos a parte ademas de overview es:
 
 **Definir estos terminos:** El orden de esta separaion de conocimento es con el fin de jerarquizar, por ejemplo en REACT, se describen las caracteristicas de la library y de estas caracteristicas se desprenden conceptos especificos y de ahi se procede a observar la sintaxis y por ultimo la utilizacion de todo junto en la creacion de patterns que hagan un trabajo en especifico.
 
