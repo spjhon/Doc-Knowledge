@@ -498,25 +498,442 @@ const poemMismatch: Poem = {
 
 ```ts
 type Author = {
- firstName: string;
- lastName: string;
+  firstName: string;
+  lastName: string;
 };
 type Poem = {
- author: Author;
- name: string;
+  author: Author;
+  name: string;
 };
 const poemMismatch: Poem = {
- author: {
- name: "Sylvia Plath",
- },
- // Error: Type '{ name: string; }' is not assignable to type 'Author'.
- // Object literal may only specify known properties,
- // and 'name' does not exist in type 'Author'.
- name: "Tulips",
+  author: {
+    name: "Sylvia Plath",
+  },
+  // Error: Type '{ name: string; }' is not assignable to type 'Author'.
+  // Object literal may only specify known properties,
+  // and 'name' does not exist in type 'Author'.
+  name: "Tulips",
 };
 ```
 
-voy en la pagina 49
+#### Optional Object types properties
+
+Tambien se puede crear propiedades opcionales en caso que el object que se cree no necesariamente necesite la propiedad en cuestion
+
+```ts
+type Book = {
+  author?: string;
+  pages: number;
+};
+// Ok
+const ok: Book = {
+  author: "Rita Dove",
+  pages: 80,
+};
+
+const ok2: Book = {
+  pages: 80,
+};
+
+const missing: Book = {
+  author: "Rita Dove",
+};
+// Error: Property 'pages' is missing in type
+// '{ author: string; }' but required in type 'Book'.
+```
+
+#### Unions of Object Types
+
+##### Inferred Object-Type Unions
+
+This poem value always has a name property of type string, and may or may not have pages and rhymes properties:
+
+```ts
+const poem =
+  Math.random() > 0.5
+    ? { name: "The Double Image", pages: 7 }
+    : { name: "Her Kind", rhymes: true };
+// Type:
+// {
+// name: string;
+// pages: number;
+// rhymes?: undefined;
+// }
+// |
+// {
+// name: string;
+// pages?: undefined;
+// rhymes: boolean;
+// }
+poem.name; // string
+poem.pages; // number | undefined
+poem.rhymes; // booleans | undefined
+```
+
+##### Explicit Object-Type Unions
+
+This version of the previous poem variable is explicitly typed to be a union type that always has the always property along with either pages or rhymes. Accessing names is allowed because it always exists, but pages and rhymes aren’t guaranteed to exist:
+
+```ts
+type PoemWithPages = {
+  name: string;
+  pages: number;
+};
+type PoemWithRhymes = {
+  name: string;
+  rhymes: boolean;
+};
+type Poem = PoemWithPages | PoemWithRhymes;
+const poem: Poem =
+  Math.random() > 0.5
+    ? { name: "The Double Image", pages: 7 }
+    : { name: "Her Kind", rhymes: true };
+poem.name; // Ok
+poem.pages;
+// ~~~~~
+// Property 'pages' does not exist on type 'Poem'.
+// Property 'pages' does not exist on type 'PoemWithRhymes'.
+poem.rhymes;
+// ~~~~~~
+// Property 'rhymes' does not exist on type 'Poem'.
+// Property 'rhymes' does not exist on type 'PoemWithPages'.
+```
+
+Restricting access to potentially nonexistent members of objects can be a good thing for code safety.
+
+#### Narrowing Object Types
+
+Continuing the explicitly typed poem example, check whether "pages" in poem acts as a type guard for TypeScript to indicate that it is a PoemWithPages. If poem is not a PoemWithPages, then it must be a PoemWithRhymes:
+
+```ts
+if ("pages" in poem) {
+  poem.pages; // Ok: poem is narrowed to PoemWithPages
+} else {
+  poem.rhymes; // Ok: poem is narrowed to PoemWithRhymes
+}
+```
+
+Note that TypeScript won’t allow truthiness existence checks like if (poem.pages). Attempting to access a property of an object that might not exist is considered a type error, even if used in a way that seems to behave like a type guard:
+
+```ts
+if (poem.pages) {
+  /* ... */
+}
+// ~~~~~
+// Property 'pages' does not exist on type 'PoemWithPages | PoemWithRhymes'.
+// Property 'pages' does not exist on type 'PoemWithRhymes'.
+```
+
+##### Discriminated Unions
+
+this Poem type describes an object that can be either a new PoemWithPages type or a new PoemWithRhymes type, and the type property indicates which one. If poem.type is "pages", then TypeScript is able to infer that the type of poem must be PoemWithPages. Without that type narrowing, neither property is guaranteed to exist on the value:
+
+```ts
+type PoemWithPages = {
+  name: string;
+  pages: number;
+  type: "pages";
+};
+type PoemWithRhymes = {
+  name: string;
+  rhymes: boolean;
+  type: "rhymes";
+};
+type Poem = PoemWithPages | PoemWithRhymes;
+const poem: Poem =
+  Math.random() > 0.5
+    ? { name: "The Double Image", pages: 7, type: "pages" }
+    : { name: "Her Kind", rhymes: true, type: "rhymes" };
+if (poem.type === "pages") {
+  console.log(`It's got pages: ${poem.pages}`); // Ok
+} else {
+  console.log(`It rhymes: ${poem.rhymes}`);
+}
+poem.type; // Type: 'pages' | 'rhymes'
+poem.pages;
+// ~~~~~
+// Error: Property 'pages' does not exist on type 'Poem'.
+// Property 'pages' does not exist on type 'PoemWithRhymes'.
+```
+
+#### Intersection Types
+
+Intersection types are typically used with aliased object types to create a new type that combines multiple existing object types.
+The following Artwork and Writing types are used to form a combined WrittenArt type that has the properties genre, name, and pages:
+
+```ts
+type Artwork = {
+  genre: string;
+  name: string;
+};
+type Writing = {
+  pages: number;
+  name: string;
+};
+type WrittenArt = Artwork & Writing;
+// Equivalent to:
+// {
+// genre: string;
+// name: string;
+// pages: number;
+// }
+```
+
+This ShortPoem type always has an author property, then is also a discriminated union on a type property:
+
+```ts
+type ShortPoem = { author: string } & (
+  | { kigo: string; type: "haiku" }
+  | { meter: number; type: "villanelle" }
+);
+// Ok
+const morningGlory: ShortPoem = {
+  author: "Fukuda Chiyo-ni",
+  kigo: "Morning Glory",
+  type: "haiku",
+};
+const oneArt: ShortPoem = {
+  author: "Elizabeth Bishop",
+  type: "villanelle",
+};
+// Error: Type '{ author: string; type: "villanelle"; }'
+// is not assignable to type 'ShortPoem'.
+// Type '{ author: string; type: "villanelle"; }' is not assignable to
+// type '{ author: string; } & { meter: number; type: "villanelle"; }'.
+// Property 'meter' is missing in type '{ author: string; type: "villanelle"; }'
+// but required in type '{ meter: number; type: "villanelle"; }'.
+```
+
+**NOTA:** try to keep code as simple as possible when using them.
+In the case of the previous code snippet’s ShortPoem, it would be much more readable to split the type into a series of aliased object types to allow TypeScript to print those names:
+
+```ts
+type ShortPoemBase = { author: string };
+type Haiku = ShortPoemBase & { kigo: string; type: "haiku" };
+type Villanelle = ShortPoemBase & { meter: number; type: "villanelle" };
+type ShortPoem = Haiku | Villanelle;
+const oneArt: ShortPoem = {
+  author: "Elizabeth Bishop",
+  type: "villanelle",
+};
+// Type '{ author: string; type: "villanelle"; }'
+// is not assignable to type 'ShortPoem'.
+// Type '{ author: string; type: "villanelle"; }'
+// is not assignable to type 'Villanelle'.
+// Property 'meter' is missing in type
+// '{ author: string; type: "villanelle"; }'
+// but required in type '{ meter: number; type: "villanelle"; }'.
+```
+
+## Functions
+
+### Function Parameters
+
+As with variables, TypeScript allows you to declare the type of function parameters with a type annotation. Now we can use a : string to tell TypeScript that the song parameter is of type string:
+
+```ts
+function sing(song: string) {
+  console.log(`Singing: ${song}!`);
+}
+```
+
+Much better: now we know what type song is meant to be!.
+
+#### Required Parameters
+
+If a function is called with a wrong number of arguments, TypeScript will protest in the form of a type error. This singTwo function requires two parameters, so passing one argument and passing three arguments are both not allowed:
+
+```ts
+function singTwo(first: string, second: string) {
+  console.log(`${first} / ${second}`);
+}
+// Logs: "Ball and Chain / undefined"
+singTwo("Ball and Chain");
+// ~~~~~~~~~~~~~~~~
+// Error: Expected 2 arguments, but got 1.
+// Logs: "I Will Survive / Higher Love"
+singTwo("I Will Survive", "Higher Love"); // Ok
+// Logs: "Go Your Own Way / The Chain"
+singTwo("Go Your Own Way", "The Chain", "Dreams");
+// ~~~~~~~~
+// Error: Expected 2 arguments, but got 3.
+```
+
+#### Optional Parameters
+
+TypeScript allows annotating a parameter as optional by adding a ? before the : in its type annotation—similar to optional object type properties.
+
+In the following announceSong function, the singer parameter is marked optional. Its type is string | undefined, and it doesn’t need to be provided by callers of the function. If singer is provided, it may be a string value or undefined:
+
+```ts
+function announceSong(song: string, singer?: string) {
+  console.log(`Song: ${song}`);
+  if (singer) {
+    console.log(`Singer: ${singer}`);
+  }
+}
+announceSong("Greensleeves"); // Ok
+announceSong("Greensleeves", undefined); // Ok
+announceSong("Chandelier", "Sia"); // Ok
+```
+
+These optional parameters are always implicitly able to be undefined.
+
+#### Default Parameters
+
+If a parameter has a default value and doesn’t have a type annotation, TypeScript will infer the parameter’s type based on that default value.
+In the following rateSong function, rating is inferred to be of type number, but is an optional number | undefined in the code that calls the function:
+
+```ts
+function rateSong(song: string, rating = 0) {
+  console.log(`${song} gets ${rating}/5 stars!`);
+}
+rateSong("Photograph"); // Ok
+rateSong("Set Fire to the Rain", 5); // Ok
+rateSong("Set Fire to the Rain", undefined); // Ok
+rateSong("At Last!", "100");
+// ~~~~~
+// Error: Argument of type '"100"' is not assignable
+// to parameter of type 'number | undefined'.
+```
+
+#### Rest Parameters
+
+TypeScript allows declaring the types of these rest parameters similarly to regular parameters, except with a [] syntax added at the end to indicate it’s an array of arguments.
+
+Here, singAllTheSongs is allowed to take zero or more arguments of type string for
+its songs rest parameter:
+
+```ts
+function singAllTheSongs(singer: string, ...songs: string[]) {
+  for (const song of songs) {
+    console.log(`${song}, by ${singer}`);
+  }
+}
+singAllTheSongs("Alicia Keys"); // Ok
+singAllTheSongs("Lady Gaga", "Bad Romance", "Just Dance", "Poker Face"); // Ok
+singAllTheSongs("Ella Fitzgerald", 2000);
+// ~~~~
+// Error: Argument of type 'number' is not
+// assignable to parameter of type 'string'.
+```
+
+#### Return Types
+
+In this example, singSongs is understood by TypeScript to return a number:
+
+```ts
+// Type: (songs: string[]) => number
+function singSongs(songs: string[]) {
+  for (const song of songs) {
+    console.log(`${song}`);
+  }
+  return songs.length;
+}
+```
+
+If a function contains multiple return statements with different values, TypeScript will infer the return type to be a union of all the possible returned types.
+
+This getSongAt function would be inferred to return string | undefined because its two possible returned values are typed string and undefined, respectively:
+
+```ts
+// Type: (songs: string[], index: number) => string | undefined
+function getSongAt(songs: string[], index: number) {
+  return index < songs.length ? songs[index] : undefined;
+}
+```
+
+##### Explicit Return Types
+
+Function declaration return type annotations are placed after the ")" following the list of parameters.
+For a function declaration, that falls just before the {:
+
+```ts
+function singSongsRecursive(songs: string[], count = 0): number {
+  return songs.length ? singSongsRecursive(songs.slice(1), count + 1) : count;
+}
+```
+
+For arrow functions (also known as lambdas), that falls just before the =>:
+
+```ts
+const singSongsRecursive = (songs: string[], count = 0): number =>
+  songs.length ? singSongsRecursive(songs.slice(1), count + 1) : count;
+```
+
+### Function Types
+
+Function type syntax looks similar to an arrow function, but with a type instead of the body.
+
+This nothingInGivesString variable’s type describes a function with no parameters
+and a returned string value:
+
+```ts
+let nothingInGivesString: () => string;
+```
+
+This inputAndOutput variable’s type describes a function with a string[] parameter, an optional count parameter, and a returned number value:
+
+```ts
+let inputAndOutput: (songs: string[], count?: number) => number;
+```
+
+Function types are frequently used to describe callback parameters (parameters meant to be called as functions).
+
+For example, the following runOnSongs snippet declares the type of its getSongAt parameter to be a function that takes in an index: number and returns a string. Passing getSongAt matches that type, but logSong fails for taking in a string as its parameter instead of a number:
+
+```ts
+const songs = ["Juice", "Shake It Off", "What's Up"];
+function runOnSongs(getSongAt: (index: number) => string) {
+ for (let i = 0; i < songs.length; i += 1) {
+ console.log(getSongAt(i));
+ }
+}
+function getSongAt(index: number) {
+ return `${songs[index]}`;
+}
+runOnSongs(getSongAt); // Ok
+function logSong(song: string) {
+ return `${song}`;
+}
+runOnSongs(logSong);
+// ~~~~~~~
+// Error: Argument of type '(song: string) => string' is not
+// assignable to parameter of type '(index: number) => string'.
+// Types of parameters 'song' and 'index' are incompatible.
+// Type 'number' is not assignable to type 'string'.
+```
+
+When complaining that two function types aren’t assignable to each other, TypeScript will typically give three levels of detail, with increasing levels of specificity:
+
+1. The first indentation level prints out the two function types.
+2. The next indentation level specifies which part is mismatched.
+3. The last indentation level is the precise assignability complaint of the mis‐
+matched part.
+
+In the previous code snippet, those levels are:
+
+1. logSongs: (strong: string) => string is the provided type being assigned to
+the getSongAt: (index: number) => string recipient
+2. The song parameter of logSong being assigned to the index parameter of
+getSongAt
+3. song’s number type is not assignable to index’s string type
+
+#### Function Type Parentheses
+
+In union types, parentheses may be used to indicate which part of an annotation is the function return or the surrounding union type:
+
+```ts
+// Type is a function that returns a union: string | undefined
+let returnsStringOrUndefined: () => string | undefined;
+// Type is either undefined or a function that returns a string
+let maybeReturnsString: (() => string) | undefined;
+```
+
+##### Parameter Type Inferences
+
+
+
 ## Commands
 
 Recordar que para trabajar localmente se debe de instalar las dependencias con --save-dev y utiliza el comando npm para consultar versiones y el comando npx para ejecutar comandos.
