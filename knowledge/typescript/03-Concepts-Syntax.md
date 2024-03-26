@@ -175,13 +175,16 @@ Observando este codigo se puede apreciar que la variable puede tomar mas de un t
 
 ```javascript
 let mathematician = Math.random() > 0.5 ? undefined : "Mark Goldberg";
+//En este codigo, typescript esta infiriendo los posibles data types que pueden salir, no es algo explicito
 ```
 
 In this example, thinker starts off null but is known to potentially contain a string instead.
 
-**Syntax:**
+Ahora vamos a **DECLARAR** las UNION TYPES:
 
 ```javascript
+//De esta forma se le esta diciendo que la variable thinker puede tener uno de dos valores e inicialmente es null
+//Esto es lo que se llama una declaracion explicita
 let thinker: string | null = null;
 if (Math.random() > 0.5) {
   thinker = "Susanne Langer"; // Ok
@@ -190,9 +193,9 @@ if (Math.random() > 0.5) {
 
 #### Union Properties
 
-When a value is known to be a union type, TypeScript will only allow you to access member properties that exist on all possible types in the union. It will give you a type-checking error if you try to access a type that doesn’t exist on all possible types.
+When a value is known to be a union type, TypeScript will only allow you to access member properties that exist on all possible types in the union. It will give you a type-checking error if you try to access a type that doesn’t exist on **all possible types.**
 
-Osea que solo va a aceptar propiedades si estan disponibles en ambos tipo de data type que pueda terminar siendo la condicion.
+Osea que solo va a aceptar propiedades si estan disponibles en **ambos** tipo de data type que pueda terminar siendo la condicion.
 
 ```javascript
 let physicist = Math.random() > 0.5 ? "Marie Curie" : 84;
@@ -207,13 +210,21 @@ physicist.toFixed();
 // Property 'toFixed' does not exist on type 'string'.
 ```
 
+Ahora si se requiere accesar a una propiedad que solo esta en uno de los data type, pues toca narrownizar la variable.
+
 ### Narrowing types
 
-Ahora existen los type guards que permite definir un data type mas especifico para permitir utilizar metodos que solo se encuentran en un solo tipo de data type.
+Ahora existen los type guards que permite definir un data type mas especifico para permitir utilizar metodos que solo se encuentran en un solo tipo de data type. Esto se aplica a una variable que haya sido defined, declared, or previously inferred.
 
-de la siguiente forma es que se puede narrownizar una variable
+Un **type guard** es una forma de utilizar logica para narrownizar una variable.
+
+#### Assignment Narrowing
+
+de la siguiente forma es que se puede narrownizar una variable.
 
 ```javascript
+//Originalmente se le asigna un number y un string pero luego se le deja una sola asignacion, typescript entiende que en cualquier
+//momento se le puede reducir o narrownizar la varialbe a una mas especifica con el fin de poder aplicar propiedades especificas
 let admiral: number | string;
 admiral = "Grace Hopper";
 admiral.toUpperCase(); // Ok: string
@@ -271,7 +282,30 @@ typeof researcher === "string"
   : researcher.toFixed(); // Ok: number
 ```
 
+El siguiente es un ejemplo practico de como se puede narrownizar los parametros de una funcion y que typescript sepa que data type es al momento de aplicar diferentes argumentos:
+
+```javascript
+// Function to process either a string or a number
+function processInput(input: string | number): void {
+    if (typeof input === "string") {
+        // If input is a string, convert it to uppercase
+        console.log(input.toUpperCase());
+    } else {
+        // If input is a number, double it
+        console.log(input * 2);
+    }
+}
+
+// Testing the function with different types of input
+processInput("hello"); // Output: HELLO
+processInput(5); // Output: 10
+```
+
+El void se explica mas adelante y es una forma de decirle a typescript que la funcion no retorna nada, solo ejecuta el codigo.
+
 ### Literal Types
+
+Osea los `const`.
 
 more specific versions of primitive types, osea que una constante que tiene el valor "valor" pues va a ser ese data type y ya para typescript y se le pueden adicionar otros strings como su valor pero solo los que uno indique para que typescritp entienda.
 
@@ -291,7 +325,25 @@ lifespan = true;
 // type 'number | "ongoing" | "uncertain"'
 ```
 
-### Truthiness Narrowing
+### Strict Null Checking
+
+Algo importante y es algo que se presenta en otros lenguajes de programacion el que se debe de chekear si hay un potencial null o no ya que el no hacer este chekeo puede implicar error, typescript viene equipado para evitar que esto suceda, aunque se puede desactivar para permitir los valores de null y undefined ser agregados a toda definicon de variables.
+
+Resulta que el NULL da muchos mas problemas de los que resuelve entonces si esta opcion se desactiva en la configuracion de typescript, se agregaria automaticamente los types null y undefined a todas las definiciones de typos en las variables.
+
+Si se deja activo, se produce este tipo de proteccion de data types:
+
+```javascript
+let nameMaybe = Math.random() > 0.5 ? "Tony Hoare" : undefined;
+nameMaybe.toLowerCase();
+// Potential runtime error: Cannot read property 'toLowerCase' of undefined.
+```
+
+Without strict null checking enabled, it’s much harder to know whether your code is safe from errors due to accidentally null or undefined values.
+
+#### Truthiness Narrowing
+
+Por medio de los operadores logicos && y el truthiness que se maneja en los if, se pueden inferir y narrownizar varios data types, osea que si alguno de sus posibles types es verdadero y el resto es falso, se puede hacer la inferencia y typescript lo va a reconocer, por ejemplo:
 
 ```javascript
 let geneticist = Math.random() > 0.5 ? "Barbara McClintock" : undefined;
@@ -308,6 +360,20 @@ Logical operators that perform truthiness checking work as well, namely && and ?
 geneticist && geneticist.toUpperCase(); // Ok: string | undefined
 geneticist?.toUpperCase(); // Ok: string | undefined
 ```
+
+#### Variables Without Initial Values
+
+**Variables declared without an initial value default to undefined in JavaScript.**, typescript avisa si se intenta utilizar alguna propiedad en una variable sin tipo alguno, por ejemplo:
+
+```javascript
+let mathematician: string;
+mathematician?.length;
+// Error: Variable 'mathematician' is used before being assigned.
+mathematician = "Mark Goldberg";
+mathematician.length; // Ok
+```
+
+**Nota:** The ?. is called the optional chaining operator in TypeScript (as well as in JavaScript), and it's used to access properties or methods of an object when it's possible that the object itself might be null or undefined.
 
 ### Type Aliases
 
@@ -329,20 +395,6 @@ type Id = number | string;
 // Equivalent to: number | string | undefined | null
 type IdMaybe = Id | undefined | null;
 ```
-
-## Strict Null Checking
-
-Resulta que el NULL da muchos mas problemas de los que resuelve entonces si esta opcion se desactiva en la configuracion de typescript, se agregaria automaticamente los types null y undefined a todas las definiciones de typos en las variables.
-
-Si se deja activo, se produce este tipo de proteccion de data types:
-
-```javascript
-let nameMaybe = Math.random() > 0.5 ? "Tony Hoare" : undefined;
-nameMaybe.toLowerCase();
-// Potential runtime error: Cannot read property 'toLowerCase' of undefined.
-```
-
-Without strict null checking enabled, it’s much harder to know whether your code is safe from errors due to accidentally null or undefined values.
 
 ## Objects
 
