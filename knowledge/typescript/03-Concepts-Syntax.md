@@ -2,7 +2,11 @@
 
 ## Whats a type?
 
-Un "type" es una descripción de cómo podría ser la forma de un valor de JavaScript. Por forma "shape" me refiero a qué propiedades y métodos existen en un valor, y cómo lo describiría el operador typeof integrado.
+**Un "type" es una descripción de cómo podría ser la forma de un valor de JavaScript. Por forma "shape" me refiero a qué propiedades y métodos existen en un valor, y cómo lo describiría el operador typeof integrado.**
+
+Osea, cuando se le adjudica un type a un valor, se le abren las puertas a los metodos y propiedades embeded en javascript, entonces una ayuda de typescript es cuando reconoce estos types y el programador por error intente ejecutar propiedades o metodos que no corresponden, por ejemplo un toString() a un number o como el typeof operator muestra resultados.
+
+Cuando asignas un tipo a un valor en TypeScript, estás estableciendo expectativas sobre las propiedades y métodos que ese valor debería tener.
 
 The most basic types in TypeScript correspond to the seven basic kinds of primitives
 in JavaScript:
@@ -30,7 +34,7 @@ At its core, TypeScript’s type system works by:
 
 ### Syntax errors
 
-La priera es la deteccion de errores en la sintaxis, por ejemplo:
+La primera es la deteccion de errores en la sintaxis, por ejemplo:
 
 ```javascript
 let let wat;
@@ -38,7 +42,7 @@ let let wat;
 // Error: ',' expected.
 ```
 
-Se puede observar un error en la sintaxis que va a dar un error al momento de que typescript intente convertir el codigo en puro javascript.
+Se puede observar un error en la sintaxis que va a dar un error al momento de que typescript intente convertir el codigo en puro javascript al compilar.
 
 ### Type errors
 
@@ -62,18 +66,38 @@ lastName = true;
 
 La verificación de TypeScript sobre si un valor puede ser proporcionado a una llamada de función o variable se llama asignabilidad "assignability": si ese valor es asignable al tipo esperado al que se pasa. Este será un término importante en capítulos posteriores mientras comparamos objetos más complejos.
 
+```javascript
+let lastName = "King";
+lastName = true;
+// Error: Type 'boolean' is not assignable to type 'string'.
+```
+
 #### Type Annotations
 
 TypeScript proporciona una sintaxis para declarar el tipo de una variable sin tener que asignarle un valor inicial, llamada "Type Annotation". Una anotación de tipo se coloca después del nombre de una variable e incluye dos puntos seguidos del nombre de un tipo.
 
-**Syntax:**
+En el siguiente ejemplo se puede observar como una variable puede evolucionar y cambiar su type y typescript lo va a permitir
+
+```javascript
+let rocker; // Type: any
+
+rocker = "Joan Jett"; // Type: string
+rocker.toUpperCase(); // Ok
+
+rocker = 19.58; // Type: number
+rocker.toPrecision(1); // Ok
+
+rocker.toUpperCase();
+// ~~~~~~~~~~~
+// Error: 'toUpperCase' does not exist on type 'number'.
+```
+
+Aunque es permitido, lo mejor es desde un principio decirle a typescript que type la variable es al ser creada esto es un "type annotation" donde explicitamente se le dice que type es la variable.
 
 ```javascript
 let rocker: string;
 rocker = "Joan Jett";
 ```
-
-**Syntax:**
 
 ```javascript
 let myNumber: number = 10;
@@ -90,7 +114,7 @@ function add(x: number, y: number): number {
 
 #### Type Shapes
 
-TypeScript also knows what member properties should exist on objects.
+TypeScript also knows what member properties should exist on objects. Estos shapes junto con javascript ayudan a darle forma a objects o functions para que typescript pegue el grito cuando alguna propiedad que no existe en un object intente ser invocada.
 
 ```javascript
 let cher = {
@@ -101,6 +125,7 @@ cher.middleName;
 // ~~~~~~~~~~
 // Property 'middleName' does not exist on type
 // '{ firstName: string; lastName: string; }'.
+// Como se puede observar typescript tambien pega el grito al analizar object y sus keys
 ```
 
 #### Modules
@@ -141,6 +166,8 @@ Expanding a value’s allowed type to be two or more possible types.
 
 Narrowing:
 Reducing a value’s allowed type to not be one or more possible types.
+
+La idea de estos dos conceptos es permitir a typescript inferir los types en variables o funciones complejas.
 
 ### Union Types
 
