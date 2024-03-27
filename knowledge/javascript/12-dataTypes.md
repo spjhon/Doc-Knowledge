@@ -46,6 +46,12 @@ let myBigInt: bigint = 0n; // or 2n, -4n, etc.
 let mySymbol: symbol = Symbol(); // or Symbol("hi"), etc.
 ```
 
+8.`Date`:
+
+```typescript
+let myDate: Date = new Date(); // current date and time
+```
+
 You can declare variables using the respective primitive types and assign values accordingly.
 
 ## Data Structures

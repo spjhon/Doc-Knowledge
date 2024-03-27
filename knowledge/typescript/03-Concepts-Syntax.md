@@ -287,13 +287,13 @@ El siguiente es un ejemplo practico de como se puede narrownizar los parametros 
 ```javascript
 // Function to process either a string or a number
 function processInput(input: string | number): void {
-    if (typeof input === "string") {
-        // If input is a string, convert it to uppercase
-        console.log(input.toUpperCase());
-    } else {
-        // If input is a number, double it
-        console.log(input * 2);
-    }
+  if (typeof input === "string") {
+    // If input is a string, convert it to uppercase
+    console.log(input.toUpperCase());
+  } else {
+    // If input is a number, double it
+    console.log(input * 2);
+  }
 }
 
 // Testing the function with different types of input
@@ -402,6 +402,8 @@ How to describe complex object shapes and how TypeScript checks their assignabil
 
 ### Object Types
 
+Cuando se crea un object, se le describe como un object literal o un object shape.
+
 Una ventaja de typescript es que suelta un error si se intenta accesar a un object con keys o methods que no existen dentor del object definido:
 
 ```javascript
@@ -417,14 +419,15 @@ poet.end;
 // type '{ born: number; name: string; }'.
 ```
 
-### Declaring Object Types
+#### Declaring Object Types
 
 Sin embargo tambien se pueden definir dentro de los objects, los type anotations por cada key o method que contenga el object.
 
 ```javascript
+//Aqui se esta definiendo un object type que luego va a tener valores que concuerden con su data type
 let poetLater: {
-  born: number;
-  name: string;
+  born: number,
+  name: string,
 };
 // Ok
 poetLater = {
@@ -442,8 +445,8 @@ Al igual que con las variables tambien se pueden definir unos types por adelanta
 
 ```javascript
 type Poet = {
-  born: number;
-  name: string;
+  born: number,
+  name: string,
 };
 let poetLater: Poet;
 // Ok
@@ -455,18 +458,18 @@ poetLater = "Emily Dickinson";
 // Error: Type 'string' is not assignable to 'Poet'.
 ```
 
-NO ES LO MISMO QUE LAS INTERFACES, pero son bastante parecidas y lo mas estandar es utilizar interfaces
+NO ES LO MISMO QUE LAS INTERFACES, pero son bastante parecidas y lo mas estandar es utilizar **interfaces**
 
-#### Structural Typing
+### Structural Typing
 
 Esta forma estructural dicta que si la key de un object fue declarada ya sea por medio de un aliases o una interfaz, estas pueden ser utilizadas en otros objects:
 
 ```javascript
 type WithFirstName = {
-  firstName: string;
+  firstName: string,
 };
 type WithLastName = {
-  lastName: string;
+  lastName: string,
 };
 const hasBoth = {
   firstName: "Lucille",
@@ -480,14 +483,14 @@ let withLastName: WithLastName = hasBoth;
 
 Ojo, esto solo sirve con los type internamente en typescript, javascript no deja hacer esta gracia.
 
-##### Usage Checking
+#### Usage Checking
 
 Tener en cuenta que cuando se crea un type para un object, al momento de utilizar las keys para crear un object, se deben de utilizar todas las keys definidas en el type del object de lo contrario bota error
 
 ```javascript
 type FirstAndLastNames = {
-  first: string;
-  last: string;
+  first: string,
+  last: string,
 };
 
 // Ok
@@ -502,11 +505,11 @@ const hasOnlyOne: FirstAndLastNames = {
 // but required in type 'FirstAndLastNames'.
 ```
 
-Por ejemplo esto daria un error
+Los tipos incompatibles entre ambos no están permitidos tampoco. Por ejemplo esto daria un error:
 
 ```javascript
 type TimeRange = {
-  start: Date;
+  start: Date,
 };
 const hasStartString: TimeRange = {
   start: "1879-02-13",
@@ -514,14 +517,14 @@ const hasStartString: TimeRange = {
 };
 ```
 
-##### Excess Property Checking
+#### Excess Property Checking
 
 Typescript arrojaria error si se utilizan mas proiedades que las descritas en el aliases (osea un exceso de propiedades):
 
 ```javascript
 type Poet = {
-  born: number;
-  name: string;
+  born: number,
+  name: string,
 };
 // Ok: all fields match what's expected in Poet
 const poetMatch: Poet = {
@@ -542,15 +545,15 @@ const extraProperty: Poet = {
 
 #### Nested Object Types
 
-Como los objects se pueden animar, tambien se puede y se debe hacer con los type anotations:
+Como los objects se pueden anidar, tambien se puede y se debe hacer con los type anotations:
 
 ```javascript
 type Poem = {
   author: {
-    firstName: string;
-    lastName: string;
-  };
-  name: string;
+    firstName: string,
+    lastName: string,
+  },
+  name: string,
 };
 
 // Ok
@@ -577,13 +580,15 @@ const poemMismatch: Poem = {
 
 ```javascript
 type Author = {
-  firstName: string;
-  lastName: string;
+  firstName: string,
+  lastName: string,
 };
+
 type Poem = {
-  author: Author;
-  name: string;
+  author: Author,
+  name: string,
 };
+
 const poemMismatch: Poem = {
   author: {
     name: "Sylvia Plath",
@@ -601,8 +606,8 @@ Tambien se puede crear propiedades opcionales en caso que el object que se cree 
 
 ```javascript
 type Book = {
-  author?: string;
-  pages: number;
+  author?: string,
+  pages: number,
 };
 // Ok
 const ok: Book = {
@@ -621,10 +626,12 @@ const missing: Book = {
 // '{ author: string; }' but required in type 'Book'.
 ```
 
-#### Unions of Object Types
+### Unions of Object Types
 
-##### Inferred Object-Type Unions
+#### Inferred Object-Type Unions
 
+Typescript infiere automaicamente si una variable contiene uno de varios shapes de obejcts en su interior.
+The type system infers the possible shapes of an object based on its usage.
 This poem value always has a name property of type string, and may or may not have pages and rhymes properties:
 
 ```javascript
@@ -649,18 +656,27 @@ poem.pages; // number | undefined
 poem.rhymes; // booleans | undefined
 ```
 
-##### Explicit Object-Type Unions
+Depending on a random condition (Math.random() > 0.5), poem is assigned one of two possible shapes of objects:
+
+- If the condition is true, poem will have the shape { name: "The Double Image", pages: 7 }.
+- If the condition is false, poem will have the shape { name: "Her Kind", rhymes: true }.
+
+The TypeScript type system infers that poem can be of one of these two shapes, creating a union type for poem. The inferred type for poem is a union of these two shapes.
+
+#### Explicit Object-Type Unions
+
+TypeScript’s type system will only allow access to properties that exist on all of those union types.
 
 This version of the previous poem variable is explicitly typed to be a union type that always has the always property along with either pages or rhymes. Accessing names is allowed because it always exists, but pages and rhymes aren’t guaranteed to exist:
 
 ```javascript
 type PoemWithPages = {
-  name: string;
-  pages: number;
+  name: string,
+  pages: number,
 };
 type PoemWithRhymes = {
-  name: string;
-  rhymes: boolean;
+  name: string,
+  rhymes: boolean,
 };
 type Poem = PoemWithPages | PoemWithRhymes;
 const poem: Poem =
@@ -709,14 +725,14 @@ this Poem type describes an object that can be either a new PoemWithPages type o
 
 ```javascript
 type PoemWithPages = {
-  name: string;
-  pages: number;
-  type: "pages";
+  name: string,
+  pages: number,
+  type: "pages",
 };
 type PoemWithRhymes = {
-  name: string;
-  rhymes: boolean;
-  type: "rhymes";
+  name: string,
+  rhymes: boolean,
+  type: "rhymes",
 };
 type Poem = PoemWithPages | PoemWithRhymes;
 const poem: Poem =
@@ -742,12 +758,12 @@ The following Artwork and Writing types are used to form a combined WrittenArt t
 
 ```javascript
 type Artwork = {
-  genre: string;
-  name: string;
+  genre: string,
+  name: string,
 };
 type Writing = {
-  pages: number;
-  name: string;
+  pages: number,
+  name: string,
 };
 type WrittenArt = Artwork & Writing;
 // Equivalent to:
@@ -762,8 +778,8 @@ This ShortPoem type always has an author property, then is also a discriminated 
 
 ```javascript
 type ShortPoem = { author: string } & (
-  | { kigo: string; type: "haiku" }
-  | { meter: number; type: "villanelle" }
+  | { kigo: string, type: "haiku" }
+  | { meter: number, type: "villanelle" }
 );
 // Ok
 const morningGlory: ShortPoem = {
@@ -788,8 +804,8 @@ In the case of the previous code snippet’s ShortPoem, it would be much more re
 
 ```javascript
 type ShortPoemBase = { author: string };
-type Haiku = ShortPoemBase & { kigo: string; type: "haiku" };
-type Villanelle = ShortPoemBase & { meter: number; type: "villanelle" };
+type Haiku = ShortPoemBase & { kigo: string, type: "haiku" };
+type Villanelle = ShortPoemBase & { meter: number, type: "villanelle" };
 type ShortPoem = Haiku | Villanelle;
 const oneArt: ShortPoem = {
   author: "Elizabeth Bishop",
@@ -964,16 +980,16 @@ For example, the following runOnSongs snippet declares the type of its getSongAt
 ```javascript
 const songs = ["Juice", "Shake It Off", "What's Up"];
 function runOnSongs(getSongAt: (index: number) => string) {
- for (let i = 0; i < songs.length; i += 1) {
- console.log(getSongAt(i));
- }
+  for (let i = 0; i < songs.length; i += 1) {
+    console.log(getSongAt(i));
+  }
 }
 function getSongAt(index: number) {
- return `${songs[index]}`;
+  return `${songs[index]}`;
 }
 runOnSongs(getSongAt); // Ok
 function logSong(song: string) {
- return `${song}`;
+  return `${song}`;
 }
 runOnSongs(logSong);
 // ~~~~~~~
@@ -988,14 +1004,14 @@ When complaining that two function types aren’t assignable to each other, Type
 1. The first indentation level prints out the two function types.
 2. The next indentation level specifies which part is mismatched.
 3. The last indentation level is the precise assignability complaint of the mis‐
-matched part.
+   matched part.
 
 In the previous code snippet, those levels are:
 
 1. logSongs: (strong: string) => string is the provided type being assigned to
-the getSongAt: (index: number) => string recipient
+   the getSongAt: (index: number) => string recipient
 2. The song parameter of logSong being assigned to the index parameter of
-getSongAt
+   getSongAt
 3. song’s number type is not assignable to index’s string type
 
 #### Function Type Parentheses
@@ -1018,8 +1034,8 @@ This singer variable is known to be a function that takes in a parameter of type
 ```javascript
 let singer: (song: string) => string;
 singer = function (song) {
- // Type of song: string
- return `Singing: ${song.toUpperCase()}!`; // Ok
+  // Type of song: string
+  return `Singing: ${song.toUpperCase()}!`; // Ok
 };
 ```
 
@@ -1030,7 +1046,7 @@ const songs = ["Call Me", "Jolene", "The Chain"];
 // song: string
 // index: number
 songs.forEach((song, index) => {
- console.log(`${song} is at index ${index}`);
+  console.log(`${song} is at index ${index}`);
 });
 ```
 
@@ -1054,7 +1070,7 @@ This usesNumberToString function has a single parameter which is itself the Numb
 ```javascript
 type NumberToString = (input: number) => string;
 function usesNumberToString(numberToString: NumberToString) {
- console.log(`The string is: ${numberToString(1234)}`);
+  console.log(`The string is: ${numberToString(1234)}`);
 }
 usesNumberToString((input) => `${input}! Hooray!`); // Ok
 usesNumberToString((input) => input * 2);
@@ -1074,12 +1090,12 @@ Functions whose return type is void may not return a value. This logSong functio
 
 ```javascript
 function logSong(song: string | undefined): void {
- if (!song) {
- return; // Ok
- }
- console.log(`${song}`);
- return true;
- // Error: Type 'boolean' is not assignable to type 'void'.
+  if (!song) {
+    return; // Ok
+  }
+  console.log(`${song}`);
+  return true;
+  // Error: Type 'boolean' is not assignable to type 'void'.
 }
 ```
 
@@ -1088,7 +1104,7 @@ This songLogger variable represents a function that takes in a song: string and 
 ```javascript
 let songLogger: (song: string) => void;
 songLogger = (song) => {
- console.log(`${songs}`);
+  console.log(`${songs}`);
 };
 songLogger("Heart of Glass"); // Ok
 ```
@@ -1099,7 +1115,7 @@ Trying to assign a value of type void to a value whose type instead includes und
 
 ```javascript
 function returnsVoid() {
- return;
+  return;
 }
 let lazyValue: string | undefined;
 lazyValue = returnsVoid();
@@ -1111,9 +1127,9 @@ Functions provided to forEach can return any value they want. records.push(recor
 ```javascript
 const records: string[] = [];
 function saveRecords(newRecords: string[]) {
- newRecords.forEach(record => records.push(record));
+  newRecords.forEach((record) => records.push(record));
 }
-saveRecords(['21', 'Come On Over', 'The Bodyguard'])
+saveRecords(["21", "Come On Over", "The Bodyguard"]);
 ```
 
 The void type is not JavaScript. It’s a TypeScript keyword used to declare return types of functions.
@@ -1128,14 +1144,14 @@ This fail function only ever throws an error, so it can help TypeScript’s cont
 
 ```javascript
 function fail(message: string): never {
- throw new Error(`Invariant failure: ${message}.`);
+  throw new Error(`Invariant failure: ${message}.`);
 }
 function workWithUnsafeParam(param: unknown) {
- if (typeof param !== "string") {
- fail(`param should be a string, not ${typeof param}`);
- }
- // Here, param is known to be type string
- param.toUpperCase(); // Ok
+  if (typeof param !== "string") {
+    fail(`param should be a string, not ${typeof param}`);
+  }
+  // Here, param is known to be type string
+  param.toUpperCase(); // Ok
 }
 ```
 
