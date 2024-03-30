@@ -36,7 +36,7 @@ At its core, TypeScript’s type system works by:
 
 La primera es la deteccion de errores en la sintaxis, por ejemplo:
 
-```javascript
+```typescript
 let let wat;
 // ~~~
 // Error: ',' expected.
@@ -51,14 +51,14 @@ detected an error with the program’s types.
 
 This is allowed:
 
-```javascript
+```typescript
 let firstName = "Carole";
 firstName = "Joan";
 ```
 
 This is NOT allowed:
 
-```javascript
+```typescript
 let lastName = "King";
 lastName = true;
 // Error: Type 'boolean' is not assignable to type 'string'.
@@ -66,7 +66,7 @@ lastName = true;
 
 La verificación de TypeScript sobre si un valor puede ser proporcionado a una llamada de función o variable se llama asignabilidad "assignability": si ese valor es asignable al tipo esperado al que se pasa. Este será un término importante en capítulos posteriores mientras comparamos objetos más complejos.
 
-```javascript
+```typescript
 let lastName = "King";
 lastName = true;
 // Error: Type 'boolean' is not assignable to type 'string'.
@@ -78,7 +78,7 @@ TypeScript proporciona una sintaxis para declarar el tipo de una variable sin te
 
 En el siguiente ejemplo se puede observar como una variable puede evolucionar y cambiar su type y typescript lo va a permitir
 
-```javascript
+```typescript
 let rocker; // Type: any
 
 rocker = "Joan Jett"; // Type: string
@@ -94,19 +94,19 @@ rocker.toUpperCase();
 
 Aunque es permitido, lo mejor es desde un principio decirle a typescript que type la variable es al ser creada esto es un "type annotation" donde explicitamente se le dice que type es la variable.
 
-```javascript
+```typescript
 let rocker: string;
 rocker = "Joan Jett";
 ```
 
-```javascript
+```typescript
 let myNumber: number = 10;
 let myString: string = "Hello, TypeScript!";
 ```
 
 Functions can also have type annotations for their parameters and return types:
 
-```javascript
+```typescript
 function add(x: number, y: number): number {
   return x + y;
 }
@@ -116,7 +116,7 @@ function add(x: number, y: number): number {
 
 TypeScript also knows what member properties should exist on objects. Estos shapes junto con javascript ayudan a darle forma a objects o functions para que typescript pegue el grito cuando alguna propiedad que no existe en un object intente ser invocada.
 
-```javascript
+```typescript
 let cher = {
   firstName: "Cherilyn",
   lastName: "Sarkisian",
@@ -136,7 +136,7 @@ A file with a top-level export or import
 Script
 Any file that is not a module
 
-```javascript
+```typescript
 // a.ts
 const shared = "Cher";
 // ~~~~~~
@@ -151,7 +151,7 @@ If you see these “Cannot redeclare…” errors in a TypeScript file, it may b
 
 If you need a file to be a module without an export or import statement, you can add an export {}; somewhere in the file to force it to be a module:
 
-```javascript
+```typescript
 // a.ts and b.ts
 const shared = "Cher"; // Ok
 export {};
@@ -173,7 +173,7 @@ La idea de estos dos conceptos es permitir a typescript inferir los types en var
 
 Observando este codigo se puede apreciar que la variable puede tomar mas de un tipo de data type de acuerdo a las condicones dadas.
 
-```javascript
+```typescript
 let mathematician = Math.random() > 0.5 ? undefined : "Mark Goldberg";
 //En este codigo, typescript esta infiriendo los posibles data types que pueden salir, no es algo explicito
 ```
@@ -182,7 +182,7 @@ In this example, thinker starts off null but is known to potentially contain a s
 
 Ahora vamos a **DECLARAR** las UNION TYPES:
 
-```javascript
+```typescript
 //De esta forma se le esta diciendo que la variable thinker puede tener uno de dos valores e inicialmente es null
 //Esto es lo que se llama una declaracion explicita
 let thinker: string | null = null;
@@ -197,7 +197,7 @@ When a value is known to be a union type, TypeScript will only allow you to acce
 
 Osea que solo va a aceptar propiedades si estan disponibles en **ambos** tipo de data type que pueda terminar siendo la condicion.
 
-```javascript
+```typescript
 let physicist = Math.random() > 0.5 ? "Marie Curie" : 84;
 physicist.toString(); // Ok
 physicist.toUpperCase();
@@ -222,7 +222,7 @@ Un **type guard** es una forma de utilizar logica para narrownizar una variable.
 
 de la siguiente forma es que se puede narrownizar una variable.
 
-```javascript
+```typescript
 //Originalmente se le asigna un number y un string pero luego se le deja una sola asignacion, typescript entiende que en cualquier
 //momento se le puede reducir o narrownizar la varialbe a una mas especifica con el fin de poder aplicar propiedades especificas
 let admiral: number | string;
@@ -235,7 +235,7 @@ admiral.toFixed();
 
 Aqui se puede observar como cuando no hay condicion sino que se asigna directamente el type anotation, pues typescript narrowniza automaticamente la variable.
 
-```javascript
+```typescript
 let inventor: number | string = "Hedy Lamarr";
 inventor.toUpperCase(); // Ok: string
 inventor.toFixed();
@@ -247,7 +247,7 @@ inventor.toFixed();
 
 Utilizando un if se puede narrownizar una variable que tenga condiciones
 
-```javascript
+```typescript
 // Type of scientist: number | string
 let scientist = Math.random() > 0.5 ? "Rosalind Franklin" : 51;
 if (scientist === "Rosalind Franklin") {
@@ -267,7 +267,7 @@ Aqui observamos que con el if se puede utilizar un metodo que no esta disponible
 
 Se puede utilizar el typeof check para narrownizar las variables
 
-```javascript
+```typescript
 let researcher = Math.random() > 0.5 ? "Rosalind Franklin" : 51;
 if (typeof researcher === "string") {
   researcher.toUpperCase(); // Ok: string
@@ -276,7 +276,7 @@ if (typeof researcher === "string") {
 
 Logical negations from ! and else statements work as well:
 
-```javascript
+```typescript
 typeof researcher === "string"
   ? researcher.toUpperCase() // Ok: string
   : researcher.toFixed(); // Ok: number
@@ -284,7 +284,7 @@ typeof researcher === "string"
 
 El siguiente es un ejemplo practico de como se puede narrownizar los parametros de una funcion y que typescript sepa que data type es al momento de aplicar diferentes argumentos:
 
-```javascript
+```typescript
 // Function to process either a string or a number
 function processInput(input: string | number): void {
   if (typeof input === "string") {
@@ -316,7 +316,7 @@ Por ejemplo:
 
 Por supuesto pueden haber combinaciones de union y literals en las delcaraciones de types anotations en typescript:
 
-```javascript
+```typescript
 let lifespan: number | "ongoing" | "uncertain";
 lifespan = 89; // Ok
 lifespan = "ongoing"; // Ok
@@ -333,7 +333,7 @@ Resulta que el NULL da muchos mas problemas de los que resuelve entonces si esta
 
 Si se deja activo, se produce este tipo de proteccion de data types:
 
-```javascript
+```typescript
 let nameMaybe = Math.random() > 0.5 ? "Tony Hoare" : undefined;
 nameMaybe.toLowerCase();
 // Potential runtime error: Cannot read property 'toLowerCase' of undefined.
@@ -345,7 +345,7 @@ Without strict null checking enabled, it’s much harder to know whether your co
 
 Por medio de los operadores logicos && y el truthiness que se maneja en los if, se pueden inferir y narrownizar varios data types, osea que si alguno de sus posibles types es verdadero y el resto es falso, se puede hacer la inferencia y typescript lo va a reconocer, por ejemplo:
 
-```javascript
+```typescript
 let geneticist = Math.random() > 0.5 ? "Barbara McClintock" : undefined;
 if (geneticist) {
   geneticist.toUpperCase(); // Ok: string
@@ -356,7 +356,7 @@ geneticist.toUpperCase();
 
 Logical operators that perform truthiness checking work as well, namely && and ?.:
 
-```javascript
+```typescript
 geneticist && geneticist.toUpperCase(); // Ok: string | undefined
 geneticist?.toUpperCase(); // Ok: string | undefined
 ```
@@ -365,7 +365,7 @@ geneticist?.toUpperCase(); // Ok: string | undefined
 
 **Variables declared without an initial value default to undefined in JavaScript.**, typescript avisa si se intenta utilizar alguna propiedad en una variable sin tipo alguno, por ejemplo:
 
-```javascript
+```typescript
 let mathematician: string;
 mathematician?.length;
 // Error: Variable 'mathematician' is used before being assigned.
@@ -379,7 +379,7 @@ mathematician.length; // Ok
 
 Para evitar tener que hacer type anotations a muchas variables que tienen el mismo tipo de de types, se puede asiganr esto a una sola variable y ser reutilizada:
 
-```javascript
+```typescript
 type RawData = boolean | number | string | null | undefined;
 let rawDataFirst: RawData;
 let rawDataSecond: RawData;
@@ -390,7 +390,7 @@ OJO, el type no corresponde a javascritp vanilla, osea que para javascript RawDa
 
 #### Combining Type Aliases
 
-```javascript
+```typescript
 type Id = number | string;
 // Equivalent to: number | string | undefined | null
 type IdMaybe = Id | undefined | null;
@@ -406,7 +406,7 @@ Cuando se crea un object, se le describe como un object literal o un object shap
 
 Una ventaja de typescript es que suelta un error si se intenta accesar a un object con keys o methods que no existen dentor del object definido:
 
-```javascript
+```typescript
 const poet = {
   born: 1935,
   name: "Mary Oliver",
@@ -423,7 +423,7 @@ poet.end;
 
 Sin embargo tambien se pueden definir dentro de los objects, los type anotations por cada key o method que contenga el object.
 
-```javascript
+```typescript
 //Aqui se esta definiendo un object type que luego va a tener valores que concuerden con su data type
 let poetLater: {
   born: number,
@@ -443,7 +443,7 @@ poetLater = "Sappho";
 
 Al igual que con las variables tambien se pueden definir unos types por adelantado y re-utilizarlos a lo largo de la creacion de objects
 
-```javascript
+```typescript
 type Poet = {
   born: number,
   name: string,
@@ -464,7 +464,7 @@ NO ES LO MISMO QUE LAS INTERFACES, pero son bastante parecidas y lo mas estandar
 
 Esta forma estructural dicta que si la key de un object fue declarada ya sea por medio de un aliases o una interfaz, estas pueden ser utilizadas en otros objects:
 
-```javascript
+```typescript
 type WithFirstName = {
   firstName: string,
 };
@@ -487,7 +487,7 @@ Ojo, esto solo sirve con los type internamente en typescript, javascript no deja
 
 Tener en cuenta que cuando se crea un type para un object, al momento de utilizar las keys para crear un object, se deben de utilizar todas las keys definidas en el type del object de lo contrario bota error
 
-```javascript
+```typescript
 type FirstAndLastNames = {
   first: string,
   last: string,
@@ -507,7 +507,7 @@ const hasOnlyOne: FirstAndLastNames = {
 
 Los tipos incompatibles entre ambos no están permitidos tampoco. Por ejemplo esto daria un error:
 
-```javascript
+```typescript
 type TimeRange = {
   start: Date,
 };
@@ -521,7 +521,7 @@ const hasStartString: TimeRange = {
 
 Typescript arrojaria error si se utilizan mas proiedades que las descritas en el aliases (osea un exceso de propiedades):
 
-```javascript
+```typescript
 type Poet = {
   born: number,
   name: string,
@@ -547,7 +547,7 @@ const extraProperty: Poet = {
 
 Como los objects se pueden anidar, tambien se puede y se debe hacer con los type anotations:
 
-```javascript
+```typescript
 type Poem = {
   author: {
     firstName: string,
@@ -578,7 +578,7 @@ const poemMismatch: Poem = {
 
 **Nota:** Tambien se puede utilizar los aliases afuera del nest para hacer un mejor chekeo de los types, es mas es RECOMENDABLE HACER ESTO:
 
-```javascript
+```typescript
 type Author = {
   firstName: string,
   lastName: string,
@@ -604,7 +604,7 @@ const poemMismatch: Poem = {
 
 Tambien se puede crear propiedades opcionales en caso que el object que se cree no necesariamente necesite la propiedad en cuestion
 
-```javascript
+```typescript
 type Book = {
   author?: string,
   pages: number,
@@ -634,7 +634,7 @@ Typescript infiere automaicamente si una variable contiene uno de varios shapes 
 The type system infers the possible shapes of an object based on its usage.
 This poem value always has a name property of type string, and may or may not have pages and rhymes properties:
 
-```javascript
+```typescript
 const poem =
   Math.random() > 0.5
     ? { name: "The Double Image", pages: 7 }
@@ -658,18 +658,24 @@ poem.rhymes; // booleans | undefined
 
 Depending on a random condition (Math.random() > 0.5), poem is assigned one of two possible shapes of objects:
 
-- If the condition is true, poem will have the shape { name: "The Double Image", pages: 7 }.
-- If the condition is false, poem will have the shape { name: "Her Kind", rhymes: true }.
+- If the condition is true, poem will have the shape `{ name: "The Double Image", pages: 7 }`.
+- If the condition is false, poem will have the shape `{ name: "Her Kind", rhymes: true }`.
 
 The TypeScript type system infers that poem can be of one of these two shapes, creating a union type for poem. The inferred type for poem is a union of these two shapes.
+
+Aquí, la variable poem puede ser de dos tipos de objetos diferentes, dependiendo del resultado de la expresión Math.random() > 0.5. Si esa expresión es verdadera, poem será un objeto con propiedades name y pages, y si es falsa, poem será un objeto con propiedades name y rhymes.
+
+Además, dado que cada objeto puede tener diferentes propiedades, TypeScript también considera estas diferencias. Si intentas acceder a una propiedad que no está presente en ambos tipos de objetos, TypeScript la considerará como undefined. Por lo tanto, si intentas acceder a las propiedades pages o rhymes de poem, TypeScript te indicará que pueden ser del tipo respectivo o undefined.
 
 #### Explicit Object-Type Unions
 
 TypeScript’s type system will only allow access to properties that exist on all of those union types.
 
+Esta teoría trata sobre cómo puedes ser más explícito en TypeScript al definir uniones de tipos de objetos. En lugar de dejar que TypeScript infiera los tipos, puedes definir explícitamente una unión de tipos de objetos, lo que te brinda más control sobre los tipos de tus objetos.
+
 This version of the previous poem variable is explicitly typed to be a union type that always has the always property along with either pages or rhymes. Accessing names is allowed because it always exists, but pages and rhymes aren’t guaranteed to exist:
 
-```javascript
+```typescript
 type PoemWithPages = {
   name: string,
   pages: number,
@@ -700,17 +706,19 @@ Restricting access to potentially nonexistent members of objects can be a good t
 
 Continuing the explicitly typed poem example, check whether "pages" in poem acts as a type guard for TypeScript to indicate that it is a PoemWithPages. If poem is not a PoemWithPages, then it must be a PoemWithRhymes:
 
-```javascript
-if ("pages" in poem) {
-  poem.pages; // Ok: poem is narrowed to PoemWithPages
+```typescript
+if ('pages' in poem) {
+  // poem es del tipo PoemWithPages
+  console.log(poem.pages); // Accediendo a la propiedad 'pages'
 } else {
-  poem.rhymes; // Ok: poem is narrowed to PoemWithRhymes
+  // poem es del tipo PoemWithRhymes
+  console.log(poem.rhymes); // Accediendo a la propiedad 'rhymes'
 }
 ```
 
 Note that TypeScript won’t allow truthiness existence checks like if (poem.pages). Attempting to access a property of an object that might not exist is considered a type error, even if used in a way that seems to behave like a type guard:
 
-```javascript
+```typescript
 if (poem.pages) {
   /* ... */
 }
@@ -719,31 +727,36 @@ if (poem.pages) {
 // Property 'pages' does not exist on type 'PoemWithRhymes'.
 ```
 
-##### Discriminated Unions
+#### Discriminated Unions
 
 this Poem type describes an object that can be either a new PoemWithPages type or a new PoemWithRhymes type, and the type property indicates which one. If poem.type is "pages", then TypeScript is able to infer that the type of poem must be PoemWithPages. Without that type narrowing, neither property is guaranteed to exist on the value:
 
-```javascript
+```typescript
 type PoemWithPages = {
   name: string,
   pages: number,
   type: "pages",
 };
+
 type PoemWithRhymes = {
   name: string,
   rhymes: boolean,
   type: "rhymes",
 };
+
 type Poem = PoemWithPages | PoemWithRhymes;
+
 const poem: Poem =
   Math.random() > 0.5
     ? { name: "The Double Image", pages: 7, type: "pages" }
     : { name: "Her Kind", rhymes: true, type: "rhymes" };
+
 if (poem.type === "pages") {
   console.log(`It's got pages: ${poem.pages}`); // Ok
 } else {
   console.log(`It rhymes: ${poem.rhymes}`);
 }
+
 poem.type; // Type: 'pages' | 'rhymes'
 poem.pages;
 // ~~~~~
@@ -751,20 +764,22 @@ poem.pages;
 // Property 'pages' does not exist on type 'PoemWithRhymes'.
 ```
 
-#### Intersection Types
+### Intersection Types
 
 Intersection types are typically used with aliased object types to create a new type that combines multiple existing object types.
 The following Artwork and Writing types are used to form a combined WrittenArt type that has the properties genre, name, and pages:
 
-```javascript
+```typescript
 type Artwork = {
   genre: string,
   name: string,
 };
+
 type Writing = {
   pages: number,
   name: string,
 };
+
 type WrittenArt = Artwork & Writing;
 // Equivalent to:
 // {
@@ -776,21 +791,24 @@ type WrittenArt = Artwork & Writing;
 
 This ShortPoem type always has an author property, then is also a discriminated union on a type property:
 
-```javascript
+```typescript
 type ShortPoem = { author: string } & (
   | { kigo: string, type: "haiku" }
   | { meter: number, type: "villanelle" }
 );
+
 // Ok
 const morningGlory: ShortPoem = {
   author: "Fukuda Chiyo-ni",
   kigo: "Morning Glory",
   type: "haiku",
 };
+
 const oneArt: ShortPoem = {
   author: "Elizabeth Bishop",
   type: "villanelle",
 };
+
 // Error: Type '{ author: string; type: "villanelle"; }'
 // is not assignable to type 'ShortPoem'.
 // Type '{ author: string; type: "villanelle"; }' is not assignable to
@@ -800,13 +818,14 @@ const oneArt: ShortPoem = {
 ```
 
 **NOTA:** try to keep code as simple as possible when using them.
-In the case of the previous code snippet’s ShortPoem, it would be much more readable to split the type into a series of aliased object types to allow TypeScript to print those names:
+In the case of the previous code snippet’s ShortPoem, it would be much more readable to split the type into a series of aliased object types to allow TypeScript to print those names, En el siguiente ejemplo se puede observar como se genera el mismo error de arriba pero el mensaje de error es mucho mas leible para entender el origne del problema.
 
-```javascript
+```typescript
 type ShortPoemBase = { author: string };
 type Haiku = ShortPoemBase & { kigo: string, type: "haiku" };
 type Villanelle = ShortPoemBase & { meter: number, type: "villanelle" };
 type ShortPoem = Haiku | Villanelle;
+
 const oneArt: ShortPoem = {
   author: "Elizabeth Bishop",
   type: "villanelle",
@@ -826,7 +845,7 @@ const oneArt: ShortPoem = {
 
 As with variables, TypeScript allows you to declare the type of function parameters with a type annotation. Now we can use a : string to tell TypeScript that the song parameter is of type string:
 
-```javascript
+```typescript
 function sing(song: string) {
   console.log(`Singing: ${song}!`);
 }
@@ -838,7 +857,7 @@ Much better: now we know what type song is meant to be!.
 
 If a function is called with a wrong number of arguments, TypeScript will protest in the form of a type error. This singTwo function requires two parameters, so passing one argument and passing three arguments are both not allowed:
 
-```javascript
+```typescript
 function singTwo(first: string, second: string) {
   console.log(`${first} / ${second}`);
 }
@@ -860,7 +879,7 @@ TypeScript allows annotating a parameter as optional by adding a ? before the : 
 
 In the following announceSong function, the singer parameter is marked optional. Its type is string | undefined, and it doesn’t need to be provided by callers of the function. If singer is provided, it may be a string value or undefined:
 
-```javascript
+```typescript
 function announceSong(song: string, singer?: string) {
   console.log(`Song: ${song}`);
   if (singer) {
@@ -879,7 +898,7 @@ These optional parameters are always implicitly able to be undefined.
 If a parameter has a default value and doesn’t have a type annotation, TypeScript will infer the parameter’s type based on that default value.
 In the following rateSong function, rating is inferred to be of type number, but is an optional number | undefined in the code that calls the function:
 
-```javascript
+```typescript
 function rateSong(song: string, rating = 0) {
   console.log(`${song} gets ${rating}/5 stars!`);
 }
@@ -899,7 +918,7 @@ TypeScript allows declaring the types of these rest parameters similarly to regu
 Here, singAllTheSongs is allowed to take zero or more arguments of type string for
 its songs rest parameter:
 
-```javascript
+```typescript
 function singAllTheSongs(singer: string, ...songs: string[]) {
   for (const song of songs) {
     console.log(`${song}, by ${singer}`);
@@ -917,7 +936,7 @@ singAllTheSongs("Ella Fitzgerald", 2000);
 
 In this example, singSongs is understood by TypeScript to return a number:
 
-```javascript
+```typescript
 // Type: (songs: string[]) => number
 function singSongs(songs: string[]) {
   for (const song of songs) {
@@ -931,7 +950,7 @@ If a function contains multiple return statements with different values, TypeScr
 
 This getSongAt function would be inferred to return string | undefined because its two possible returned values are typed string and undefined, respectively:
 
-```javascript
+```typescript
 // Type: (songs: string[], index: number) => string | undefined
 function getSongAt(songs: string[], index: number) {
   return index < songs.length ? songs[index] : undefined;
@@ -943,7 +962,7 @@ function getSongAt(songs: string[], index: number) {
 Function declaration return type annotations are placed after the `)` following the list of parameters.
 For a function declaration, that falls just before the `{`:
 
-```javascript
+```typescript
 function singSongsRecursive(songs: string[], count = 0): number {
   return songs.length ? singSongsRecursive(songs.slice(1), count + 1) : count;
 }
@@ -951,7 +970,7 @@ function singSongsRecursive(songs: string[], count = 0): number {
 
 For arrow functions (also known as lambdas), that falls just before the =>:
 
-```javascript
+```typescript
 const singSongsRecursive = (songs: string[], count = 0): number =>
   songs.length ? singSongsRecursive(songs.slice(1), count + 1) : count;
 ```
@@ -963,13 +982,13 @@ Function type syntax looks similar to an arrow function, but with a type instead
 This nothingInGivesString variable’s type describes a function with no parameters
 and a returned string value:
 
-```javascript
+```typescript
 let nothingInGivesString: () => string;
 ```
 
 This inputAndOutput variable’s type describes a function with a string[] parameter, an optional count parameter, and a returned number value:
 
-```javascript
+```typescript
 let inputAndOutput: (songs: string[], count?: number) => number;
 ```
 
@@ -977,7 +996,7 @@ Function types are frequently used to describe callback parameters (parameters m
 
 For example, the following runOnSongs snippet declares the type of its getSongAt parameter to be a function that takes in an index: number and returns a string. Passing getSongAt matches that type, but logSong fails for taking in a string as its parameter instead of a number:
 
-```javascript
+```typescript
 const songs = ["Juice", "Shake It Off", "What's Up"];
 function runOnSongs(getSongAt: (index: number) => string) {
   for (let i = 0; i < songs.length; i += 1) {
@@ -1018,7 +1037,7 @@ In the previous code snippet, those levels are:
 
 In union types, parentheses may be used to indicate which part of an annotation is the function return or the surrounding union type:
 
-```javascript
+```typescript
 // Type is a function that returns a union: string | undefined
 let returnsStringOrUndefined: () => string | undefined;
 // Type is either undefined or a function that returns a string
@@ -1031,7 +1050,7 @@ TypeScript can infer the types of parameters in a function provided to a locatio
 
 This singer variable is known to be a function that takes in a parameter of type string, so the song parameter in the function later assigned to singer is known to be a string:
 
-```javascript
+```typescript
 let singer: (song: string) => string;
 singer = function (song) {
   // Type of song: string
@@ -1041,7 +1060,7 @@ singer = function (song) {
 
 the song and index parameters here are inferred by TypeScript to be string and number, respectively:
 
-```javascript
+```typescript
 const songs = ["Call Me", "Jolene", "The Chain"];
 // song: string
 // index: number
@@ -1056,7 +1075,7 @@ Types aliases can be used for functions types as well.
 
 This StringToNumber type aliases a function that takes in a string and returns a number, which means it can be used later to describe the types of variables:
 
-```javascript
+```typescript
 type StringToNumber = (input: string) => number;
 let stringToNumber: StringToNumber;
 stringToNumber = (input) => input.length; // Ok
@@ -1067,7 +1086,7 @@ stringToNumber = (input) => input.toUpperCase();
 
 This usesNumberToString function has a single parameter which is itself the Number ToString aliased function type:
 
-```javascript
+```typescript
 type NumberToString = (input: number) => string;
 function usesNumberToString(numberToString: NumberToString) {
   console.log(`The string is: ${numberToString(1234)}`);
@@ -1088,7 +1107,7 @@ TypeScript allows using a void keyword to refer to the return type of such a fun
 
 Functions whose return type is void may not return a value. This logSong function is declared as returning void, so it’s not allowed to return a value:
 
-```javascript
+```typescript
 function logSong(song: string | undefined): void {
   if (!song) {
     return; // Ok
@@ -1101,7 +1120,7 @@ function logSong(song: string | undefined): void {
 
 This songLogger variable represents a function that takes in a song: string and doesn’t return a value:
 
-```javascript
+```typescript
 let songLogger: (song: string) => void;
 songLogger = (song) => {
   console.log(`${songs}`);
@@ -1113,7 +1132,7 @@ Note that although JavaScript functions all return undefined by default if no re
 
 Trying to assign a value of type void to a value whose type instead includes undefined is a type error:
 
-```javascript
+```typescript
 function returnsVoid() {
   return;
 }
@@ -1124,7 +1143,7 @@ lazyValue = returnsVoid();
 
 Functions provided to forEach can return any value they want. records.push(record) in the following saveRecords function returns a number (the returned value from an array’s .push()), yet is still allowed to be the returned value for the arrow function passed to newRecords.forEach:
 
-```javascript
+```typescript
 const records: string[] = [];
 function saveRecords(newRecords: string[]) {
   newRecords.forEach((record) => records.push(record));
@@ -1142,7 +1161,7 @@ loop (hopefully intentionally!).
 
 This fail function only ever throws an error, so it can help TypeScript’s control flow analysis with type narrowing param to string:
 
-```javascript
+```typescript
 function fail(message: string): never {
   throw new Error(`Invariant failure: ${message}.`);
 }
@@ -1163,7 +1182,7 @@ Some JavaScript functions are able to be called with drastically different sets 
 
 This createDate function is meant to be called either with one timestamp parameter or with three parameters—month, day, and year. Calling with either of those numbers of arguments is allowed, but calling with two arguments would cause a type error because no overload signature allows for two arguments. In this example, the first two lines are the overload signatures, and the third line is the implementation signature:
 
-```javascript
+```typescript
 function createDate(timestamp: number): Date;
 function createDate(month: number, day: number, year: number): Date;
 function createDate(monthOrTimestamp: number, day?: number, year?: number) {
