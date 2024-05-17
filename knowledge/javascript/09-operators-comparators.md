@@ -37,14 +37,76 @@ These values are considered falsy because when coerced to a boolean, they evalua
 
 ```javascript
 if (0) {
-    // This code block won't execute because 0 is falsy
-    console.log("This won't be printed");
+  // This code block won't execute because 0 is falsy
+  console.log("This won't be printed");
 }
 
 if (null) {
-    // This code block won't execute because null is falsy
-    console.log("Neither will this");
+  // This code block won't execute because null is falsy
+  console.log("Neither will this");
 }
 ```
 
 It's important to be aware of falsy values, especially when using conditional statements or evaluating expressions that might return unexpected results if you're not accounting for falsy values properly.
+
+## Bitwise operators
+
+In JavaScript, there are bitwise operators that allow manipulation of individual bits within numbers. These operators work on 32-bit signed integers. Here are the bitwise operators available in JavaScript:
+
+1. **Bitwise AND (&)**: Returns a 1 in each bit position where both operands have a 1.
+
+   Example:
+
+   ```javascript
+   let result = 5 & 3; // This will result in 1
+   ```
+
+2. **Bitwise OR (|)**: Returns a 1 in each bit position where at least one operand has a 1.
+
+   Example:
+
+   ```javascript
+   let result = 5 | 3; // This will result in 7
+   ```
+
+3. **Bitwise XOR (^)**: Returns a 1 in each bit position where only one of the operands has a 1.
+
+   Example:
+
+   ```javascript
+   let result = 5 ^ 3; // This will result in 6
+   ```
+
+4. **Bitwise NOT (~)**: Flips the bits of its operand.
+
+   Example:
+
+   ```javascript
+   let result = ~5; // This will result in -6
+   ```
+
+5. **Left Shift (<<)**: Shifts the bits of its first operand to the left by the number of positions specified by the second operand.
+
+   Example:
+
+   ```javascript
+   let result = 5 << 1; // This will result in 10
+   ```
+
+6. **Sign-propagating Right Shift (>>)**: Shifts the bits of its first operand to the right by the number of positions specified by the second operand. The sign bit is preserved.
+
+   Example:
+
+   ```javascript
+   let result = 5 >> 1; // This will result in 2
+   ```
+
+7. **Zero-fill Right Shift (>>>)**: Similar to the sign-propagating right shift, but the bits shifted in from the left are always zero.
+
+   Example:
+
+   ```javascript
+   let result = -5 >>> 1; // This will result in 2147483645
+   ```
+
+These operators can be useful in certain low-level programming tasks or in situations where you need to perform bitwise operations for specific algorithms or optimizations. However, they are not commonly used in everyday JavaScript programming.
