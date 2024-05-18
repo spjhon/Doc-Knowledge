@@ -85,7 +85,7 @@ In JavaScript, there are bitwise operators that allow manipulation of individual
    let result = ~5; // This will result in -6
    ```
 
-5. **Left Shift (<<)**: Shifts the bits of its first operand to the left by the number of positions specified by the second operand.
+5. **Left Shift (`<<`)**: Shifts the bits of its first operand to the left by the number of positions specified by the second operand.
 
    Example:
 
