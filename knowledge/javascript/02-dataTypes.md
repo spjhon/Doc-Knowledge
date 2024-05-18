@@ -1,4 +1,8 @@
-# JavaScript Data Types
+---
+sidebar_position: 2
+---
+
+# Data Types
 
 ## Primitives
 

@@ -12,19 +12,17 @@ Este conocimiento esta distribuido en:
 
 1. **Bookmarks con toda la documentacion de cada FRAMEWORK, LIBRERIA, ARTICULOS DE BLOGS, EJEMPLOS, GUIAS, GENERADORES Y CREADORES, ELEMENTOS UI LISTOS PARA UTILIZAR, UI LIBRARIES, entre otros.**
 
-2. **Repositorios con Books, Docs, Cursos Udemy, Ejemplos Blogs, Ejemplos Youtube, Stars**
+2. **Repositorios con Books, Docs, Cursos Udemy, Ejemplos Blogs, Ejemplos Youtube, Stars de github**
 
-3. **Storybook library con todos los componentes creados y prueba de componentes pre-fabricados como lo es MaterialUI y mantine Ademas de conocidos patterns**
+3. **Storybook library con todos los componentes creados y prueba de componentes pre-fabricados en REACT y NEXT JS como lo es MaterialUI y mantine Ademas de conocidos patterns**
 
-4. **Respositorio con un DOCUSAURO (anterior mente se utilizaba mindmaps pero no es seguro a futuro (vendor-lock)) que contiene conocimiento que se encuentra muy esparcido en otras fuentes y es mas facil o es necesario un resumen como por ejemplo las diferentes formas de crear e invocar una funcion o las diferentes formas de crear o invocar un objeto. Ademas de conocidos patterns**
+4. **Respositorio con un DOCUSAURO (anterior mente se utilizaba mindmaps pero no es seguro a futuro (vendor-lock)) que contiene conocimiento que se encuentra muy esparcido en otras fuentes y es mas facil o es necesario un MAPA como por ejemplo las diferentes formas de crear e invocar una funcion o las diferentes formas de crear o invocar un objeto. Ademas de conocidos patterns con links en donde encontrar el conocimiento mas completo**
 
 ***
 
 ## Notas
 
 Para su facilidad en un inicio sera escrita en español, luego se hara la traduccion.
-
-Para no generar una repeticion de datos, aca solo habra index de las categorias de bookmarks que se coleccionan mas no cada bookmark individual, los mismo para la documentacion y conocimiento de cada herramienta y el lenguaje javascript, solo categorizacion.
 
 ### Para tener en cuenta
 
@@ -38,15 +36,25 @@ The post explores the significant issue of knowledge loss within organizations, 
 
 El flujo de conocimiento es el siguiente:
 
-- La documentacion (paginas web en booksmarks) de cada lenguaje, framework y libreria dicta la utilizacion de cada herramienta individual pero no trabajando juntas. La lista completa de las documentaciones se puede extraer del "stack".
+- La documentacion (paginas web en booksmarks) de cada lenguaje, framework y libreria dicta la utilizacion de cada herramienta individual pero no trabajando juntas. La lista completa de las documentaciones se puede extraer del "stack" asi que cada DOCUSAURO sera un **MAPA** para el conocimiento indexado con links a donde este este conocimiento completo.
 
-- Para ello se tiene los libros (repositorios github), cursos udemy (repositorios github), articulos de blogs (Examples repositorios github) y ejemplos youtube (repositorios github), sin embargo estos muestran ejemplos de herramientas trabajando juntas pero no todas herramientas, por ello se debe documentar en cada projecto que conocimiento se esta aplicando para futura referencia.
+- Ante la teoria pero no como utilizar esta teoria se tiene los libros (repositorios github), cursos udemy (repositorios github), articulos de blogs (Examples repositorios github) y ejemplos youtube (repositorios github) que muestran la forma de aplicar la teoria (estructura de aprendizaje tutoriada que es diferente a una referencia de la teoria), sin embargo estos muestran ejemplos de herramientas trabajando juntas pero no todas herramientas, por ello se debe documentar en cada projecto que conocimiento se esta aplicando para futura referencia y comparacion con la teoria.
+
+A continuacion se dicta como estudiar un libro y/o un curso de udemy.
 
 #### Como hacer los cursos o aprender de un libro
 
-Se debe de crear un repositorio con un README.md que contenga todos los capitulos del libro o partes del curso que este ligado al docusauro, debe de haber un minimo de tres secciones por capitulo (**como funciona la app**, **temas tratados** y **tips**), esto para dar una vision resumida de cada capitulo ademas por supuesto de sus respectivas carpetas por capitulo o seccion del libro.
+##### Si es un libro
 
-En el docusauro se va a colocar toda la teoria aprendida para tenerla toda en un solo sitio, al ser varios libros o cursos, la idea es condensar el conocimiento teorico en el docusaurio y mantener el conocimiento practico en cada repositorio de cada libro o curso.
+- Se debe de integrar el libro teorico con el DOCUSAURO y la teoria ya existente sin repetir teoria ya aprendida (ya que muchos libros enseñan lo mismo pero tienen cosas extra) y en la teoria del DOCUSAURO debe de tener la referencia de donde se saco la teoria para luego ir a donde esta este conocimiento mas completo ya que en el DOCUSAURO solo esta la referencia y un pequeño subtexto que dice que se esta enseñando en ese titulo en especial.
+
+**Nota:** Con blogs o ejemplos sacados de otros textos, se agrega a su respectiva seccion en el DOCUSAURO y se referencia de donde obtener la informacion mas completa.
+
+**Nota 2:** Para como llenar mas precisamente el DOCUSARUO referirse a la seccion **Como llenar el DOCUSAURO** de mas abajo.
+
+##### Si es un curso de udemy o libro practico (patterns o projectos completos)
+
+- Se debe de crear un repositorio con un README.md que contenga todas las partes del curso que este ligado al DOCUSAURO por medio de los temas aprendidos o temas tratados, debe de haber un minimo de tres secciones **por seccion del curso** (**como funciona la app** (ya que la mayoria de los cursos son con ejemplo practicos), **temas tratados** y **tips**), esto para dar una vision resumida de cada capitulo del curso.
 
 - Componente creado utilizando el conocimiento de mas arriba, probado y en mejora continua en storybooks. (cuando es REACT)
 
@@ -67,23 +75,24 @@ Cada vez que se realize un curso o se lea un libro, en el docusauro se va a regi
 - Cada gran tema debe de llevar un overview
 - Dentro del **overview** debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index que dirijan a los ejemplos dados en los libros o cursos en sus propios repositorios, la estructura que se recomienda dentro del docusauro en archivos a parte ademas de overview es:
 
-**Definir estos terminos:** El orden de esta separaion de conocimento es con el fin de jerarquizar, por ejemplo en REACT, se describen las caracteristicas de la library y de estas caracteristicas se desprenden conceptos especificos y de ahi se procede a observar la sintaxis y por ultimo la utilizacion de todo junto en la creacion de patterns que hagan un trabajo en especifico.
+**Definir terminos:** Un glosario para tener a la mano terminos importantes.
 
-**Característica (Feature):**
-Una característica se refiere a una funcionalidad específica o habilidad que proporciona un programa o una parte de un programa. Puede ser una capacidad para realizar cierta tarea, una interfaz de usuario específica, o cualquier otro aspecto que agrega valor al software. Por ejemplo, una característica de un editor de texto podría ser la capacidad de resaltar la sintaxis del código.
+**Teoria con Syntax y ejemplo practico**
+Como se ha dicho anteriormente, la idea de un DOCUSAURO es mostrar un MAPA hacia donde encontrar la informacion completa asi que solo se va a concignar la teoria en sus respectivas secciones dentro de la categorizacion dada en el DOCUSAURO. La teoria que necesite mayor aclaracion o sea mas extensa se digitara en un documento a parte pero dentro de la misma carpeta y en el overview lago asi como un index pero con direcciones para saber donde se encuentra la teoria completa.
 
-**Concepto (Concept):** Un concepto en programación se refiere a una idea o abstracción fundamental que subyace en el diseño y la implementación del software. Por ejemplo, en la programación orientada a objetos, los conceptos como clases, objetos, herencia y polimorfismo son fundamentales.
+**Patrón (Patterns):**
 
-**Sintaxis (Syntax):**
-La sintaxis se refiere a las reglas que gobiernan la estructura y el formato del código en un lenguaje de programación específico. Esto incluye cómo se escriben las instrucciones, cómo se organizan las expresiones y cómo se definen las estructuras de control. Por ejemplo, en el lenguaje Python, la sintaxis incluye reglas sobre el uso de indentación para delimitar bloques de código.
+Una forma sencilla de ver los patterns es que todo lo que se haga en un pattern esta ya explicado en la teoria.
 
-**Patrón (Pattern):**
+Los patrones son importantes tenerlos bien documentados y ordenados gracias a que estos son codigos funcionales y ensamblables para crear lo que se necesite crear.
+
 En programación, un patrón se refiere a una solución generalmente aplicable a un problema recurrente dentro de un contexto específico. Los patrones de diseño son ejemplos comunes de esto, proporcionando soluciones probadas para problemas como la gestión de objetos, la estructuración de código o la comunicación entre componentes. Por ejemplo, el patrón de diseño "Singleton" se utiliza para garantizar que una clase solo tenga una instancia en toda la aplicación.
 
 En resumen, mientras que los conceptos son ideas fundamentales, la sintaxis se refiere a cómo se escriben estas ideas en un lenguaje de programación específico. Las características son las capacidades que proporciona un programa, mientras que los patrones son soluciones generales a problemas recurrentes en el desarrollo de software.
 
 A partir de estas 4 bases combinadas y escalables se referencia todo el conocimiento requerido para crear un projecto en produccion.
 
+***
 ***
 
 ### Categorizacion de la documentacion (Stack)
