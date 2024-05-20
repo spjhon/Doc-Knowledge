@@ -19,3 +19,5 @@ null // Absence of an object
 ```
 
 **Itendifiers** Son los nombres que se le dan a las variables. A JavaScript identifier must begin with a letter, an underscore (_), or a dollar sign ($).
+
+**Variable Declaration** Cuano se delcara una variable y se asigna un valor y un dataType por medio del asignador "="

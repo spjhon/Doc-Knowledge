@@ -19,8 +19,11 @@ En el siguiente index se describe una referencia a los temas teoricos del lengua
 
 Las fuentes principales para tener la referencia del lenguaje son:
 
-- La **biblioteca de referencia de javascript de Mozilla** [**Link**](https://developer.mozilla.org/en-US/docs/Web/JavaScript), esta es la principal refencia del lenguaje pero es dificil de entender y navegar pero esta completa.
-- La pagina web de referencia **w3schools** [**Link**](https://www.w3schools.com/jsref/default.asp), es una referencia mas amigable pero algo incompleta.
+- La [**biblioteca de referencia de javascript de Mozilla**](https://developer.mozilla.org/en-US/docs/Web/JavaScript), esta es la principal refencia del lenguaje pero es dificil de entender y navegar pero esta completa.
+- La pagina web de referencia [**w3schools**](https://www.w3schools.com/jsref/default.asp), es una referencia mas amigable pero algo incompleta.
+- La pagina Javascript.info que posee un resumen muy destacado del lenguaje [Javascript.info](https://javascript.info/)
+
+- Tambien para cada [**DataType**](https://www.w3schools.com/jsref/default.asp) existe un conjunto de build-in propiedades y metodos que permiten la manipulacion de este tipos de [**DataType**](https://www.w3schools.com/jsref/default.asp) sin necesidad de crear funciones u objects especializados.
 
 Sin embargo los dos libros que recorren la teoria y explica de forma comprensiva los recondijos del lenguaje son los siguientes libros:
 
@@ -34,7 +37,7 @@ Javascript es relativamente sencillo, la fuente principal del siguiente mapa es 
 - Es pobremente tipado, osea que no hay control de las diferentes formas de tipos de datos que puede tomar una variable o cualquier otro ente que guarde tipos de datos.
 - No es compilado osea que se ejecuta en tiempo real linea por linea y si hay un error pues se va a dejar ver ese error solo en el momento que se ejecute esa linea de codigo especifica.
 
-**Nota:** La estructura de este index tiene como base el libro Javascript the definitive guide que esta a mi parecer bien estructurada para aprender el idioma a profundidad. He de resaltar que el libro solo no es suficiente para alguien que no ha aprendido totalmente nada sobre lenguajes de programacion, recomiendo un crash course como minimo o un curso completo de udemy que enseñe de forma mas generelizada pero que de una enseñanza basica para luego profundizar con este libro.
+**Nota:** La estructura de este index tiene como base el libro Javascript the definitive guide que esta a mi parecer bien estructurada para aprender el idioma a profundidad. He de resaltar que el libro solo NO es suficiente para alguien que no ha aprendido totalmente nada sobre lenguajes de programacion, recomiendo un crash course como minimo o un curso completo de udemy que enseñe de forma mas generelizada pero que de una enseñanza basica para luego profundizar con este libro.
 
 ## 01 Introduccion a Javascript
 
@@ -43,6 +46,9 @@ Javascript es relativamente sencillo, la fuente principal del siguiente mapa es 
 - Su potencial se encuentra en combinarlo con los lenguajes CSS y HTML
 - Es high level languaje.
 - Node para el lado del servidor
+- Debilmene Tipado
+- No compilado
+- Su fuerte esta en el entorno web
 
 ### Exploring JavaScript
 
@@ -51,6 +57,9 @@ Javascript es relativamente sencillo, la fuente principal del siguiente mapa es 
 ### Hello World
 
 - Como generar codigo javascript simplemente desde un texto txt.
+- If JavaScript expressions are like phrases, then JavaScript statements are like full sen‐
+tences.
+- Ejemplo de contador de letras en la pagina 12.
 
 ## 02 Lexical Structure
 
@@ -94,6 +103,8 @@ null // Absence of an object
 
 ### Identifiers and Reserved Words
 
+Para comenzar el nombre de una variable se puede utilizar "_" y "$"
+
 ```javascript
 i
 my_variable_name
@@ -102,76 +113,7 @@ _dummy
 $str
 ```
 
-#### Tabla de Reserved Words in JavaScript
-
-**Control Flow** para loops:
-
-|          |          |           |            |           |
-| -------- | -------- | --------- | ---------- | --------- |
-| `break`  | `case`   | `catch`   | `continue` | `default` |
-| `do`     | `else`   | `finally` | `for`      | `if`      |
-| `return` | `switch` | `throw`   | `try`      | `while`   |
-| `with`   |          |           |            |           |
-
-**Declarations and Scope** para declarar variables o classes
-
-|          |          |            |         |       |
-| -------- | -------- | ---------- | ------- | ----- |
-| `const`  | `class`  | `function` | `let`   | `var` |
-| `export` | `import` | `extends`  | `super` |       |
-
-**Object-Oriented Programming** para manupulacion de objects y classes
-
-|         |           |       |         |        |
-| ------- | --------- | ----- | ------- | ------ |
-| `class` | `extends` | `new` | `super` | `this` |
-
-**Type and Value Keywords** keywords especiales para ver que tipo de dato es uno en particular
-
-|          |              |        |     |     |
-| -------- | ------------ | ------ | --- | --- |
-| `typeof` | `instanceof` | `void` |     |     |
-
-**Error Handling** Para el manejo de errores
-
-|         |           |         |       |     |
-| ------- | --------- | ------- | ----- | --- |
-| `catch` | `finally` | `throw` | `try` |     |
-
-**Asynchronous Programming** para programacion no sincrona
-
-|         |         |     |     |     |
-| ------- | ------- | --- | --- | --- |
-| `async` | `await` |     |     |     |
-
-**Literals** literales que se utilizan a menudo mas que todo booleanos
-
-|         |        |        |     |     |
-| ------- | ------ | ------ | --- | --- |
-| `false` | `null` | `true` |     |     |
-
-**Future Reserved Words** palabras reservadas mas que todo para classes
-
-|             |              |             |           |           |
-| ----------- | ------------ | ----------- | --------- | --------- |
-| `enum`      | `implements` | `interface` | `package` | `private` |
-| `protected` | `public`     | `static`    |           |           |
-
-**Other Reserved Words** otras palabras reservadas mas que todo para funciones
-
-|             |        |     |     |     |
-| ----------- | ------ | --- | --- | --- |
-| `arguments` | `eval` |     |     |     |
-
-**Deprecated and Reserved for Future Use** las que ya no se utilizan o es mejor evitar
-
-|             |            |          |              |                |
-| ----------- | ---------- | -------- | ------------ | -------------- |
-| `abstract`  | `boolean`  | `byte`   | `char`       | `double`       |
-| `final`     | `float`    | `goto`   | `implements` | `int`          |
-| `interface` | `long`     | `native` | `package`    | `private`      |
-| `protected` | `public`   | `short`  | `static`     | `synchronized` |
-| `transient` | `volatile` |          |              |                |
+La lista completa de palabras reservadas esta [**AQUI**](/javascript/reservedWords)
 
 ### Unicode
 
@@ -180,11 +122,7 @@ The JavaScript type for representing text is the string. A string is an immutabl
 #### Unicode Escape Sequences
 
 ```javascript
- 😊 "\u{1f600} represents the “grinning face” emoji."
-
-let café = 1; // Define a variable using a Unicode character
-caf\u00e9 // => 1; access the variable using an escape sequence
-caf\u{E9} // => 1; another form of the same escape sequence
+"😊 represents the “grinning face” emoji."
 ```
 
 ### Optional Semicolons
@@ -192,6 +130,8 @@ caf\u{E9} // => 1; another form of the same escape sequence
 Tener en cuenta cuando javascript agrega semicolons (;) al romper lineas y otras condiciones a tener en cuenta, por recomendacion es mejor siempre poner el punto y coma en donde debe de ir.
 
 ## 03 Types, Values and Variables
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_global.asp) Encontrara todos los metodos para aplicar a todos los **DataType**
 
 (Paginas de 23 a 60 del libro)
 
@@ -208,8 +148,13 @@ Tambien para cada [**DataType**](https://www.w3schools.com/jsref/default.asp) ex
 
 - El lenguaje hace un automatic garbaje collection, el garbaje collection es una forma de eliminar de la memoria variables e invicaciones que no se esten utilizando o que se hayan dejado de utilizar.
 - La diferencia entre el comparador == y === es que el primero intenta convertir el datatype para ver si asi si coinciden.
+- JavaScript’s object types are mutable and its primitive types are immutable.
 
 ### Numbers
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_number.asp) Encontrara todos los metodos para aplicar al DataType **Number**
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_date.asp) Encontrara todos los metodos para aplicar al DataType **Date**
 
 - JavaScript represents numbers using the 64-bit floating point format.
 - Javascript reconoce en sus literales (literals)
@@ -227,9 +172,11 @@ La **aritmetica** en javascript se hace mas que todo con el method Math [**Link*
 
 - Habla sobre los casos especiales `NaN, Null, -INFINITY, INFINITY`
 - BigInt
-- Date Object.
+- Date Object
 
 ### Text
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_string.asp) Encontrara todos los metodos para aplicar al DataType String
 
 - The JavaScript type for representing text is the string. A string is an immutable ordered sequence of 16-bit values, each of which typically represents a Unicode character.
 
@@ -242,7 +189,7 @@ love.length // => 2: UTF-16 encoding of ❤ is "\ud83d\udc99"
 
 - The empty string is the string of length 0.
 - Most string-manipulation methods defined by JavaScript operate on 16-bit values, not characters.
-- To include a string in a JavaScript program, simply enclose the characters of the string within a matched pair of single or double quotes or backticks (' or " or `).
+- To include a string in a JavaScript program, simply enclose the characters of the string within a matched pair of single or double quotes or backticks (' or " or `)
 
 #### String Literals
 
@@ -258,7 +205,9 @@ love.length // => 2: UTF-16 encoding of ❤ is "\ud83d\udc99"
 
 #### Escape Sequences in String Literals
 
-Hay una tabla que muestra todos los tipos de scape que se pueden apicar a un string
+Hay una tabla que muestra todos los tipos de scape que se pueden apicar a un string en la pagina 34
+
+Remember that strings are immutable in JavaScript. Methods like replace() and toUpperCase() return new strings: they do not modify the string on which they are invoked.
 
 - **Concatenation**:
 Strings can also be treated like read-only arrays, and you can access individual char‐
@@ -269,6 +218,10 @@ method:
 let s = "hello, world";
 s[0] // => "h"
 s[s.length-1] // => "d"
+
+let msg = "Hello, " + "world"; // Produces the string "Hello, world"
+let greeting = "Welcome to my blog," + " " + name;
+
 ```
 
 - **Template literals** para empotrar variables en strings
@@ -301,7 +254,19 @@ text.replace(pattern, "#") // => "testing: #, #, #"
 text.split(/\D+/) // => ["","1","2","3"]: split on nondigits
 ```
 
+- **Read Characters**
+
+```javascript
+let s = "hello, world";
+s[0] // => "h"
+s[s.length-1] // => "d"
+```
+
 ### Boolean Values
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_boolean.asp) Encontrara todos los metodos para aplicar al DataType Booleano
+
+Boolean values are commonly used in JavaScript control structures.
 
 Falsy Values
 
@@ -313,6 +278,8 @@ null
 NaN
 "" // the empty string
 ```
+
+All other values, including all objects (and arrays) convert to, and work like, true.
 
 ### Null and Undefined
 
@@ -367,3 +334,54 @@ Number("3") // => 3
 String(false) // => "false": Or use false.toString()
 Boolean([]) // => true
 ```
+
+[**AQUI**](/javascript/parsers) se puede observar todos los tipos de parse que tiene javascript
+
+#### Object to Primitive Conversions
+
+Hay tres algoritmos que aplica javascript para poder convertir objects a strings
+
+- prefer-string
+- prefer-number
+- no-preference
+
+### Variable Declaration, Assignment and Destructuring
+
+- Declaracion de variables y asignacion de "identifiers"
+- Let, Conts y Var (var esta deprecated)
+- La variables se pueden declarar juntas y tambien asignar en cadena
+
+```javascript
+let i, sum; //delcaracion doble
+
+//It is a good programming practice to assign an initial value to your variables when you declare them, when this is possible
+let message = "hello";
+let i = 0, j = 0, k = 0;
+let x = 2, y = x*x; // Initializers can use previously declared variables
+```
+
+- **OJO** con el scope
+
+#### Destructuring Asigment
+
+```javascript
+let [x,y] = [1,2]; // Same as let x=1, y=2
+[x,y] = [x+1,y+1]; // Same as x = x + 1, y = y + 1
+[x,y] = [y,x]; // Swap the value of the two variables
+[x,y] // => [3,2]: the incremented and swapped values
+```
+
+- Toda la informacion esta en el capitulo, referirse a el.
+- destructuring can also be used when defining the parameters to a function.
+- destructuring tambien funciona en el return de una funcion.
+
+```javascript
+// Convert [x,y] coordinates to [r,theta] polar coordinates
+function toPolar(x, y) {
+ return [Math.sqrt(x*x+y*y), Math.atan2(y,x)];
+}
+
+let [r,theta] = toPolar(1.0, 1.0); // r == Math.sqrt(2); theta == Math.PI/4
+```
+
+- destructuring funciona en loops tambien.

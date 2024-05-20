@@ -32,9 +32,9 @@ The post explores the significant issue of knowledge loss within organizations, 
 
 ***
 
-### Flujo
+### Como libros y documentacion de referencia se complementan
 
-El flujo de conocimiento es el siguiente:
+Como los libros son para conocer y aprender la herramienta la referencia es para utilizar en produccion:
 
 - La documentacion (paginas web en booksmarks) de cada lenguaje, framework y libreria dicta la utilizacion de cada herramienta individual pero no trabajando juntas. La lista completa de las documentaciones se puede extraer del "stack" asi que cada DOCUSAURO sera un **MAPA** para el conocimiento indexado con links a donde este este conocimiento completo.
 
@@ -46,7 +46,7 @@ A continuacion se dicta como estudiar un libro y/o un curso de udemy.
 
 ##### Si es un libro
 
-- Se debe de integrar el libro teorico con el DOCUSAURO y la teoria ya existente sin repetir teoria ya aprendida (ya que muchos libros enseñan lo mismo pero tienen cosas extra) y en la teoria del DOCUSAURO debe de tener la referencia de donde se saco la teoria para luego ir a donde esta este conocimiento mas completo ya que en el DOCUSAURO solo esta la referencia y un pequeño subtexto que dice que se esta enseñando en ese titulo en especial.
+- Se debe de integrar el libro teorico con el DOCUSAURO principal y la teoria ya existente sin repetir teoria ya aprendida (ya que muchos libros enseñan lo mismo pero tienen cosas extra) y en la teoria del DOCUSAURO debe de tener la referencia de donde se saco la teoria para luego ir a donde esta este conocimiento mas completo ya que en el DOCUSAURO solo esta la referencia y un pequeño subtexto que dice que se esta enseñando en ese titulo en especial.
 
 **Nota:** Con blogs o ejemplos sacados de otros textos, se agrega a su respectiva seccion en el DOCUSAURO y se referencia de donde obtener la informacion mas completa.
 
@@ -54,7 +54,7 @@ A continuacion se dicta como estudiar un libro y/o un curso de udemy.
 
 ##### Si es un curso de udemy o libro practico (patterns o projectos completos)
 
-- Se debe de crear un repositorio con un README.md que contenga todas las partes del curso que este ligado al DOCUSAURO por medio de los temas aprendidos o temas tratados, debe de haber un minimo de tres secciones **por seccion del curso** (**como funciona la app** (ya que la mayoria de los cursos son con ejemplo practicos), **temas tratados** y **tips**), esto para dar una vision resumida de cada capitulo del curso.
+- Se debe de crear un repositorio con un README.md que contenga todas las partes del curso que este ligado al DOCUSAURO por medio de los temas aprendidos o temas tratados (referenciar en el DOCUSAURO principal los ejemplos relevantes de cada tema), debe de haber un minimo de tres secciones **por seccion del curso** (**como funciona la app** (ya que la mayoria de los cursos son con ejemplo practicos), **temas tratados** y **tips**), esto para dar una vision resumida de cada capitulo del curso.
 
 - Componente creado utilizando el conocimiento de mas arriba, probado y en mejora continua en storybooks. (cuando es REACT)
 
@@ -72,7 +72,7 @@ A continuacion se dicta como estudiar un libro y/o un curso de udemy.
 
 Cada vez que se realize un curso o se lea un libro, en el docusauro se va a registrar la informacion TEORICA aprendida en forma de index en el overview de cada gran tema, si el tema en especifico es complejo y se requiere mucho en el uso diario como el useEffect de react, se porcede a crear su propia seccion en el docusauro con el fin de recopilar en un solo sito la informacion de interes como por ejemplo los patterns de React.
 
-- Cada gran tema debe de llevar un overview
+- Cada GRAN TEMA debe de llevar un overview
 - Dentro del **overview** debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index que dirijan a los ejemplos dados en los libros o cursos en sus propios repositorios, la estructura que se recomienda dentro del docusauro en archivos a parte ademas de overview es:
 
 **Definir terminos:** Un glosario para tener a la mano terminos importantes.
