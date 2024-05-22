@@ -2,15 +2,11 @@
 sidebar_position: 5
 ---
 
-# Invocation in javascript
-
-In this section its a small cheat-sheet of how different features of javascript are invoke and used, the most importanst are FUNCTIONS, OBJECTS, EXPORTS/IMPORTS.
-
-## Import/Export Features
+# Import/Export Features
 
 Different ways and usage of import/export statements.
 
-### Exports
+## Exports
 
 ```js
 
@@ -82,7 +78,7 @@ export {sayHi as default};
 
 ```
 
-### Imports
+## Imports
 
 ```js
 //Basic Import
@@ -109,20 +105,3 @@ bye('John'); // Bye, John!
 
 
 ```
-
-### Core features
-
-[Sacado de javascript.injo](https://javascript.info/modules-intro)
-
-- Always “use strict”
-- Module-level scope
-- A module code is evaluated only the first time when imported
-- import.meta
-- In a module, “this” is undefined
-
-#### Browser-specific features
-
-- Module scripts are deferred (aplazados)
-- Async works on inline scripts
-- External scripts: External scripts that have `type="module"` are different in two aspects.
-- No “bare” modules allowed

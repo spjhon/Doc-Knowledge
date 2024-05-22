@@ -50,6 +50,25 @@ Javascript es relativamente sencillo, la fuente principal del siguiente mapa es 
 - No compilado
 - Su fuerte esta en el entorno web
 
+***
+
+- **Core features**
+
+[Sacado de javascript.injo](https://javascript.info/modules-intro)
+
+- Always “use strict”
+- Module-level scope
+- A module code is evaluated only the first time when imported
+- import.meta
+- In a module, “this” is undefined
+
+- **Browser-specific features**
+
+- Module scripts are deferred (aplazados)
+- Async works on inline scripts
+- External scripts: External scripts that have `type="module"` are different in two aspects.
+- No “bare” modules allowed
+
 ### Exploring JavaScript
 
 - El codigo es interpretado o "renderizado" por medio del navegador
@@ -60,6 +79,8 @@ Javascript es relativamente sencillo, la fuente principal del siguiente mapa es 
 - If JavaScript expressions are like phrases, then JavaScript statements are like full sen‐
 tences.
 - Ejemplo de contador de letras en la pagina 12.
+
+***
 
 ## 02 Lexical Structure
 
@@ -128,6 +149,8 @@ The JavaScript type for representing text is the string. A string is an immutabl
 ### Optional Semicolons
 
 Tener en cuenta cuando javascript agrega semicolons (;) al romper lineas y otras condiciones a tener en cuenta, por recomendacion es mejor siempre poner el punto y coma en donde debe de ir.
+
+***
 
 ## 03 Types, Values and Variables
 
@@ -385,3 +408,191 @@ let [r,theta] = toPolar(1.0, 1.0); // r == Math.sqrt(2); theta == Math.PI/4
 ```
 
 - destructuring funciona en loops tambien.
+
+***
+
+## 04 Expressions and Operators
+
+- An expression is a phrase of JavaScript that can be evaluated to produce a value.
+- The most common way to build a complex expression out of simpler expressions is with an operator.
+
+### Primary Expressions
+
+- Constant literals
+- Some reserved words
+- Reference to a variable , constant or property (in global)
+
+### Object and Array Initializers
+
+- Object and array initializers are expressions whose value is a newly created object or array.
+
+### Function Definition Expressions
+
+- [**AQUI**](/javascript/functions) La lista completa de como definir y como invocar una funcion
+- A function definition expression defines a JavaScript function, and the value of such an expression is the newly defined function.
+
+### Property Access Expressions
+
+- A property access expression evaluates to the value of an object property or an array element.
+
+```javascript
+expression . identifier
+expression [ expression ]
+```
+
+#### Conditional Property Access Expressions
+
+```javascript
+expression ?. identifier
+expression ?.[ expression ]
+```
+
+- In JavaScript, the values null and undefined are the only two values that do not have properties.
+
+### Invocation Expressions
+
+- An invocation expression is JavaScript’s syntax for calling (or executing) a function or method.
+- [**AQUI**](/javascript/functions) La lista completa de como definir y como invocar una funcion
+- [**AQUI**](/javascript/objects) La lista completa de como definir y como invocar un object
+
+#### Conditional Invocation
+
+```javascript
+function square(x, log) { // The second argument is an optional function
+ log?.(x); // Call the function if there is one
+ return x * x; // Return the square of the argument
+}
+
+o.m() // Regular property access, regular invocation
+o?.m() // Conditional property access, regular invocation
+o.m?.() // Regular property access, conditional invocation
+```
+
+### Object Creation Expressions
+
+- [**AQUI**](/javascript/objects) La lista completa de como definir y como invocar un object
+
+```javascript
+new Object
+new Date
+```
+
+### OPERATOR OVERVIEW
+
+[**LINK**](/javascript/operators-comparators) con la lista de los operadores, comparadores, etc.
+
+- Operators are used for JavaScript’s arithmetic expressions, comparison expressions, logical expressions, assignment expressions,and more.
+- En la pagina **69** del libro se tiene la tabla **4.1** de todos los operadores en orden de **precedencia**.
+- JavaScript operators usually convert the type (see §3.9) of their operands as needed.
+- Ojo con los side effects
+
+#### TENER EN CUENTA
+
+- Numero de Operandos
+- Los dataType que se aplican a un operando
+- Side effects
+- **Precedencia**
+- Asociabilidad de los operandos
+- Orden de Evaluacion
+
+### Arithmetic Expressions
+
+- This section covers the operators that perform arithmetic or other numerical manipulations on their operands.
+
+#### Basics
+
+- Infor obtendia de chatGPT
+- This section covers the operators that perform arithmetic or other numerical manipulations on their operands.
+
+1. **Addition (`+`)**: `a + b` - sum of `a` and `b`.
+2. **Subtraction (`-`)**: `a - b` - difference between `a` and `b`.
+3. **Multiplication (`*`)**: `a * b` - product of `a` and `b`.
+4. **Division (`/`)**: `a / b` - quotient of `a` divided by `b`.
+5. **Modulus (`%`)**: `a % b` - remainder of `a` divided by `b`.
+6. **Exponentiation (`**`)**: `a ** b` - `a` raised to the power of `b`.
+7. **Floor Division (`//`)**: `a // b` - floor value of the quotient of `a` divided by `b`.
+
+#### Ojo con el "+" operator
+
+```javascript
+1 + 2 // => 3: addition
+"1" + "2" // => "12": concatenation
+"1" + 2 // => "12": concatenation after number-to-string
+1 + {} // => "1[object Object]": concatenation after object-to-string
+true + true // => 2: addition after boolean-to-number
+2 + null // => 2: addition after null converts to 0
+2 + undefined // => NaN: addition after undefined converts to NaN
+```
+
+#### Unary Arithmetic Operators
+
+1. **Unary Plus (`+`)**: `+a` - returns the value of `a`.
+2. **Unary Minus (`-`)**: `-a` - negates the value of `a`.
+3. **Increment (`++`)**: `++a` or `a++` - increases the value of `a` by 1 (language-specific).
+4. **Decrement (`--`)**: `--a` or `a--` - decreases the value of `a` by 1 (language-specific).
+
+#### Bitwise Operators
+
+- `1=true, 0=false`
+- AND `(&)`
+- OR `(|)`
+- XOR `(^)`
+- NOT `(~)`
+- Shift left `(<<)`
+- Shift right with sign `(>>)`
+- Shift right with zero fill `(>>>)`
+
+### Relational Expressions
+
+- return true or false depending on whether that relationship exists.
+- **Tener en cuenta**
+- Equality and Inequality Operators
+- Equality with type conversion
+
+#### Comparison Operators
+
+1. **Equal to (`==`)**: `a == b` - true if `a` is equal to `b`.
+2. **Not equal to (`!=`)**: `a != b` - true if `a` is not equal to `b`.
+3. **Strictly equal to (`===`)**: `a === b` - true if `a` is equal to `b` and of the same type.
+4. **Strictly not equal to (`!==`)**: `a !== b` - true if `a` is not equal to `b` or not of the same type.
+5. **Greater than (`>`)**: `a > b` - true if `a` is greater than `b`.
+6. **Less than (`<`)**: `a < b` - true if `a` is less than `b`.
+7. **Greater than or equal to (`>=`)**: `a >= b` - true if `a` is greater than or equal to `b`.
+8. **Less than or equal to (`<=`)**: `a <= b` - true if `a` is less than or equal to `b`.
+
+#### The in Operator
+
+**`in`**: `a in b` - true if `a` is an element of `b` (e.g., a member of a collection, such as a list, tuple, set, or a key in a dictionary).
+
+- Example: `3 in [1, 2, 3]` - true because `3` is an element of the list `[1, 2, 3]`.
+- Example: `'key' in {'key': 'value'}` - true because `'key'` is a key in the dictionary `{'key': 'value'}`.
+
+#### The instanceof Operator
+
+**`instanceof`**: `a instanceof B` - true if `a` is an instance of class `B` or a subclass thereof.
+
+- Example: `obj instanceof MyClass` - true if `obj` is an instance of `MyClass` or a subclass of `MyClass`.
+
+### Logical Expressions
+
+#### Falsy values
+
+- Extraido de chatGPT.
+
+In JavaScript, the following values are considered falsy:
+
+1. **false**: The boolean value `false`.
+2. **0**: The number `0`, whether integer or floating-point.
+3. **-0**: Negative zero, although it's rare to encounter this.
+4. **0n**: BigInt zero, if you're using BigInts.
+5. **"":** An empty string.
+6. **null**: The absence of any value or object.
+7. **undefined**: Denotes a variable that has not been assigned a value, or an object property that does not exist.
+8. **NaN**: Stands for "Not a Number," usually resulting from invalid arithmetic operations or type conversion attempts.
+
+#### Logical AND (&&)
+
+- **true && true returns true**
+- **true && false returns false**
+- **false && true returns false**
+- **false && false returns false**

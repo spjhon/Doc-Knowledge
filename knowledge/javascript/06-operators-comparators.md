@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_position: 6
 ---
 
 # Comparators and operators
@@ -18,19 +18,12 @@ In JavaScript, the && operator is often used in conditional statements and expre
 In JavaScript, the following values are considered falsy:
 
 1. **false**: The boolean value `false`.
-
 2. **0**: The number `0`, whether integer or floating-point.
-
 3. **-0**: Negative zero, although it's rare to encounter this.
-
 4. **0n**: BigInt zero, if you're using BigInts.
-
 5. **"":** An empty string.
-
 6. **null**: The absence of any value or object.
-
 7. **undefined**: Denotes a variable that has not been assigned a value, or an object property that does not exist.
-
 8. **NaN**: Stands for "Not a Number," usually resulting from invalid arithmetic operations or type conversion attempts.
 
 These values are considered falsy because when coerced to a boolean, they evaluate to `false`. For example:
