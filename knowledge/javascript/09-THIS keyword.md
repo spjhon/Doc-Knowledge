@@ -1,3 +1,7 @@
+---
+sidebar_position: 9
+---
+
 # The "This" keyword
 
 The arguments and return value of a method invocation are handled exactly as described for regular function invocation. Method invocations differ from function invocations in one important way, however: the invocation context.
@@ -173,6 +177,24 @@ function Person(name) {
 let john = new Person("John");
 john.showName(); // Outputs: John
 console.log(john.name); // Outputs: John
+```
+
+#### Why the `this` keyword is need it
+
+```javascript
+// Global variable
+var name = "Global Name";
+
+// Object with a name property
+var obj = {
+    name: "Object Name",
+    printName: function() {
+        console.log(name);  // Accesses the global variable 'name'
+        console.log(this.name);  // Accesses the property 'name' of the object
+    }
+};
+
+obj.printName(); // Output: Global Name, Object Name
 ```
 
 ### Summary this keyword

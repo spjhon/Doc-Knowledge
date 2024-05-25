@@ -21,3 +21,5 @@ null // Absence of an object
 **Itendifiers** Son los nombres que se le dan a las variables. A JavaScript identifier must begin with a letter, an underscore (_), or a dollar sign ($).
 
 **Variable Declaration** Cuano se delcara una variable y se asigna un valor y un dataType por medio del asignador "="
+
+**lexical scoping**: Cuando se utilizan variables definidas con letras y la limitancia que da a los datos en su interior, por ejemplo el scope que da una funcio (closures).

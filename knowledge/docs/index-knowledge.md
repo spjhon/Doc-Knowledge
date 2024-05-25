@@ -117,6 +117,20 @@ Por orden alfabetico:
 
 ### Categorizacion de los componentes en storybook
 
+### Libros leidos hasta el momento
+
+Javascript defeinitive edition
+The ninja javascript book
+Css in depth
+Learning Typescript
+
+### Cursos de Udemy o  coursera hasta el momento
+
+Universidad HTML, CSS javascript
+React de stephen grider
+Git crash course
+Simple calculator REACT
+
 ### Categorizacion de las stars en github
 
 ***

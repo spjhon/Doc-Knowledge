@@ -370,7 +370,17 @@ Hay tres algoritmos que aplica javascript para poder convertir objects a strings
 [**AQUI**](/javascript/overview#declarations) mas info acerca de la declaracion de variables
 
 - Declaracion de variables y asignacion de "identifiers"
-- Let, Conts y Var (var esta deprecated)
+- Let, Conts y Var (var esta deprecated) (let and const are block scoped(todo lo que este dentro de las curlies))
+  - **EL SCOPE DE "var":**
+  - **Global Scope**
+    - When var is declared outside of any function, it is a global variable.
+    - This means it is accessible anywhere in the code, including inside functions and blocks.
+  - **Function Scope**
+    - When var is declared inside a function, it is local to that function.
+    - It is not accessible outside the function.
+  - **Inside Loops**
+    - var declared within loops (e.g., for, while) is also function-scoped or global-scoped.
+    - It can lead to unexpected behavior due to the lack of block scope.
 - La variables se pueden declarar juntas y tambien asignar en cadena
 
 ```javascript
@@ -867,8 +877,8 @@ This code reads and concatenates the address0, address1, address2, and address3 
 
 ```javascript
 let addr = "";
-for(let i = 0; i < 4; i++) {
- addr += customer[`address${i}`] + "\n";
+for (let i = 0; i < 4; i++) {
+  addr += customer[`address${i}`] + "\n";
 }
 ```
 
@@ -886,14 +896,14 @@ p.y = 2; // and has an own property y.
 let q = Object.create(p); // q inherits properties from p, o, and...
 q.z = 3; // ...Object.prototype and has an own property z.
 let f = q.toString(); // toString is inherited from Object.prototype
-q.x + q.y // => 3; x and y are inherited from o and p
+q.x + q.y; // => 3; x and y are inherited from o and p
 ```
 
 #### Property Access Errors
 
 ```javascript
 // Asi se pueden presentar errores al leer un object
-book.subtitle // => undefined: property doesn't exist
+book.subtitle; // => undefined: property doesn't exist
 let len = book.subtitle.length; // !TypeError: undefined doesn't have length
 
 // Asi se puede resolver
@@ -901,9 +911,9 @@ let len = book.subtitle.length; // !TypeError: undefined doesn't have length
 // A verbose and explicit technique
 let surname = undefined;
 if (book) {
- if (book.author) {
- surname = book.author.surname;
- }
+  if (book.author) {
+    surname = book.author.surname;
+  }
 }
 // A concise and idiomatic alternative to get surname or null or undefined
 //  short-circuiting behavior
@@ -917,11 +927,11 @@ surname = book && book.author && book.author.surname;
 **The delete operator only deletes own properties, not inherited ones.** To delete an inherited property, you must delete it from the prototype object in which it is defined. Doing this affects every object that inherits from that prototype.
 
 ```javascript
-let o = {x: 1}; // o has own property x and inherits property toString
-delete o.x // => true: deletes property x
-delete o.x // => true: does nothing (x doesn't exist) but true anyway
-delete o.toString // => true: does nothing (toString isn't an own property)
-delete 1 // => true: nonsense, but true anyway
+let o = { x: 1 }; // o has own property x and inherits property toString
+delete o.x; // => true: deletes property x
+delete o.x; // => true: does nothing (x doesn't exist) but true anyway
+delete o.toString; // => true: does nothing (toString isn't an own property)
+delete 1; // => true: nonsense, but true anyway
 ```
 
 - delete does not remove properties that have a configurable attribute of false.
@@ -936,36 +946,36 @@ You can do this with:
 
 ```javascript
 let o = { x: 1 };
-"x" in o // => true: o has an own property "x"
-"y" in o // => false: o doesn't have a property "y"
-"toString" in o // => true: o inherits a toString property
+"x" in o; // => true: o has an own property "x"
+"y" in o; // => false: o doesn't have a property "y"
+"toString" in o; // => true: o inherits a toString property
 ```
 
 - With the `hasOwnProperty()`
 
 ```javascript
 let o = { x: 1 };
-o.hasOwnProperty("x") // => true: o has an own property x
-o.hasOwnProperty("y") // => false: o doesn't have a property y
-o.hasOwnProperty("toString") // => false: toString is an inherited property
+o.hasOwnProperty("x"); // => true: o has an own property x
+o.hasOwnProperty("y"); // => false: o doesn't have a property y
+o.hasOwnProperty("toString"); // => false: toString is an inherited property
 ```
 
 - and `propertyIsEnumerable()` methods
 
 ```javascript
 let o = { x: 1 };
-o.propertyIsEnumerable("x") // => true: o has an own enumerable property x
-o.propertyIsEnumerable("toString") // => false: not an own property
-Object.prototype.propertyIsEnumerable("toString") // => false: not enumerable
+o.propertyIsEnumerable("x"); // => true: o has an own enumerable property x
+o.propertyIsEnumerable("toString"); // => false: not an own property
+Object.prototype.propertyIsEnumerable("toString"); // => false: not enumerable
 ```
 
 - Or simply by querying the property.
 
 ```javascript
 let o = { x: 1 };
-o.x !== undefined // => true: o has a property x
-o.y !== undefined // => false: o doesn't have a property y
-o.toString !== undefined // => true: o inherits a toString property
+o.x !== undefined; // => true: o has a property x
+o.y !== undefined; // => false: o doesn't have a property y
+o.toString !== undefined; // => true: o inherits a toString property
 ```
 
 ### Enumerating Properties
@@ -984,11 +994,12 @@ Tener en cuenta **Property Enumeration Order**
 A common operation in JavaScript programs is needing to copy the properties of one object to another object.
 
 ```javascript
-let target = {x: 1}, source = {y: 2, z: 3};
-for(let key of Object.keys(source)) {
- target[key] = source[key];
+let target = { x: 1 },
+  source = { y: 2, z: 3 };
+for (let key of Object.keys(source)) {
+  target[key] = source[key];
 }
-target // => {x: 1, y: 2, z: 3}
+target; // => {x: 1, y: 2, z: 3}
 ```
 
 - `Object.assign()`
@@ -1000,7 +1011,7 @@ Object serialization is the process of converting an object’s state to a strin
 which it can later be restored.
 
 ```javascript
-let o = {x: 1, y: {z: [false, null, ""]}}; // Define a test object
+let o = { x: 1, y: { z: [false, null, ""] } }; // Define a test object
 let s = JSON.stringify(o); // s == '{"x":1,"y":{"z":[false,null,""]}}'
 let p = JSON.parse(s); // p == {x: 1, y: {z: [false, null, ""]}}
 ```
@@ -1017,18 +1028,20 @@ let s = { x: 1, y: 1 }.toString(); // s == "[object Object]"
 
 // Muchas veces se crea un metodo propio de toString a un object.
 let point = {
- x: 1,
- y: 2,
- toString: function() { return `(${this.x}, ${this.y})`; }
+  x: 1,
+  y: 2,
+  toString: function () {
+    return `(${this.x}, ${this.y})`;
+  },
 };
-String(point) // => "(1, 2)": toString() is used for string conversions
+String(point); // => "(1, 2)": toString() is used for string conversions
 ```
 
 - The `toLocaleString()` Method
 
 ```javascript
-point.toString() // => "(1000, 2000)"
-point.toLocaleString() // => "(1,000, 2,000)": note thousands separators
+point.toString(); // => "(1000, 2000)"
+point.toLocaleString(); // => "(1,000, 2,000)": note thousands separators
 ```
 
 - The `valueOf()` Method
@@ -1050,11 +1063,11 @@ Object.prototype does not actually define a toJSON() method, but the JSON.string
 let position = { x: 0, y: 0 };
 let dimensions = { width: 100, height: 75 };
 let rect = { ...position, ...dimensions };
-rect.x + rect.y + rect.width + rect.height // => 175
+rect.x + rect.y + rect.width + rect.height; // => 175
 ```
 
 - Shorthand Methods
-- Property Getters and Setters:  JavaScript also supports accessor properties, which do not have a single value but instead have one or two accessor methods: a getter and/or a setter.
+- Property Getters and Setters: JavaScript also supports accessor properties, which do not have a single value but instead have one or two accessor methods: a getter and/or a setter.
 
 ## 07 Arrays
 
@@ -1093,8 +1106,7 @@ a[1000] = 0; // Assignment adds one element but sets length to 1001.
 ### Array Length
 
 ```javascript
-[].length // => 0: the array has no elements
-["a","b","c"].length // => 3: highest index is 2, length is 3
+[].length[("a", "b", "c")].length; // => 0: the array has no elements // => 3: highest index is 2, length is 3
 ```
 
 ### Adding and Deleting Array Elements
@@ -1146,18 +1158,19 @@ While reading about these methods, keep in mind that some of them modify the arr
 #### Flattening arrays with flat() and flatMap()
 
 ```javascript
-[1, [2, 3]].flat() // => [1, 2, 3]
-[1, [2, [3]]].flat() // => [1, 2, [3]]
+[1, [2, 3]]
+  .flat() // => [1, 2, 3]
+  [(1, [2, [3]])].flat(); // => [1, 2, [3]]
 ```
 
 #### Adding arrays with concat()
 
 ```javascript
-let a = [1,2,3];
-a.concat(4, 5) // => [1,2,3,4,5]
-a.concat([4,5],[6,7]) // => [1,2,3,4,5,6,7]; arrays are flattened
-a.concat(4, [5,[6,7]]) // => [1,2,3,4,5,[6,7]]; but not nested arrays
-a // => [1,2,3]; the original array is unmodified
+let a = [1, 2, 3];
+a.concat(4, 5); // => [1,2,3,4,5]
+a.concat([4, 5], [6, 7]); // => [1,2,3,4,5,6,7]; arrays are flattened
+a.concat(4, [5, [6, 7]]); // => [1,2,3,4,5,[6,7]]; but not nested arrays
+a; // => [1,2,3]; the original array is unmodified
 ```
 
 #### Stacks and Queues with push(), pop(), shift(), and unshift()
@@ -1196,8 +1209,8 @@ In client-side JavaScript, a number of methods for working with HTML documents (
 
 ```javascript
 let s = "test";
-s.charAt(0) // => "t"
-s[1] // => "e"
+s.charAt(0); // => "t"
+s[1]; // => "e"
 ```
 
 ## 08 Functions
@@ -1214,7 +1227,7 @@ A function is a block of JavaScript code that is defined once but may be execute
 
 - Function Declarations:
 
-**The return statement causes the function to stop executing and to return the value of its expression (if any) to the caller. If  the return statement does not have an associated expression, the return value of the function is undefined.**
+**The return statement causes the function to stop executing and to return the value of its expression (if any) to the caller. If the return statement does not have an associated expression, the return value of the function is undefined.**
 
 - Function Expressions
 
@@ -1229,8 +1242,186 @@ A function is a block of JavaScript code that is defined once but may be execute
 ### Invoking Functions
 
 [**AQUI**](/javascript/functions) La lista completa de como definir y como invocar una funcion
+[**AQUI**](/javascript/functions) Una explicacion mas completa de como utilizar el THIS, tambien en la pagina de javascript.info hay informacion completa.
 
+- Recursive functions
 - As functions
 - As methods
 - As constructors
 - Indirectly through their call() and apply() methods
+- Implicit Function Invocation: OJO que aplicando ciertos metodos explicados en la pagina 192 del libro se puede invocar una funcion sin querer.
+
+### Function Arguments and Parameters
+
+- Optional Parameters and Defaults
+
+  - Si hay menos argumentos que parametros, estos parametros evaluan a undefined al menos que se especifique un valor por default
+
+- Rest Parameters and Variable-Length Argument Lists
+
+  - Esto es lo contrario, cuando hay mas argumentos que parametros
+
+    ```javascript
+    function max(first = -Infinity, ...rest) {
+      let maxValue = first; // Start by assuming the first arg is biggest
+      // Then loop through the rest of the arguments, looking for bigger
+      for (let n of rest) {
+        if (n > maxValue) {
+          maxValue = n;
+        }
+      }
+      // Return the biggest
+      return maxValue;
+    }
+    max(1, 10, 100, 2, 3, 1000, 4, 5, 6); // => 1000
+    ```
+
+- The Arguments Object
+
+  - A parte del rest que utiliza el spread operator "...", implicitamente una funcion tiene sus argumentos en un array que se invoca con la keyword Arguments.
+
+- The Spread Operator for Function Calls
+
+  - The spread operator ... is used to unpack, or “spread out,” the elements of an array (or any other iterable object, such as strings) in a context where individual values are expected.
+
+  ```javascript
+  let numbers = [5, 2, 10, -1, 9, 100, 1];
+  Math.min(...numbers); // => -1
+  ```
+
+- Destructuring Function Arguments into Parameters
+
+  ```javascript
+  function vectorAdd(v1, v2) {
+    return [v1[0] + v2[0], v1[1] + v2[1]];
+  }
+  vectorAdd([1, 2], [3, 4]); // => [4,6]
+  ```
+
+- Argument Types: JavaScript method parameters have no declared types **USE TYPESCRIPT**
+
+### Functions as Values
+
+In JavaScript, however, functions are not only syntax but also values, which means they can be **assigned to variables**, **stored in the properties of objects** or the **elements of arrays**, **passed as arguments to functions**, and so on.
+
+```javascript
+let s = square; // Now s refers to the same function that square does
+square(4); // => 16
+s(4); // => 16
+```
+
+```javascript
+let a = [(x) => x * x, 20]; // An array literal
+a[0](a[1]); // => 400
+```
+
+- Defining Your Own Function Properties: Functions are not primitive values in JavaScript, but a specialized kind of object which means that functions can **have properties**.
+
+### Functions as Namespaces or immediately invoked function expression
+
+- Define a function simply to act as a temporary name-space in which you can define variables without cluttering the global namespace.
+
+```javascript
+function chunkNamespace() {
+  // Chunk of code goes here
+  // Any variables defined in the chunk are local to this function
+  // instead of cluttering up the global namespace.
+}
+chunkNamespace(); // But don't forget to invoke the function!
+```
+
+So this is the new idiomatic way:
+
+```javascript
+(function () {
+  // chunkNamespace() function rewritten as an unnamed expression.
+  // Chunk of code goes here
+})(); // End the function literal and invoke it now.
+```
+
+### Closures
+
+This use of functions as namespaces becomes really useful when we define one or more functions inside the namespace function using variables within that namesapce, but then pass them back out as the return value of the namespace function. Functions like this are known as closures.
+
+```javascript
+let scope = "global scope"; // A global variable
+function checkscope() {
+  let scope = "local scope"; // A local variable
+  function f() {
+    return scope;
+  } // Return the value in scope here
+  return f;
+}
+let s = checkscope()(); // What does this return?
+
+let uniqueInteger = (function () {
+  // Define and invoke
+  let counter = 0; // Private state of function below
+  return function () {
+    return counter++;
+  };
+})();
+uniqueInteger(); // => 0
+uniqueInteger(); // => 1
+
+//El siquiente ejemplo muestra como por cada invocacion de la funcion se tienen diferentes declaraciones de variables
+function counter() {
+  let n = 0;
+  return {
+    count: function () {
+      return n++;
+    },
+    reset: function () {
+      n = 0;
+    },
+  };
+}
+let c = counter(),
+  d = counter(); // Create two counters
+console.log(c.count()); // => 0
+console.log(d.count()); // => 0: they count independently
+c.reset(); // reset() and count() methods share state
+console.log(c.count()); // => 0: because we reset c
+console.log(d.count()); // => 1: d was not reset
+```
+
+Clorures capture the local variable (and parameter) bindings of the outer function within which they are defined.
+
+It is worth noting here that you can combine this closure technique with **property getters** and **setters**.
+
+```javascript
+function counter(n) {
+  // Function argument n is the private variable
+  return {
+    // Property getter method returns and increments private counter var.
+    get count() {
+      return n++;
+    },
+    // Property setter doesn't allow the value of n to decrease
+    set count(m) {
+      if (m > n) n = m;
+      else throw Error("count can only be set to a larger value");
+    },
+  };
+}
+
+let c = counter(1000);
+c.count; // => 1000
+c.count; // => 1001
+c.count = 2000;
+c.count; // => 2000
+c.count = 2000; // !Error: count can only be set to a larger value
+```
+
+### Function Properties, Methods, and Constructor
+
+Since functions are objects, they can have properties and methods, just like any other object.
+
+- The length Property
+- The name Property: This property is primarily useful when writing debugging or error messages.
+- The prototype Property
+- The call() and apply() Methods
+- The toString() Method
+- The Function() Constructor
+
+### Functional Programming
