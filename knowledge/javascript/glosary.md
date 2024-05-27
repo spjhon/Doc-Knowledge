@@ -23,3 +23,7 @@ null // Absence of an object
 **Variable Declaration** Cuano se delcara una variable y se asigna un valor y un dataType por medio del asignador "="
 
 **lexical scoping**: Cuando se utilizan variables definidas con letras y la limitancia que da a los datos en su interior, por ejemplo el scope que da una funcio (closures).
+
+**Hier Order Functions**: A higher-order function is a function that operates on functions, taking one or more functions as arguments and returning a new function.
+
+**function composition**: The concept of composition in the provided code refers to the combination of functions where the output of one function becomes the input of another. In JavaScript, function composition can be achieved using a compose function, which combines multiple functions into a single function.

@@ -1148,6 +1148,9 @@ While reading about these methods, keep in mind that some of them modify the arr
 
 #### Array Iterator Methods
 
+- Algo importante en los methods para el dataType array es que soportan un segundo argumento y funciona de tal forma que la funcion que se invoque sera un metodo del segundo argumento de forma que el segundo argumento pasa a ser el valor del "this" en la funcion que es invocada.
+- Estos metodos no modifican el array
+
 - `forEach()`
 - `map()`: map() returns a new array: it does not modify the array it is invoked on.
 - `filter()`
@@ -1425,3 +1428,45 @@ Since functions are objects, they can have properties and methods, just like any
 - The Function() Constructor
 
 ### Functional Programming
+
+- Dos metodos iterantes del dataType array son particularmente utiles para este tipo de programacion map() y reduce().
+
+#### Processing Arrays with Functions
+
+La idea es no utilizar metodos que digan como se hace la operacion sino tomar ventaja de las formas funcionales (por medio de funciones) y expresar mas bien lo que se necesita hacer con el codigo y de esta forma tambien aprovechar las ventajas de utilizar funciones.
+
+Por ejemplo utilizando un "for" se puede iterar un array pero con map se puede hacer lo mismo en caso de necesitar retornar un array y con reduce en caso de que se necesite reducir un array.
+
+El siguiente es un ejemplo claro de una forma funcional, primero se definen dos funciones que exploten la felixibilidad del map() y el reduce() de tal forma que se tengan funciones personalizadas que se puedan ajustar a sus usos mas adelante.
+
+```javascript
+// Con esta primera delcracion de constantes estamos creando una funcion map y reduce personalizada para aplicar mas adelante
+//la idea de esta funcion es recibir un array, transormaral en el parametro a y como segundo argumento una serie de args, osea una cantidad de qualquier topo de funciones que sean el primer argumento de map y reduce y de acuerdo a como funcionan estos iteradores pues los primeros argumentos son las funciones que van a mapear (devuelve un array) o a reducir (devuleve un solo valro)
+const map = function(a, ...args) { return a.map(...args); };
+const reduce = function(a, ...args) { return a.reduce(...args); };
+
+// With these map() and reduce() functions defined, our code to compute the mean and standard deviation now looks like this:
+const sum = (x,y) => x+y;
+const square = x => x*x;
+let data = [1,1,3,5,5];
+let mean = reduce(data, sum)/data.length;
+let deviations = map(data, x => x-mean);
+let stddev = Math.sqrt(reduce(map(deviations, square), sum)/(data.length-1));
+stddev // => 2
+```
+
+#### Higher-Order Functions
+
+A higher-order function is a function that operates on functions, taking one or more functions as arguments and returning a new function.
+
+- **Ver el libro en esta seccion para ver tres ejemplos concretos.**
+
+#### Partial Application of Functions
+
+- **Ver ejemplo del libro en la pagina 216**
+
+La idea es tener una funcion que se le pueda escoger los argumentos que se le pasan a una funcion que entra como argumento a la funcion parcial y que devuelve la funcion que esta mas temprano definida con los argumenots correspondientes.
+
+- partialLeft
+- partialRight
+- partial
