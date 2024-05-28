@@ -1,11 +1,17 @@
-// First, define two simple functions
-const sum = (x,y) => x+y;
-const square = x => x*x;
-// Then use those functions with Array methods to compute mean and stddev
-let data = [1,1,3,5,5];
-let mean = data.reduce(sum)/data.length; // mean == 3
-let deviations = data.map(x => x-mean);
-let stddev = Math.sqrt(deviations.map(square).reduce(sum)/(data.length-1));
-stddev // => 2
+function createPerson(name, age) {
+    return {
+        name: name,
+        age: age,
+        greet: function() {
+            console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+        }
+    };
+}
 
-deviations
+const person1 = createPerson('Alice', 30);
+person1.greet(); // Output: Hello, my name is Alice and I am 30 years old.
+
+const person2 = createPerson('Bob', 25);
+person2.greet(); // Output: Hello, my name is Bob and I am 25 years old.
+
+console.log(person2.name)
