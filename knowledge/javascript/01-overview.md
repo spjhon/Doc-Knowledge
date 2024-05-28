@@ -1459,6 +1459,8 @@ stddev // => 2
 
 A higher-order function is a function that operates on functions, taking one or more functions as arguments and returning a new function.
 
+Una forma mas entendible es que una funcion de tipo higher order toma una funcion custom existente y le adicona funcionalidades extra con argumentos extra y utilizar la funcion inicial sin modificarla, solo llamandola, es uno de los principios de la programacion funcional, que todo sea un conjunto de funciones iniciales y a partir de ellas crear funcionalidades sobre las ya creadas y fomentar la reutilizacion de codigo.
+
 - **Ver el libro en esta seccion para ver tres ejemplos concretos.**
 
 #### Partial Application of Functions
