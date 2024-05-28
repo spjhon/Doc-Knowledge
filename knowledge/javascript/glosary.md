@@ -27,3 +27,7 @@ null // Absence of an object
 **Hier Order Functions**: A higher-order function is a function that operates on functions, taking one or more functions as arguments and returning a new function.
 
 **function composition**: The concept of composition in the provided code refers to the combination of functions where the output of one function becomes the input of another. In JavaScript, function composition can be achieved using a compose function, which combines multiple functions into a single function.
+
+**factory functions**: Factory functions in JavaScript are functions that return objects. They are used as a design pattern to create and configure new objects.
+
+Unlike traditional constructors (using the new keyword), factory functions provide a more flexible and readable way to create objects, especially when dealing with object composition and avoiding the complexities of inheritance.

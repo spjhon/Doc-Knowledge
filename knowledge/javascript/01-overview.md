@@ -1472,3 +1472,51 @@ La idea es tener una funcion que se le pueda escoger los argumentos que se le pa
 - partialLeft
 - partialRight
 - partial
+
+#### Memoization
+
+Memoization is a technique used to optimize functions by storing the results of expensive function calls and returning the cached result when the same inputs occur again. In JavaScript, functions are first-class objects, which means they can have properties and methods like any other object. This allows us to store cached data directly on the function itself.
+
+```javascript
+function factorial(n) {
+  if (Number.isInteger(n) && n > 0) {
+    // Ensure n is a positive integer
+    if (!(n in factorial)) {
+      // Check if the result is already cached
+      factorial[n] = n * factorial(n - 1); // Compute and cache the result
+    }
+    return factorial[n]; // Return the cached result
+  } else {
+    return NaN; // Handle invalid input
+  }
+}
+
+factorial[1] = 1; // Initialize the base case in the cache
+console.log(factorial(6)); // => 720
+console.log(factorial[5]); // => 120
+```
+
+El cache tambien puede venir en forma de closure
+
+```javascript
+// Return a memoized version of f.
+// It only works if arguments to f all have distinct string representations.
+function memoize(f) {
+ const cache = new Map(); // Value cache stored in the closure.
+ return function(...args) {
+ // Create a string version of the arguments to use as a cache key.
+ let key = args.length + args.join("+");
+ if (cache.has(key)) {
+ return cache.get(key);
+ } else {
+ let result = f.apply(this, args);
+ cache.set(key, result);
+ return result;
+ }
+ };
+}
+```
+
+## Classes
+
+In JavaScript, a class is a set of objects that inherit properties from the same prototype object. The prototype object, therefore, is the central feature of a class.
