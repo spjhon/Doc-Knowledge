@@ -1525,7 +1525,11 @@ function memoize(f) {
 
 ## 09 Classes
 
+“favor composition over inheritance.”
+
 In JavaScript, a class is a set of objects that inherit properties from the same prototype object. The prototype object, therefore, is the central feature of a class.
+
+En JavaScript, una clase no es un objeto en sí, sino una plantilla (o "blueprint") para crear objetos. Las clases en JavaScript definen la estructura y el comportamiento de los objetos que se crean a partir de ellas.
 
 Por que una factory function o una clase son necesarias?:
 
@@ -1540,6 +1544,14 @@ Por que una factory function o una clase son necesarias?:
 5. **Method Chaining and Fluent API**: The object-oriented approach can be extended to support method chaining, which allows for more fluent and readable code.
 
 6. **Extensibility**: It's easier to extend the functionality by adding more methods to the `range.methods` object. For example, if you later want to add methods like `map`, `filter`, or other utility functions, you can do so without changing the existing function signatures or affecting the existing code that uses the range objects.
+
+- **When to Use Which**
+
+**Constructor Functions:** Use when you need the benefits of prototype inheritance and when you are following a more class-like structure (especially in ES6+ with the class syntax).
+
+**Factory Functions:** Use when you need more flexibility, encapsulation, and when you want to avoid the complexities and potential pitfalls of new.
+
+While both factory functions and constructor functions are used to create objects, they differ significantly in their approach, flexibility, and the way they handle inheritance. Factory functions offer a more flexible and error-proof way to create objects without the need for the new keyword, whereas constructor functions are more suited for scenarios where prototype inheritance and a more class-like structure are required.
 
 ### Classes and Prototypes
 
@@ -1584,9 +1596,9 @@ Any regular JavaScript function (excluding arrow functions, generator functions,
 
 En el libro se muestra el ejemplo del Range en forma de class como tal con la sintaxys moderna y que utiliza la palabra constructor y por supuesto la utilizacion del "this".
 
-Tambien se explica en esta seccion el super.
+Tambien se explica en esta seccion el **super**.
 
-- El super es para referirse a la clase padre y que los argumentos que se le asignen a super son los argumentos que le van a entrar a la clase constructora padre (mayor explicacion en la seccion de subclases)
+- El **super** es para referirse a la clase padre y que los argumentos que se le asignen a super son los argumentos que le van a entrar a la clase constructora padre (mayor explicacion en la seccion de subclases)
 
 Like function declarations, class declarations have both statement and expression forms. Just as we can write:
 
@@ -1607,6 +1619,81 @@ let Square = class {
 };
 new Square(3).area; // => 9
 ```
+
+- **Sacado de chatGPT**
+
+Entendiendo mejor los sueper:
+
+In JavaScript, the `super` keyword is used in classes to access and call functions on an object's parent. It serves multiple purposes:
+
+1. **Calling the Parent Constructor**: When you create a subclass, you use `super()` to call the constructor of the parent class. This is essential because the parent class might need to initialize some properties or perform some setup that the subclass will rely on.
+
+2. **Calling Parent Methods**: You can use `super.methodName()` to call a method from the parent class within a method of the subclass. This allows you to extend or override methods while still making use of the functionality provided by the parent class.
+
+- **Example of Calling the Parent Constructor**
+
+```javascript
+class Parent {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+class Child extends Parent {
+  constructor(name, age) {
+    // Call the parent class constructor with `super()`
+    super(name);
+    this.age = age;
+  }
+
+  introduce() {
+    console.log(`I am ${this.age} years old.`);
+  }
+}
+
+const childInstance = new Child('John', 10);
+childInstance.greet(); // Output: Hello, my name is John
+childInstance.introduce(); // Output: I am 10 years old.
+```
+
+In this example, `super(name)` is used in the `Child` class constructor to call the constructor of the `Parent` class, passing the `name` argument.
+
+- **Example of Calling Parent Methods**
+
+```javascript
+class Parent {
+  greet() {
+    console.log('Hello from the parent class!');
+  }
+}
+
+class Child extends Parent {
+  greet() {
+    // Call the parent class method using `super`
+    super.greet();
+    console.log('Hello from the child class!');
+  }
+}
+
+const childInstance = new Child();
+childInstance.greet();
+// Output:
+// Hello from the parent class!
+// Hello from the child class!
+```
+
+In this example, `super.greet()` is used within the `greet` method of the `Child` class to call the `greet` method of the `Parent` class. This allows the child method to add its own behavior while still including the parent's behavior.
+
+- **Summary**
+
+- **`super()` in constructor**: Used to call the parent class constructor. This is often necessary to properly initialize the subclass.
+- **`super.methodName()`**: Used to call methods from the parent class, allowing you to build upon or extend the parent class's functionality.
+
+Understanding how to use `super` effectively is crucial for working with inheritance in ES6 classes, as it helps maintain proper initialization and method chaining between parent and child classes.
 
 #### Static Methods
 
@@ -1679,3 +1766,104 @@ Comparing Static and Instance Methods
 - **Purpose**: Useful for operations that need to manipulate or retrieve data from a specific instance of the class.
 
 #### Getters, Setters, and other Method Forms
+
+- Se utilizan las mismas tecnicas explicadas en la seccion de getters and setters en el capitulo de objects.
+- In general, all of the shorthand method definition syntaxes allowed in object literals are also allowed in class bodies.
+
+#### Public, Private, and Static Fields
+
+If you want to define a field (which is just an object-oriented synonym for “property”) on a class instance, you must do that in the constructor function or in one of the methods.
+
+- Hasta el 2020 no es que sea muy soportado por los navegadores.
+- REACT utiliza el siguiente tipo de sintaxys para definir fields en javascript:
+
+Suppose you’re writing a class like this one, with a constructor that initializes three
+fields:
+
+```javascript
+class Buffer {
+ constructor() {
+ this.size = 0;
+ this.capacity = 4096;
+ this.buffer = new Uint8Array(this.capacity);
+ }
+}
+```
+
+With the new instance field syntax that is likely to be standardized, you could instead write:
+
+```javascript
+class Buffer {
+ size = 0;
+ capacity = 4096;
+ buffer = new Uint8Array(this.capacity);
+}
+```
+
+- **Private fields**
+
+If, for the preceding hypothetical Buffer class, you wanted to ensure that users of the class could not inadvertently modify the size field of an instance, you could use a private #size field instead, then define a getter function to provide read-only access to the value:
+
+```javascript
+class Buffer {
+ #size = 0; //private field
+ get size() { return this.#size; }
+}
+```
+
+#### Example: A Complex Number Class
+
+Example 9-4 defines a class to represent complex numbers. The class is a relatively simple one, but it includes instance methods (including getters), static methods, instance fields, and static fields. It includes some commented-out code demonstrating how we might use the not-yet-standard syntax for defining instance fields and static fields within the class body.
+
+Pagina 234.
+
+### Adding Methods to Existing Classes
+
+Se utiliza una forma de explotacion del prototype que es dinamico (osea que se pueden cambiar los metodos y las propiedades a las clases que lo permitan) de forma que se le puede añadir funcionalidades extra a codigo viejo de javascript.
+
+### Subclasses
+
+“favor composition over inheritance.”
+
+In object-oriented programming, a class B can extend or subclass another class A.
+
+- Next is a subsection about avoiding subclasses and relying on object composition instead of
+inheritance.
+
+#### Subclasses and Prototypes
+
+Se explica como al ejercicio principal 9-2 de Range que es una clase, se le puede crear una subclase que inherit desde la clase principal y se le puedan agregar metodos y funcionalidades extra, por supuesto se utiliza el Object.create() para crear esta descendencia, por supuesto esto es un antiguo metodo.
+
+#### Subclasses with extends and super
+
+Se tiene un ejemplo llamado TypeMap que agrega una forma de verificar el type de una entrada llamada entries y que sea una extencion de la clase Map() que es build in the javascript.
+
+- Hay una lista especifica de las reglas de **super** en las clases.
+
+#### Delegation Instead of Inheritance (compose other classes)
+
+- **“favor composition over inheritance.”**
+
+En la delegacion lo que se hace es utilizar los metodos de la clase propia para delegar a los metodos de la clase a donde se delega lo que se necesita hacer.
+
+El ejemplo 9.7 se puede resumir de la siguiente forma:
+
+entonces en:
+
+```javascript
+constructor() { 
+    this.map = new Map(); 
+}
+```
+
+lo que se hace es pasar una referencia del build-in Map(), de forma que se deleguen a ese metodo que es de otra clase por medio de los metodos en la clase que delega?
+
+Exactly! In the line:
+
+```javascript
+this.map = new Map(); 
+```
+
+What happens is that you create a new instance of the built-in `Map` class and assign it to the `map` property of the `Histogram` instance. By doing this, you establish a reference to the `Map` object, allowing the `Histogram` class to delegate operations to methods of this `Map` object.
+
+When methods of the `Histogram` class call methods like `set`, `get`, `delete`, etc., they're actually invoking methods of the `Map` object stored in the `map` property. This is what allows for delegation. Instead of implementing the logic for managing data directly in the `Histogram` class, it leverages the functionality of the `Map` class through delegation. This approach promotes code reusability, maintainability, and readability.
