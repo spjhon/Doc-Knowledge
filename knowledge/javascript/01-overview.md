@@ -1442,17 +1442,23 @@ El siguiente es un ejemplo claro de una forma funcional, primero se definen dos 
 ```javascript
 // Con esta primera delcracion de constantes estamos creando una funcion map y reduce personalizada para aplicar mas adelante
 //la idea de esta funcion es recibir un array, transormaral en el parametro a y como segundo argumento una serie de args, osea una cantidad de qualquier topo de funciones que sean el primer argumento de map y reduce y de acuerdo a como funcionan estos iteradores pues los primeros argumentos son las funciones que van a mapear (devuelve un array) o a reducir (devuleve un solo valro)
-const map = function(a, ...args) { return a.map(...args); };
-const reduce = function(a, ...args) { return a.reduce(...args); };
+const map = function (a, ...args) {
+  return a.map(...args);
+};
+const reduce = function (a, ...args) {
+  return a.reduce(...args);
+};
 
 // With these map() and reduce() functions defined, our code to compute the mean and standard deviation now looks like this:
-const sum = (x,y) => x+y;
-const square = x => x*x;
-let data = [1,1,3,5,5];
-let mean = reduce(data, sum)/data.length;
-let deviations = map(data, x => x-mean);
-let stddev = Math.sqrt(reduce(map(deviations, square), sum)/(data.length-1));
-stddev // => 2
+const sum = (x, y) => x + y;
+const square = (x) => x * x;
+let data = [1, 1, 3, 5, 5];
+let mean = reduce(data, sum) / data.length;
+let deviations = map(data, (x) => x - mean);
+let stddev = Math.sqrt(
+  reduce(map(deviations, square), sum) / (data.length - 1)
+);
+stddev; // => 2
 ```
 
 #### Higher-Order Functions
@@ -1502,21 +1508,174 @@ El cache tambien puede venir en forma de closure
 // Return a memoized version of f.
 // It only works if arguments to f all have distinct string representations.
 function memoize(f) {
- const cache = new Map(); // Value cache stored in the closure.
- return function(...args) {
- // Create a string version of the arguments to use as a cache key.
- let key = args.length + args.join("+");
- if (cache.has(key)) {
- return cache.get(key);
- } else {
- let result = f.apply(this, args);
- cache.set(key, result);
- return result;
- }
- };
+  const cache = new Map(); // Value cache stored in the closure.
+  return function (...args) {
+    // Create a string version of the arguments to use as a cache key.
+    let key = args.length + args.join("+");
+    if (cache.has(key)) {
+      return cache.get(key);
+    } else {
+      let result = f.apply(this, args);
+      cache.set(key, result);
+      return result;
+    }
+  };
 }
 ```
 
-## Classes
+## 09 Classes
 
 In JavaScript, a class is a set of objects that inherit properties from the same prototype object. The prototype object, therefore, is the central feature of a class.
+
+Por que una factory function o una clase son necesarias?:
+
+1. **Encapsulation**: The factory function (`range`) and the methods defined on its prototype (`range.methods`) encapsulate the range logic in a reusable and maintainable way. This helps in organizing the code better, especially as the logic grows more complex.
+
+2. **Reusability**: The methods (`includes`, `toString`, `Symbol.iterator`) are defined once on the prototype and reused across all instances of the range objects. This avoids duplicating code and makes the system more efficient.
+
+3. **Iterable Interface**: By implementing the iterable protocol (`*[Symbol.iterator]()`) within the range object, you can directly use the range object in constructs like `for...of` loops and the spread operator (`...`). This makes the range object very flexible and powerful in different contexts.
+
+4. **Readability and Expressiveness**: Using an object-oriented approach can make the code more readable and expressive. For instance, calling `range(1,3).includes(2)` or `[...range(1,3)]` is more intuitive and self-explanatory than manually handling arrays and indices.
+
+5. **Method Chaining and Fluent API**: The object-oriented approach can be extended to support method chaining, which allows for more fluent and readable code.
+
+6. **Extensibility**: It's easier to extend the functionality by adding more methods to the `range.methods` object. For example, if you later want to add methods like `map`, `filter`, or other utility functions, you can do so without changing the existing function signatures or affecting the existing code that uses the range objects.
+
+### Classes and Prototypes
+
+El ejemplo 9.1 es una forma de mostrar como funciona una clase de forma rudimentaria ya que lo que hace es utilizar el object.create () para encerrar variables y metodos (metodos que estan en otro object) de forma que cuando se invoque la funcion las varialbes solo se puedan leer a travez de el object creado con Object.create().
+
+**La siguiente es una explicacion de chatGPT de por que las classes son importantes teniendo como base el ejemplo 9.1 del libro.**
+
+### Classes and Constructors
+
+- A constructor is a function designed for the initialization of newly created objects.
+- The critical feature of constructor invocations is that the prototype property of the constructor is used as the prototype of the new object.
+- Function objects that have a prototype property.
+- Constructors llevan el nombre con la primera letra en mayuscula
+- Gracias a new.target se puede saber si una invocacion es un constructor o no
+
+Esta es una muestra, el resto del ejercicio esta en la pagina 224
+
+```javascript
+function Range(from, to) {
+  // Store the start and end points (state) of this new range object.
+  // These are noninherited properties that are unique to this object.
+  this.from = from;
+  this.to = to;
+}
+```
+
+- **Constructors, Class Identity, and instanceof**
+
+If we have an object r and want to know if it is a Range object, we can write:
+
+```javascript
+r instanceof Range; // => true: r inherits from Range.prototype
+
+range.methods.isPrototypeOf(r); // range.methods is the prototype object.
+```
+
+- **The constructor Property**
+
+Any regular JavaScript function (excluding arrow functions, generator functions, and async functions) can be used as a constructor, and constructor invocations need a prototype property.
+
+### Classes with the class Keyword
+
+En el libro se muestra el ejemplo del Range en forma de class como tal con la sintaxys moderna y que utiliza la palabra constructor y por supuesto la utilizacion del "this".
+
+Tambien se explica en esta seccion el super.
+
+- El super es para referirse a la clase padre y que los argumentos que se le asignen a super son los argumentos que le van a entrar a la clase constructora padre (mayor explicacion en la seccion de subclases)
+
+Like function declarations, class declarations have both statement and expression forms. Just as we can write:
+
+```javascript
+let square = function (x) {
+  return x * x;
+};
+square(3); // => 9
+```
+
+We can also write:
+
+```javascript
+let Square = class {
+  constructor(x) {
+    this.area = x * x;
+  }
+};
+new Square(3).area; // => 9
+```
+
+#### Static Methods
+
+##### Why Use Static Methods?
+
+Static methods are useful for functions that:
+
+- Perform operations that don't require data from an instance of the class.
+- Are utility functions related to the class.
+
+For example, if you have a class that handles various string operations, you might have some methods that can operate directly on strings without needing any instance-specific data.
+
+```javascript
+class Circle {
+  constructor(radius) {
+    this.radius = radius;
+  }
+
+  // Instance method
+  getArea() {
+    return Math.PI * this.radius * this.radius;
+  }
+
+  // Static method
+  static calculateCircumference(radius) {
+    return 2 * Math.PI * radius;
+  }
+}
+
+// Create an instance of Circle
+const myCircle = new Circle(10);
+
+// Call the instance method
+console.log(myCircle.getArea()); // Outputs: 314.159...
+
+// Call the static method on the class
+console.log(Circle.calculateCircumference(10)); // Outputs: 62.831...
+```
+
+It almost never makes sense to use the this keyword in a static method.
+
+Key Points to Remember
+
+- Static methods are called on the class itself, not on instances of the class.
+- Static methods cannot access instance properties directly, because they do not operate on any specific instance of the class.
+- Static methods are useful for utility functions that are related to the class but do not depend on instance properties.
+
+Comparing Static and Instance Methods
+
+| Feature                     | Static Method                          | Instance Method                         |
+| --------------------------- | -------------------------------------- | --------------------------------------- |
+| **Called On**               | Class itself                           | Instance of the class                   |
+| **Access to Instance Data** | No                                     | Yes                                     |
+| **Common Use Case**         | Utility functions related to the class | Functions that operate on instance data |
+
+- **Explanation**
+
+1. **Static Methods**
+
+- **Definition**: Static methods are defined on the class itself and not on instances of the class.
+- **Usage**: They are called directly on the class.
+- **Access**: They do not have access to instance properties or methods.
+- **Purpose**: Useful for utility functions that do not require any data from class instances.
+
+2. **Instance Methods**
+
+- **Definition**: Instance methods are defined on the prototype of the class and are called on instances of the class.
+- **Usage**: They are called on an instance of the class.
+- **Access**: They have access to the instance's properties and methods.
+- **Purpose**: Useful for operations that need to manipulate or retrieve data from a specific instance of the class.
+
+#### Getters, Setters, and other Method Forms
