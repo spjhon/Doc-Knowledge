@@ -1867,3 +1867,21 @@ this.map = new Map();
 What happens is that you create a new instance of the built-in `Map` class and assign it to the `map` property of the `Histogram` instance. By doing this, you establish a reference to the `Map` object, allowing the `Histogram` class to delegate operations to methods of this `Map` object.
 
 When methods of the `Histogram` class call methods like `set`, `get`, `delete`, etc., they're actually invoking methods of the `Map` object stored in the `map` property. This is what allows for delegation. Instead of implementing the logic for managing data directly in the `Histogram` class, it leverages the functionality of the `Map` class through delegation. This approach promotes code reusability, maintainability, and readability.
+
+#### Class Hierarchies and Abstract Classes
+
+En la seccion anterior se describe como por medio de una subclase que delega a otra clase, aqui se describe como hacerlo sin declarar una subclase en absoluto.
+
+Se habla del concepto de **abstract classes** y **abstract superclasses**.
+
+Y finalmente se encuentra el ejercicio final sobre clases que se puede observar de forma mas detallada **AQUI**.
+
+Importante entender:
+
+- Implementar un método significa proporcionar una definición concreta para ese método en una clase concreta. En JavaScript, esto generalmente significa definir qué hace ese método y qué valor devuelve (si es un método que devuelve un valor). Entonces un metodo delcarado pero NO implementado es un abstracto.
+
+- Entonces una clase abstracta lo que hace es delcarar metodos que aunque no sirven en la clase padre, obligan a las clases hijas tener ese metodo y que estas definan sus propios metodos como quieran pero que los tengan como estan en la clase padre.
+
+- Una clase abstracta en la programación orientada a objetos establece un conjunto de métodos (y a veces propiedades) que las clases hijas deben implementar. Estos métodos definidos en la clase abstracta pueden tener implementaciones predeterminadas (como en el caso de JavaScript donde a menudo arrojan errores), o simplemente pueden ser declaraciones de método sin cuerpo.
+
+- Cuando una clase hereda de una clase abstracta, se espera que la subclase implemente todos los métodos abstractos definidos en la clase abstracta. Esto se hace para garantizar que todas las subclases proporcionen una implementación para estos métodos, lo que ayuda a evitar errores y proporciona una estructura coherente para el código.
