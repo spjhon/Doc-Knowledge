@@ -1885,3 +1885,195 @@ Importante entender:
 - Una clase abstracta en la programación orientada a objetos establece un conjunto de métodos (y a veces propiedades) que las clases hijas deben implementar. Estos métodos definidos en la clase abstracta pueden tener implementaciones predeterminadas (como en el caso de JavaScript donde a menudo arrojan errores), o simplemente pueden ser declaraciones de método sin cuerpo.
 
 - Cuando una clase hereda de una clase abstracta, se espera que la subclase implemente todos los métodos abstractos definidos en la clase abstracta. Esto se hace para garantizar que todas las subclases proporcionen una implementación para estos métodos, lo que ayuda a evitar errores y proporciona una estructura coherente para el código.
+
+## Modules
+
+Anteriormente el modulaje se hacia por medio de classes, objects and closures ya que import an export son relativamente recientes, por eso el require() se utiliza y quedo adaptado a node.
+
+### Modules with Classes, Objects, and Closures
+
+- La forma antigua
+
+Se explica que las clases tienen cierta modularidad pero que llega solo hasta cierto punto y se llega a la conclusion que las funciones ofrecen una mejor forma de esconder implementaciones y que no haya exposicion de propiedades y metodos que debeiran estar escondidos.
+
+- Se presenta un ejemplo de como una clase puede ser implementada en una funcion y que se exporte el "extends"
+- Luego se presenta otra funcion que exporta solo funciones que se desee exponer y escondiendo las implementaciones.
+
+El siguiente es un excelente ejemplo de como crear una funcion que esconda ciertas cosas (por medio de closures) y exponga otras (por medio del return)
+
+```javascript
+// This is how we could define a stats module
+const stats = (function() {
+ // Utility functions private to the module
+ const sum = (x, y) => x + y;
+ const square = x => x * x;
+ // A public function that will be exported
+ function mean(data) {
+ return data.reduce(sum)/data.length;
+ }
+ // A public function that we will export
+ function stddev(data) {
+ let m = mean(data);
+ return Math.sqrt(
+ data.map(x => x - m).map(square).reduce(sum)/(data.length-1)
+ );
+ }
+ // We export the public function as properties of an object
+ return { mean, stddev };
+}());
+// And here is how we might use the module
+stats.mean([1, 3, 5, 7, 9]) // => 5
+stats.stddev([1, 3, 5, 7, 9]) // => Math.sqrt(10)
+```
+
+#### Automating Closure-Based Modularity
+
+Se busca modularizar un archivo como tal y eso se hace con algo de codigo extra y se explica de donde viene el **required()**.
+
+- Hay un muy simple ejemplo de como por ejemplo Node, junta cada modulo en una funcion que se auto ejecuta para dejar listos cada uno de los modulos y asi exponer los return necesarios para utilizar esas funciones.
+
+El ejemplo que encontraste en el libro "JavaScript: The Definitive Guide" es una simplificación del sistema de módulos de Node.js. Este ejemplo ilustra cómo podría funcionar un sistema de módulos básico usando funciones autoejecutables (IIFE) y un objeto global para almacenar módulos.
+
+### Modules in Node
+
+In Node, each file is an independent module with a private namespace.
+
+#### Node Exports
+
+Node defines a global exports object that is always defined.
+
+#### Node Imports
+
+Explica un par de comandos que estan build-in en NODE:
+
+```javascript
+// These modules are built in to Node
+const fs = require("fs"); // The built-in filesystem module
+const http = require("http"); // The built-in HTTP module
+// The Express HTTP server framework is a third-party module.
+// It is not part of Node but has been installed locally
+const express = require("express");
+
+// Esta es una forma de utilizar NODE pora importar un archivo propio
+const stats = require('./stats.js');
+const BitSet = require('./utils/bitset.js');
+```
+
+- When a module exports just a single function or class, all you have to do is require it.
+- When a module exports an object with multiple properties, you have a choice: you can import the entire object, or just import the specific properties.
+
+#### Node-Style Modules on the Web
+
+ librerias utilizan esta forma basica con require() entre otros, pero la forma moderna y es la que veo en react y next js es utilizar el ya build-in sistema de import y export.
+
+Antes de que JavaScript tuviera soporte nativo para módulos, los desarrolladores de Node.js utilizaban el sistema de módulos CommonJS, que utiliza require para importar módulos y module.exports o exports para exportarlos.
+
+### Modules in ES6
+
+[**AQUI**](/javascript/exports-imports) referencia mas detallada de como hacer imports y exports modernos con syntax ES6
+
+- **Forma moderna de exportar e importar**, lo que por defecto utiliza REACT y NEXTJS
+- Se explica la diferencia entre un modulo y un script
+
+```javascript
+// mathModule.js
+export function suma(a, b) {
+  return a + b;
+}
+
+export const pi = 3.14159;
+
+// script.js
+function suma(a, b) {
+  return a + b;
+}
+
+const pi = 3.14159;
+document.write('Resultado: ' + suma(2, 3));
+```
+
+#### ES6 Exports
+
+To export a constant, variable, function, or class from an ES6 module, simply add the keyword export before the declaration.
+
+- Ver guia completa [**AQUI**](/javascript/exports-imports)
+- It is common to write modules that export only one value (typically a function or class), and in this case, we usually use export default instead of export.
+- Default exports with export default can export any expression including anonymous function expressions and anonymous class expressions.
+
+#### ES6 Imports
+
+You import values that have been exported by other modules with the import key‐
+word.
+
+- Ver guia completa [**AQUI**](/javascript/exports-imports)
+- Explica que `import "./analytics.js";` lo que hace es importar el script o modulo que no exporta nada y que se ejecute como parte del programa.
+
+#### Imports and Exports with Renaming
+
+If two modules export two different values using the same name and you want to import both of those values, you will have to rename one or both of the values when you import it.
+
+Cuando una variable tiene el mismo nombre de dos fuentes diferentes debe de haber un re-nombramiento para que no haya confucion:
+
+```javascript
+import { render as renderImage } from "./imageutils.js";
+import { render as renderUI } from "./ui.js";
+```
+
+Tambien se tiene:
+
+```javascript
+import { default as Histogram, mean, stddev } from "./histogram-stats.js";
+```
+
+En este codigo lo que se esta diciendo es que importe el default que el otro exporta como lo que esta justo despues del "as", de ahi en adelante lo otro que entra se sabe que son exportaciones que ya traen un nombre.
+
+La siguiente es una otra forma de re-nombramiento
+
+```javascript
+export {
+ layout as calculateLayout,
+ render as renderLayout
+};
+```
+
+#### Re-Exports
+
+- Si se desea importar de otro lado y luego re-exportar se haria asi:
+
+```javascript
+export { mean } from "./stats/mean.js";
+export { stddev } from "./stats/stddev.js";
+
+// O tambien
+export * from "./stats/mean.js";
+export * from "./stats/stddev.js";
+
+// O tambien
+export { default as mean } from "./stats/mean.js";
+export { default as stddev } from "./stats/stddev.js";
+
+
+// O tambien
+// Import the mean() function from ./stats.js and make it the
+// default export of this module
+export { mean as default } from "./stats.js"
+
+
+//o Tambien
+// The average.js module simply re-exports the stats/mean.js default export
+export { default } from "./stats/mean.js"
+```
+
+#### JavaScript Modules on the Web
+
+Curiosamente modules es algo relativamente nuevo en javascript, por eso se debe tener este codigo en el HTML:
+
+```javascript
+ <script type="module">
+```
+
+- Recordar que los modulos siempre se ejecutan en "stric mode"
+- Los modulos en un browser se ejecutan como scripts con el atributo defer
+- Un dato interesante es que los script normales pueden cargarsen desde cualquier lado pero lo que son de tipo modulo solo pueden cargarse desde el mismo origen que el del HTML que los invoca.
+
+#### Dynamic Imports with import()
