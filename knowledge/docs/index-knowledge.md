@@ -8,7 +8,7 @@ sidebar_position: 0
 
 - La finalidad de este flujo de conocimiento es tener a la mano todo el conocimiento necesario para crear un e-commerce en produccion.
 
-Este conocimiento esta distribuido en:
+Lo ideal para tener una gran fuente de conocimiento a la mano y que sea productiva, se debe de tener la informacion en las siguientes formas, esta estructura esta optimizada para lenguajes de programacion, modificar para otro tipo de conocimiento:
 
 1. **Bookmarks con toda la documentacion de cada FRAMEWORK, LIBRERIA, ARTICULOS DE BLOGS, EJEMPLOS, GUIAS, GENERADORES Y CREADORES, ELEMENTOS UI LISTOS PARA UTILIZAR, UI LIBRARIES, entre otros.**
 
@@ -52,13 +52,13 @@ A continuacion se dicta como estudiar un libro y/o un curso de udemy.
 
 **Nota 2:** Para como llenar mas precisamente el DOCUSARUO referirse a la seccion **Como llenar el DOCUSAURO** de mas abajo.
 
-##### Si es un curso de udemy o libro practico (patterns o projectos completos)
+##### Si es un curso de udemy o libro practico (para patterns o projectos completos)
 
 - Se debe de crear un repositorio con un README.md que contenga todas las partes del curso que este ligado al DOCUSAURO por medio de los temas aprendidos o temas tratados (referenciar en el DOCUSAURO principal los ejemplos relevantes de cada tema), debe de haber un minimo de tres secciones **por seccion del curso** (**como funciona la app** (ya que la mayoria de los cursos son con ejemplo practicos), **temas tratados** y **tips**), esto para dar una vision resumida de cada capitulo del curso.
 
 - Componente creado utilizando el conocimiento de mas arriba, probado y en mejora continua en storybooks. (cuando es REACT)
 
-##### Como comentar los componentes en REACT
+##### Como comentar los componentes en REACT o NEXTJS
 
 - En la parte de arriba de la funcion del componente agregar el comentario "LO QUE ENTRA", "ALGORITMO"  "LO QUE RETORNA" y explicar en pasos que le entra al componente que hace el componente que modifica (context o redux functions) y que devuelve.
 - Agregar peros y tips para que si se lee el componente 8 meses despues, sea entendible que es lo que hace.
@@ -76,6 +76,8 @@ Cada vez que se realize un curso o se lea un libro, en el docusauro se va a regi
 - Dentro del **overview** debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index que dirijan a los ejemplos dados en los libros o cursos en sus propios repositorios, la estructura que se recomienda dentro del docusauro en archivos a parte ademas de overview es:
 
 **Definir terminos:** Un glosario para tener a la mano terminos importantes.
+
+**Como crear el resumen**: Si el tema ya existe se agrega la informacion pertiente, si no se agrega el tema, la informacion se debe de llenar no con explicaciones del por que de algo sino con hechos confirmados, si resulta la pregunta el por que de esta afirmacion pues se dirige a la informacion mas detallada ya sea en libros o cursos o referencias o tutoriales.
 
 **Teoria con Syntax y ejemplo practico**
 Como se ha dicho anteriormente, la idea de un DOCUSAURO es mostrar un MAPA hacia donde encontrar la informacion completa asi que solo se va a concignar la teoria en sus respectivas secciones dentro de la categorizacion dada en el DOCUSAURO. La teoria que necesite mayor aclaracion o sea mas extensa se digitara en un documento a parte pero dentro de la misma carpeta y en el overview lago asi como un index pero con direcciones para saber donde se encuentra la teoria completa.

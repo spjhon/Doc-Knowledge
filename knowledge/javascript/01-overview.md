@@ -2146,10 +2146,269 @@ Son como arrays pero que por convencion no deben de repetir su valor en ningun o
 [**AQUI**](https://www.w3schools.com/jsref/jsref_obj_set.asp), mas detalles acerca de Set
 
 - No se permiten duplicados
-- A un set le entran arrays
-- Creacion de un set
+- A un set le entran arrays o todo lo que sea iterable
+- Su unica propiedad es "size", y tiene una buena lista de metodos que se encuentran completos en w3shcools
+- Add() solo adicona un elemento a la vez
+- Delete() solo borra uno a la vez
+- La finalidad de un Set no es añadir o borrar es chequear si un elemento pertenece o no (has()) que es bien rapido para este tipo de consultas
+- Se puede utilizar el spread (...) operator para convertir un set en array
+
+```javascript
+let mySet = new Set([1, 2, 3, 4]);
+let myArray = [...mySet];
+console.log(myArray); // Output: [1, 2, 3, 4]
+
+let oneDigitPrimes = new Set([2,3,5,7]);
+let product = 1;
+oneDigitPrimes.forEach(n => { product *= n; });
+product // => 210: 2 * 3 * 5 * 7
+```
+
+- Creacion de un set:
 
 ```javascript
 let s = new Set(); // A new, empty set
 let t = new Set([1, s]); // A new set with two members
 ```
+
+Extraido de chatGPT:
+
+- **Valores únicos**: Cada valor en un `Set` debe ser único. Si intentas agregar un valor que ya existe en el `Set`, no se añadirá.
+- **No hay claves**: A diferencia de un `Map`, un `Set` no tiene pares de clave-valor, solo contiene valores.
+- **Ordenado**: Los valores en un `Set` también están ordenados por inserción, igual que en un `Map`.
+
+#### 11.1.2 The Map Class
+
+- El argumento opcional del constructor de Map() debe ser un objeto iterable que produzca arrays de dos elementos [clave, valor].
+- **Ejemplo de utilizacion**: para copiar un object y que inherit las propiedades:
+
+```javascript
+let copy = new Map(n); // A new map with the same keys and values as map n
+let o = { x: 1, y: 2}; // An object with two properties
+let p = new Map(Object.entries(o)); // Same as new map([["x", 1], ["y", 2]])
+```
+
+- Al igual que con set(), la clave y valor puede ser cualquier tipo de dataType
+- Los objetos Map son iterables, y **cada valor iterado** es un array de dos elementos donde el primer elemento es una clave y el segundo elemento es el valor asociado con esa clave.
+- La clase Map itera en el orden de inserción.
+
+Extraido de ChatGPT:
+
+¿Qué es un `Map` en JavaScript?:
+
+Un `Map` en JavaScript es una colección de elementos donde cada elemento está compuesto por una clave y un valor. A diferencia de los objetos ordinarios en JavaScript, las claves en un `Map` pueden ser de cualquier tipo, incluyendo objetos, funciones y tipos primitivos. Esto ofrece una gran flexibilidad y permite un mapeo más complejo de claves a valores.
+
+- **Características de un `Map`:**
+- **Ordenado**: Los elementos en un `Map` están ordenados por inserción. Esto significa que se puede iterar sobre los elementos en el orden en que fueron añadidos.
+- **Claves de cualquier tipo**: A diferencia de los objetos, donde las claves son cadenas de texto o símbolos, en un `Map` las claves pueden ser cualquier valor, incluso otros objetos.
+- **Tamaño**: Se puede obtener el número de elementos en un `Map` utilizando la propiedad `size`.
+
+Ejemplo de uso:
+
+```javascript
+let map = new Map();
+map.set('clave1', 'valor1');
+map.set(2, 'valor2');
+map.set({}, 'valor3');
+
+console.log(map.get('clave1')); // salida: valor1
+console.log(map.size); // salida: 3
+```
+
+---
+
+#### 11.1.3 WeakMap and WeakSet
+
+- La clase WeakMap es una variante (pero no una subclase real) de la clase Map que no evita que sus valores clave sean recolectados por el garbage collector de javascript.
+- Las claves de WeakMap deben ser objetos o matrices (arrays); los valores primitivos no están sujetos a la recolección de basura y no pueden ser utilizados como claves.
+- WeakMap solo implementa los métodos get(), set(), has() y delete(). En particular, WeakMap no es iterable y no define keys(), values(), o forEach(). Si WeakMap fuera iterable, entonces sus claves serían alcanzables y no sería débil.
+- De manera similar, WeakMap no implementa la propiedad size porque el tamaño de un WeakMap podría cambiar en cualquier momento a medida que los objetos son recolectados por el recolector de basura.
+- The intended use of WeakMap is to allow you to associate values with objects without causing **memory leaks**.
+- WeakSet no permite valores primitivos como miembros.
+- WeakSet solo implementa los métodos add(), has() y delete() y no es iterable.
+- WeakSet no tiene una propiedad size.
+
+Extraido de chatGPT:
+
+`WeakMap` y `WeakSet` son estructuras de datos en JavaScript introducidas en ECMAScript 6 (también conocido como ES2015). Su propósito principal es permitir la asociación de datos adicionales con objetos sin impedir que los objetos asociados sean recolectados por el recolector de basura cuando ya no están siendo utilizados por el programa.
+
+- **WeakMap**:
+  - Es una colección de pares clave-valor donde las claves deben ser objetos y los valores pueden ser de cualquier tipo.
+  - Las referencias a las claves en un `WeakMap` son débiles, lo que significa que no impiden que el recolector de basura libere la memoria ocupada por las claves si no hay otras referencias a ellas en el programa.
+  - Útil cuando necesitas asociar datos adicionales con objetos sin impedir que los objetos sean eliminados de la memoria cuando ya no son necesarios. Por ejemplo, puedes usar un `WeakMap` para almacenar datos privados asociados con objetos sin exponerlos globalmente.
+
+- **WeakSet**:
+  - Es una colección de objetos únicos donde las referencias a los objetos son débiles.
+  - Similar a `WeakMap`, las referencias a los objetos en un `WeakSet` no impiden que los objetos sean recolectados por el recolector de basura si no hay otras referencias a ellos en el programa.
+  - Útil cuando necesitas mantener una lista de objetos únicos pero no quieres evitar que sean recolectados por el recolector de basura cuando ya no se usan.
+
+En resumen, `WeakMap` y `WeakSet` son útiles en situaciones donde necesitas asociar datos adicionales con objetos o mantener una lista de objetos únicos, pero no quieres evitar que los objetos sean eliminados de la memoria cuando ya no son necesarios. Esto puede ser especialmente útil en escenarios donde estás trabajando con estructuras de datos temporales o efímeras.
+
+### 11.2. Typed Arrays and Binary Data
+
+[**AQUI**] mas informacion detallada sobre los typed arrays y sus metodos (w3schools)
+
+Los arrays son muy rápidos. Sin embargo, todavía son bastante diferentes de los tipos de arrays de lenguajes de nivel inferior como C y Java. Los arrays tipados, introducidos en ES6, se asemejan mucho más a los arrays de bajo nivel de esos lenguajes.
+
+- No son tecniacamente un array (osea que sale falso en Array.isArray())
+- The elements of a typed array are all numbers.
+- You must specify the length of a typed array when you create it, and that length can never change.
+- The elements of a typed array are always initialized to 0 when the array is created.
+
+#### 11.2.1 Typed Array Types
+
+Los TypedArrays en JavaScript son objetos que proporcionan una forma de acceder a datos binarios en forma de arrays de tipos específicos de datos, como enteros de 8, 16 o 32 bits, valores de punto flotante de 32 o 64 bits, y BigInts de 64 bits. Estos arrays están diseñados para ser más eficientes en términos de memoria y rendimiento que los arrays estándar de JavaScript para trabajar con datos numéricos.
+
+| Constructor          | Numeric type                                         |
+|----------------------|------------------------------------------------------|
+| Int8Array()          | signed bytes                                         |
+| Uint8Array()         | unsigned bytes                                       |
+| Uint8ClampedArray()  | unsigned bytes without rollover                     |
+| Int16Array()         | signed 16-bit short integers                         |
+| Uint16Array()        | unsigned 16-bit short integers                       |
+| Int32Array()         | signed 32-bit integers                               |
+| Uint32Array()        | unsigned 32-bit integers                             |
+| BigInt64Array()      | signed 64-bit BigInt values (ES2020)                 |
+| BigUint64Array()     | unsigned 64-bit BigInt values (ES2020)               |
+| Float32Array()       | 32-bit floating-point value                          |
+| Float64Array()       | 64-bit floating-point value: a regular JavaScript number |
+
+#### 11.2.2. Creating Typed Arrays
+
+Constructor:
+
+```javascript
+let bytes = new Uint8Array(1024); // 1024 bytes
+let matrix = new Float64Array(9); // A 3x3 matrix
+let point = new Int16Array(3); // A point in 3D space
+let rgba = new Uint8ClampedArray(4); // A 4-byte RGBA pixel value
+let sudoku = new Int8Array(81); // A 9x9 sudoku board
+```
+
+---
+
+#### 11.2.3. Using Typed Arrays
+
+La función aquí calcula el mayor número primo menor que el número que especifiques. El código es exactamente el mismo que sería con un array regular de JavaScript, pero usar Uint8Array() en lugar de Array() hace que el código se ejecute más de cuatro veces más rápido y use ocho veces menos memoria en mis pruebas.
+
+---
+
+#### 11.2.4. Typed Array Methods and Properties
+
+In addition to standard array methods, typed arrays also implement a few methods of their own:
+
+- BYTES_PER_ELEMENT: Property to count the number of bytes used to store one element.
+- fill(): Fill all elements with a value.
+- find(): Returns the first element that satisfies a condition.
+- name: Returns the name of the typed array.
+- of(): Method to create a typed array from an array.
+- some(): Reurns true if one element satisfies a condition.
+- subarray().
+
+---
+
+#### 11.2.5 DataView and Endianness
+
+---
+
+### 11.3. Pattern Matching with Regular Expressions
+
+[**AQUI**] informacion mas detallada sobre regEx.
+
+A regular expression is an object that describes a textual pattern.
+
+#### 11.3.1 Defining Regular Expressions
+
+In JavaScript, regular expressions are represented by RegExp objects. (RegExp() constructor)
+
+Estos dos son equivalentes:
+
+```javascript
+//  the regular expression /s$/ contains two characters. The first, “s”, matches itself literally. The second, “$”, is a special meta-character that matches the end of a string. Thus, this regular expression matches any string that contains the letter “s” as its last character.
+let pattern = /s$/;
+
+let pattern = new RegExp("s$");
+```
+
+- The regular expression /java/ matches any string that contains the substring “java”
+- lo que va despues del `/` se llaman fags y cambian el comportamiento de los literals dentro de `/-/`
+- `^ $ . * + ? = ! : | \ / ( ) [ ] { }` estos son los simbolos de puntuacion que se deben de tener en cuenta ya que de acuerdo al conexto pueden cambiar su significado.
+- **Character classes**
+  - `/[abc]/` matches any one of the letters a, b, or c.
+  - `/[^abc]/` matches any one character other than a, b, or c.
+  - `/[a-z]/` to match any letter or digit from the Latin alphabet
+  - Esta la tabla 11.2 en la pagina 284 la cual describe formas abreviadas de como hacer el matching en los casos mas comunes
+- **Repetition**
+  - Se encuentra la Table 11-3. Regular expression repetition characters
+- **Non-greedy repetition**
+- **Alternation, grouping, and references**
+  - Table 11-4. Regular expression alternation, grouping, and reference characters
+- **Specifying match position**
+  - Table 11-5. Regular expression anchor characters
+- **Flags**
+
+#### 11.3.2 String Methods for Pattern Matching
+
+How those regular expressions can actually be used in JavaScript code.
+
+- **search()**
+
+```javascript
+"JavaScript".search(/script/ui) // => 4
+"Python".search(/script/ui) // => -1
+```
+
+- **replace()**
+
+```javascript
+// No matter how it is capitalized, replace it with the correct capitalization
+text.replace(/javascript/gi, "JavaScript");
+```
+
+- **match()**
+
+```javascript
+"7 plus 8 equals 15".match(/\d+/g) // => ["7", "8", "15"]
+```
+
+- **matchAll()**
+
+- **split()**
+
+#### 11.3.3. The RegExp Class
+
+This section documents the RegExp() constructor, the properties of RegExp instances, and two important pattern-matching methods defined by the RegExp class.
+
+- **RegExp properties**
+- test()
+- exec()
+
+### 11.4 Dates and Times
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_date.asp) informacion mas detallada del constructor que devuelve un object llamado DATE.
+
+The Date class is JavaScript’s API for working with dates and times.
+
+```javascript
+let now = new Date(); // The current time
+```
+
+Esta es una forma de ser mas especifico:
+
+```javascript
+let century = new Date(2100, // Year 2100
+ 0, // January
+ 1, // 1st
+ 2, 3, 4, 5); // 02:03:04.005, local time
+```
+
+- El primer mes es el 0
+- El primer dia del mes es 1
+- Utiliza la zona definida en el computador o servidor donde se invoca
+- Hay funciones especificas para UTC-GMT
+
+```javascript
+let century = new Date("2100-01-01T00:00:00Z"); // An ISO format date
+```
+
+Once you have a Date object, various get and set methods allow you to query and modify the year, month, day-of-month, hour, minute, second, and millisecond fields of the Date.
