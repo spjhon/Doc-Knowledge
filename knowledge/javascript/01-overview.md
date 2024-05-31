@@ -1886,7 +1886,7 @@ Importante entender:
 
 - Cuando una clase hereda de una clase abstracta, se espera que la subclase implemente todos los métodos abstractos definidos en la clase abstracta. Esto se hace para garantizar que todas las subclases proporcionen una implementación para estos métodos, lo que ayuda a evitar errores y proporciona una estructura coherente para el código.
 
-## Modules
+## 10 Modules
 
 Anteriormente el modulaje se hacia por medio de classes, objects and closures ya que import an export son relativamente recientes, por eso el require() se utiliza y quedo adaptado a node.
 
@@ -2077,3 +2077,79 @@ Curiosamente modules es algo relativamente nuevo en javascript, por eso se debe 
 - Un dato interesante es que los script normales pueden cargarsen desde cualquier lado pero lo que son de tipo modulo solo pueden cargarse desde el mismo origen que el del HTML que los invoca.
 
 #### Dynamic Imports with import()
+
+With statically imported modules, you are guaranteed that the values you import into a module will be ready for use before any of the code in your module begins to run.
+
+Se pueden utlizar promises o async
+
+```javascript
+import("./stats.js").then(stats => {
+ let average = stats.mean(data);
+})
+
+async analyzeData(data) {
+ let stats = await import("./stats.js");
+ return {
+ average: stats.mean(data),
+ stddev: stats.stddev(data)
+ };
+}
+```
+
+- import() no es una funcion, es un operator.
+
+#### import.meta.url
+
+## 11. The JavaScript Standard Library
+
+This chapter covers other important but less fundamental APIs that can be thought of as defining the “standard library” for JavaScript: these are useful classes and functions that are built in to JavaScript and available to all JavaScript programs in both web browsers and in Node.
+
+### 11.1. Sets and Maps
+
+Objects as Maps and Sets JavaScript's Object type is a versatile data structure that can be used in a way similar to maps and sets.
+
+- **Objects as Maps and Sets**
+
+JavaScript's `Object` type is a versatile data structure that can be used in a way similar to maps and sets:
+
+1. **Using Objects as Maps**:
+   - In JavaScript, objects map strings (the property names) to arbitrary values. This is similar to how maps work in other programming languages.
+   - Example:
+
+     ```javascript
+     let map = { "key1": "value1", "key2": "value2" };
+     ```
+
+2. **Using Objects as Sets**:
+   - When the values in the object are all set to `true`, the object essentially functions as a set of strings.
+   - Example:
+  
+     ```javascript
+     let set = { "value1": true, "value2": true };
+     ```
+
+- **Limitations of Using Objects**:
+
+While using objects this way is common in JavaScript programming, there are some significant limitations:
+
+- **Restriction to Strings**: Object property names are always strings, limiting the keys that can be used.
+- **Inherited Properties**: Objects inherit properties from their prototype, such as `toString` or `hasOwnProperty`. These inherited properties can unintentionally become part of the map or set, causing unexpected behavior.
+
+These classes provide a more robust and flexible way to work with collections of data, avoiding the pitfalls of using objects as makeshift sets or maps.
+
+---
+
+#### 11.1.1. The Set Class
+
+Son como arrays pero que por convencion no deben de repetir su valor en ningun otro lado del set.
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_set.asp), mas detalles acerca de Set
+
+- No se permiten duplicados
+- A un set le entran arrays
+- Creacion de un set
+
+```javascript
+let s = new Set(); // A new, empty set
+let t = new Set([1, s]); // A new set with two members
+```
