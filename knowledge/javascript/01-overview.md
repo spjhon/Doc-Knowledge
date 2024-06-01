@@ -2423,7 +2423,7 @@ Como agregar 30 segundos a un tiempo pre-definido
 d.setTime(d.getTime() + 30000);
 ```
 
-#### 11.4.2 Date Arithmetic
+#### 11.4. 2Date Arithmetic
 
 - Se pueden usar los operadores `<, <=, >, and >=`
 - Para realizar operaciones aritméticas con fechas que involucren días, meses y años, puedes usar setDate(), setMonth() y setYear(). Aquí, por ejemplo, hay un código que agrega tres meses y dos semanas a la fecha actual:
@@ -2431,4 +2431,183 @@ d.setTime(d.getTime() + 30000);
 ```javascript
 let d = new Date();
 d.setMonth(d.getMonth() + 3, d.getDate() + 14);
+```
+
+#### 11.4.3. Formatting and Parsing Date Strings
+
+Algunos ejemplos de los diferentes formatos (string formating) que se pueden imprimir
+
+```javascript
+let d = new Date(2020, 0, 1, 17, 10, 30); // 5:10:30pm on New Year's Day 2020
+d.toString() // => "Wed Jan 01 2020 17:10:30 GMT-0800 (Pacific Standard Time)"
+d.toUTCString() // => "Thu, 02 Jan 2020 01:10:30 GMT"
+d.toLocaleDateString() // => "1/1/2020": 'en-US' locale
+d.toLocaleTimeString() // => "5:10:30 PM": 'en-US' locale
+d.toISOString() // => "2020-01-02T01:10:30.000Z"
+```
+
+### 11.5. Error Classes
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_error.asp) imformacion mas detallada del object error
+
+- La importancia del throw and catch (pueden atrapar cualquier datatype o valor en javascript incluyendo primitivos)
+- Error solo funciona si se delcara en el mismo lado que el throw
+- Propiedades que posee: message and name, y el method toString() y en los browsers la propiedad stack que recoge el trace del error
+- Tambien existen subclases para categorizar mas esactamente los errores
+- Ejemplo de como utilizar el error clase:
+
+```javascript
+class HTTPError extends Error {
+ constructor(status, statusText, url) {
+ super(`${status} ${statusText}: ${url}`);
+ this.status = status;
+ this.statusText = statusText;
+ this.url = url;
+ }
+ get name() { return "HTTPError"; }
+}
+
+let error = new HTTPError(404, "Not Found", "http://example.com/");
+error.status // => 404
+error.message // => "404 Not Found: http://example.com/"
+error.name // => "HTTPError"
+```
+
+### 11.6. JSON Serialization and Parsing
+
+La serializacion es es el proceso de convertir los datos que estan en diferenes datatypes de acuerdo a como se necesite dentro del runtime, para transmitirlos se necesitan convertir a algun formato que permita la transmicion segura y ordenada, para eso se utiliza el formato JSON (“JavaScript Object Notation”)
+
+- JSON supports: primitive numbers and strings and also the values true, false, and null, as well as arrays and objects built up from those primitive values.
+- JSON does NOT supports: JSON does not support other JavaScript types like Map, Set, RegExp, Date, or typed arrays.
+- JSON main functions: JSON.stringify() and JSON.parse()
+- Ejemplo de como pasar de javascript a json y viceversa:
+
+```javascript
+let o = {s: "", n: 0, a: [true, false, null]};
+let s = JSON.stringify(o); // s == '{"s":"","n":0,"a":[true,false,null]}'
+let copy = JSON.parse(s); // copy == {s: "", n: 0, a: [true, false, null]}
+```
+
+#### 11.6.1. JSON Customizations
+
+Ojo con los DATES, al traerlos de vuelta a javascript desde un json, hay errores que se deben de tener en cuenta y para ello se utiliza el segundo argumetno que acepta el JSON.parse().
+
+- here is a call to JSON.parse() that uses a reviver function to filter some properties and to re-create Date objects
+
+```javascript
+let data = JSON.parse(text, function(key, value) {
+ // Remove any values whose property name begins with an underscore
+ if (key[0] === "_") return undefined;
+ // If the value is a string in ISO 8601 date format convert it to a Date.
+ if (typeof value === "string" &&
+ /^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d.\d\d\dZ$/.test(value)) {
+ return new Date(value);
+ }
+ // Otherwise, return the value unchanged
+ return value;
+});
+```
+
+#### 11.7 The Internationalization API
+
+The JavaScript internationalization API consists of the three classes **Intl.NumberFormat**, **Intl.DateTimeFormat**, and **Intl.Collator** that allow us to format numbers (including monetary amounts and percentages), dates, and times in locale-appropriate ways and to compare strings in locale-appropriate ways.
+
+- One of the most important parts of internationalization is displaying text that has been translated into the user’s language.
+
+#### 11.7.1 Formatting Numbers
+
+Aqui se maneja el problema por ejemplo de como se utilizan los signos decimales en diferentes paises, utilizar **Intl.NumberFormat**
+
+- Un par de ejemplos:
+
+```javascript
+let euros = Intl.NumberFormat("es", {style: "currency", currency: "EUR"});
+euros.format(10) // => "10,00 €": ten euros, Spanish formatting
+let pounds = Intl.NumberFormat("en", {style: "currency", currency: "GBP"});
+pounds.format(1000) // => "£1,000.00": One thousand pounds, English formatting
+```
+
+- Una forma de aplicar formato a un array
+
+```javascript
+let data = [0.05, .75, 1];
+let formatData = Intl.NumberFormat(undefined, {
+ style: "percent",
+ minimumFractionDigits: 1,
+ maximumFractionDigits: 1
+}).format;
+data.map(formatData) // => ["5.0%", "75.0%", "100.0%"]: in en-US locale
+
+let arabic = Intl.NumberFormat("ar", {useGrouping: false}).format;
+arabic(1234567890) // => "١٢٣٤٥٦٧٨٩٠"
+```
+
+#### 11.7.2. Formatting Dates and Times
+
+El **Intl.DateTimeFormat** es usado para este proposito (el de convertir el Date object a string)
+
+Ejemplos de uso
+
+```javascript
+let d = new Date("2020-01-02T13:14:15Z"); // January 2nd, 2020, 13:14:15 UTC
+// With no options, we get a basic numeric date format
+Intl.DateTimeFormat("en-US").format(d) // => "1/2/2020"
+
+Intl.DateTimeFormat("fr-FR").format(d) // => "02/01/2020"
+// Spelled out weekday and month
+let opts = { weekday: "long", month: "long", year: "numeric", day: "numeric" };
+Intl.DateTimeFormat("en-US", opts).format(d) // => "Thursday, January 2, 2020"
+Intl.DateTimeFormat("es-ES", opts).format(d) // => "jueves, 2 de enero de 2020"
+// The time in New York, for a French-speaking Canadian
+opts = { hour: "numeric", minute: "2-digit", timeZone: "America/New_York" };
+Intl.DateTimeFormat("fr-CA", opts).format(d) // => "8 h 14"
+
+```
+
+#### 11.7.3. Comparing Strings
+
+Hay que tener cuidado al hacer un re-ordenamiento (sort()) alfabetico ya que en ingles hay un orden de letras que va perfecto con la nomenclatura ASCII pero en otros idiomas no, para eso se tiene un compare() que se adicona al sort() y asi poder hacer un re-ordenamiento acorde.
+
+### 11.8. The Console API
+
+[**AQUI**](https://www.w3schools.com/jsref/api_console.asp) mas informacion acerca de la API console
+
+#### 11.8.1 Formatted Output with Console
+
+Poco conocido pero se le puede dar formato a la consola, basico, pero se puede.
+
+### 11.9. URL APIs
+
+The URL class parses URLs and also allows modification (adding search parameters or altering paths, for example) of existing URLs.
+
+Como utilizarla:
+
+```javascript
+//Create a URL object with the URL() constructor
+let url = new URL("https://example.com:8000/path/name?q=term#fragment");
+url.href // => "https://example.com:8000/path/name?q=term#fragment"
+url.origin // => "https://example.com:8000"
+url.protocol // => "https:"
+url.host // => "example.com:8000"
+url.hostname // => "example.com"
+url.port // => "8000"
+url.pathname // => "/path/name"
+url.search // => "?q=term"
+url.hash // => "#fragment"
+```
+
+#### 11.9.1. Legacy URL Functions
+
+Prior to the definition of the URL API described previously, there have been multiple attempts to support URL escaping and unescaping in the core JavaScript language. The first attempt was the globally defined escape() and unescape() functions, which are now deprecated but still widely implemented. **They should not be used**.
+
+## 11.10 Timers
+
+- **setTimeout() and setInterval()**
+
+**setTimeout():** The first argument to setTimeout() is a function, and the second argument is a number that specifies how many milliseconds should elapse before the function is invoked.
+
+```javascript
+setTimeout(() => { console.log("Ready..."); }, 1000);
+setTimeout(() => { console.log("set..."); }, 2000);
+setTimeout(() => { console.log("go!"); }, 3000);
 ```
