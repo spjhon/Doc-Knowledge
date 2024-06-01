@@ -2393,6 +2393,8 @@ The Date class is JavaScript’s API for working with dates and times.
 let now = new Date(); // The current time
 ```
 
+- Si se le ingresa un simple dato numerio este se interpretara como milisegundos desde 1970
+
 Esta es una forma de ser mas especifico:
 
 ```javascript
@@ -2402,13 +2404,31 @@ let century = new Date(2100, // Year 2100
  2, 3, 4, 5); // 02:03:04.005, local time
 ```
 
-- El primer mes es el 0
-- El primer dia del mes es 1
+- El primer mes se cuenta desde el 0
+- El primer dia del mes se cuenta desde 1
 - Utiliza la zona definida en el computador o servidor donde se invoca
-- Hay funciones especificas para UTC-GMT
+- Hay funciones especificas para ingresar UTC-GMT
 
 ```javascript
 let century = new Date("2100-01-01T00:00:00Z"); // An ISO format date
 ```
 
 Once you have a Date object, various get and set methods allow you to query and modify the year, month, day-of-month, hour, minute, second, and millisecond fields of the Date.
+
+#### 11.4.1 Timestamps (marcas de tiempo)
+
+Como agregar 30 segundos a un tiempo pre-definido
+
+```javascript
+d.setTime(d.getTime() + 30000);
+```
+
+#### 11.4.2 Date Arithmetic
+
+- Se pueden usar los operadores `<, <=, >, and >=`
+- Para realizar operaciones aritméticas con fechas que involucren días, meses y años, puedes usar setDate(), setMonth() y setYear(). Aquí, por ejemplo, hay un código que agrega tres meses y dos semanas a la fecha actual:
+
+```javascript
+let d = new Date();
+d.setMonth(d.getMonth() + 3, d.getDate() + 14);
+```
