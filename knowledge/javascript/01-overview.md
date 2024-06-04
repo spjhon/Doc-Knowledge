@@ -1655,7 +1655,7 @@ class Child extends Parent {
   }
 }
 
-const childInstance = new Child('John', 10);
+const childInstance = new Child("John", 10);
 childInstance.greet(); // Output: Hello, my name is John
 childInstance.introduce(); // Output: I am 10 years old.
 ```
@@ -1667,7 +1667,7 @@ In this example, `super(name)` is used in the `Child` class constructor to call 
 ```javascript
 class Parent {
   greet() {
-    console.log('Hello from the parent class!');
+    console.log("Hello from the parent class!");
   }
 }
 
@@ -1675,7 +1675,7 @@ class Child extends Parent {
   greet() {
     // Call the parent class method using `super`
     super.greet();
-    console.log('Hello from the child class!');
+    console.log("Hello from the child class!");
   }
 }
 
@@ -1782,11 +1782,11 @@ fields:
 
 ```javascript
 class Buffer {
- constructor() {
- this.size = 0;
- this.capacity = 4096;
- this.buffer = new Uint8Array(this.capacity);
- }
+  constructor() {
+    this.size = 0;
+    this.capacity = 4096;
+    this.buffer = new Uint8Array(this.capacity);
+  }
 }
 ```
 
@@ -1794,9 +1794,9 @@ With the new instance field syntax that is likely to be standardized, you could 
 
 ```javascript
 class Buffer {
- size = 0;
- capacity = 4096;
- buffer = new Uint8Array(this.capacity);
+  size = 0;
+  capacity = 4096;
+  buffer = new Uint8Array(this.capacity);
 }
 ```
 
@@ -1806,8 +1806,10 @@ If, for the preceding hypothetical Buffer class, you wanted to ensure that users
 
 ```javascript
 class Buffer {
- #size = 0; //private field
- get size() { return this.#size; }
+  #size = 0; //private field
+  get size() {
+    return this.#size;
+  }
 }
 ```
 
@@ -1828,7 +1830,7 @@ Se utiliza una forma de explotacion del prototype que es dinamico (osea que se p
 In object-oriented programming, a class B can extend or subclass another class A.
 
 - Next is a subsection about avoiding subclasses and relying on object composition instead of
-inheritance.
+  inheritance.
 
 #### Subclasses and Prototypes
 
@@ -1851,8 +1853,8 @@ El ejemplo 9.7 se puede resumir de la siguiente forma:
 entonces en:
 
 ```javascript
-constructor() { 
-    this.map = new Map(); 
+constructor() {
+    this.map = new Map();
 }
 ```
 
@@ -1861,7 +1863,7 @@ lo que se hace es pasar una referencia del build-in Map(), de forma que se deleg
 Exactly! In the line:
 
 ```javascript
-this.map = new Map(); 
+this.map = new Map();
 ```
 
 What happens is that you create a new instance of the built-in `Map` class and assign it to the `map` property of the `Histogram` instance. By doing this, you establish a reference to the `Map` object, allowing the `Histogram` class to delegate operations to methods of this `Map` object.
@@ -1903,27 +1905,31 @@ El siguiente es un excelente ejemplo de como crear una funcion que esconda ciert
 
 ```javascript
 // This is how we could define a stats module
-const stats = (function() {
- // Utility functions private to the module
- const sum = (x, y) => x + y;
- const square = x => x * x;
- // A public function that will be exported
- function mean(data) {
- return data.reduce(sum)/data.length;
- }
- // A public function that we will export
- function stddev(data) {
- let m = mean(data);
- return Math.sqrt(
- data.map(x => x - m).map(square).reduce(sum)/(data.length-1)
- );
- }
- // We export the public function as properties of an object
- return { mean, stddev };
-}());
+const stats = (function () {
+  // Utility functions private to the module
+  const sum = (x, y) => x + y;
+  const square = (x) => x * x;
+  // A public function that will be exported
+  function mean(data) {
+    return data.reduce(sum) / data.length;
+  }
+  // A public function that we will export
+  function stddev(data) {
+    let m = mean(data);
+    return Math.sqrt(
+      data
+        .map((x) => x - m)
+        .map(square)
+        .reduce(sum) /
+        (data.length - 1)
+    );
+  }
+  // We export the public function as properties of an object
+  return { mean, stddev };
+})();
 // And here is how we might use the module
-stats.mean([1, 3, 5, 7, 9]) // => 5
-stats.stddev([1, 3, 5, 7, 9]) // => Math.sqrt(10)
+stats.mean([1, 3, 5, 7, 9]); // => 5
+stats.stddev([1, 3, 5, 7, 9]); // => Math.sqrt(10)
 ```
 
 #### Automating Closure-Based Modularity
@@ -1955,8 +1961,8 @@ const http = require("http"); // The built-in HTTP module
 const express = require("express");
 
 // Esta es una forma de utilizar NODE pora importar un archivo propio
-const stats = require('./stats.js');
-const BitSet = require('./utils/bitset.js');
+const stats = require("./stats.js");
+const BitSet = require("./utils/bitset.js");
 ```
 
 - When a module exports just a single function or class, all you have to do is require it.
@@ -1964,7 +1970,7 @@ const BitSet = require('./utils/bitset.js');
 
 #### Node-Style Modules on the Web
 
- librerias utilizan esta forma basica con require() entre otros, pero la forma moderna y es la que veo en react y next js es utilizar el ya build-in sistema de import y export.
+librerias utilizan esta forma basica con require() entre otros, pero la forma moderna y es la que veo en react y next js es utilizar el ya build-in sistema de import y export.
 
 Antes de que JavaScript tuviera soporte nativo para módulos, los desarrolladores de Node.js utilizaban el sistema de módulos CommonJS, que utiliza require para importar módulos y module.exports o exports para exportarlos.
 
@@ -1989,7 +1995,7 @@ function suma(a, b) {
 }
 
 const pi = 3.14159;
-document.write('Resultado: ' + suma(2, 3));
+document.write("Resultado: " + suma(2, 3));
 ```
 
 #### ES6 Exports
@@ -2030,10 +2036,7 @@ En este codigo lo que se esta diciendo es que importe el default que el otro exp
 La siguiente es una otra forma de re-nombramiento
 
 ```javascript
-export {
- layout as calculateLayout,
- render as renderLayout
-};
+export { layout as calculateLayout, render as renderLayout };
 ```
 
 #### Re-Exports
@@ -2113,19 +2116,21 @@ Objects as Maps and Sets JavaScript's Object type is a versatile data structure 
 JavaScript's `Object` type is a versatile data structure that can be used in a way similar to maps and sets:
 
 1. **Using Objects as Maps**:
+
    - In JavaScript, objects map strings (the property names) to arbitrary values. This is similar to how maps work in other programming languages.
    - Example:
 
      ```javascript
-     let map = { "key1": "value1", "key2": "value2" };
+     let map = { key1: "value1", key2: "value2" };
      ```
 
 2. **Using Objects as Sets**:
+
    - When the values in the object are all set to `true`, the object essentially functions as a set of strings.
    - Example:
-  
+
      ```javascript
-     let set = { "value1": true, "value2": true };
+     let set = { value1: true, value2: true };
      ```
 
 - **Limitations of Using Objects**:
@@ -2158,10 +2163,12 @@ let mySet = new Set([1, 2, 3, 4]);
 let myArray = [...mySet];
 console.log(myArray); // Output: [1, 2, 3, 4]
 
-let oneDigitPrimes = new Set([2,3,5,7]);
+let oneDigitPrimes = new Set([2, 3, 5, 7]);
 let product = 1;
-oneDigitPrimes.forEach(n => { product *= n; });
-product // => 210: 2 * 3 * 5 * 7
+oneDigitPrimes.forEach((n) => {
+  product *= n;
+});
+product; // => 210: 2 * 3 * 5 * 7
 ```
 
 - Creacion de un set:
@@ -2184,7 +2191,7 @@ Extraido de chatGPT:
 
 ```javascript
 let copy = new Map(n); // A new map with the same keys and values as map n
-let o = { x: 1, y: 2}; // An object with two properties
+let o = { x: 1, y: 2 }; // An object with two properties
 let p = new Map(Object.entries(o)); // Same as new map([["x", 1], ["y", 2]])
 ```
 
@@ -2207,11 +2214,11 @@ Ejemplo de uso:
 
 ```javascript
 let map = new Map();
-map.set('clave1', 'valor1');
-map.set(2, 'valor2');
-map.set({}, 'valor3');
+map.set("clave1", "valor1");
+map.set(2, "valor2");
+map.set({}, "valor3");
 
-console.log(map.get('clave1')); // salida: valor1
+console.log(map.get("clave1")); // salida: valor1
 console.log(map.size); // salida: 3
 ```
 
@@ -2233,6 +2240,7 @@ Extraido de chatGPT:
 `WeakMap` y `WeakSet` son estructuras de datos en JavaScript introducidas en ECMAScript 6 (también conocido como ES2015). Su propósito principal es permitir la asociación de datos adicionales con objetos sin impedir que los objetos asociados sean recolectados por el recolector de basura cuando ya no están siendo utilizados por el programa.
 
 - **WeakMap**:
+
   - Es una colección de pares clave-valor donde las claves deben ser objetos y los valores pueden ser de cualquier tipo.
   - Las referencias a las claves en un `WeakMap` son débiles, lo que significa que no impiden que el recolector de basura libere la memoria ocupada por las claves si no hay otras referencias a ellas en el programa.
   - Útil cuando necesitas asociar datos adicionales con objetos sin impedir que los objetos sean eliminados de la memoria cuando ya no son necesarios. Por ejemplo, puedes usar un `WeakMap` para almacenar datos privados asociados con objetos sin exponerlos globalmente.
@@ -2259,19 +2267,19 @@ Los arrays son muy rápidos. Sin embargo, todavía son bastante diferentes de lo
 
 Los TypedArrays en JavaScript son objetos que proporcionan una forma de acceder a datos binarios en forma de arrays de tipos específicos de datos, como enteros de 8, 16 o 32 bits, valores de punto flotante de 32 o 64 bits, y BigInts de 64 bits. Estos arrays están diseñados para ser más eficientes en términos de memoria y rendimiento que los arrays estándar de JavaScript para trabajar con datos numéricos.
 
-| Constructor          | Numeric type                                         |
-|----------------------|------------------------------------------------------|
-| Int8Array()          | signed bytes                                         |
-| Uint8Array()         | unsigned bytes                                       |
-| Uint8ClampedArray()  | unsigned bytes without rollover                     |
-| Int16Array()         | signed 16-bit short integers                         |
-| Uint16Array()        | unsigned 16-bit short integers                       |
-| Int32Array()         | signed 32-bit integers                               |
-| Uint32Array()        | unsigned 32-bit integers                             |
-| BigInt64Array()      | signed 64-bit BigInt values (ES2020)                 |
-| BigUint64Array()     | unsigned 64-bit BigInt values (ES2020)               |
-| Float32Array()       | 32-bit floating-point value                          |
-| Float64Array()       | 64-bit floating-point value: a regular JavaScript number |
+| Constructor         | Numeric type                                             |
+| ------------------- | -------------------------------------------------------- |
+| Int8Array()         | signed bytes                                             |
+| Uint8Array()        | unsigned bytes                                           |
+| Uint8ClampedArray() | unsigned bytes without rollover                          |
+| Int16Array()        | signed 16-bit short integers                             |
+| Uint16Array()       | unsigned 16-bit short integers                           |
+| Int32Array()        | signed 32-bit integers                                   |
+| Uint32Array()       | unsigned 32-bit integers                                 |
+| BigInt64Array()     | signed 64-bit BigInt values (ES2020)                     |
+| BigUint64Array()    | unsigned 64-bit BigInt values (ES2020)                   |
+| Float32Array()      | 32-bit floating-point value                              |
+| Float64Array()      | 64-bit floating-point value: a regular JavaScript number |
 
 #### 11.2.2. Creating Typed Arrays
 
@@ -2354,8 +2362,8 @@ How those regular expressions can actually be used in JavaScript code.
 - **search()**
 
 ```javascript
-"JavaScript".search(/script/ui) // => 4
-"Python".search(/script/ui) // => -1
+"JavaScript".search(/script/iu); // => 4
+"Python".search(/script/iu); // => -1
 ```
 
 - **replace()**
@@ -2368,7 +2376,7 @@ text.replace(/javascript/gi, "JavaScript");
 - **match()**
 
 ```javascript
-"7 plus 8 equals 15".match(/\d+/g) // => ["7", "8", "15"]
+"7 plus 8 equals 15".match(/\d+/g); // => ["7", "8", "15"]
 ```
 
 - **matchAll()**
@@ -2398,10 +2406,15 @@ let now = new Date(); // The current time
 Esta es una forma de ser mas especifico:
 
 ```javascript
-let century = new Date(2100, // Year 2100
- 0, // January
- 1, // 1st
- 2, 3, 4, 5); // 02:03:04.005, local time
+let century = new Date(
+  2100, // Year 2100
+  0, // January
+  1, // 1st
+  2,
+  3,
+  4,
+  5
+); // 02:03:04.005, local time
 ```
 
 - El primer mes se cuenta desde el 0
@@ -2423,7 +2436,7 @@ Como agregar 30 segundos a un tiempo pre-definido
 d.setTime(d.getTime() + 30000);
 ```
 
-#### 11.4. 2Date Arithmetic
+#### 11.4.2 Date Arithmetic
 
 - Se pueden usar los operadores `<, <=, >, and >=`
 - Para realizar operaciones aritméticas con fechas que involucren días, meses y años, puedes usar setDate(), setMonth() y setYear(). Aquí, por ejemplo, hay un código que agrega tres meses y dos semanas a la fecha actual:
@@ -2439,11 +2452,11 @@ Algunos ejemplos de los diferentes formatos (string formating) que se pueden imp
 
 ```javascript
 let d = new Date(2020, 0, 1, 17, 10, 30); // 5:10:30pm on New Year's Day 2020
-d.toString() // => "Wed Jan 01 2020 17:10:30 GMT-0800 (Pacific Standard Time)"
-d.toUTCString() // => "Thu, 02 Jan 2020 01:10:30 GMT"
-d.toLocaleDateString() // => "1/1/2020": 'en-US' locale
-d.toLocaleTimeString() // => "5:10:30 PM": 'en-US' locale
-d.toISOString() // => "2020-01-02T01:10:30.000Z"
+d.toString(); // => "Wed Jan 01 2020 17:10:30 GMT-0800 (Pacific Standard Time)"
+d.toUTCString(); // => "Thu, 02 Jan 2020 01:10:30 GMT"
+d.toLocaleDateString(); // => "1/1/2020": 'en-US' locale
+d.toLocaleTimeString(); // => "5:10:30 PM": 'en-US' locale
+d.toISOString(); // => "2020-01-02T01:10:30.000Z"
 ```
 
 ### 11.5. Error Classes
@@ -2458,19 +2471,21 @@ d.toISOString() // => "2020-01-02T01:10:30.000Z"
 
 ```javascript
 class HTTPError extends Error {
- constructor(status, statusText, url) {
- super(`${status} ${statusText}: ${url}`);
- this.status = status;
- this.statusText = statusText;
- this.url = url;
- }
- get name() { return "HTTPError"; }
+  constructor(status, statusText, url) {
+    super(`${status} ${statusText}: ${url}`);
+    this.status = status;
+    this.statusText = statusText;
+    this.url = url;
+  }
+  get name() {
+    return "HTTPError";
+  }
 }
 
 let error = new HTTPError(404, "Not Found", "http://example.com/");
-error.status // => 404
-error.message // => "404 Not Found: http://example.com/"
-error.name // => "HTTPError"
+error.status; // => 404
+error.message; // => "404 Not Found: http://example.com/"
+error.name; // => "HTTPError"
 ```
 
 ### 11.6. JSON Serialization and Parsing
@@ -2483,7 +2498,7 @@ La serializacion es es el proceso de convertir los datos que estan en diferenes 
 - Ejemplo de como pasar de javascript a json y viceversa:
 
 ```javascript
-let o = {s: "", n: 0, a: [true, false, null]};
+let o = { s: "", n: 0, a: [true, false, null] };
 let s = JSON.stringify(o); // s == '{"s":"","n":0,"a":[true,false,null]}'
 let copy = JSON.parse(s); // copy == {s: "", n: 0, a: [true, false, null]}
 ```
@@ -2495,16 +2510,18 @@ Ojo con los DATES, al traerlos de vuelta a javascript desde un json, hay errores
 - here is a call to JSON.parse() that uses a reviver function to filter some properties and to re-create Date objects
 
 ```javascript
-let data = JSON.parse(text, function(key, value) {
- // Remove any values whose property name begins with an underscore
- if (key[0] === "_") return undefined;
- // If the value is a string in ISO 8601 date format convert it to a Date.
- if (typeof value === "string" &&
- /^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d.\d\d\dZ$/.test(value)) {
- return new Date(value);
- }
- // Otherwise, return the value unchanged
- return value;
+let data = JSON.parse(text, function (key, value) {
+  // Remove any values whose property name begins with an underscore
+  if (key[0] === "_") return undefined;
+  // If the value is a string in ISO 8601 date format convert it to a Date.
+  if (
+    typeof value === "string" &&
+    /^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d.\d\d\dZ$/.test(value)
+  ) {
+    return new Date(value);
+  }
+  // Otherwise, return the value unchanged
+  return value;
 });
 ```
 
@@ -2521,25 +2538,25 @@ Aqui se maneja el problema por ejemplo de como se utilizan los signos decimales 
 - Un par de ejemplos:
 
 ```javascript
-let euros = Intl.NumberFormat("es", {style: "currency", currency: "EUR"});
-euros.format(10) // => "10,00 €": ten euros, Spanish formatting
-let pounds = Intl.NumberFormat("en", {style: "currency", currency: "GBP"});
-pounds.format(1000) // => "£1,000.00": One thousand pounds, English formatting
+let euros = Intl.NumberFormat("es", { style: "currency", currency: "EUR" });
+euros.format(10); // => "10,00 €": ten euros, Spanish formatting
+let pounds = Intl.NumberFormat("en", { style: "currency", currency: "GBP" });
+pounds.format(1000); // => "£1,000.00": One thousand pounds, English formatting
 ```
 
 - Una forma de aplicar formato a un array
 
 ```javascript
-let data = [0.05, .75, 1];
+let data = [0.05, 0.75, 1];
 let formatData = Intl.NumberFormat(undefined, {
- style: "percent",
- minimumFractionDigits: 1,
- maximumFractionDigits: 1
+  style: "percent",
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
 }).format;
-data.map(formatData) // => ["5.0%", "75.0%", "100.0%"]: in en-US locale
+data.map(formatData); // => ["5.0%", "75.0%", "100.0%"]: in en-US locale
 
-let arabic = Intl.NumberFormat("ar", {useGrouping: false}).format;
-arabic(1234567890) // => "١٢٣٤٥٦٧٨٩٠"
+let arabic = Intl.NumberFormat("ar", { useGrouping: false }).format;
+arabic(1234567890); // => "١٢٣٤٥٦٧٨٩٠"
 ```
 
 #### 11.7.2. Formatting Dates and Times
@@ -2551,17 +2568,16 @@ Ejemplos de uso
 ```javascript
 let d = new Date("2020-01-02T13:14:15Z"); // January 2nd, 2020, 13:14:15 UTC
 // With no options, we get a basic numeric date format
-Intl.DateTimeFormat("en-US").format(d) // => "1/2/2020"
+Intl.DateTimeFormat("en-US").format(d); // => "1/2/2020"
 
-Intl.DateTimeFormat("fr-FR").format(d) // => "02/01/2020"
+Intl.DateTimeFormat("fr-FR").format(d); // => "02/01/2020"
 // Spelled out weekday and month
 let opts = { weekday: "long", month: "long", year: "numeric", day: "numeric" };
-Intl.DateTimeFormat("en-US", opts).format(d) // => "Thursday, January 2, 2020"
-Intl.DateTimeFormat("es-ES", opts).format(d) // => "jueves, 2 de enero de 2020"
+Intl.DateTimeFormat("en-US", opts).format(d); // => "Thursday, January 2, 2020"
+Intl.DateTimeFormat("es-ES", opts).format(d); // => "jueves, 2 de enero de 2020"
 // The time in New York, for a French-speaking Canadian
 opts = { hour: "numeric", minute: "2-digit", timeZone: "America/New_York" };
-Intl.DateTimeFormat("fr-CA", opts).format(d) // => "8 h 14"
-
+Intl.DateTimeFormat("fr-CA", opts).format(d); // => "8 h 14"
 ```
 
 #### 11.7.3. Comparing Strings
@@ -2585,15 +2601,15 @@ Como utilizarla:
 ```javascript
 //Create a URL object with the URL() constructor
 let url = new URL("https://example.com:8000/path/name?q=term#fragment");
-url.href // => "https://example.com:8000/path/name?q=term#fragment"
-url.origin // => "https://example.com:8000"
-url.protocol // => "https:"
-url.host // => "example.com:8000"
-url.hostname // => "example.com"
-url.port // => "8000"
-url.pathname // => "/path/name"
-url.search // => "?q=term"
-url.hash // => "#fragment"
+url.href; // => "https://example.com:8000/path/name?q=term#fragment"
+url.origin; // => "https://example.com:8000"
+url.protocol; // => "https:"
+url.host; // => "example.com:8000"
+url.hostname; // => "example.com"
+url.port; // => "8000"
+url.pathname; // => "/path/name"
+url.search; // => "?q=term"
+url.hash; // => "#fragment"
 ```
 
 #### 11.9.1. Legacy URL Functions
@@ -2607,7 +2623,245 @@ Prior to the definition of the URL API described previously, there have been mul
 **setTimeout():** The first argument to setTimeout() is a function, and the second argument is a number that specifies how many milliseconds should elapse before the function is invoked.
 
 ```javascript
-setTimeout(() => { console.log("Ready..."); }, 1000);
-setTimeout(() => { console.log("set..."); }, 2000);
-setTimeout(() => { console.log("go!"); }, 3000);
+setTimeout(() => {
+  console.log("Ready...");
+}, 1000);
+setTimeout(() => {
+  console.log("set...");
+}, 2000);
+setTimeout(() => {
+  console.log("go!");
+}, 3000);
 ```
+
+- Both setTimeout() and setInterval() return a value. The returned value is typically a number in web browsers and is an object in Node.
+- Here is an example that demonstrates the use of setTimeout(), setInterval(), and clearInterval() to display a simple digital clock with the Console API
+
+```javascript
+// Once a second: clear the console and print the current time
+let clock = setInterval(() => {
+  console.clear();
+  console.log(new Date().toLocaleTimeString());
+}, 1000);
+// After 10 seconds: stop the repeating code above.
+setTimeout(() => {
+  clearInterval(clock);
+}, 10000);
+```
+
+## 12 Iterators and Generators
+
+[**AQUI**](https://www.w3schools.com/js/js_iterables.asp) mas informacion (w3chools) sobre todo lo que sea iterable
+
+En JavaScript, un iterable es un objeto que puede recorrerse con una estructura de control que espera una colección de valores, como `for...of` (looped over). Para que un objeto sea iterable, debe implementar el protocolo de iterables y tener un método `Symbol.iterator` que devuelva un objeto iterador. Este iterador debe tener un método `next` que retorne un objeto con dos propiedades: `value` y `done`. La mayoria de los datatype tienen este metodo iterador, sin embargo hay lugares en donde no como un simple object.
+
+### Tipos de iterables en JavaScript
+
+- **Arrays**
+- **Strings**
+- **Maps**
+- **Sets**
+- **Arguments**
+- **NodeLists**
+- **Typed Arrays (Uint8Array, Int32Array, etc.)**
+- **Generators**
+
+#### Ejemplos
+
+- **Array**:
+
+  ```javascript
+  const array = [1, 2, 3];
+  for (const value of array) {
+    console.log(value);
+  }
+  ```
+
+- **String**:
+
+  ```javascript
+  const string = "hello";
+  for (const char of string) {
+    console.log(char);
+  }
+  ```
+
+- **Map**:
+
+  ```javascript
+  const map = new Map([
+    ["a", 1],
+    ["b", 2],
+  ]);
+  for (const [key, value] of map) {
+    console.log(key, value);
+  }
+  ```
+
+- **Set**:
+
+  ```javascript
+  const set = new Set([1, 2, 3]);
+  for (const value of set) {
+    console.log(value);
+  }
+  ```
+
+- **Arguments**:
+
+  ```javascript
+  function example() {
+    for (const arg of arguments) {
+      console.log(arg);
+    }
+  }
+  example(1, 2, 3);
+  ```
+
+- **NodeList**:
+
+  ```javascript
+  const nodeList = document.querySelectorAll("div");
+  for (const node of nodeList) {
+    console.log(node);
+  }
+  ```
+
+- **Typed Array**:
+
+  ```javascript
+  const typedArray = new Uint8Array([1, 2, 3]);
+  for (const value of typedArray) {
+    console.log(value);
+  }
+  ```
+
+- **Generator**
+
+  ```javascript
+  function* generator() {
+    yield 1;
+    yield 2;
+    yield 3;
+  }
+  const gen = generator();
+  for (const value of gen) {
+    console.log(value);
+  }
+  ```
+
+- Iterators can also be used with the ... operator to expand or “spread” an iterable object into an array initializer or function invocation
+
+```javascript
+let chars = [..."abcd"]; // chars == ["a", "b", "c", "d"]
+let data = [1, 2, 3, 4, 5];
+Math.max(...data) // => 5
+```
+
+- Iterators can be used with destructuring assignment
+
+### Toold to iterate through iterables
+
+In JavaScript, there are several methods and constructs available for iterating through iterables. Here's a comprehensive list:
+
+1. **`for...of` Loop**: This loop allows you to iterate over iterable objects (like arrays, strings, maps, sets, etc.) using a simple syntax. It automatically handles iteration over each item in the iterable.
+
+    ```javascript
+    const array = [1, 2, 3];
+    for (const value of array) {
+      console.log(value);
+    }
+    ```
+
+2. **`Array.prototype.forEach()` Method**: This method executes a provided function once for each array element. It's specifically designed for arrays but can also be used with other iterables if they implement a similar iterator protocol.
+
+    ```javascript
+    const array = [1, 2, 3];
+    array.forEach(function(value) {
+      console.log(value);
+    });
+    ```
+
+3. **`Array.prototype.map()` Method**: Similar to `forEach`, this method creates a new array populated with the results of calling a provided function on every element in the calling array. It's useful for transforming arrays.
+
+    ```javascript
+    const array = [1, 2, 3];
+    const doubled = array.map(function(value) {
+      return value * 2;
+    });
+    console.log(doubled); // Output: [2, 4, 6]
+    ```
+
+4. **`Array.prototype.filter()` Method**: This method creates a new array with all elements that pass the test implemented by the provided function. It's useful for filtering arrays based on certain conditions.
+
+    ```javascript
+    const array = [1, 2, 3, 4, 5];
+    const evenNumbers = array.filter(function(value) {
+      return value % 2 === 0;
+    });
+    console.log(evenNumbers); // Output: [2, 4]
+    ```
+
+5. **`Array.prototype.reduce()` Method**: This method applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single output value. It's powerful for aggregating values.
+
+    ```javascript
+    const array = [1, 2, 3, 4, 5];
+    const sum = array.reduce(function(accumulator, currentValue) {
+      return accumulator + currentValue;
+    }, 0);
+    console.log(sum); // Output: 15
+    ```
+
+6. **Spread Operator (`...`) with Loops**: The spread operator can be used within loops like `for...of` to iterate over iterable objects and access individual elements.
+
+    ```javascript
+    const array = [1, 2, 3];
+    for (const value of [...array]) {
+      console.log(value);
+    }
+    ```
+
+7. **Custom Iterators**: JavaScript allows you to create custom iterators by implementing the iterator interface (`Symbol.iterator`). This gives you full control over how an object should be iterated over.
+
+    ```javascript
+    class CustomIterable {
+      constructor() {
+        this.values = ['a', 'b', 'c'];
+      }
+
+      [Symbol.iterator]() {
+        let index = 0;
+        return {
+          next: () => ({ value: this.values[index++], done: index > this.values.length })
+        };
+      }
+    }
+
+    const iterable = new CustomIterable();
+    for (const value of iterable) {
+      console.log(value);
+    }
+    ```
+
+These tools provide flexibility and power in handling collections of data in JavaScript, allowing for efficient and readable code when working with iterables.
+
+### 12.1 How Iterators Work
+
+- The for/of loop and spread operator work seamlessly with iterable objects
+
+Iteradores se dividen en tres aspectos:
+
+- **iterable objects:** these are types like Array, Set, and Map that can be iterated.
+- **the iterator object itself** which performs the iteration
+- **iteration result** object that holds the result of each step of the iteration
+
+Ah de resaltarse que un object es iterable si tiene un metodo (next()) que permita que se itere dentro del object.
+
+### 12.2 Implementing Iterable Objects
+
+- En la pagina 224 del libro hay un generator en una clase para crear un object con "new" y que este sea iterable por medio de los loops.
+- Se presenta el `Example 12-1. An iterable numeric Range class` que lo que hace es demostrar como agregar un iterator object a una clase que crea y teste rangos.
+- it can be quite useful to define functions that return iterable values.
+- Se presentan dos ejempos mas de alternativas a los metodos de filter y map.
+
+#### 12.2.1 “Closing” an Iterator: The Return Method

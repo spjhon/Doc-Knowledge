@@ -33,3 +33,5 @@ null // Absence of an object
 Unlike traditional constructors (using the new keyword), factory functions provide a more flexible and readable way to create objects, especially when dealing with object composition and avoiding the complexities of inheritance.
 
 **Garbage collection** is the process by which the JavaScript interpreter reclaims the memory of objects that are no longer “reachable” and cannot be used by the program.
+
+**Iterable** En JavaScript, un iterable es un objeto que puede recorrerse con una estructura de control que espera una colección de valores
