@@ -1751,14 +1751,14 @@ Comparing Static and Instance Methods
 
 - **Explanation**
 
-1. **Static Methods**
+a. **Static Methods**
 
 - **Definition**: Static methods are defined on the class itself and not on instances of the class.
 - **Usage**: They are called directly on the class.
 - **Access**: They do not have access to instance properties or methods.
 - **Purpose**: Useful for utility functions that do not require any data from class instances.
 
-2. **Instance Methods**
+b. **Instance Methods**
 
 - **Definition**: Instance methods are defined on the prototype of the class and are called on instances of the class.
 - **Usage**: They are called on an instance of the class.
