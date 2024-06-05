@@ -2865,3 +2865,92 @@ Ah de resaltarse que un object es iterable si tiene un metodo (next()) que permi
 - Se presentan dos ejempos mas de alternativas a los metodos de filter y map.
 
 #### 12.2.1 “Closing” an Iterator: The Return Method
+
+- iterator objects may implement a return() method to go along with the next() method.
+- The for/of loop and the spread operator are really useful features of JavaScript, so when you are creating APIs, it is a good idea to use them when possible.
+
+### 12.3 Generators
+
+Mientras que una funcion normal solamente regresa un valor, la idea de los generators es que una funcion retorne mas de un valor bajo demanda.
+
+[**AQUI**](https://javascript.info/generators) informacion mas detallada sobre generators (javascript.info)
+
+A generator is a kind of iterator defined with powerful new ES6 syntax.  it’s particularly useful when the values to be iterated are not the elements of a data structure, but the result of a computation.
+
+Se define una funcio iteradora con el operador especial "*"
+
+**Explicacion de como funciona:** Este iterator object es un iterador. Llamando a su método next() hace que el cuerpo de la función generadora se ejecute desde el principio (o desde donde sea su posición actual) hasta que alcance una declaración de yield. yield es nuevo en ES6 y es algo así como una declaración de return. El valor de la declaración de yield se convierte en el valor devuelto por la llamada next() en el iterador.
+
+Los generadores en JavaScript devuelven un objeto iterador que implementa el protocolo del iterador. Esto significa que puedes utilizar métodos como next(), pero no puedes llamar a otros métodos directamente en el objeto generado. Los métodos disponibles en un objeto iterador son:
+
+- next(): Devuelve el siguiente valor en la secuencia generada por el generador.
+- return(): Devuelve un valor dado y finaliza la iteración.
+- throw(): Lanza un error en el generador.
+
+El objeto iterador generado por un generador no tiene métodos adicionales definidos por defecto.
+
+```javascript
+// A generator function that yields the set of one digit (base-10) primes.
+function* oneDigitPrimes() { // Invoking this function does not run the code
+    yield 2; // but just returns a generator object. Calling
+    yield 3; // the next() method of that generator runs
+    yield 5; // the code until a yield statement provides
+    yield 7; // the return value for the next() method.
+}
+// When we invoke the generator function, we get a generator (returns an OBJECT ITERATOR)
+let primes = oneDigitPrimes();
+// A generator is an iterator object that iterates the yielded values
+primes.next().value // => 2
+primes.next().value // => 3
+primes.next().value // => 5
+primes.next().value // => 7
+primes.next().done // => true
+// Generators have a Symbol.iterator method to make them iterable
+primes[Symbol.iterator]() // => primes
+// We can use generators like other iterable types
+[...oneDigitPrimes()] // => [2,3,5,7]
+let sum = 0;
+for(let prime of oneDigitPrimes()) sum += prime;
+sum // => 17
+```
+
+- Los generators tambien se pueden colocar dentro de expresiones (dentro de variables)
+
+La siguiente es una forma de esparcir todos los yield en un array
+
+```javascript
+const seq = function*(from,to) {
+ for(let i = from; i <= to; i++) yield i;
+};
+[...seq(3,5)] // => [3, 4, 5]
+```
+
+- Note that there is no way to write a generator function using arrow function syntax.
+- En el ejemplo Example 9-3 in Chapter 9 hay una forma de añadirle un yield a la funcion iteradora.
+
+#### 12.3.1 Generator Examples
+
+```javascript
+Secuencia infinita de fibonachi
+
+function* fibonacciSequence() {
+ let x = 0, y = 1;
+ for(;;) {
+ yield y;
+ [x, y] = [y, x+y]; // Note: destructuring assignment
+ }
+}
+```
+
+- Otro ejemplo
+
+```javascript
+// Yield the first n elements of the specified iterable object
+function* take(n, iterable) {
+ let it = iterable[Symbol.iterator](); // Get iterator for iterable object
+ while(n-- > 0) { // Loop n times:
+ let next = it.next(); // Get the next item from the iterator.
+ if (next.done) return; // If there are no more values, return early
+ else yield next.value; // otherwise, yield the value
+ }
+```
