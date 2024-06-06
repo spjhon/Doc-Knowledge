@@ -10,6 +10,8 @@ Sin estructura principal, la iformacion sera extraida y organizada en lo que se 
 
 Next.js is a React framework for building full-stack web applications.
 
+Algo a tener en cuenta de next js y de react es que se escribe el codigo de forma declarativa (functional programing entra aca) en lugar de imperativa.
+
 El fuerte de next js es dar las heramientas para construir:
 
 - Route setup & handling
