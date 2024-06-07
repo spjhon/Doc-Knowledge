@@ -35,3 +35,5 @@ Unlike traditional constructors (using the new keyword), factory functions provi
 **Garbage collection** is the process by which the JavaScript interpreter reclaims the memory of objects that are no longer “reachable” and cannot be used by the program.
 
 **Iterable** En JavaScript, un iterable es un objeto que puede recorrerse con una estructura de control que espera una colección de valores
+
+**callbacks** A callback is a function that you write and then pass to some other function.

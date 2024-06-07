@@ -2970,3 +2970,122 @@ function* take(n, iterable) {
 // An array of the first 5 Fibonacci numbers
 [...take(5, fibonacciSequence())] // => [1, 1, 2, 3, 5]
 ```
+
+#### 12.3.2 yield* and Recursive Generators
+
+Se explica la utilizacion del `yield*`
+
+### 12.4 Advanced Generator Features
+
+El uso más común de las funciones generadoras es crear iteradores, pero la característica fundamental de los generadores es que nos permiten pausar una computación, producir resultados intermedios y luego reanudar la computación más tarde.
+
+#### 12.4.1 The Return Value of a Generator Function
+
+Una curiosidad es que un generator retorna una pareja final que es el valor que retorna la funcion y el "done", no se deja ver con el yield pero si utilizando el next()
+
+```javascript
+function *oneAndDone() {
+ yield 1;
+ return "done";
+}
+// The return value does not appear in normal iteration.
+[...oneAndDone()] // => [1]
+
+// But it is available if you explicitly call next()
+let generator = oneAndDone();
+generator.next() // => { value: 1, done: false}
+generator.next() // => { value: "done", done: true }
+// If the generator is already done, the return value is not returned again
+generator.next() // => { value: undefined, done: true }
+
+```
+
+#### 12.4.2 The Value of a yield Expression
+
+When the next() method of a generator is invoked, the generator function runs until it reaches a yield expression.
+
+```javascript
+function* smallNumbers() {
+ console.log("next() invoked the first time; argument discarded");
+ let y1 = yield 1; // y1 == "b"
+ console.log("next() invoked a second time with argument", y1);
+ let y2 = yield 2; // y2 == "c"
+ console.log("next() invoked a third time with argument", y2);
+ let y3 = yield 3; // y3 == "d"
+ console.log("next() invoked a fourth time with argument", y3);
+ return 4;
+}
+
+let g = smallNumbers();
+console.log("generator created; no code runs yet");
+let n1 = g.next("a"); // n1.value == 1
+console.log("generator yielded", n1.value);
+let n2 = g.next("b"); // n2.value == 2
+console.log("generator yielded", n2.value);
+let n3 = g.next("c"); // n3.value == 3
+console.log("generator yielded", n3.value);
+let n4 = g.next("d"); // n4 == { value: 4, done: true }
+console.log("generator returned", n4.value);
+```
+
+Asi funciona:
+
+generator created; no code runs yet
+next() invoked the first time; argument discarded
+generator yielded 1
+next() invoked a second time with argument b
+generator yielded 2
+next() invoked a third time with argument c
+generator yielded 3
+next() invoked a fourth time with argument d
+generator returned 4
+
+#### 12.4.3 The return() and throw() Methods of a Generator
+
+#### 12.4.4 A Final Note About Generators
+
+## 13 Asynchronous JavaScript
+
+- Most real-world computer programs, however, are significantly asynchronous.
+- JavaScript programs in a web browser are typically event-driven.
+
+- **Promises** new in ES6, are objects that represent the not-yet available result of an asynchronous operation.
+- **The keywords async and await** were introduced in ES2017 and provide new syntax that simplifies asynchronous programming by allowing you to structure your Promise-based code as if it was synchronous.
+- **asynchronous iterators and the for/await loop** allow you to work with streams of asynchronous events using simple loops that
+appear synchronous.
+
+### 13.1 Asynchronous Programming with Callbacks
+
+- **Esta es la forma antigua**
+
+A **callback** is a function that you write and then pass to some other function.
+
+#### 13.1.1 Timers
+
+```javascript
+// Call checkForUpdates in one minute and then again every minute after that
+let updateIntervalId = setInterval(checkForUpdates, 60000);
+// setInterval() returns a value that we can use to stop the repeated
+// invocations by calling clearInterval(). (Similarly, setTimeout()
+// returns a value that you can pass to clearTimeout())
+function stopCheckingForUpdates() {
+ clearInterval(updateIntervalId);
+}
+```
+
+#### 13.1.2 Events
+
+- Client-side JavaScript programs are almost universally event driven
+
+Se utiliza el addEventListener() para crear un detector de eventos desde el browser
+
+```javascript
+// Ask the web browser to return an object representing the HTML
+// <button> element that matches this CSS selector
+let okay = document.querySelector('#confirmUpdateDialog button.okay');
+// Now register a callback function to be invoked when the user
+// clicks on that button.
+okay.addEventListener('click', applyUpdate);
+```
+
+#### 13.1.3 Network Events
