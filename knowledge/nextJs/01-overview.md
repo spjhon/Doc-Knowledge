@@ -23,6 +23,22 @@ El fuerte de next js es dar las heramientas para construir:
 - Autenthication
 - And much more
 
+- **Para que sirve nextJs?**
+
+  - Routing
+  - Rendering
+  - Data Fetching
+  - Styling
+  - Optimizations
+  - TypeScript
+  - Route setup & handling
+  - Handel route setup handling
+  - Handles requests and responses
+  - Handles data fetching & submission
+  - Form Submission
+  - Data Fetching
+  - Autenthication
+
 - **Caracteristicas**
 
 - Junta el front con el back hasta cierto punto (es recomendable tener una estructura de bases de datos independiente)
