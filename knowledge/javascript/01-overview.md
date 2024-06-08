@@ -3089,3 +3089,19 @@ okay.addEventListener('click', applyUpdate);
 ```
 
 #### 13.1.3 Network Events
+
+Another common source of asynchrony in JavaScript programming is network requests.
+
+En la pagina 343 se tiene un pequeño ejemplo de como por medio de callback y `XMLHttpRequest()` se puede crear una funcion que responda apenas el state de un recibimiento de datos pase a `200`.
+
+Explica que para network request se utiliza una especie de `addEventListener()` pero por ser una operacion asyncrona mejor se asigna a las propiedades de `XMLHttpRequest()` y asi ejecutar una funcion `callback()` que va a llevar la respuesta a donde se necesite.
+
+En lugar de usar `addEventListener()` como con otros eventos en JavaScript, XMLHttpRequest permite asignar funciones de callback directamente a propiedades del objeto, como onload, onerror y ontimeout. Estas propiedades manejan eventos específicos:
+
+- onload: Se ejecuta cuando la solicitud se completa con éxito.
+- onerror: Se ejecuta cuando hay un error en la solicitud.
+- ontimeout: Se ejecuta cuando la solicitud supera el tiempo máximo de espera.
+
+#### 13.1.4 Callbacks and Events in Node
+
+The Node.js server-side JavaScript environment is deeply asynchronous and defines many APIs that use callbacks and events.
