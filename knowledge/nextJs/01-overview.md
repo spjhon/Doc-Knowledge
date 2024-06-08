@@ -55,6 +55,17 @@ Se recomienda el App Router que es el mas reciente
 
 `npx create-next-app@latest`
 
+**NOTA IMPORTANTE**: Resulta que al momento de instalar varios projectos bajo el mismo git, hay un problema de conflicto con el slint, entonces para resolver se debe de crear una carpeta llamada .vscode en donde esta el git principal y agregar los siguientes comandos a un archivo .json llamado settings.json:
+
+```javascript
+{
+    "eslint.workingDirectories": [
+        "./project_1",
+        "./project_2"
+    ]
+}
+```
+
 ## Nueva Page (App Router)
 
 Para agregar rutas se utiliza el sistema de archivos internos como las carpetas(folders) y archivos(files)
