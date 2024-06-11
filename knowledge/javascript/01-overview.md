@@ -3105,3 +3105,5 @@ En lugar de usar `addEventListener()` como con otros eventos en JavaScript, XMLH
 #### 13.1.4 Callbacks and Events in Node
 
 The Node.js server-side JavaScript environment is deeply asynchronous and defines many APIs that use callbacks and events.
+
+- Node.js tiene una API llamada 'fs' que está hecha para leer archivos del sistema de archivos (file system). Entre las opciones se encuentra fs.readFile, que realiza una operación asíncrona para ejecutar un callback en caso de error (err) o al leer el archivo con éxito.
