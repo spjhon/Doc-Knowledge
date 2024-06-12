@@ -3107,3 +3107,80 @@ En lugar de usar `addEventListener()` como con otros eventos en JavaScript, XMLH
 The Node.js server-side JavaScript environment is deeply asynchronous and defines many APIs that use callbacks and events.
 
 - Node.js tiene una API llamada 'fs' que está hecha para leer archivos del sistema de archivos (file system). Entre las opciones se encuentra fs.readFile, que realiza una operación asíncrona para ejecutar un callback en caso de error (err) o al leer el archivo con éxito.
+
+### 13.2 Promises
+
+A Promise is an object that represents the result of an asynchronous computation. That result may or may not be ready yet.
+
+#### 13.2.1 Using Promises
+
+Las promesas son una forma sintactica de hacer operaciones asyncronas en su mayoria HTTP request, entonces el siguiente ejemplo ilustra como su invencion esta pensada para leerse como si fuera lectura humana normal.
+
+```javascript
+// Suppose you have a function like this to display a user profile
+function displayUserProfile(profile) { /* implementation omitted */ }
+// Here's how you might use that function with a Promise.
+// Notice how this line of code reads almost like an English sentence:
+getJSON("/api/user/profile").then(displayUserProfile);
+```
+
+##### 13.2.1.1 Handling errors with Promises
+
+For Promises, we can do this by passing a second function to the then() method: `getJSON("/api/user/profile").then(displayUserProfile, handleProfileError);`
+
+- When a Promise-based asynchronous computation completes normally, it passes its result to the function that is the first argument to then()
+
+A continuacion se explica por que en una operacion asyncrona los errores se manejan de forma diferente y como se manejan:
+
+- Promise-based asynchronous computations pass the exception (typically as an Error object of some kind, though this is not required) to the second function passed to then(). So, in the code above, if getJSON() runs normally, it passes its result to displayUserProfile(). If there is an error (the user is not logged in, the server is down, the user’s internet connection dropped, the request timed out, etc.), then getJSON() passes an Error object to handleProfileError().
+
+Pero existe una forma mejor:
+
+- The more idiomatic way to handle errors in this code looks like this:
+`getJSON("/api/user/profile").then(displayUserProfile).catch(handleProfileError);`
+
+Cuando se habla de Promesas en JavaScript, los términos equivalentes son "fulfilled" y "rejected". Si una Promesa no está ni "fulfilled" ni "rejected", entonces está pendiente ("pending"). Y una vez que una promesa está "fulfilled" o "rejected", decimos que está resuelta ("settled"). Cualquier Promesa que esté resuelta ("settled") tiene un valor asociado. Entender el estado "resolved" es una de las claves para una comprensión profunda de las Promesas.
+
+- Resolve: Cuando se usa el término resolve, se refiere específicamente a que una promesa ha sido completada exitosamente con un valor. Es decir, la promesa está en el estado fulfilled.
+
+- Settled: Una promesa se considera settled cuando ha alcanzado su estado final, ya sea fulfilled o rejected.
+
+#### 13.2.2 Chaining Promises
+
+One of the most important benefits of Promises is that they provide a natural way to express a sequence of asynchronous operations as a linear chain of then() method invocations.
+
+La idea de las promesas es evitar la anidamiento de callbacks entonces no es bueno anidar nada, sino utilizar el then() para poder tener varios callbacks:
+
+Let’s return to a simplified form of the original fetch() chain above. If we define the
+functions passed to the then() invocations elsewhere, we might refactor the code to
+look like this:
+
+```javascript
+fetch(theURL) // task 1; returns promise 1
+ .then(callback1) // task 2; returns promise 2
+ .then(callback2); // task 3; returns promise 3
+```
+
+#### 13.2.3 Resolving Promises
+
+entonces lo que hace el `then()` es que primero invoca el primer callback con el response pero se espera a que se resuelva haciendo de esto una operacion asyncrona y cuando esta se resuelve sigue con el siguiente `then()` y asi sucesivamente a travez de todas las funciones que necesiten de un response para ejecutarse.
+
+Un **resolve** que es diferente a un **settled** es que en el "resolve" es el valor del ultimo callback en una cadena de callbacks y que hace que la promesa pase finalmente a estado resolve.
+
+En a pagina 355 hay un diagrama que detalla visualmente una forma mas didatica de entender las promesas y el encadenamiento then()
+
+#### 13.2.4 More on Promises and Errors
+
+Con código sincrónico (synchronous), si omites el manejo de errores (error-handling), al menos obtendrás una excepción (exception) y un seguimiento de pila (stack trace) que puedes usar para averiguar qué está fallando. Con código asincrónico (asynchronous), las excepciones (exceptions) no manejadas a menudo no se reportarán, y los errores pueden ocurrir silenciosamente, lo que los hace mucho más difíciles de depurar (debug). La buena noticia es que el método .catch() facilita el manejo de errores cuando se trabaja con Promesas (Promises).
+
+##### 13.2.4.1. The catch and finally methods
+
+- Ambos manejadores (then(null, errorHandler) y catch(errorHandler)) funcionarán de la misma manera: manejarán el error que ocurre en la Promesa. No están creando un error artificial; simplemente están proporcionando una manera de manejar los errores que ocurren en la Promesa.
+
+- If you add a .finally() invocation to your Promise chain, then the callback you pass to .finally() will be invoked when the Promise you called it on settles.
+
+- If you need to run some kind of cleanup code
+(such as closing open files or network connections) in either case, a .finally() call‐
+back is the ideal way to do that.
+
+- En la pagina 356 hay un buen y realista ejemplo de como hacer un HTTP request con un minimo de manejo de errores.

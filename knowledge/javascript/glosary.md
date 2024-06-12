@@ -37,3 +37,5 @@ Unlike traditional constructors (using the new keyword), factory functions provi
 **Iterable** En JavaScript, un iterable es un objeto que puede recorrerse con una estructura de control que espera una colección de valores
 
 **callbacks** A callback is a function that you write and then pass to some other function.
+
+**Promises** a core language feature designed to simplify asynchronous programming.
