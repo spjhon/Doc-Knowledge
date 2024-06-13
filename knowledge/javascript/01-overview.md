@@ -3128,11 +3128,11 @@ getJSON("/api/user/profile").then(displayUserProfile);
 
 For Promises, we can do this by passing a second function to the then() method: `getJSON("/api/user/profile").then(displayUserProfile, handleProfileError);`
 
-- When a Promise-based asynchronous computation completes normally, it passes its result to the function that is the first argument to then()
+- When a Promise-based asynchronous computation completes normally, it passes its result to the function that is the first argument to `then()`
 
 A continuacion se explica por que en una operacion asyncrona los errores se manejan de forma diferente y como se manejan:
 
-- Promise-based asynchronous computations pass the exception (typically as an Error object of some kind, though this is not required) to the second function passed to then(). So, in the code above, if getJSON() runs normally, it passes its result to displayUserProfile(). If there is an error (the user is not logged in, the server is down, the user’s internet connection dropped, the request timed out, etc.), then getJSON() passes an Error object to handleProfileError().
+- Promise-based asynchronous computations pass the exception (typically as an Error object of some kind, though this is not required) to the second function passed to `then()`. So, in the code above, if `getJSON()` runs normally, it passes its result to `displayUserProfile()`. If there is an error (the user is not logged in, the server is down, the user’s internet connection dropped, the request timed out, etc.), then `getJSON()` passes an Error object to `handleProfileError()`.
 
 Pero existe una forma mejor:
 
@@ -3147,12 +3147,12 @@ Cuando se habla de Promesas en JavaScript, los términos equivalentes son "fulfi
 
 #### 13.2.2 Chaining Promises
 
-One of the most important benefits of Promises is that they provide a natural way to express a sequence of asynchronous operations as a linear chain of then() method invocations.
+One of the most important benefits of Promises is that they provide a natural way to express a sequence of asynchronous operations as a linear chain of `then()` method invocations.
 
-La idea de las promesas es evitar la anidamiento de callbacks entonces no es bueno anidar nada, sino utilizar el then() para poder tener varios callbacks:
+La idea de las promesas es evitar la anidamiento de callbacks entonces no es bueno anidar nada, sino utilizar el `then()`
 
 Let’s return to a simplified form of the original fetch() chain above. If we define the
-functions passed to the then() invocations elsewhere, we might refactor the code to
+functions passed to the `then()` invocations elsewhere, we might refactor the code to
 look like this:
 
 ```javascript
@@ -3167,20 +3167,214 @@ entonces lo que hace el `then()` es que primero invoca el primer callback con el
 
 Un **resolve** que es diferente a un **settled** es que en el "resolve" es el valor del ultimo callback en una cadena de callbacks y que hace que la promesa pase finalmente a estado resolve.
 
-En a pagina 355 hay un diagrama que detalla visualmente una forma mas didatica de entender las promesas y el encadenamiento then()
+En a pagina 355 hay un diagrama que detalla visualmente una forma mas didatica de entender las promesas y el encadenamiento `then()`
 
 #### 13.2.4 More on Promises and Errors
 
-Con código sincrónico (synchronous), si omites el manejo de errores (error-handling), al menos obtendrás una excepción (exception) y un seguimiento de pila (stack trace) que puedes usar para averiguar qué está fallando. Con código asincrónico (asynchronous), las excepciones (exceptions) no manejadas a menudo no se reportarán, y los errores pueden ocurrir silenciosamente, lo que los hace mucho más difíciles de depurar (debug). La buena noticia es que el método .catch() facilita el manejo de errores cuando se trabaja con Promesas (Promises).
+Con código sincrónico (synchronous), si omites el manejo de errores (error-handling), al menos obtendrás una excepción (exception) y un seguimiento de pila (stack trace) que puedes usar para averiguar qué está fallando. Con código asincrónico (asynchronous), las excepciones (exceptions) no manejadas a menudo no se reportarán, y los errores pueden ocurrir silenciosamente, lo que los hace mucho más difíciles de depurar (debug). La buena noticia es que el método `.catch()` facilita el manejo de errores cuando se trabaja con Promesas (Promises).
 
 ##### 13.2.4.1. The catch and finally methods
 
 - Ambos manejadores (then(null, errorHandler) y catch(errorHandler)) funcionarán de la misma manera: manejarán el error que ocurre en la Promesa. No están creando un error artificial; simplemente están proporcionando una manera de manejar los errores que ocurren en la Promesa.
-
-- If you add a .finally() invocation to your Promise chain, then the callback you pass to .finally() will be invoked when the Promise you called it on settles.
-
+- If you add a `.finally()` invocation to your Promise chain, then the callback you pass to `.finally()` will be invoked when the Promise you called it on settles.
 - If you need to run some kind of cleanup code
-(such as closing open files or network connections) in either case, a .finally() call‐
+(such as closing open files or network connections) in either case, a `.finally()` call‐
 back is the ideal way to do that.
-
 - En la pagina 356 hay un buen y realista ejemplo de como hacer un HTTP request con un minimo de manejo de errores.
+- Sometimes, in complex network environments, errors can occur more or less at random, and it can be appropriate to handle those errors by simply retrying the asynchronous request.
+
+```javascript
+queryDatabase()
+ .catch(e => wait(500).then(queryDatabase)) // On failure, wait and retry
+ .then(displayTable)
+ .catch(displayDatabaseError);
+```
+
+#### 13.2.5 Promises in Parallel
+
+Sometimes, though, we want to execute a number of asynchronous operations in parallel. The function `Promise.all()` can do this.
+
+- The Promise returned by `Promise.all()` rejects when any of the input Promises is rejected.
+- `Promise.allSettled()` takes an array of input Promises and returns a Promise, just like `Promise.all()` does. But `Promise.allSettled()` never rejects the returned Promise, and it does not fulfill that Promise until all of the input Promises have settled.
+
+#### 13.2.6 Making Promises
+
+##### 13.2.6.1 Promises based on other Promises
+
+Se puede tener una funcion que retorne una Promesa por ejemplo alutilizar dentro de esa funcion un metodo que retorne una promesa.
+
+##### 13.2.6.2 Promises based on synchronous values
+
+Sometimes, you may need to implement an existing Promise-based API and return a Promise from a function, even though the computation to be performed does not actually require any asynchronous operations. In that case, the static methods `Promise.resolve()` and `Promise.reject()` will do what you want.
+
+##### 13.2.6.3 Promises from scratch
+
+You use the `Promise()` constructor to create a new Promise object that you have complete control over.
+
+El código que has proporcionado define una función wait que devuelve una promesa que se resuelve después de una cierta cantidad de tiempo (especificada en milisegundos).
+
+```javascript
+function wait(duration) {
+  // Crear y devolver una nueva Promesa
+  return new Promise((resolve, reject) => { // Estos controlan la Promesa
+    // Si el argumento es inválido, rechazar la Promesa
+    if (duration < 0) {
+      reject(new Error("Time travel not yet implemented"));
+    }
+
+    // De lo contrario, esperar asincrónicamente y luego resolver la Promesa.
+    // setTimeout invocará resolve() sin argumentos, lo que significa
+    // que la Promesa se cumplirá con el valor undefined.
+    setTimeout(resolve, duration);
+  });
+}
+```
+
+Como usar la promesa
+
+```javascript
+wait(1000).then(() => {
+  console.log("1 second has passed");
+}).catch((error) => {
+  console.error(error);
+});
+```
+
+#### 13.2.7 Promises in Sequence
+
+Promise.all() makes it easy to run an arbitrary number of Promises in parallel. And Promise chains make it easy to express a sequence of a fixed number of Promises.
+
+### 13.3 async and await
+
+**async and await** son keywords in javascript desde ES2017
+
+#### 13.3.1 await Expressions
+
+La keyword await en JavaScript se utiliza dentro de funciones declaradas con async para esperar a que una promesa sea resuelta. Su propósito principal es simplificar el manejo de promesas y hacer el código asincrónico más legible y fácil de escribir, similar al código síncrono.
+
+- We use it before the invocation of a function that returns a Promise.
+- Todo lo que va despues del await debe de ser una promesa, sino es una promesa lo tomara como una promesa resuelta y devolvera valor que contiene.
+
+#### 13.3.2 async Functions
+
+- **you can only use the await keyword within functions that have been declared with the async keyword.**
+
+```javascript
+async function getHighScore() {
+ let response = await fetch("/api/user/profile");
+ let profile = await response.json();
+ return profile.highScore;
+}
+```
+
+Flujo de Ejecución
+
+Vamos a desglosar el flujo de ejecución cuando se usa async/await:
+
+1. Código síncrono: Todo el código fuera de la función async se ejecuta primero de manera síncrona.
+
+2. Iniciar función async: Cuando se llama a una función async, esta se ejecuta hasta que encuentra un await.
+
+3. Esperar promesa: El await pausa la ejecución de la función async hasta que la promesa que sigue se resuelve o se rechaza. Mientras tanto, el event loop puede continuar ejecutando otro código.
+
+4. Continuar ejecución: Una vez que la promesa se resuelve, la ejecución de la función async se reanuda desde el punto donde se pausó.
+
+#### 13.3.3 Awaiting Multiple Promises
+
+Como el codigo es asyncrono para poner a esperar varias promesas o varios awaits se puede hacer al mismo tiempo en lugar de hacer una secuencia de llamados.
+
+`let [value1, value2] = await Promise.all([getJSON(url1), getJSON(url2)]);`
+
+#### 13.3.4 Implementation Details
+
+### 13.4 Asynchronous Iteration
+
+Promises do not work for sequences of asynchronous events, we also cannot use regular async functions and the await statements for these things.
+
+La solucion es el for/await loop
+
+#### 13.4.1 The for/await Loop
+
+Node 12 makes its readable streams asynchronously iterable.
+
+```javascript
+const fs = require("fs");
+async function parseFile(filename) {
+ let stream = fs.createReadStream(filename, { encoding: "utf-8"});
+ for await (let chunk of stream) {
+ parseChunk(chunk); // Assume parseChunk() is defined elsewhere
+//Like a regular await expression, the for/await loop is Promise-based.
+ }
+}
+```
+
+#### 13.4.2 Asynchronous Iterators
+
+Tener en cuenta como funciona un iterador y las dos diferencias clave entre un iterador y un iterador asincrono.
+
+#### 13.4.3 Asynchronous Generators
+
+#### 13.4.4 Implementing Asynchronous Iterators
+
+Ver y entender ejemplos, colocar algo aca una vez termine de entender.
+
+## 14. Metaprogramming
+
+No muy usados pero aun asi utiles.
+
+- **metaprogramming is writing code to manipulate other code.**
+
+Debido a falta de tiempo este capitulo sera omitido y este es el resumen de las caracteristicas que se explican en este capitulo.
+
+- §14.1 Controlling the enumerability, deleteability, and configurability of object
+properties
+- §14.2 Controlling the extensibility of objects, and creating “sealed” and “frozen”
+objects
+- §14.3 Querying and setting the prototypes of objects
+- §14.4 Fine-tuning the behavior of your types with well-known Symbols
+- §14.5 Creating DSLs (domain-specific languages) with template tag functions
+- §14.6 Probing objects with reflect methods
+- §14.7 Controlling object behavior with Proxy
+
+## 15. JavaScript in Web Browsers
+
+Manipulacion del navegador, el ultimate propuse de javascript:
+
+- Control document content (§15.3) and style (§15.4)
+- Determine the on-screen position of document elements (§15.5)
+- Create reusable user interface components (§15.6)
+- Draw graphics (§15.7 and §15.8)
+- Play and generate sounds (§15.9)
+- Manage browser navigation and history (§15.10)
+- Exchange data over the network (§15.11)
+- Store data on the user’s computer (§15.12)
+- Perform concurrent computation with threads (§15.13)
+
+### 15.1 Web Programming Basics
+
+#### 15.1.1 JavaScript in HTML `<script>` Tags
+
+[**AQUI**](https://www.w3schools.com/tags/tag_script.asp) informacion mas completa del `<script>` tag.
+
+Se muestra un ejemplo basico de un documento HTML y como utilizar javascript dentro de ese documetno HTML.
+
+#### 15.1.2 The Document Object Model
+
+El famoso DOM, es el arbol que se forma al ejecutarse un documento html y que es manipulable a travez de javascript.
+
+- [Document](https://www.w3schools.com/jsref/dom_obj_document.asp) Document Object
+- [Element](https://www.w3schools.com/jsref/dom_obj_all.asp) HTML DOM Elements
+- [Attributes](https://www.w3schools.com/jsref/dom_obj_attributes.asp) HTML DOM Attributes
+- [Events](https://www.w3schools.com/jsref/dom_obj_event.asp) HTML DOM Events
+- [Event Objects](https://www.w3schools.com/jsref/obj_events.asp) HTML DOM Event Objects
+- [HTMLCollection](https://www.w3schools.com/jsref/dom_obj_htmlcollection.asp) DOM HTMLCollection
+- [Style](https://www.w3schools.com/jsref/dom_obj_style.asp) HTML DOM Style Object (CSS)
+
+- For each HTML tag in the document, there is a corresponding JavaScript Element object.
+- And for each run of text in the document, there is a corresponding Text object.
+- Una muestra de como funciona desde javascript el DOM es que cada elemento HTML es una subclase: The `<body>` tag, for example, is represented by an instance of HTMLBodyElement, and a `<table>` tag is represented by an instance of HTMLTableElement.
+
+#### 15.1.3 The Global Object in Web Browsers
+
+- There is one global object per browser window or tab (§3.7).
+- the global object also contains the main entry points of various web APIs.
