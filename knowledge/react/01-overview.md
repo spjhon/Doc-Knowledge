@@ -90,6 +90,12 @@ En react se maneja el sistema de states para poder rastrear el estado de un comp
 - Data persistence (with the use of api.html to simulate request and responses)
 - Side Effects
 
+Sacado de chatGPT:
+
+entonces como en la funcion de post se hace la peticion, que creo yo es una promesa pero el codigo continua ejecutandose asincronamente y no hay interferencia de la promesa ya que los datos ya estan localmente y se pueden manipular o enviar, pero en el fetch inicial el state debe de esperar de alguna forma a tener los datos listos entonces se usa el useEffect para hacer que el componente se re-renderice una vez lleguen los datos asyncronos?, estoy en lo correcto?
+
+ChatGPT dijo que si.
+
 **
 
 - **Donde encontrar ejemplos?:**
