@@ -3488,3 +3488,123 @@ La otra forma es desde el elemento HTML directamente `<button onclick="console.l
 Esta es la forma mas moderna.
 
 Any object that can be an event target—this includes the Window and Document objects and all document Elements—defines a method named addEventListener().
+
+El siguiente código registra dos controladores para el evento “click” en un elemento `<button>`. Observa las diferencias entre las dos técnicas utilizadas:
+
+```javascript
+<button id="mybutton">Click me</button>
+<script>
+let b = document.querySelector("#mybutton");
+b.onclick = function() { console.log("Thanks for clicking me!"); };
+b.addEventListener("click", () => { console.log("Thanks again!"); });
+</script>
+```
+
+- Tambien existe el `removeEventListener()`
+
+#### 15.2.3 Event Handler Invocation
+
+Aqui explica un poco el valor del "this" en este contexto
+
+Explica:
+
+1. Event handler argument
+
+    - type
+    - target
+    - currentTarget
+    - timeStamp
+    - isTrusted
+
+2. Event handler context
+3. Handler return value
+4. Invocation order
+
+#### 15.2.4 Event Propagation
+
+Explica the bubble effect.
+
+- The event handlers of the target’s parent are invoked. Then the handlers registered on the target’s grandparent are invoked.
+- Most events that occur on document elements bubble. Notable exceptions are the “focus,” “blur,” and “scroll” events.
+
+Hay tres faces en la propagacion de eventos
+
+- "Capturing" fase
+- invocation of the event handlers of the target object itself
+- Event bubbling
+
+Y se explica el tercer argumento y como este entra en accion sobre alguna de las fases.
+
+#### 15.2.5 Event Cancellation
+
+Explica el uso del `preventDefault()`, el `stopPropagation()` y el `stopImmediatePropagation()`
+
+#### 15.2.6 Dispatching Custom Events
+
+Algo parecido a los dispatch de react que lo que hace es mandar un "action" o un "event" desde algun lado y en algun otro lado del codigo un listen
+
+### 15.3 Scripting Documents
+
+Every Window object has a document property that refers to a Document object.
+
+Manipulacion del DOM se encuentra en este capitulo:
+
+- How to query or select individual elements from a document.
+- How to traverse a document, and how to find the ancestors, siblings, and descendants of any document element.
+- How to query and set the attributes of document elements.
+- How to query, set, and modify the content of a document.
+- How to modify the structure of a document by creating, inserting, and deleting nodes.
+
+#### 15.3.1 Selecting Document Elements
+
+A program that wants to manipulate an element embedded more deeply in the document must somehow obtain or select the Element objects that refer to those document elements.
+
+##### 15.3.1.1 Selecting elements with CSS selectors
+
+Informacion acerca de los selectores css, mas informacion en la seccion css de este docuaurio
+
+#### 15.3.2 Document Structure and Traversal
+
+there is a traversal API that allows us to treat a document as a tree of Element objects, ignoring Text nodes that are also part of the document.
+
+- Este ser se puede ver en w3schools ya que sonparte de los metodos del document.
+- Documents as trees of nodes.
+
+#### 15.3.3 Attributes
+
+Son los HTML atributes
+
+- HTML attributes as element properties
+- The class attribute
+- Dataset attributes
+
+#### 15.3.4 Element Content
+
+- Element content as HTML
+- Element content as plain text
+
+#### 15.3.5 Creating, Inserting, and Deleting Nodes
+
+#### 15.3.6 Example: Generating a Table of Contents
+
+Hay un moderadamente grande ejemplo que lo que hace es tomar un documento y manupular, indagar y crear nodos que permita crear una tabla de contenido a partir del texto en HTML tags.
+
+### 15.4 Scripting CSS
+
+#### 15.4.1 CSS Classes
+
+#### 15.4.2 Inline Styles
+
+#### 15.4.3 Computed Styles
+
+#### 15.4.4 Scripting Stylesheets
+
+### 15.4.5 CSS Animations and Events
+
+JavaScript can also be used to monitor the progress of a CSS transition because the web browser fires events at the start and end of a transition.
+
+### 15.5 Document Geometry and Scrolling
+
+The following subsections explain how you can go back and forth between the abstract, tree-based model of a document and the geometrical, coordinate-based view of the document as it is laid out in a browser window.
+
+#### 15.5.1 Document Coordinates and Viewport Coordinates
