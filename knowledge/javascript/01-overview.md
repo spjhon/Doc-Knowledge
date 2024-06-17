@@ -3599,7 +3599,7 @@ Hay un moderadamente grande ejemplo que lo que hace es tomar un documento y manu
 
 #### 15.4.4 Scripting Stylesheets
 
-### 15.4.5 CSS Animations and Events
+#### 15.4.5 CSS Animations and Events
 
 JavaScript can also be used to monitor the progress of a CSS transition because the web browser fires events at the start and end of a transition.
 
@@ -3608,3 +3608,34 @@ JavaScript can also be used to monitor the progress of a CSS transition because 
 The following subsections explain how you can go back and forth between the abstract, tree-based model of a document and the geometrical, coordinate-based view of the document as it is laid out in a browser window.
 
 #### 15.5.1 Document Coordinates and Viewport Coordinates
+
+- Se habla en la diferencia entre el **viewport** y el **document**
+- Fundamento de como funciona el scroll
+
+Explica metodos como `getBoundingClientRect()` y `elementFromPoint()`.
+
+- Because document coordinates don’t really work, client-side JavaScript tends to use viewport coordinates.
+
+#### 15.5.2 Querying the Geometry of an Element
+
+Se utiliza el `getBoundingClientRect()` con ciertas limitantes
+
+#### 15.5.3 Determining the Element at a Point
+
+- `elementFromPoint()`
+
+#### 15.5.4 Scrolling
+
+#### 15.5.5 Viewport Size, Content Size, and Scroll Position
+
+### 15.6 Web Components
+
+Basic HTML tags such as `<input>` and `<button>` are inadequate for modern UI designs.
+
+Web components is a browser-native alternative to those frameworks based on **three** relatively recent additions to web standards that allow JavaScript to extend HTML with new tags that work as self-contained, reusable UI components.
+
+#### 15.6.1 Using Web Components
+
+- they are often written as JavaScript modules
+- Web components can have attributes just like regular HTML tags can
+- Se utilizan los children para utilizar un atributo llamado "slot" para agregarlos
