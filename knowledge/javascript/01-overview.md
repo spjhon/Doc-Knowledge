@@ -2755,7 +2755,7 @@ En JavaScript, un iterable es un objeto que puede recorrerse con una estructura 
 ```javascript
 let chars = [..."abcd"]; // chars == ["a", "b", "c", "d"]
 let data = [1, 2, 3, 4, 5];
-Math.max(...data) // => 5
+Math.max(...data); // => 5
 ```
 
 - Iterators can be used with destructuring assignment
@@ -2766,82 +2766,85 @@ In JavaScript, there are several methods and constructs available for iterating 
 
 1. **`for...of` Loop**: This loop allows you to iterate over iterable objects (like arrays, strings, maps, sets, etc.) using a simple syntax. It automatically handles iteration over each item in the iterable.
 
-    ```javascript
-    const array = [1, 2, 3];
-    for (const value of array) {
-      console.log(value);
-    }
-    ```
+   ```javascript
+   const array = [1, 2, 3];
+   for (const value of array) {
+     console.log(value);
+   }
+   ```
 
 2. **`Array.prototype.forEach()` Method**: This method executes a provided function once for each array element. It's specifically designed for arrays but can also be used with other iterables if they implement a similar iterator protocol.
 
-    ```javascript
-    const array = [1, 2, 3];
-    array.forEach(function(value) {
-      console.log(value);
-    });
-    ```
+   ```javascript
+   const array = [1, 2, 3];
+   array.forEach(function (value) {
+     console.log(value);
+   });
+   ```
 
 3. **`Array.prototype.map()` Method**: Similar to `forEach`, this method creates a new array populated with the results of calling a provided function on every element in the calling array. It's useful for transforming arrays.
 
-    ```javascript
-    const array = [1, 2, 3];
-    const doubled = array.map(function(value) {
-      return value * 2;
-    });
-    console.log(doubled); // Output: [2, 4, 6]
-    ```
+   ```javascript
+   const array = [1, 2, 3];
+   const doubled = array.map(function (value) {
+     return value * 2;
+   });
+   console.log(doubled); // Output: [2, 4, 6]
+   ```
 
 4. **`Array.prototype.filter()` Method**: This method creates a new array with all elements that pass the test implemented by the provided function. It's useful for filtering arrays based on certain conditions.
 
-    ```javascript
-    const array = [1, 2, 3, 4, 5];
-    const evenNumbers = array.filter(function(value) {
-      return value % 2 === 0;
-    });
-    console.log(evenNumbers); // Output: [2, 4]
-    ```
+   ```javascript
+   const array = [1, 2, 3, 4, 5];
+   const evenNumbers = array.filter(function (value) {
+     return value % 2 === 0;
+   });
+   console.log(evenNumbers); // Output: [2, 4]
+   ```
 
 5. **`Array.prototype.reduce()` Method**: This method applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single output value. It's powerful for aggregating values.
 
-    ```javascript
-    const array = [1, 2, 3, 4, 5];
-    const sum = array.reduce(function(accumulator, currentValue) {
-      return accumulator + currentValue;
-    }, 0);
-    console.log(sum); // Output: 15
-    ```
+   ```javascript
+   const array = [1, 2, 3, 4, 5];
+   const sum = array.reduce(function (accumulator, currentValue) {
+     return accumulator + currentValue;
+   }, 0);
+   console.log(sum); // Output: 15
+   ```
 
 6. **Spread Operator (`...`) with Loops**: The spread operator can be used within loops like `for...of` to iterate over iterable objects and access individual elements.
 
-    ```javascript
-    const array = [1, 2, 3];
-    for (const value of [...array]) {
-      console.log(value);
-    }
-    ```
+   ```javascript
+   const array = [1, 2, 3];
+   for (const value of [...array]) {
+     console.log(value);
+   }
+   ```
 
 7. **Custom Iterators**: JavaScript allows you to create custom iterators by implementing the iterator interface (`Symbol.iterator`). This gives you full control over how an object should be iterated over.
 
-    ```javascript
-    class CustomIterable {
-      constructor() {
-        this.values = ['a', 'b', 'c'];
-      }
+   ```javascript
+   class CustomIterable {
+     constructor() {
+       this.values = ["a", "b", "c"];
+     }
 
-      [Symbol.iterator]() {
-        let index = 0;
-        return {
-          next: () => ({ value: this.values[index++], done: index > this.values.length })
-        };
-      }
-    }
+     [Symbol.iterator]() {
+       let index = 0;
+       return {
+         next: () => ({
+           value: this.values[index++],
+           done: index > this.values.length,
+         }),
+       };
+     }
+   }
 
-    const iterable = new CustomIterable();
-    for (const value of iterable) {
-      console.log(value);
-    }
-    ```
+   const iterable = new CustomIterable();
+   for (const value of iterable) {
+     console.log(value);
+   }
+   ```
 
 These tools provide flexibility and power in handling collections of data in JavaScript, allowing for efficient and readable code when working with iterables.
 
@@ -2875,9 +2878,9 @@ Mientras que una funcion normal solamente regresa un valor, la idea de los gener
 
 [**AQUI**](https://javascript.info/generators) informacion mas detallada sobre generators (javascript.info)
 
-A generator is a kind of iterator defined with powerful new ES6 syntax.  it’s particularly useful when the values to be iterated are not the elements of a data structure, but the result of a computation.
+A generator is a kind of iterator defined with powerful new ES6 syntax. it’s particularly useful when the values to be iterated are not the elements of a data structure, but the result of a computation.
 
-Se define una funcio iteradora con el operador especial "*"
+Se define una funcio iteradora con el operador especial "\*"
 
 **Explicacion de como funciona:** Este iterator object es un iterador. Llamando a su método next() hace que el cuerpo de la función generadora se ejecute desde el principio (o desde donde sea su posición actual) hasta que alcance una declaración de yield. yield es nuevo en ES6 y es algo así como una declaración de return. El valor de la declaración de yield se convierte en el valor devuelto por la llamada next() en el iterador.
 
@@ -2919,10 +2922,10 @@ sum // => 17
 La siguiente es una forma de esparcir todos los yield en un array
 
 ```javascript
-const seq = function*(from,to) {
- for(let i = from; i <= to; i++) yield i;
+const seq = function* (from, to) {
+  for (let i = from; i <= to; i++) yield i;
 };
-[...seq(3,5)] // => [3, 4, 5]
+[...seq(3, 5)]; // => [3, 4, 5]
 ```
 
 - Note that there is no way to write a generator function using arrow function syntax.
@@ -2960,18 +2963,19 @@ This kind of infinite generator becomes more useful with a take() generator like
 ```javascript
 // Yield the first n elements of the specified iterable object
 function* take(n, iterable) {
- let it = iterable[Symbol.iterator](); // Get iterator for iterable object
- while(n-- > 0) { // Loop n times:
- let next = it.next(); // Get the next item from the iterator.
- if (next.done) return; // If there are no more values, return early
- else yield next.value; // otherwise, yield the value
- }
+  let it = iterable[Symbol.iterator](); // Get iterator for iterable object
+  while (n-- > 0) {
+    // Loop n times:
+    let next = it.next(); // Get the next item from the iterator.
+    if (next.done) return; // If there are no more values, return early
+    else yield next.value; // otherwise, yield the value
+  }
 }
 // An array of the first 5 Fibonacci numbers
-[...take(5, fibonacciSequence())] // => [1, 1, 2, 3, 5]
+[...take(5, fibonacciSequence())]; // => [1, 1, 2, 3, 5]
 ```
 
-#### 12.3.2 yield* and Recursive Generators
+#### 12.3.2 yield\* and Recursive Generators
 
 Se explica la utilizacion del `yield*`
 
@@ -2984,20 +2988,19 @@ El uso más común de las funciones generadoras es crear iteradores, pero la car
 Una curiosidad es que un generator retorna una pareja final que es el valor que retorna la funcion y el "done", no se deja ver con el yield pero si utilizando el next()
 
 ```javascript
-function *oneAndDone() {
- yield 1;
- return "done";
+function* oneAndDone() {
+  yield 1;
+  return "done";
 }
 // The return value does not appear in normal iteration.
-[...oneAndDone()] // => [1]
+[...oneAndDone()]; // => [1]
 
 // But it is available if you explicitly call next()
 let generator = oneAndDone();
-generator.next() // => { value: 1, done: false}
-generator.next() // => { value: "done", done: true }
+generator.next(); // => { value: 1, done: false}
+generator.next(); // => { value: "done", done: true }
 // If the generator is already done, the return value is not returned again
-generator.next() // => { value: undefined, done: true }
-
+generator.next(); // => { value: undefined, done: true }
 ```
 
 #### 12.4.2 The Value of a yield Expression
@@ -3006,14 +3009,14 @@ When the next() method of a generator is invoked, the generator function runs un
 
 ```javascript
 function* smallNumbers() {
- console.log("next() invoked the first time; argument discarded");
- let y1 = yield 1; // y1 == "b"
- console.log("next() invoked a second time with argument", y1);
- let y2 = yield 2; // y2 == "c"
- console.log("next() invoked a third time with argument", y2);
- let y3 = yield 3; // y3 == "d"
- console.log("next() invoked a fourth time with argument", y3);
- return 4;
+  console.log("next() invoked the first time; argument discarded");
+  let y1 = yield 1; // y1 == "b"
+  console.log("next() invoked a second time with argument", y1);
+  let y2 = yield 2; // y2 == "c"
+  console.log("next() invoked a third time with argument", y2);
+  let y3 = yield 3; // y3 == "d"
+  console.log("next() invoked a fourth time with argument", y3);
+  return 4;
 }
 
 let g = smallNumbers();
@@ -3052,7 +3055,7 @@ generator returned 4
 - **Promises** new in ES6, are objects that represent the not-yet available result of an asynchronous operation.
 - **The keywords async and await** were introduced in ES2017 and provide new syntax that simplifies asynchronous programming by allowing you to structure your Promise-based code as if it was synchronous.
 - **asynchronous iterators and the for/await loop** allow you to work with streams of asynchronous events using simple loops that
-appear synchronous.
+  appear synchronous.
 
 ### 13.1 Asynchronous Programming with Callbacks
 
@@ -3069,7 +3072,7 @@ let updateIntervalId = setInterval(checkForUpdates, 60000);
 // invocations by calling clearInterval(). (Similarly, setTimeout()
 // returns a value that you can pass to clearTimeout())
 function stopCheckingForUpdates() {
- clearInterval(updateIntervalId);
+  clearInterval(updateIntervalId);
 }
 ```
 
@@ -3082,10 +3085,10 @@ Se utiliza el addEventListener() para crear un detector de eventos desde el brow
 ```javascript
 // Ask the web browser to return an object representing the HTML
 // <button> element that matches this CSS selector
-let okay = document.querySelector('#confirmUpdateDialog button.okay');
+let okay = document.querySelector("#confirmUpdateDialog button.okay");
 // Now register a callback function to be invoked when the user
 // clicks on that button.
-okay.addEventListener('click', applyUpdate);
+okay.addEventListener("click", applyUpdate);
 ```
 
 #### 13.1.3 Network Events
@@ -3118,7 +3121,9 @@ Las promesas son una forma sintactica de hacer operaciones asyncronas en su mayo
 
 ```javascript
 // Suppose you have a function like this to display a user profile
-function displayUserProfile(profile) { /* implementation omitted */ }
+function displayUserProfile(profile) {
+  /* implementation omitted */
+}
 // Here's how you might use that function with a Promise.
 // Notice how this line of code reads almost like an English sentence:
 getJSON("/api/user/profile").then(displayUserProfile);
@@ -3137,7 +3142,7 @@ A continuacion se explica por que en una operacion asyncrona los errores se mane
 Pero existe una forma mejor:
 
 - The more idiomatic way to handle errors in this code looks like this:
-`getJSON("/api/user/profile").then(displayUserProfile).catch(handleProfileError);`
+  `getJSON("/api/user/profile").then(displayUserProfile).catch(handleProfileError);`
 
 Cuando se habla de Promesas en JavaScript, los términos equivalentes son "fulfilled" y "rejected". Si una Promesa no está ni "fulfilled" ni "rejected", entonces está pendiente ("pending"). Y una vez que una promesa está "fulfilled" o "rejected", decimos que está resuelta ("settled"). Cualquier Promesa que esté resuelta ("settled") tiene un valor asociado. Entender el estado "resolved" es una de las claves para una comprensión profunda de las Promesas.
 
@@ -3157,8 +3162,8 @@ look like this:
 
 ```javascript
 fetch(theURL) // task 1; returns promise 1
- .then(callback1) // task 2; returns promise 2
- .then(callback2); // task 3; returns promise 3
+  .then(callback1) // task 2; returns promise 2
+  .then(callback2); // task 3; returns promise 3
 ```
 
 #### 13.2.3 Resolving Promises
@@ -3178,16 +3183,16 @@ Con código sincrónico (synchronous), si omites el manejo de errores (error-han
 - Ambos manejadores (then(null, errorHandler) y catch(errorHandler)) funcionarán de la misma manera: manejarán el error que ocurre en la Promesa. No están creando un error artificial; simplemente están proporcionando una manera de manejar los errores que ocurren en la Promesa.
 - If you add a `.finally()` invocation to your Promise chain, then the callback you pass to `.finally()` will be invoked when the Promise you called it on settles.
 - If you need to run some kind of cleanup code
-(such as closing open files or network connections) in either case, a `.finally()` call‐
-back is the ideal way to do that.
+  (such as closing open files or network connections) in either case, a `.finally()` call‐
+  back is the ideal way to do that.
 - En la pagina 356 hay un buen y realista ejemplo de como hacer un HTTP request con un minimo de manejo de errores.
 - Sometimes, in complex network environments, errors can occur more or less at random, and it can be appropriate to handle those errors by simply retrying the asynchronous request.
 
 ```javascript
 queryDatabase()
- .catch(e => wait(500).then(queryDatabase)) // On failure, wait and retry
- .then(displayTable)
- .catch(displayDatabaseError);
+  .catch((e) => wait(500).then(queryDatabase)) // On failure, wait and retry
+  .then(displayTable)
+  .catch(displayDatabaseError);
 ```
 
 #### 13.2.5 Promises in Parallel
@@ -3216,7 +3221,8 @@ El código que has proporcionado define una función wait que devuelve una prome
 ```javascript
 function wait(duration) {
   // Crear y devolver una nueva Promesa
-  return new Promise((resolve, reject) => { // Estos controlan la Promesa
+  return new Promise((resolve, reject) => {
+    // Estos controlan la Promesa
     // Si el argumento es inválido, rechazar la Promesa
     if (duration < 0) {
       reject(new Error("Time travel not yet implemented"));
@@ -3233,11 +3239,13 @@ function wait(duration) {
 Como usar la promesa
 
 ```javascript
-wait(1000).then(() => {
-  console.log("1 second has passed");
-}).catch((error) => {
-  console.error(error);
-});
+wait(1000)
+  .then(() => {
+    console.log("1 second has passed");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 #### 13.2.7 Promises in Sequence
@@ -3261,9 +3269,9 @@ La keyword await en JavaScript se utiliza dentro de funciones declaradas con asy
 
 ```javascript
 async function getHighScore() {
- let response = await fetch("/api/user/profile");
- let profile = await response.json();
- return profile.highScore;
+  let response = await fetch("/api/user/profile");
+  let profile = await response.json();
+  return profile.highScore;
 }
 ```
 
@@ -3300,11 +3308,11 @@ Node 12 makes its readable streams asynchronously iterable.
 ```javascript
 const fs = require("fs");
 async function parseFile(filename) {
- let stream = fs.createReadStream(filename, { encoding: "utf-8"});
- for await (let chunk of stream) {
- parseChunk(chunk); // Assume parseChunk() is defined elsewhere
-//Like a regular await expression, the for/await loop is Promise-based.
- }
+  let stream = fs.createReadStream(filename, { encoding: "utf-8" });
+  for await (let chunk of stream) {
+    parseChunk(chunk); // Assume parseChunk() is defined elsewhere
+    //Like a regular await expression, the for/await loop is Promise-based.
+  }
 }
 ```
 
@@ -3327,9 +3335,9 @@ No muy usados pero aun asi utiles.
 Debido a falta de tiempo este capitulo sera omitido y este es el resumen de las caracteristicas que se explican en este capitulo.
 
 - §14.1 Controlling the enumerability, deleteability, and configurability of object
-properties
+  properties
 - §14.2 Controlling the extensibility of objects, and creating “sealed” and “frozen”
-objects
+  objects
 - §14.3 Querying and setting the prototypes of objects
 - §14.4 Fine-tuning the behavior of your types with well-known Symbols
 - §14.5 Creating DSLs (domain-specific languages) with template tag functions
@@ -3510,11 +3518,11 @@ Explica:
 
 1. Event handler argument
 
-    - type
-    - target
-    - currentTarget
-    - timeStamp
-    - isTrusted
+   - type
+   - target
+   - currentTarget
+   - timeStamp
+   - isTrusted
 
 2. Event handler context
 3. Handler return value
@@ -3639,3 +3647,190 @@ Web components is a browser-native alternative to those frameworks based on **th
 - they are often written as JavaScript modules
 - Web components can have attributes just like regular HTML tags can
 - Se utilizan los children para utilizar un atributo llamado "slot" para agregarlos
+- The slot attribute is an extension to HTML that it is used to specify which children should go where.
+
+#### 15.6.2 HTML Templates
+
+- The HTML `<template>` tag is only loosely related to web components, but it does enable a useful optimization for components that appear frequently in web pages.
+
+- `<template>` tags and their children are never rendered by a web browser and are only
+  useful on web pages that use JavaScript.
+
+#### 15.6.3 Custom Elements
+
+#### 15.6.4 Shadow DOM
+
+#### 15.6.5 Example: a `<search-box>` Web Component
+
+### 15.7 SVG: Scalable Vector Graphics
+
+#### 15.7.1 SVG in HTML
+
+#### 15.7.2 Scripting SVG
+
+#### 15.7.3 Creating SVG Images with JavaScript
+
+### 15.8 Graphics in a `<canvas>`
+
+#### 15.8.1 Paths and Polygons
+
+#### 15.8.2 Canvas Dimensions and Coordinates
+
+#### 15.8.3 Graphics Attributes
+
+#### 15.8.4 Canvas Drawing Operations
+
+#### 15.8.5 Coordinate System Transforms
+
+#### 15.8.6 Clipping
+
+#### 15.8.7 Pixel Manipulation
+
+### 15.9 Audio APIs
+
+The HTML `<audio>` and `<video>` tags allow you to easily include sound and videos in your web pages.
+
+#### 15.9.1 The Audio() Constructor
+
+#### 15.9.2 The WebAudio API
+
+### 15.10 Location, Navigation, and History
+
+- [**AQUI**](https://www.w3schools.com/jsref/obj_location.asp) informacion mas detallada acerca del Location Object
+- [**AQUI**](https://www.w3schools.com/jsref/obj_navigator.asp) informacion mas detallada acerca del Navigation Object
+- [**AQUI**](https://www.w3schools.com/jsref/obj_history.asp) informacion mas detallada acerca del History Object
+
+The location property of both the Window and Document objects refers to the Location object, which represents the current URL of the document displayed in the window, and which also provides an API for loading new documents into the window.
+
+#### 15.10.1 Loading New Documents
+
+If you assign a string to window.location or to document.location, that string is interpreted as a URL and the browser loads it, replacing the current document with a new one.
+
+#### 15.10.2 Browsing History
+
+#### 15.10.3 History Management with hashchange Events
+
+#### 15.10.4 History Management with pushState()
+
+### 15.11 Networking
+
+This section covers three network APIs
+
+- `fetch()`
+- Server-Sent Events (or SSE) API
+- WebSockets
+
+#### 15.11.1 `fetch()`
+
+For basic HTTP requests, using fetch() is a three-step process
+
+1. Call `fetch()`
+2. Get the response object
+3. Get the body object
+
+- **The fetch() API is completely Promise-based**
+
+Aquí tienes cómo se ve una solicitud fetch() si usas then() y esperas que la respuesta del servidor a tu solicitud esté en formato JSON.
+
+```javascript
+fetch("/api/users/current") // Make an HTTP (or HTTPS) GET request
+  .then((response) => response.json()) // Parse its body as a JSON object
+  .then((currentUser) => {
+    // Then process that parsed object
+    displayUserInfo(currentUser);
+  });
+```
+
+La siguiente seria una forma asyncrona con async y await:
+
+```javascript
+async function isServiceReady() {
+  let response = await fetch("/api/service/status");
+  let body = await response.text();
+  return body === "ready";
+}
+```
+
+##### 5.11.1.1 HTTP status codes, response headers, and network errors
+
+La siguiente es una forma mas completa:
+
+```javascript
+fetch("/api/users/current") // Make an HTTP (or HTTPS) GET request.
+  .then((response) => {
+    // When we get a response, first check it
+    if (
+      response.ok && // for a success code and the expected type.
+      response.headers.get("Content-Type") === "application/json"
+    ) {
+      return response.json(); // Return a Promise for the body.
+    } else {
+      throw new Error( // Or throw an error.
+        `Unexpected response status ${response.status} or content type`
+      );
+    }
+  })
+  .then((currentUser) => {
+    // When the response.json() Promise resolves
+    displayUserInfo(currentUser); // do something with the parsed body.
+  })
+  .catch((error) => {
+    // Or if anything went wrong, just log the error.
+    // If the user's browser is offline, fetch() itself will reject.
+    // If the server returns a bad response then we throw an error above.
+    console.log("Error while fetching current user:", error);
+  });
+```
+
+##### 5.11.1.2 Setting request parameters
+
+##### 5.11.1.3 Setting request headers
+
+Para autorizaciones
+
+##### 5.11.1.4 Parsing response bodies
+
+##### 5.11.1.5 Streaming response bodies
+
+##### 5.11.1.6 Specifying the request method and request body
+
+##### 5.11.1.7 File upload with fetch()
+
+##### 5.11.1.8 Cross-origin requests
+
+##### 5.11.1.9 Aborting a request
+
+##### 5.11.1.10 Miscellaneous request options
+
+#### 15.11.2 Server-Sent Events
+
+#### 15.11.3 WebSockets
+
+The WebSocket API is a simple interface to a complex and powerful network protocol.
+
+- when you want to connect to a service using the WebSocket protocol, you specify the service with a URL, just as you would for a web service.
+
+##### 5.11.3.1 Creating, connecting, and disconnecting WebSockets
+
+##### 5.11.3.2 Sending messages over a WebSocket
+
+##### 5.11.3.3 Receiving messages from a WebSocket
+
+##### 5.11.3.4 Protocol negotiation
+
+### 15.12 Storage
+
+Web applications can use browser APIs to store data locally on the user’s computer.
+
+- Web applications can choose the lifetime of the data they store
+
+Metodos de almacenaje:
+
+- Web Storage
+- Cookies
+- IndexedDB
+- **no form of client-side storage should ever be used for passwords, financial account numbers, or other similarly sensitive information**
+
+#### 15.12.1 localStorage and sessionStorage
+
+##### 15.12.1.1 Storage lifetime and scope
