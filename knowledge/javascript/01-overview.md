@@ -3834,3 +3834,143 @@ Metodos de almacenaje:
 #### 15.12.1 localStorage and sessionStorage
 
 ##### 15.12.1.1 Storage lifetime and scope
+
+- The difference between localStorage and sessionStorage involves the lifetime and scope of the storage.
+- The origin of a document is defined by its protocol, hostname, and port.
+
+##### 15.12.1.2 Storage events
+
+#### 15.12.2 Cookies
+
+Las cookies son pequeños archivos de texto que un sitio web puede almacenar en el navegador del usuario. Estas cookies permiten al sitio web recordar información sobre la visita del usuario, lo que puede ser útil para una variedad de propósitos, como mantener al usuario autenticado, recordar preferencias del usuario o realizar un seguimiento de las interacciones del usuario con el sitio web.
+
+1. **Almacenamiento de datos**: Las cookies se utilizan para almacenar datos específicos del usuario en su navegador. Este almacenamiento es limitado en tamaño (generalmente alrededor de 4KB por cookie).
+2. **Persistencia**: Las cookies pueden ser persistentes (permanecer en el navegador hasta una fecha de expiración especificada) o de sesión (desaparecer cuando se cierra el navegador).
+3. **Seguridad:** Las cookies pueden tener atributos de seguridad como HttpOnly (no accesibles a través de JavaScript) y Secure (solo transmitidas a través de conexiones HTTPS).
+
+##### ¿Para qué sirven las cookies?
+
+1. **Autenticación**: Mantener a los usuarios autenticados entre diferentes páginas del sitio web.
+2. **Personalización**: Recordar preferencias del usuario, como el idioma o el tema del sitio.
+3. **Seguimiento:** Realizar un seguimiento de las actividades del usuario para análisis o marketing.
+Carritos de compra: Guardar información de los productos seleccionados por el usuario en una tienda en línea.
+
+- The API for manipulating cookies is an old and cryptic one. There are no methods involved: cookies are queried, set, and deleted by reading and writing the cookie property of the Document object using specially formatted strings.
+
+##### 15.12.2.1 Reading cookies
+
+When you read the document.cookie property, it returns a string that contains all the cookies that apply to the current document.
+
+- **Crear una cookie**
+
+```javascript
+// Crear una cookie con nombre 'username' y valor 'JohnDoe' que expirará en 7 días
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Convertir días a milisegundos
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+// Uso de la función para crear una cookie
+setCookie("username", "JohnDoe", 7);
+```
+
+- **Leer una cookie**
+
+```javascript
+// Leer el valor de una cookie por su nombre
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+// Uso de la función para leer la cookie 'username'
+const username = getCookie("username");
+console.log(username); // Output: 'JohnDoe'
+```
+
+- **Borrar una cookie**
+
+```javascript
+// Borrar una cookie por su nombre
+function eraseCookie(name) {
+    document.cookie = name + '=; Max-Age=-99999999;';
+}
+
+// Uso de la función para borrar la cookie 'username'
+eraseCookie("username");
+```
+
+##### 15.12.2.2 Cookie attributes: lifetime and scope
+
+In addition to a name and a value, each cookie has optional attributes that control its lifetime and scope.
+
+##### 15.12.2.3
+
+Storing cookies
+
+#### 15.12.3 IndexedDB
+
+IndexedDB is an object database
+
+#### 15.13 Worker Threads and Messaging
+
+One of the fundamental features of JavaScript is that it is single-threaded: a browser will never run two event handlers at the same time, and it will never trigger a timer while an event handler is running.
+
+- Web browsers very carefully relax the single-thread requirement with the Worker class: instances of this class represent threads that run concurrently with the main thread and the event loop.
+
+- Workers are useful when your application needs to perform computationally intensive tasks.
+
+#### 15.13.1 Worker Objects
+
+#### 15.13.2 The Global Object in Workers
+
+#### 15.13.3 Importing Code into a Worker
+
+#### 15.13.4 Worker Execution Model
+
+#### 15.13.5 postMessage(), MessagePorts, and MessageChannels
+
+#### 15.13.6 Cross-Origin Messaging with postMessage()
+
+#### 15.14 Example: The Mandelbrot Set
+
+This chapter on client-side JavaScript culminates with a long example that demonstrates using workers and messaging to parallelize computationally intensive tasks.
+
+### 15.15 Summary and Suggestions for Further Reading
+
+#### 15.15.2 Performance
+
+#### 15.15.3 Security
+
+#### 15.15.4 WebAssembly
+
+#### 15.15.5 More Document and Window Features
+
+- The Window object defines alert(), confirm(), and prompt() methods that display simple modal dialogues to the user.
+
+- If the user selects text within your document, you can obtain details of that selection with the Window method getSelection() and get the selected text with getSelection().toString(). In some browsers, navigator.clipboard is an object with an async API for reading and setting the content of the system clipboard to enable copy-and-paste interactions with applications outside of the
+browser.
+
+- A little-known feature of web browsers is that HTML elements with a contente ditable="true" attribute allow their content to be edited. The document.exe cCommand() method enables rich-text editing features for editable content.
+
+#### 15.15.6 Events
+
+Usefull events:
+
+#### 15.15.7 Progressive Web Apps and Service Workers
+
+#### 15.15.8 Mobile Device APIs
+
+#### 15.15.10 Media APIs
+
+## 16 Server-Side JavaScript with Node
+
+Node is JavaScript with bindings to the underlying operating system, making it possible to write JavaScript programs that read and write files, execute child processes, and communicate over the network.

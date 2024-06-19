@@ -31,11 +31,12 @@ Tools used for web dev in general.
 ### Documentation
 
 - Storybook for: documentation plain js, html, css, react, next. Style guides, design systems. Hosted in chromatic.
-- Docosaurus
+- **Docosaurus**
 - Mkdocs
 - Bookstack: wiki creator.
 - Wiki.js: wiki creator
 - Hugo: Static Site Generator
+- **GitBook**
 
 Herramientas están en los favoritos de microsoft edge al igual que las referencias de todos los productos.
 
