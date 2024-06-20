@@ -3853,7 +3853,7 @@ Las cookies son pequeños archivos de texto que un sitio web puede almacenar en 
 1. **Autenticación**: Mantener a los usuarios autenticados entre diferentes páginas del sitio web.
 2. **Personalización**: Recordar preferencias del usuario, como el idioma o el tema del sitio.
 3. **Seguimiento:** Realizar un seguimiento de las actividades del usuario para análisis o marketing.
-Carritos de compra: Guardar información de los productos seleccionados por el usuario en una tienda en línea.
+   Carritos de compra: Guardar información de los productos seleccionados por el usuario en una tienda en línea.
 
 - The API for manipulating cookies is an old and cryptic one. There are no methods involved: cookies are queried, set, and deleted by reading and writing the cookie property of the Document object using specially formatted strings.
 
@@ -3866,10 +3866,10 @@ When you read the document.cookie property, it returns a string that contains al
 ```javascript
 // Crear una cookie con nombre 'username' y valor 'JohnDoe' que expirará en 7 días
 function setCookie(name, value, days) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Convertir días a milisegundos
-    const expires = "expires=" + date.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  const date = new Date();
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000); // Convertir días a milisegundos
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
 // Uso de la función para crear una cookie
@@ -3881,14 +3881,14 @@ setCookie("username", "JohnDoe", 7);
 ```javascript
 // Leer el valor de una cookie por su nombre
 function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
 }
 
 // Uso de la función para leer la cookie 'username'
@@ -3901,7 +3901,7 @@ console.log(username); // Output: 'JohnDoe'
 ```javascript
 // Borrar una cookie por su nombre
 function eraseCookie(name) {
-    document.cookie = name + '=; Max-Age=-99999999;';
+  document.cookie = name + "=; Max-Age=-99999999;";
 }
 
 // Uso de la función para borrar la cookie 'username'
@@ -3957,7 +3957,7 @@ This chapter on client-side JavaScript culminates with a long example that demon
 - The Window object defines alert(), confirm(), and prompt() methods that display simple modal dialogues to the user.
 
 - If the user selects text within your document, you can obtain details of that selection with the Window method getSelection() and get the selected text with getSelection().toString(). In some browsers, navigator.clipboard is an object with an async API for reading and setting the content of the system clipboard to enable copy-and-paste interactions with applications outside of the
-browser.
+  browser.
 
 - A little-known feature of web browsers is that HTML elements with a contente ditable="true" attribute allow their content to be edited. The document.exe cCommand() method enables rich-text editing features for editable content.
 
@@ -3974,3 +3974,110 @@ Usefull events:
 ## 16 Server-Side JavaScript with Node
 
 Node is JavaScript with bindings to the underlying operating system, making it possible to write JavaScript programs that read and write files, execute child processes, and communicate over the network.
+
+### 16.1 Node Programming Basics
+
+How NODE interact with the operative system
+
+#### 16.1.1 Console Output
+
+In web browsers, console.log(), console.warn(), and console.error() typically display little icons next to their output in the developer console to indicate the variety of the log message. Node does not do this, but output displayed with console.error() is distinguished from output displayed with console.log() because console.error() writes to the stderr stream.
+
+#### 16.1.2 Command-Line Arguments and Environment Variables
+
+En Node.js, los "Command-Line Arguments" (argumentos de línea de comandos) y las "Environment Variables" (variables de entorno) son mecanismos que permiten personalizar el comportamiento de una aplicación en tiempo de ejecución. A continuación, se detalla qué son y para qué sirven cada uno de ellos:
+
+- **Command-Line Arguments**
+
+Los argumentos de línea de comandos son parámetros que se pasan a una aplicación Node.js cuando se inicia desde la terminal. Estos argumentos permiten que el usuario proporcione datos adicionales a la aplicación para modificar su comportamiento sin necesidad de cambiar el código.
+
+- **¿Qué son?**
+
+Son los valores que se pasan al ejecutar un script de Node.js desde la línea de comandos. Por ejemplo:
+
+```bash
+node app.js arg1 arg2 arg3
+```
+
+En este caso, `arg1`, `arg2`, y `arg3` son argumentos de línea de comandos.
+
+- **¿Para qué sirven?**
+
+Sirven para:
+
+- Pasar configuraciones o parámetros específicos a la aplicación sin modificar el código fuente.
+- Definir opciones de configuración dinámicas.
+- Cambiar el comportamiento del programa según las necesidades del usuario.
+
+- **Cómo acceder a ellos en Node.js:**
+
+En Node.js, los argumentos de línea de comandos se acceden a través del array `process.argv`. El primer elemento (`process.argv[0]`) es la ruta al ejecutable de Node.js, el segundo elemento (`process.argv[1]`) es la ruta al archivo que se está ejecutando, y los elementos subsiguientes son los argumentos pasados.
+
+Ejemplo:
+
+```javascript
+console.log(process.argv);
+```
+
+Si ejecutas `node app.js arg1 arg2`, la salida será:
+
+```bash
+[
+  '/usr/local/bin/node',
+  '/path/to/app.js',
+  'arg1',
+  'arg2'
+]
+```
+
+- **Environment Variables**
+
+Las variables de entorno son pares clave-valor que se establecen fuera del código de la aplicación y que ésta puede leer en tiempo de ejecución. Se utilizan comúnmente para configurar aspectos como conexiones a bases de datos, claves de API, y otras configuraciones sensibles que no deberían estar en el código fuente.
+
+- **¿Qué son?**
+
+Son variables que están definidas en el entorno en el que se ejecuta una aplicación y que pueden ser accedidas por esta para configurar su comportamiento.
+
+- **¿Para qué sirven?**
+
+Sirven para:
+
+- Configurar la aplicación sin necesidad de modificar el código fuente.
+- Mantener información sensible (como claves API, contraseñas, y rutas a servicios externos) fuera del código.
+- Facilitar el cambio de configuraciones entre diferentes entornos (desarrollo, pruebas, producción).
+
+- **Cómo acceder a ellas en Node.js:**
+
+En Node.js, las variables de entorno se acceden a través del objeto `process.env`.
+
+Ejemplo:
+
+```javascript
+console.log(process.env.MY_VARIABLE);
+```
+
+Para establecer una variable de entorno y ejecutarla en Node.js, en Unix se hace así:
+
+```bash
+MY_VARIABLE=value node app.js
+```
+
+En Windows, sería:
+
+```cmd
+set MY_VARIABLE=value && node app.js
+```
+
+- **Resumen**
+
+- **Command-Line Arguments**: Permiten pasar parámetros directamente desde la línea de comandos al ejecutar la aplicación. Se acceden mediante `process.argv`.
+- **Environment Variables**: Permiten definir configuraciones externas que la aplicación puede usar para modificar su comportamiento. Se acceden mediante `process.env`.
+
+Ambos mecanismos son esenciales para crear aplicaciones flexibles y configurables en Node.js, facilitando el desarrollo y el despliegue en diferentes entornos.
+
+#### 16.1.3 Program Life Cycle
+
+The node command expects a command-line argument that specifies the file of Java‐ Script code to be run. This initial file typically imports other modules of JavaScript code, and may also define its own classes and functions.
+
+A Node-based server program that listens for incoming network connections will theoretically run forever because it will always be
+waiting for more events.

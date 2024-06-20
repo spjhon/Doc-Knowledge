@@ -39,3 +39,5 @@ Unlike traditional constructors (using the new keyword), factory functions provi
 **callbacks** A callback is a function that you write and then pass to some other function.
 
 **Promises** a core language feature designed to simplify asynchronous programming.
+
+- Lo que busco con las herramientas aprendidas:  content-driven e-commerce platform with a focus on SEO and content marketing.

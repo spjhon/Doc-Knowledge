@@ -227,7 +227,7 @@ Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, ax
 
 - Strapi (RestApi, GraphQL)
 - Directus
-- Payload
+- **Payload**
 - Sanity
 - Ghost
 
