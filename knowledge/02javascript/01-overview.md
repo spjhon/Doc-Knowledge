@@ -2616,7 +2616,7 @@ url.hash; // => "#fragment"
 
 Prior to the definition of the URL API described previously, there have been multiple attempts to support URL escaping and unescaping in the core JavaScript language. The first attempt was the globally defined escape() and unescape() functions, which are now deprecated but still widely implemented. **They should not be used**.
 
-## 11.10 Timers
+### 11.10 Timers
 
 - **setTimeout() and setInterval()**
 
@@ -4081,3 +4081,175 @@ The node command expects a command-line argument that specifies the file of Java
 
 A Node-based server program that listens for incoming network connections will theoretically run forever because it will always be
 waiting for more events.
+
+#### 16.1.4 Node Modules
+
+#### 16.1.5 The Node Package Manager
+
+It helps you download and manage libraries that your program depends on.
+
+### 16.2 Node Is Asynchronous by Default
+
+Node esta hecho para servidores que requieran CPU pero para procesos intensivos en I/O (input output)
+
+- This kind of concurrency is often called event-based concurrency.
+- At its core, Node has a single thread that runs an “event loop.”
+
+El event loop es un componente fundamental de Node.js que permite la ejecución de operaciones de entrada y salida (I/O) de manera no bloqueante, es decir, sin detener la ejecución del programa mientras se espera a que estas operaciones finalicen. Aquí te explico cómo funciona el event loop en Node.js:
+
+- **Conceptos Clave**
+
+1. **Single-threaded**: Node.js corre en un solo hilo, lo que significa que tiene un único hilo de ejecución principal. Sin embargo, utiliza múltiples hilos en el fondo (en el pool de hilos) para manejar las operaciones I/O asíncronas.
+
+2. **Asincronía**: La mayor parte de las operaciones en Node.js son asíncronas, lo que significa que no bloquean el hilo principal. Estas operaciones incluyen la lectura/escritura de archivos, las solicitudes de red, las operaciones de bases de datos, etc.
+
+3. **Callbacks**: Cuando se inicia una operación asíncrona, se proporciona un callback (función de retorno) que se ejecutará cuando la operación se complete.
+
+- **Componentes del Event Loop**
+
+El event loop en Node.js tiene varias fases, y cada fase maneja diferentes tipos de callbacks. Aquí están las principales fases:
+
+1. **Timers**: Esta fase maneja la ejecución de callbacks programados por `setTimeout()` y `setInterval()`. Los callbacks se ejecutan cuando el tiempo especificado ha transcurrido.
+
+2. **Pending Callbacks**: Esta fase ejecuta callbacks de ciertas operaciones del sistema, como errores en operaciones de I/O.
+
+3. **Idle, prepare**: Fases internas de Node.js para preparar la ejecución del loop. Generalmente no se utilizan directamente por el usuario.
+
+4. **Poll**: Esta es una de las fases más importantes. Aquí el event loop busca nuevos eventos I/O y ejecuta los callbacks correspondientes. Si no hay nada que hacer, el event loop se quedará en esta fase esperando por nuevos eventos.
+
+5. **Check**: En esta fase se ejecutan los callbacks programados por `setImmediate()`.
+
+6. **Close Callbacks**: Aquí se manejan los callbacks de cierre de operaciones, como `socket.on('close', ...)`.
+
+- **Funcionamiento del Event Loop**
+
+1. **Inicio de Operación**: Cuando se inicia una operación asíncrona (por ejemplo, leer un archivo), Node.js delega esta operación a su sistema de operaciones en segundo plano (libuv).
+
+2. **Callback en Cola**: Una vez que la operación se completa, el callback correspondiente se pone en cola en la fase apropiada del event loop.
+
+3. **Ejecución del Callback**: Durante la ejecución del event loop, Node.js va revisando cada fase en orden. Cuando encuentra callbacks en cola para una fase específica, los ejecuta uno por uno.
+
+- **Ejemplo:**
+
+Veamos un pequeño ejemplo para ilustrar cómo funcionan las distintas fases:
+
+```javascript
+setTimeout(() => {
+  console.log('Timeout callback');
+}, 0);
+
+setImmediate(() => {
+  console.log('Immediate callback');
+});
+
+console.log('Main script');
+```
+
+1. **Main script**: Se ejecuta primero `console.log('Main script')`.
+
+2. **Timers**: El `setTimeout` se programa y su callback se pone en cola para la fase de Timers.
+
+3. **Check**: El `setImmediate` se programa y su callback se pone en cola para la fase de Check.
+
+4. **Event Loop**: Comienza a ejecutar las fases:
+   - **Poll**: Si no hay nada en Poll, pasa a la fase de Check.
+   - **Check**: Ejecuta el callback de `setImmediate`.
+   - **Timers**: Ejecuta el callback de `setTimeout`.
+
+El orden de ejecución sería:
+
+```md
+Main script
+Immediate callback
+Timeout callback
+```
+
+Este es un resumen básico de cómo funciona el event loop en Node.js. La comprensión del event loop es crucial para escribir código eficiente y no bloqueante en Node.js.
+
+### 16.3 Buffers
+
+Es un datatype, it is a sequence of bytes instead of a sequence of characters.
+
+- If you write a Node program that actually manipulates binary data, you may find yourself using the Buffer class extensively.
+
+### 16.4 Events and EventEmitter
+
+### 16.5 Streams
+
+#### 16.5.1 Pipes
+
+Sometimes, you need to read data from a stream simply to turn around and write that same data to another stream.
+
+#### 16.5.2 Asynchronous Iteration
+
+#### 16.5.3 Writing to Streams and Handling Backpressure
+
+#### 16.5.4 Reading Streams with Events
+
+### 16.6 Process, CPU, and Operating System Details
+
+### 16.7 Working with Files
+
+#### 16.7.1 Paths, File Descriptors, and FileHandles
+
+#### 16.7.2 Reading Files
+
+#### 16.7.3 Writing Files
+
+#### 16.7.4 File Operations
+
+#### 16.7.5 File Metadata
+
+#### 16.7.6 Working with Directories
+
+### 16.8 HTTP Clients and Servers
+
+### 16.9 Non-HTTP Network Servers and Clients
+
+### 16.10 Working with Child Processes
+
+#### 16.10.1 execSync() and execFileSync()
+
+#### 16.10.2 exec() and execFile()
+
+#### 16.10.3 spawn()
+
+#### 16.10.4 fork()
+
+#### 16.11 Worker Threads
+
+#### 16.11.1 Creating Workers and Passing Messages
+
+#### 16.11.2 The Worker Execution Environment
+
+#### 16.11.3 Communication Channels and MessagePorts
+
+#### 16.11.4 Transferring MessagePorts and Typed Arrays
+
+#### 16.11.5 Sharing Typed Arrays Between Threads
+
+## 17. JavaScript Tools and Extensions
+
+### 17.1 Linting with ESLint
+
+In programming, the term lint refers to code that, while technically correct, is unsightly, or a possible bug, or suboptimal in some way.
+
+- ESLint is fully configurable, and you can define a configuration file that tunes ESLint to enforce exactly the rules you want and only those rules.
+
+One of the reasons that some projects use linters is to enforce a consistent coding style so that when a team of programmers is working on a shared codebase, they use compatible code conventions.
+
+### 17.2 JavaScript Formatting with Prettier
+
+A modern alternative to enforcing code formatting rules via a linter is to adopt a tool like Prettier to automatically parse and reformat all of your code.
+
+### 17.3 Unit Testing with Jest
+
+### 17.4 Package Management with npm
+
+### 17.5 Code Bundling
+
+### 17.6 Transpilation with Babel
+
+### 17.7 JSX: Markup Expressions in JavaScript
+
+### 17.8 Type Checking with Flow

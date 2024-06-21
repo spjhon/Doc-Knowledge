@@ -61,22 +61,13 @@ const config = {
   ],
 
   plugins: [
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'react',
-        path: 'react',
-        routeBasePath: 'react',
-        sidebarPath: './sidebars.js',
-        // ... other options
-      },
-    ],
+    
     [
       '@docusaurus/plugin-content-docs',
       {
         id: 'webs',
-        path: 'webs',
-        routeBasePath: 'webs',
+        path: '01webs',
+        routeBasePath: '01webs',
         sidebarPath: './sidebars.js',
         // ... other options
       },
@@ -85,8 +76,8 @@ const config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'javascript',
-        path: 'javascript',
-        routeBasePath: 'javascript',
+        path: '02javascript',
+        routeBasePath: '02javascript',
         sidebarPath: './sidebars.js',
         // ... other options
       },
@@ -94,9 +85,9 @@ const config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'astro',
-        path: 'astro',
-        routeBasePath: 'astro',
+        id: 'react',
+        path: '03react',
+        routeBasePath: '03react',
         sidebarPath: './sidebars.js',
         // ... other options
       },
@@ -105,12 +96,33 @@ const config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'typescript',
-        path: 'typescript',
-        routeBasePath: 'typescript',
+        path: '04typescript',
+        routeBasePath: '04typescript',
         sidebarPath: './sidebars.js',
         // ... other options
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'nextjs',
+        path: '05nextjs',
+        routeBasePath: '05nextjs',
+        sidebarPath: './sidebars.js',
+        // ... other options
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'astro',
+        path: '06astro',
+        routeBasePath: '06astro',
+        sidebarPath: './sidebars.js',
+        // ... other options
+      },
+    ],
+    
     
   ],
 
@@ -161,18 +173,26 @@ const config = {
           },
           {
             type: 'docSidebar',
+            docsPluginId: 'typescript',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'TypeScript'
+          },
+          {
+            type: 'docSidebar',
+            docsPluginId: 'nextjs',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'NextJs'
+          },
+          {
+            type: 'docSidebar',
             docsPluginId: 'astro',
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Astro'
           },
-          {
-            type: 'docSidebar',
-            docsPluginId: 'typescript',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'TypeScript'
-          }
+          
           
           /*{
             label:'React',
