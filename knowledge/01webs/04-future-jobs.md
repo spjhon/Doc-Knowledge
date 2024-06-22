@@ -28,12 +28,12 @@ Remember, success in any field requires a combination of passion, skills, and a 
 
 November 01, 2020 / Time to read: 7 minutes
 The e-commerce sphere is undergoing constant change. This, undoubtedly, creates certain fears and brings uncertainty, while encouraging our deepening interest in the field. Unexpected changes, twists, and challenges capable of both propelling your business to the next level and ending your e-commerce project have become an annual routine.
-Regardless of the ups and downs you have encountered this year, keep in mind that the e-commerce market is actively developing right now, experiencing unprecedented growth and diversity.  The list of the ten e-commerce trends might inspire you, give new ideas, answer some of your questions, or help you make your business even more successful in the future.
+Regardless of the ups and downs you have encountered this year, keep in mind that the e-commerce market is actively developing right now, experiencing unprecedented growth and diversity. The list of the ten e-commerce trends might inspire you, give new ideas, answer some of your questions, or help you make your business even more successful in the future.
 
 - **Global E-commerce retail sales to reach $4.9 trillion by 2021**
-New research shows that worldwide retail e-commerce sales will peak in 2021. Companies specializing in e-commerce may experience a 265% growth rate, from $1.3 trillion in 2014 to $4.9 trillion in 2021, which signifies a potential steady upward trend with no visible signs of decline.
-It is also of interest to note that the e-commerce sales volume has been inexorably devouring the global retail market. In fact, by 2021, e-commerce will take up to 17.5% of the total retail market in the world.
-While this figure still seems small in terms of the global retail market, it manifests more opportunities for growth in the future. To take advantage of this trend, brick-and-mortar shops should start developing the infrastructure to take their businesses online, while companies already operating online should look for new ways to further develop their brands on the Internet.
+  New research shows that worldwide retail e-commerce sales will peak in 2021. Companies specializing in e-commerce may experience a 265% growth rate, from $1.3 trillion in 2014 to $4.9 trillion in 2021, which signifies a potential steady upward trend with no visible signs of decline.
+  It is also of interest to note that the e-commerce sales volume has been inexorably devouring the global retail market. In fact, by 2021, e-commerce will take up to 17.5% of the total retail market in the world.
+  While this figure still seems small in terms of the global retail market, it manifests more opportunities for growth in the future. To take advantage of this trend, brick-and-mortar shops should start developing the infrastructure to take their businesses online, while companies already operating online should look for new ways to further develop their brands on the Internet.
 
 - **The global E-commerce market moves away from the western world**
 
@@ -66,13 +66,13 @@ A short product description
 The price of the product
 A button allowing the customer to visit the company website and purchase the product
 
-This tool helps shoppers save a lot of time when buying goods online, but remains still unavailable in some countries, even though it is possible to enable it with some effort. There are many other tools you can use to promote your goods and services on social media, which is why you should take this trend into consideration and start expanding your target audience in 2020 and going forward.  
+This tool helps shoppers save a lot of time when buying goods online, but remains still unavailable in some countries, even though it is possible to enable it with some effort. There are many other tools you can use to promote your goods and services on social media, which is why you should take this trend into consideration and start expanding your target audience in 2020 and going forward.
 
 - **B2B E-commerce will continue to grow**
 
 B2B (business-to-business) e-commerce is a business selling its products online to other businesses. In 2020, B2B e-commerce is expected to be two times higher than B2C (business-to-consumer).
 
-In 2019, all types of B2B digital commerce—electronic commerce, electronic data interchange, e-procurement, B2B marketplaces, and a few other related channels—grew 10 times faster than total manufacturing and distributor sales.  
+In 2019, all types of B2B digital commerce—electronic commerce, electronic data interchange, e-procurement, B2B marketplaces, and a few other related channels—grew 10 times faster than total manufacturing and distributor sales.
 
 By 2021, in the US alone, B2B eCommerce sales are going to reach  $1,184 trillion. The prevalence of B2B signifies that B2B companies should strive for simplifying their business dealings and approximating them to the B2C model. Concluding B2B transactions is much more complex since buyers have to go through several agreement stages, such as meeting sales representatives, negotiating, agreeing on terms and conditions, and establishing contracts before making a purchase.
 
@@ -86,9 +86,9 @@ Here’s the average percentage of customers who buy goods online from overseas 
 
 - **E-commerce adopting personalization as a standard**
 
-Over the past few years, personalization has become a dynamic global trend in e-commerce, and it is about to evolve into an unwavering standard in 2020 and the years to come.  The bar has been set incredibly high for retailers and e-commerce companies, thanks to giants like Amazon. However, new technologies and tools allow you to offer a comparable personalized experiences to your customers without spending tons of money.  
+Over the past few years, personalization has become a dynamic global trend in e-commerce, and it is about to evolve into an unwavering standard in 2020 and the years to come. The bar has been set incredibly high for retailers and e-commerce companies, thanks to giants like Amazon. However, new technologies and tools allow you to offer a comparable personalized experiences to your customers without spending tons of money.
 
-Besides, personalization has already become a full-fledged marketing strategy. It is no longer enough to address a client by their name. Now, e-commerce personalization is all about knowing what customer data you should gather and continue to gather from your omnichannel retail experience to create meaningful customer interactions.  
+Besides, personalization has already become a full-fledged marketing strategy. It is no longer enough to address a client by their name. Now, e-commerce personalization is all about knowing what customer data you should gather and continue to gather from your omnichannel retail experience to create meaningful customer interactions.
 
 - **Revolutionary mobile shopping**
 
@@ -198,3 +198,67 @@ Restaurant websites
 Remember that these are general categories, and some websites may utilize a combination of rendering methods depending on their specific needs.
 
 `https://blog.sandworm.dev/state-of-npm-2023-most-popular-best-quality-packages`
+
+Existen varias soluciones open source que se integran bien con Next.js y están diseñadas para diferentes industrias. Aquí te menciono algunas de ellas:
+
+### Soluciones para Hoteles
+
+1. **RoomRaccoon**: Aunque no es completamente open source, es una solución SaaS con API que puedes integrar en tus aplicaciones Next.js.
+2. **openHotel**: Una solución open source para la gestión de propiedades hoteleras que podrías considerar adaptar o integrar.
+
+### Soluciones para Reservas
+
+1. **Rezgo**: Una solución de reserva de tours y actividades con una API robusta.
+2. **Amelia**: Aunque es un plugin para WordPress, tiene una API que podrías utilizar.
+
+### Soluciones para Gestión de Restaurantes
+
+1. **GloriaFood**: Tiene una API para pedidos en línea que puedes integrar.
+2. **TastyIgniter**: Es una solución open source para pedidos y gestión de restaurantes.
+
+### Soluciones para la Gestión de Proyectos
+
+1. **OpenProject**: Una herramienta de gestión de proyectos open source que se puede integrar con Next.js mediante su API.
+2. **Taiga**: Otra opción open source para la gestión de proyectos con una API robusta.
+
+### Soluciones para Educación y E-learning
+
+1. **Moodle**: Una plataforma de gestión de aprendizaje (LMS) open source que puedes integrar usando su API.
+2. **Open edX**: Otra plataforma LMS open source con API.
+
+### Soluciones para el Sector Salud
+
+1. **OpenMRS**: Un sistema de gestión de información médica open source.
+2. **GNU Health**: Otra solución open source para el sector salud.
+
+### Soluciones para el Sector Inmobiliario
+
+1. **Realtyna**: Un plugin de WordPress con API que se puede utilizar para integrar listados de propiedades.
+2. **ResMan**: Ofrece una API para gestionar propiedades inmobiliarias.
+
+### Soluciones para Foros y Comunidades
+
+1. **Discourse**: Una plataforma de foros open source con API que puedes integrar.
+2. **NodeBB**: Otra plataforma de foros open source.
+
+### Soluciones para CRM
+
+1. **SuiteCRM**: Una solución CRM open source con API que se puede integrar con Next.js.
+2. **EspoCRM**: Otra opción CRM open source con API.
+
+### Soluciones para Finanzas y Contabilidad
+
+1. **ERPNext**: Una solución ERP open source que incluye módulos de contabilidad.
+2. **Odoo**: Aunque no completamente open source, tiene una versión comunitaria y API.
+
+### Soluciones para Streaming y Multimedia
+
+1. **PeerTube**: Una plataforma de video streaming open source.
+2. **Jitsi Meet**: Para videoconferencias, open source y con API.
+
+### Soluciones para Analítica y Big Data
+
+1. **Metabase**: Una herramienta de BI open source que se puede integrar mediante su API.
+2. **Apache Superset**: Otra opción de BI open source.
+
+Estas son solo algunas de las soluciones disponibles. La mayoría de estas plataformas tienen APIs robustas que permiten integraciones flexibles con aplicaciones Next.js, lo que te permite desarrollar rápidamente soluciones específicas para diferentes industrias sin tener que crear backends personalizados desde cero.

@@ -121,10 +121,20 @@ Por orden alfabetico:
 
 ### Libros leidos hasta el momento
 
-Javascript defeinitive edition
+JavaScript: The Definitive Guide
+Seventh Edition
+David Flanagan
+
 The ninja javascript book
 Css in depth
 Learning Typescript
+
+React 18 Design Patterns and Best Practices
+Fourth Edition
+Carlos Santana Roldán
+
+Modern Front-end Architecture
+Ryan Lanciaux
 
 ### Cursos de Udemy o  coursera hasta el momento
 
