@@ -38,3 +38,9 @@ Excelentensimima herramienta de testeo de componentes sin necesidad de poner a c
 ## 3. Our First Storybook Stories
 
 Una vez instalado el storybook, se debe de crear un archivo typo story para que storybook lea las configuraciones y lo agrege a la lista
+
+## 4. Creating Reusable Components
+
+What Makes a Good Component?
+
+- It All Comes Down to Purpose
