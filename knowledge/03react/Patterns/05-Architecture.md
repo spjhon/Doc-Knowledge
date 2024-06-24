@@ -20,3 +20,21 @@ Aunque con software hay cierta presion por siempre estar cambiando paradigmas y 
 —Charlie Munger, investor.
 
 “What is mise en place?” you might ask. According to Wikipedia, mise en place means “everything in its place.”
+
+For all the alchemy that goes into building something, the magic of making is only possible because of the many repetitive processes we endure in preparation for final assembly. - Adam Savage, MythBusters
+
+- One such way we can focus on aspects of our application individually is by effectively leveraging components.
+
+### 1.1 The Workspace
+
+If you’re building web applications with components, you should consider adding a component workspace.
+
+### 1.2 StoryBook
+
+Excelentensimima herramienta de testeo de componentes sin necesidad de poner a correr la app. Storybook is an open source project to assist in building component libraries.
+
+## 2. Configuring Our Workspace
+
+## 3. Our First Storybook Stories
+
+Una vez instalado el storybook, se debe de crear un archivo typo story para que storybook lea las configuraciones y lo agrege a la lista
