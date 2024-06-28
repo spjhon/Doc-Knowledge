@@ -4,11 +4,13 @@ sidebar_position: 1
 
 # REACT Overview
 
-La teoria de este documento fue extraida originalmente del curos de **Stephen Grider de Udemy**, luego se completa con el libro **React 18 Design Patterns and Best Practices de Carlos Santana Roldán**.
+La teoria de este documento fue extraida originalmente del curso de **Stephen Grider de Udemy**, luego se completa con el libro **React 18 Design Patterns and Best Practices de Carlos Santana Roldán**, tanto el curso como el libro poseen sus respectivos repositorios.
 
 ## 1. Basics
 
 React es una libreria que posee un DOM virtual con el cual puede renderizar componentes individualmente, al ser una libreria necesita librerias extra para su completa funcionalidad.
+
+React utiliza BABEL y WEBPACK uno para transformar syntax nueva de javascript en syntax vieja y webpack para compilar todo el codigo en uno solo, **VITE no utiliza BABEL**.
 
 ### 1.1. Differentiating between declarative and imperative programming
 
@@ -16,7 +18,7 @@ La forma más fácil de abordar esto es pensar en la programación imperativa co
 
 - La programación declarativa tiende a evitar la creación y mutación de un state.
 - React sigue un paradigma declarativo, y no es necesario indicarle cómo interactuar con el DOM; declaras lo que quieres ver en la pantalla.
-- Los elementos son importantes en `React.crateElement()` ya que asi es como crea nuevos elementos que asemejan HTML que son los componentes
+- Los elementos son importantes en `React.crateElement()` ya que asi es como crea nuevos elementos que asemejan HTML que son los componentes, sin embargo desde react 17 ya no se utiliza `React.crateElement()` por eso ya no hay que importar REACT en cada componente.
 
 ### 1.2. JSX Rules, Commponents Tips
 
@@ -40,9 +42,24 @@ Los primeros pasos se explican en el primer ejercicio del curso Grider en donde 
 - React no renderiza objects
 ![text for screen reader](../src/images/gridder%20diapositivas/006%20que%20NO%20hacer%20con%20las%20curlyes.jpg)
 
+- since React 16.2.0, it is possible to return an array directly as follows:
+
+```javascript
+return [
+ <li key="1">First item</li>, 
+ <li key="2">Second item</li>, 
+ <li key="3">Third item</li>
+]
+```
+
 ***
 
 - **Ojo cuando se utiliza un componente mas de una vez, cada componente es independiente (es su propia instancia)**
+
+***
+
+- **Donde encontrar ejemplos?:**
+- Exercise 01 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/001-Vite-basics/README.md)
 
 ***
 
@@ -79,10 +96,8 @@ La destructuración con [] indica que se están destructurando arrays, mientras 
 **
 
 - **Donde encontrar ejemplos?:**
-
 - Exercise 01 and 02 from react examples that comes form the official React Docs [Link](https://react.dev/learn)
 - Tips from the docs: [Link](/03react/FromDocs/describingUI)
-- Exercise 01 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/001-Vite-basics/README.md)
 - Exercise 02 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/002-Vite-Pads(basic%20components%20and%20pops)/README.md)
 
 ***

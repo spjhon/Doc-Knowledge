@@ -77,7 +77,7 @@ Cada vez que se realize un curso o se lea un libro, en el docusauro se va a regi
 
 **Definir terminos:** Un glosario para tener a la mano terminos importantes.
 
-**Como crear el resumen**: Si el tema ya existe se agrega la informacion pertiente, si no se agrega el tema, la informacion se debe de llenar no con explicaciones del por que de algo sino con hechos confirmados, si resulta la pregunta el por que de esta afirmacion pues se dirige a la informacion mas detallada ya sea en libros o cursos o referencias o tutoriales.
+**Como crear el resumen**: Si el tema ya existe se agrega la informacion pertiente, si no se agrega el tema, la informacion se debe de llenar no con explicaciones del por que de algo sino con hechos confirmados, si resulta la pregunta el por que de esta afirmacion pues se dirige a la informacion mas detallada ya sea en libros, cursos, referencias o tutoriales.
 
 **Teoria con Syntax y ejemplo practico**
 Como se ha dicho anteriormente, la idea de un DOCUSAURO es mostrar un MAPA hacia donde encontrar la informacion completa asi que solo se va a concignar la teoria en sus respectivas secciones dentro de la categorizacion dada en el DOCUSAURO. La teoria que necesite mayor aclaracion o sea mas extensa se digitara en un documento a parte pero dentro de la misma carpeta y en el overview lago asi como un index pero con direcciones para saber donde se encuentra la teoria completa.
