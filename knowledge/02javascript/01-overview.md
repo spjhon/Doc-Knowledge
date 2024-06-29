@@ -1242,7 +1242,7 @@ A function is a block of JavaScript code that is defined once but may be execute
 
 - Nested Functions
 
-### Invoking Functions
+### 8.2. Invoking Functions
 
 [**AQUI**](/javascript/functions) La lista completa de como definir y como invocar una funcion
 [**AQUI**](/javascript/functions) Una explicacion mas completa de como utilizar el THIS, tambien en la pagina de javascript.info hay informacion completa.
@@ -1254,7 +1254,14 @@ A function is a block of JavaScript code that is defined once but may be execute
 - Indirectly through their call() and apply() methods
 - Implicit Function Invocation: OJO que aplicando ciertos metodos explicados en la pagina 192 del libro se puede invocar una funcion sin querer.
 
-### Function Arguments and Parameters
+#### 8.2.4 Indirect Invocation
+
+JavaScript functions are objects, and like all JavaScript objects, they have methods.
+Two of these methods, call() and apply(), invoke the function indirectly. Both methods allow you to explicitly specify the this value for the invocation, which means **you can invoke any function as a method of any object**, even if it is not actually a method of that object.
+
+La informacion completa se encuentra en el **8.7.4. The call() and apply() Methods**
+
+### 8.3. Function Arguments and Parameters
 
 - Optional Parameters and Defaults
 
@@ -1416,16 +1423,83 @@ c.count; // => 2000
 c.count = 2000; // !Error: count can only be set to a larger value
 ```
 
-### Function Properties, Methods, and Constructor
+---
+
+### 8.7. Function Properties, Methods, and Constructor
 
 Since functions are objects, they can have properties and methods, just like any other object.
 
 - The length Property
 - The name Property: This property is primarily useful when writing debugging or error messages.
 - The prototype Property
-- The call() and apply() Methods
 - The toString() Method
 - The Function() Constructor
+
+#### 8.7.4. The call() and apply() Methods
+
+[**AQUI, mas informacion sobre el apply() en W3Schools**](https://www.w3schools.com/js/js_function_apply.asp)
+[**AQUI, un ejemplo mas detallado de chatGPT**](/02javascript/patterns.md/apply()Patterns)
+[**AQUI, ficha tecnica del apply en Mozilla Docs**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)
+
+Pequeña teoria de introduccion en la seccion **8.2.4 Indirect Invocation**.
+
+El método `apply()` en JavaScript se utiliza para invocar una función especificando el valor de `this` y los argumentos como una matriz (array).
+
+Por medio de estos metodos se le pueden aplicar funciones como si fueran metodos de un object en particular y se le puede especificar el `this` a el object, esto es util por ejemplo para Higher order functions.
+
+El método `apply()` en JavaScript se utiliza para invocar una función especificando el valor de this y los argumentos como una matriz (array).
+
+Los dos usos principales de apply es para crear **Higher Order Components** y **Convertir un array en argumentos individuales para una funcion**
+
+##### De chatGPT
+
+```javascript
+function greet(greeting, punctuation) {
+  return greeting + ", " + this.name + punctuation;
+}
+const person = { name: "Alice" };
+greet.apply(person, ["Hello", "!"]); // 'Hello, Alice!'
+```
+
+Aquí, `apply` llama a la función `greet` con el objeto `person` como su contexto (`this`), y los argumentos `["Hello", "!"]`.
+
+Si no se utilizara `apply`, la función `greet` no tendría acceso a la propiedad `name` del objeto `person` a través de `this`. Veamos cómo funcionaría la función `greet` en diferentes escenarios:
+
+1. **Llamada normal (sin `apply`):**
+
+   ```javascript
+   greet("Hello", "!"); // Esto dará un error o undefined dependiendo de cómo se use `this`.
+   ```
+
+   En este caso, `this` dentro de `greet` no se refiere a `person`. Dependerá del contexto en el que se llame la función (por ejemplo, en un navegador, `this` podría referirse al objeto `window` o ser `undefined` en modo estricto).
+
+2. **Llamada con `call` (similar a `apply` pero con argumentos individuales):**
+
+   ```javascript
+   greet.call(person, "Hello", "!"); // 'Hello, Alice!'
+   ```
+
+   `call` es similar a `apply`, pero los argumentos se pasan individualmente en lugar de en una matriz.
+
+3. **Asignar `greet` como un método de `person`:**
+
+   ```javascript
+   person.greet = greet;
+   person.greet("Hello", "!"); // 'Hello, Alice!'
+   ```
+
+   Aquí, `greet` se agrega como un método del objeto `person`, y `this` dentro de `greet` se referirá a `person`.
+
+4. **Usar una función de flecha para cambiar el contexto:**
+
+   ```javascript
+   const boundGreet = greet.bind(person);
+   boundGreet("Hello", "!"); // 'Hello, Alice!'
+   ```
+
+   `bind` crea una nueva función que, cuando se llama, tiene su `this` fijo al valor proporcionado (`person` en este caso).
+
+   En resumen, sin usar `apply`, `call`, `bind` o asignar la función como un método de un objeto, `this` dentro de la función `greet` no se referirá a `person`, y la función no podrá acceder a la propiedad `name` de `person`.
 
 ### Functional Programming
 
@@ -1461,11 +1535,68 @@ let stddev = Math.sqrt(
 stddev; // => 2
 ```
 
-#### Higher-Order Functions
+#### 8.8.2. Higher-Order Functions
 
 A higher-order function is a function that operates on functions, taking one or more functions as arguments and returning a new function.
 
-Una forma mas entendible es que una funcion de tipo higher order toma una funcion custom existente y le adicona funcionalidades extra con argumentos extra y utilizar la funcion inicial sin modificarla, solo llamandola, es uno de los principios de la programacion funcional, que todo sea un conjunto de funciones iniciales y a partir de ellas crear funcionalidades sobre las ya creadas y fomentar la reutilizacion de codigo.
+Una forma mas entendible es que una funcion de tipo higher order toma una funcion custom existente y le adiciona funcionalidades extra con argumentos extra y utilizar la funcion inicial sin modificarla, solo llamandola, es uno de los principios de la programacion funcional, que todo sea un conjunto de funciones iniciales y a partir de ellas crear funcionalidades sobre las ya creadas y fomentar la reutilizacion de codigo.
+
+Las funciones de orden superior (higher order functions) en JavaScript son funciones que pueden tomar otras funciones como argumentos o devolver funciones como resultado. Esto es posible porque en JavaScript las funciones son tratadas como ciudadanos de primera clase (first-class citizens).
+
+Aquí tienes algunos conceptos clave sobre las funciones de orden superior en JavaScript:
+
+1. **Funciones como valores**: En JavaScript, puedes asignar funciones a variables y pasarlas como argumentos a otras funciones.
+
+   ```javascript
+   function sayHello() {
+       console.log('Hello!');
+   }
+
+   function executeFunction(func) {
+       func();
+   }
+
+   executeFunction(sayHello); // Salida: Hello!
+   ```
+
+2. **Funciones que devuelven funciones**: Una función puede devolver otra función como resultado.
+
+   ```javascript
+   function createMultiplier(multiplier) {
+       return function (number) {
+           return number * multiplier;
+       };
+   }
+
+   const double = createMultiplier(2);
+   console.log(double(5)); // Salida: 10
+   ```
+
+    lo que se hace es que double es una constante tipo function que ya tiene almacenado y no se puede cambiar la estructura de la funcion, y el argumento 2 que se convierte en un parametro (varibale) que esta ya definida dentro de double, lo unico es que como es funcion esperaria otros argumentos que se converirian en la variable number, entonces una higher order function es tener una especie de function template a la que se le agrega funcionalidades de acuerdo a los parametros establecidos y que retorne otra funcion con ciertos parametros ya pre definidos y se le apliquen otros parametros en una especie de subnivel, es correcta mi deduccion?, pregunte a chatGPT, la respuesta fue:
+
+    - Tu deducción es bastante acertada. En el código que proporcionaste, `createMultiplier` es una función de orden superior que devuelve otra función. Esta segunda función (en tu ejemplo, `double`) es una función cerrada que "recuerda" el valor del parámetro `multiplier` que se le pasó a `createMultiplier`. Así, cuando llamas a `double(5)`, efectivamente estás aplicando ese `5` al parámetro `number` de la función interna, multiplicando `5` por `2` (el valor de `multiplier` en este caso).
+
+    - Esto es un ejemplo clásico de cómo las funciones de orden superior pueden ser utilizadas para crear funciones más especializadas o configuradas de antemano con ciertos parámetros. En este caso, `double` es una función que multiplica su argumento por `2`, pero podrías crear otras funciones similares usando `createMultiplier` con diferentes valores, como `createMultiplier(3)` para triplicar un número, por ejemplo.
+
+    - En resumen, sí, tu interpretación es correcta. Una función de orden superior permite definir una plantilla de función que puede ser parametrizada con ciertos valores, devolviendo una función más específica que aplica esos parámetros adicionales en un nivel más profundo de la función.
+
+3. **Métodos de Array que utilizan funciones de orden superior**: En JavaScript, los métodos como `map`, `filter`, `reduce`, `forEach`, entre otros, son funciones de orden superior integradas en los arrays que toman funciones como argumentos.
+
+   ```javascript
+   const numbers = [1, 2, 3, 4, 5];
+
+   const squaredNumbers = numbers.map(function (number) {
+       return number * number;
+   });
+
+   console.log(squaredNumbers); // Salida: [1, 4, 9, 16, 25]
+   ```
+
+4. **Abstracción de operaciones**: Las funciones de orden superior permiten abstraer y reutilizar lógica común, lo que mejora la legibilidad y mantenibilidad del código.
+
+5. **Callbacks**: Las funciones que se pasan como argumentos a otras funciones se conocen comúnmente como callbacks. Estos callbacks se ejecutan dentro de la función de orden superior en un momento específico.
+
+En resumen, las funciones de orden superior en JavaScript ofrecen flexibilidad y poder para trabajar con funciones de manera dinámica, lo que es fundamental para técnicas de programación funcional y para escribir código más conciso y modular.
 
 - **Ver el libro en esta seccion para ver tres ejemplos concretos.**
 
@@ -4135,14 +4266,14 @@ Veamos un pequeño ejemplo para ilustrar cómo funcionan las distintas fases:
 
 ```javascript
 setTimeout(() => {
-  console.log('Timeout callback');
+  console.log("Timeout callback");
 }, 0);
 
 setImmediate(() => {
-  console.log('Immediate callback');
+  console.log("Immediate callback");
 });
 
-console.log('Main script');
+console.log("Main script");
 ```
 
 1. **Main script**: Se ejecuta primero `console.log('Main script')`.

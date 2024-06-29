@@ -24,7 +24,7 @@ Here are the various ways to create functions in JavaScript, along with examples
    }
    ```
 
-    One of the important things to understand about function declarations is that the name of the function becomes a variable whose value is the function itself.
+   One of the important things to understand about function declarations is that the name of the function becomes a variable whose value is the function itself.
 
 2. **Function Expression**
 
@@ -34,11 +34,11 @@ Here are the various ways to create functions in JavaScript, along with examples
    };
    ```
 
-    The function name is optional for functions defined as expressions, and most of the preceding function expressions we’ve shown omit it.
+   The function name is optional for functions defined as expressions, and most of the preceding function expressions we’ve shown omit it.
 
-    It is a good practice to use const with function expressions so you don’t accidentally overwrite your functions by assigning new values.
+   It is a good practice to use const with function expressions so you don’t accidentally overwrite your functions by assigning new values.
 
-    functions defined with expressions cannot be invoked before they are defined.
+   functions defined with expressions cannot be invoked before they are defined.
 
 3. **Arrow Function**
 
@@ -48,11 +48,11 @@ Here are the various ways to create functions in JavaScript, along with examples
    };
    ```
 
-    Useful when passing one function as an argument to another function.
+   Useful when passing one function as an argument to another function.
 
-    Cuidado ya que el "this" en este tipo de funciones es diferente
+   Cuidado ya que el "this" en este tipo de funciones es diferente
 
-    No tienen descendencia prototype
+   No tienen descendencia prototype
 
 4. **Method Definition (within an object)**
 
@@ -64,7 +64,7 @@ Here are the various ways to create functions in JavaScript, along with examples
    };
    ```
 
-     JavaScript also supports accessor properties, which do not have a single value but instead have one or two accessor methods: a getter and/or a setter.
+   JavaScript also supports accessor properties, which do not have a single value but instead have one or two accessor methods: a getter and/or a setter.
 
 5. **Constructor Function**
 
@@ -178,11 +178,11 @@ Here are the various ways to create functions in JavaScript, along with examples
     // A recursive function (one that calls itself) that computes factorials
     // Recall that x! is the product of x and all positive integers less than it.
     function factorial(x) {
-        // Base case: If x is 1 or less, the factorial is 1
-        if (x <= 1) return 1;
-    
-        // Recursive case: Multiply x by the factorial of (x-1)
-        return x * factorial(x - 1);
+      // Base case: If x is 1 or less, the factorial is 1
+      if (x <= 1) return 1;
+
+      // Recursive case: Multiply x by the factorial of (x-1)
+      return x * factorial(x - 1);
     }
     ```
 
@@ -190,19 +190,21 @@ Here are the various ways to create functions in JavaScript, along with examples
 
 ```javascript
 function createPerson(name, age) {
-    return {
-        name: name,
-        age: age,
-        greet: function() {
-            console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
-        }
-    };
+  return {
+    name: name,
+    age: age,
+    greet: function () {
+      console.log(
+        `Hello, my name is ${this.name} and I am ${this.age} years old.`
+      );
+    },
+  };
 }
 
-const person1 = createPerson('Alice', 30);
+const person1 = createPerson("Alice", 30);
 person1.greet(); // Output: Hello, my name is Alice and I am 30 years old.
 
-const person2 = createPerson('Bob', 25);
+const person2 = createPerson("Bob", 25);
 person2.greet(); // Output: Hello, my name is Bob and I am 25 years old.
 ```
 
@@ -260,6 +262,9 @@ Here are the various ways to invoke functions in JavaScript, along with examples
    }
    const person = { name: "Alice" };
    greet.apply(person, ["Hello", "!"]); // 'Hello, Alice!'
+    //aqui se esta invocando el greet con el this siendo person y los argumentos que recibe el greet
+    //ESTA TRANSFORMANDO UN ARRAY EN LOS ARGUMENTOS PARA LA FUNCION ADEMAS DE ADICONAR EL THIS.
+    //esto muestra que apply es util para convertir un array en argumentos individuales
    ```
 
 6. **Using `bind` Method**

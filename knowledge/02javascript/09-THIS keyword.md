@@ -261,3 +261,68 @@ jane.sayHello(); // Outputs: Hello, my name is Jane and I am 25 years old.
 - **Without `new`**: Results in incorrect behavior where `this` is not bound to a new object, properties may pollute the global scope, and the expected object is not returned.
 
 To summarize, the `new` keyword is critical for correctly creating and initializing objects using constructor functions or classes in JavaScript. Without it, the intended object-oriented design and encapsulation are not achieved.
+
+## El "this" en funciones
+
+Normally, when calling a function, the value of this inside the function is the object that the function was accessed on.
+
+Entendiendo el enunciado de arriba: En JavaScript, el valor de `this` dentro de una función depende de cómo se llama a la función. Aquí está una explicación detallada:
+
+1. **Objeto de llamado**: En el contexto de objetos, cuando llamas a una función como un método de un objeto, el valor de `this` es el objeto al que pertenece el método. Por ejemplo:
+
+    ```javascript
+    const obj = {
+        name: 'Mozilla',
+        display: function() {
+            console.log(this.name);
+        }
+    };
+    
+    obj.display(); // 'Mozilla'
+    ```
+
+    En este caso, `display` es una función que pertenece al objeto `obj`. Cuando se llama a `obj.display()`, el valor de `this` dentro de la función `display` es `obj`.
+
+2. **Llamada normal de función**: Cuando una función se llama sin un objeto, es decir, simplemente como una función regular, el valor de `this` es `undefined` en modo estricto (`strict mode`) o el objeto global (como `window` en un navegador) en modo no estricto. Por ejemplo:
+
+    ```javascript
+    function show() {
+        console.log(this);
+    }
+    
+    show(); // En modo estricto: undefined, en modo no estricto: window (o el objeto global en Node.js)
+    ```
+
+3. **Llamadas con `call` y `apply`**: Puedes especificar explícitamente el valor de `this` usando los métodos `call` y `apply`. Por ejemplo:
+
+    ```javascript
+    function greet() {
+        console.log(this.name);
+    }
+    
+    const person = { name: 'Alice' };
+    
+    greet.call(person); // 'Alice'
+    ```
+
+    Aquí, `greet.call(person)` llama a la función `greet` y establece `this` dentro de `greet` como `person`.
+
+4. **Funciones flecha**: Las funciones flecha no tienen su propio valor de `this`. En su lugar, heredan el valor de `this` del contexto donde fueron definidas. Por ejemplo:
+
+    ```javascript
+    const obj = {
+        name: 'Mozilla',
+        display: function() {
+            const innerFunc = () => {
+                console.log(this.name);
+            };
+            innerFunc();
+        }
+    };
+    
+    obj.display(); // 'Mozilla'
+    ```
+
+    Aquí, `innerFunc` es una función flecha definida dentro de `display`. Hereda el valor de `this` de `display`, que es `obj`.
+
+En resumen, el enunciado se refiere a que, normalmente, el valor de `this` dentro de una función depende del objeto en el cual se llamó a la función.
