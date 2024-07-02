@@ -1598,7 +1598,7 @@ Aquí tienes algunos conceptos clave sobre las funciones de orden superior en Ja
 
 En resumen, las funciones de orden superior en JavaScript ofrecen flexibilidad y poder para trabajar con funciones de manera dinámica, lo que es fundamental para técnicas de programación funcional y para escribir código más conciso y modular.
 
-- **Ver el libro en esta seccion para ver tres ejemplos concretos.**
+- **Ver el libro en esta seccion para ver tres ejemplos concretos. Pag: 215**
 
 #### Partial Application of Functions
 

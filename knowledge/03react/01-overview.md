@@ -26,6 +26,8 @@ La forma más fácil de abordar esto es pensar en la programación imperativa co
 
 Los primeros pasos se explican en el primer ejercicio del curso Grider en donde se explica como se manejar las curlyes y el paso de props, tambien la seccion "Describing the UI" from the docs (ejemplos al final de esta seccion en el curso de UDEMY de grider)
 
+- **Dato Curioso**: Sí, en un proyecto React, cuando importas una carpeta, el compilador buscará por defecto un archivo llamado index.ts o index.tsx dentro de esa carpeta para realizar la importación. Esto es una convención que facilita la importación de módulos.
+
 - Setup basico y creacion de projecto se utiliza **VITE** ya que create-react-app es muy lenta y tiene mucho bloatware
 - JSX y sus diferencias con HTML [**AQUI todas las reglas del JSX**](/03react/Patterns/JSXRules)
 ![text for screen reader](../src/images/gridder%20diapositivas/010%20de%20HTML%20a%20JSX.jpg)
