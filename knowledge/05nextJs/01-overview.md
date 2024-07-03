@@ -15,7 +15,7 @@ Algo a tener en cuenta de next js y de react es que se escribe el codigo de form
 El fuerte de next js es dar las heramientas para construir:
 
 - Route setup & handling
-  - Handel route setup handling
+  - Handle route setup handling
   - Handles requests and responses
   - Handles data fetching & submission
 - Form Submission
@@ -49,7 +49,7 @@ El fuerte de next js es dar las heramientas para construir:
 
 Se recomienda el App Router que es el mas reciente
 
-## Instalacion inicial
+## 1. Instalacion inicial
 
 [**AQUI**](https://nextjs.org/docs/getting-started/installation) guia basica de instalacion inicial
 
@@ -66,7 +66,7 @@ Se recomienda el App Router que es el mas reciente
 }
 ```
 
-## Nueva Page (App Router)
+## 2. Nueva Page (App Router)
 
 Para agregar rutas se utiliza el sistema de archivos internos como las carpetas(folders) y archivos(files)
 
@@ -75,3 +75,5 @@ Para agregar rutas se utiliza el sistema de archivos internos como las carpetas(
 - Para entrar a la nueva pagina, la ruta seria algo asi `http://localhost:3000/awesome`, siendo awesome el nombre de la carpeta (folder)
 
 Esa combinacion es la base de un enrutamiento en Next JS
+
+## 3. Routing
