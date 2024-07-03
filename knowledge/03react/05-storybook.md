@@ -6,7 +6,11 @@ Toda la informacion se consigue obviamente de los docs, sin embargo Storybook ac
 
 En Storybook, la API ha evolucionado y se han introducido diferentes formas de definir historias. Las dos formas que mencionas son válidas y representan diferentes estilos de definir historias. A continuación, explicaré ambas:
 
-## Definición de historias sin tipo explícito
+## 1. Stories
+
+Una historia es una state aislado de un componente, una historia, un state.
+
+### 1.1. Definición de historias sin tipo explícito
 
 ```javascript
 export const Default = {
@@ -22,7 +26,7 @@ export const Default = {
 
 En este caso, `Default` se define como un objeto que contiene una propiedad `args`. Esta es una forma simple y directa de definir historias en Storybook 6.4 y versiones posteriores. Esta forma no utiliza tipos explícitos, lo cual es perfectamente válido en JavaScript y en algunos casos en TypeScript.
 
-### Definición de historias con tipo explícito (`Story`)
+### 1.2. Definición de historias con tipo explícito (`Story`)
 
 ```javascript
 export const Primary: Story = {
@@ -35,7 +39,7 @@ export const Primary: Story = {
 
 Aquí, `Primary` está definido como un objeto con un tipo explícito `Story`. Esto es más común en configuraciones de TypeScript, donde se quiere asegurar que el objeto cumpla con la estructura esperada para una historia. Al definir el tipo `Story`, se obtiene la validación de tipos y autocompletado en editores que soportan TypeScript.
 
-## Diferencias y razones para usar una u otra
+### 1.3. Diferencias y razones para usar una u otra
 
 1. **Tipo explícito (`Story`)**:
 
@@ -80,6 +84,6 @@ Aquí, `Primary` está definido como un objeto con un tipo explícito `Story`. E
    };
    ```
 
-## Conclusión
+### 1.4. Conclusión
 
 Ambas formas son válidas y tienen sus propios usos y ventajas. La elección entre usar un tipo explícito (`Story`) o no, depende de tus necesidades específicas, el lenguaje que estés usando (JavaScript vs. TypeScript), y el nivel de verificación de tipos y autocompletado que desees en tu proyecto. En proyectos TypeScript, es común y beneficioso usar tipos explícitos para aprovechar la verificación de tipos y el autocompletado. En proyectos JavaScript, puede ser más sencillo y rápido usar la forma sin tipos explícitos.

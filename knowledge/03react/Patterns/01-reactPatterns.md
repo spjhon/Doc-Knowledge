@@ -64,9 +64,13 @@ In this example:
 
 This is a basic example, and you can adapt it for various events and more complex scenarios in your React functional components.
 
+***
+
 ## Presentational Pattern
 
 Este pattern es observado en el ejercicio del capitulo 04 de libro React 18 en el cual se utiliza un componente dividido en dos partes con el fin de tener un componente que se encargue de la logica y manipulacion de datos y otro solo para la presentacion de estos.
+
+***
 
 ## Higher Order Components
 
@@ -79,3 +83,15 @@ const withClassName = Component => props => (
 ```
 
 - In the React community, it’s common to use the with prefix for HOCs.
+
+***
+
+## Function as child
+
+Tambien del chapter 04, este pattern es util para la reutilizacio de un componente, mas detalles en el repositorio perteneciente al libro.
+
+***
+
+## Uncontrolled Components
+
+Tambien del libro react18

@@ -104,7 +104,7 @@ La destructuración con [] indica que se están destructurando arrays, mientras 
 
 ***
 
-## State en React
+## 1.4. State en React
 
 If you want to cutomize, use PORPS, if you want to change something on the screen use STATE
 
@@ -148,7 +148,7 @@ En react se maneja el sistema de states para poder rastrear el estado de un comp
 
 ***
 
-## useEffect for fetching
+## 1.5 useEffect for fetching
 
 - json server
 - useEffect for fetching
