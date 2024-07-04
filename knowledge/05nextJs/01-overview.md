@@ -77,3 +77,5 @@ Para agregar rutas se utiliza el sistema de archivos internos como las carpetas(
 Esa combinacion es la base de un enrutamiento en Next JS
 
 ## 3. Routing
+
+Como next js es muy opitionanted tiene dos palabras de archivo reservadas para el routing que esta dentro de la carpeta APP que es LAYOUT y PAGE.
