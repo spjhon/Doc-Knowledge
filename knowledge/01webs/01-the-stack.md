@@ -32,6 +32,7 @@ Tools used for web dev in general.
 
 - Storybook for: documentation plain js, html, css, react, next. Style guides, design systems. Hosted in chromatic.
 - **Docosaurus**
+- **jsDocs**
 - Mkdocs
 - Bookstack: wiki creator.
 - Wiki.js: wiki creator

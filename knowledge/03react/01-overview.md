@@ -6,6 +6,35 @@ sidebar_position: 1
 
 La teoria de este documento fue extraida originalmente del curso de **Stephen Grider de Udemy**, luego se completa con el libro **React 18 Design Patterns and Best Practices de Carlos Santana Roldán**, tanto el curso como el libro poseen sus respectivos repositorios.
 
+## Links Muy Utiles
+
+[**React Patterns List**](https://reactpatterns.com/)
+
+Estos son los patterns que se encuentran en el link de arrbia, **OJO**, El link de arriba es con classes, buscar actualizar los componentes y documentarlos en storybook y borrar esto:
+
+- Element
+- Component
+- Expressions
+- Props
+- defaultProps
+- Destructuring props
+- JSX spread attributes
+- Merge destructured props with other values
+- Conditional rendering
+- Children types
+- Array as children
+- Function as children
+- Render prop
+- Children pass-through
+- Proxy component
+- Style component
+- Event switch
+- Layout component
+- Container component
+- Higher-order component
+- State hoisting
+- Controlled input
+
 ## 1. Basics
 
 React es una libreria que posee un DOM virtual con el cual puede renderizar componentes individualmente, al ser una libreria necesita librerias extra para su completa funcionalidad.
