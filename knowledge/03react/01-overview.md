@@ -247,6 +247,7 @@ El sistema de context es simple, es crear un provider que puede ser llamado desd
 - La idea de useRef es asignar un valor sin que este origine un re-render y se mantenga entre re-renders.
 - Manipulaicon del DOM por medio de useRef
 - **OJO:** No utilize el ref para acciones destructivas del DOM como agregar o quitar nodos, solo pasa cosas no destructivas como fucus o scroll o cosas asi.
+- useRef is a React Hook that lets you reference a value that’s not needed for rendering.
 
 **
 
