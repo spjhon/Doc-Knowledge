@@ -6,34 +6,77 @@ sidebar_position: 1
 
 La teoria de este documento fue extraida originalmente del curso de **Stephen Grider de Udemy**, luego se completa con el libro **React 18 Design Patterns and Best Practices de Carlos Santana Roldán**, tanto el curso como el libro poseen sus respectivos repositorios.
 
-## Links Muy Utiles
+## Tips del repositorio AMATEUR REACT BEST PRACTICES
 
-[**React Patterns List**](https://reactpatterns.com/)
+- Don't place static values inside functional-components, if you do they'll have to be reinitialized everytime the component state is updated, which could affect performance for large complex applications. Place them at the top of the file under the // **** Variables **** // section (see Typescript best practices).
+- If a function inside a functional-component is large and its logic does not need to change with the component, move it outside the component and put it in the // **** Helper Functions **** // section at the bottom of the file: this is will stop the logic from needing to be reinitialized each time.
+- In complying with TypeScript best practices, use function-declarations for functions at the top scope of a file and arrow-functions if a function is declared inside of another function:
 
-Estos son los patterns que se encuentran en el link de arrbia, **OJO**, El link de arriba es con classes, buscar actualizar los componentes y documentarlos en storybook y borrar esto:
+```ts
+function Parent() {
+  return (
+    <Child
+      onClick={() => doSomething()} // GOOD
+      onMouseDown={function () { ..doSomething }} // BAD
+    />
+  );
+}
+```
 
-- Element
-- Component
-- Expressions
-- Props
-- defaultProps
-- Destructuring props
-- JSX spread attributes
-- Merge destructured props with other values
-- Conditional rendering
-- Children types
-- Array as children
-- Function as children
-- Render prop
-- Children pass-through
-- Proxy component
-- Style component
-- Event switch
-- Layout component
-- Container component
-- Higher-order component
-- State hoisting
-- Controlled input
+### Good Tyescript and bad Typescript en REACT
+
+```ts
+import Box, { BoxProps } from '@mui/material/Box';
+
+function Parent() {
+  return (
+    <Box>
+      <Child1 mb={1}/>
+      <Child2/>
+      <SomeOtherChild/>
+    </Box>
+  );
+}
+
+
+// GOOD
+
+interface IProps1 extends BoxProps {
+  name?: string;
+  posts?: string[];
+}
+
+function Child1(props: IProps1) {
+  const {
+    name = '',
+    posts = [],
+    ...otherProps
+  } = props;
+  return (
+    <Box {...otherProps}>
+      Name: {name} Posts: {posts.length}
+    </Box>
+  );
+}
+
+
+// BAD
+
+interface IProps2 {
+  name?: string;
+  posts?: string[];
+}
+
+function Child2(props: IProps2) {
+  return (
+    <Box mb={2}>
+      Name: {props.name ?? ''} Posts: {props.posts?.length ?? 0}
+    </Box>
+  );
+}
+```
+
+***
 
 ## 1. Basics
 
@@ -91,6 +134,7 @@ return [
 
 - **Donde encontrar ejemplos?:**
 - Exercise 01 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/001-Vite-basics/README.md)
+- [**React Patterns List**](https://reactpatterns.com/)
 
 ***
 
@@ -114,6 +158,7 @@ return [
 La destructuración con [] indica que se están destructurando arrays, mientras que si se utiliza {} es que se está destructurando un objects.
 - Se puede utilizar map para mapear todos los elementos que se encuentren en objetos, vengan de funciones, fetch, etc. (siempre agregar un key).
 - En react los on son los eventos html que estan listados en w3schools.
+- For small components that only have one or two state values, using useState directly is fine, but once a component starts to have large numbers of state values, using a custom hook to handle all the state values as a single object will make your code much more readable and easier to manage.
 
 - Esta es una guia practica de como utilizar un event:
 ![text for screen reader](../src/images/gridder%20diapositivas/015%20Como%20manejar%20eventos%20como%20click.jpg)
@@ -133,7 +178,9 @@ La destructuración con [] indica que se están destructurando arrays, mientras 
 
 ***
 
-## 1.4. State en React
+33
+
+### 1.4. State en React
 
 If you want to cutomize, use PORPS, if you want to change something on the screen use STATE
 
@@ -211,6 +258,8 @@ El sistema de context es simple, es crear un provider que puede ser llamado desd
 - App vs Component state
 - Custom hook
 - useCallback y su uso dentro de useEffect para hacer fetching
+
+- If your component contains both a large amount of jsx code and a lot of logic as well whose data needs to be passed down, it might be worth it break your context and your jsx code into different files. You should append these files with ctx.tsx. For example, suppose your App.tsx file contains a lof of jsx code and a lot of logic for managing the user sessions, you could create a seperate App.ctx.tsx file which uses createContext() whose default export is the context's provider.
 
 **
 
