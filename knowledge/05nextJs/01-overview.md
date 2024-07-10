@@ -82,4 +82,8 @@ Como next js es muy opitionanted tiene dos palabras de archivo reservadas para e
 
 ### 3.1. Dinamic Routes
 
+SI por ejemplo se desea un blog, pero para no tener que hacer un archivo por cada uno de los blogs que se vayan generando, lo que se hace es utilizar los [] en el nombre de la carpeta para indicar a next js que se va a utilizar la misma pagina pero con links a diferentes componentes que den diferente informacion, para esto existe un **props** que next js pasa que se llama **params**, entonces en el componente del post del blog lo que se hace es decir que se utiliza los params.[aqui va lo que esta dentro de esto en el nombre del folder].
+
 ### 3.2. Reserved Words
+
+Hay varias palabras reservadas para nombres de archivo con el fin de crear paginas standard como parte del framework
