@@ -1,4 +1,10 @@
+---
+sidebar_position: 1
+---
+
 # UseEffect
+
+- **Un effect es cualquier cosa que necesite ocurrir después de que React haya renderizado el DOM.**
 
 Use effect es un Hook muy importante ya que es el encargado de modificar las fases del ciclo de vida del componente para poder manejar efectos secundarios, los sideEffects son tratados en este documento y a continuacion se explica el ciclo de vida del componente:
 
@@ -24,6 +30,8 @@ En los componentes funcionales con hooks, `useEffect` con una lista de dependenc
 useEffect(() => {
   // Código que se ejecuta al montar el componente
 }, []);
+
+//OJO: Omitir el array de dependencias en useEffect hará que el efecto se ejecute en cada renderizado
 ```
 
 #### 2. **Actualización (Updating)**
@@ -147,18 +155,13 @@ function MyComponent({ someValue }) {
 export default MyComponent;
 ```
 
-## Resumen
-
-- **Montaje**: `componentDidMount` o `useEffect` con `[]`.
-- **Actualización**: `componentDidUpdate` o `useEffect` con dependencias.
-- **Desmontaje**: `componentWillUnmount` o la función de limpieza en `useEffect`.
-- **Error Handling**: `componentDidCatch`.
-
 Estas fases permiten a los desarrolladores gestionar de manera eficiente el ciclo de vida de los componentes y sus efectos secundarios en aplicaciones React.
 
-## Que variables van dentro de useeffect?
+## Que variables van dentro de useEffect?
 
 Dentro de React, el array especial que se pasa como segundo argumento a `useEffect` se conoce comúnmente como el "array de dependencias" o "dependency array" en inglés. Este array tiene un propósito específico: determinar cuándo el efecto debe ejecutarse nuevamente.
+
+***
 
 ### Tipos de Variables en el Array de Dependencias
 
@@ -191,12 +194,127 @@ Las variables que generalmente se colocan dentro del array de dependencias son:
    }, [handleResize]);
    ```
 
+***
+
 ### Uso Correcto del Array de Dependencias
 
 - **Array Vacío (`[]`)**: Indica que el efecto se ejecutará solo una vez, después del primer renderizado del componente (equivalente a `componentDidMount` en clases).
 
 - **Omitido**: Si no se proporciona el array de dependencias, el efecto se ejecutará después de cada renderizado y re-renderizado del componente (equivalente a `componentDidUpdate` en clases).
 
-### Conclusiones
+***
+
+## Restricciones de useEffect
+
+- No se puede return numbers
+- No se puede return strings
+- No se puede utilizar async await dentro de useEffect
+- Si puede retornar funciones
+
+***
+
+## Cuando utilizar un effect
+
+Los eventos como `click` generalmente se manejan directamente en el JSX utilizando propiedades como `onClick`. Sin embargo, hay ciertos tipos de eventos y situaciones en las que manejar eventos dentro de `useEffect` es más apropiado. Aquí algunos ejemplos:
+
+### Eventos Globales
+
+1. **Eventos de Teclado**: Por ejemplo, para detectar cuando se presiona una tecla específica en toda la aplicación.
+
+    ```javascript
+    useEffect(() => {
+      const handleKeyPress = (event) => {
+        if (event.key === 'Escape') {
+          // Handle Escape key press
+        }
+      };
+
+      window.addEventListener('keydown', handleKeyPress);
+
+      return () => {
+        window.removeEventListener('keydown', handleKeyPress);
+      };
+    }, []);
+    ```
+
+2. **Eventos de Redimensionamiento (resize)**: Para manejar cambios en el tamaño de la ventana.
+
+    ```javascript
+    useEffect(() => {
+      const handleResize = () => {
+        // Handle window resize
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+    ```
+
+3. **Eventos de Desplazamiento (scroll)**: Para detectar desplazamientos de la ventana.
+
+    ```javascript
+    useEffect(() => {
+      const handleScroll = () => {
+        // Handle window scroll
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
+    ```
+
+### Eventos Personalizados
+
+1. **Eventos personalizados**: Si necesitas crear y escuchar eventos personalizados en tu aplicación.
+
+    ```javascript
+    useEffect(() => {
+      const handleCustomEvent = (event) => {
+        // Handle custom event
+      };
+
+      window.addEventListener('myCustomEvent', handleCustomEvent);
+
+      return () => {
+        window.removeEventListener('myCustomEvent', handleCustomEvent);
+      };
+    }, []);
+    ```
+
+### Eventos en Elementos que no están en el JSX
+
+1. **Eventos en elementos no React**: Si necesitas manejar eventos en elementos que no están directamente en tu JSX de React (por ejemplo, elementos creados o manipulados por bibliotecas de terceros).
+
+    ```javascript
+    useEffect(() => {
+      const someElement = document.getElementById('someElement');
+      
+      const handleEvent = (event) => {
+        // Handle event on someElement
+      };
+
+      if (someElement) {
+        someElement.addEventListener('someEvent', handleEvent);
+      }
+
+      return () => {
+        if (someElement) {
+          someElement.removeEventListener('someEvent', handleEvent);
+        }
+      };
+    }, []);
+    ```
+
+### Resumen
+
+Usar `useEffect` para añadir event listeners es útil para manejar eventos que afectan a toda la ventana o que no están directamente relacionados con elementos específicos del JSX. Esto incluye eventos globales del navegador, eventos personalizados y eventos en elementos que no están directamente dentro del JSX de React. Por otro lado, eventos comunes en elementos específicos, como `click` en un botón, se manejan directamente en el JSX por simplicidad y claridad.
+
+## Conclusiones
 
 El array de dependencias en `useEffect` es una herramienta poderosa para controlar cuándo un efecto debe ejecutarse, asegurando así un comportamiento eficiente y reactivo en las aplicaciones React. Es crucial colocar las variables adecuadas en este array para garantizar el comportamiento esperado del efecto en respuesta a cambios específicos en el estado, props o variables externas utilizadas dentro del componente.

@@ -12,7 +12,7 @@ La teoria de este documento fue extraida originalmente del curso de **Stephen Gr
 - If a function inside a functional-component is large and its logic does not need to change with the component, move it outside the component and put it in the // **** Helper Functions **** // section at the bottom of the file: this is will stop the logic from needing to be reinitialized each time.
 - In complying with TypeScript best practices, use function-declarations for functions at the top scope of a file and arrow-functions if a function is declared inside of another function:
 
-```ts
+```tsx
 function Parent() {
   return (
     <Child
@@ -226,6 +226,8 @@ En react se maneja el sistema de states para poder rastrear el estado de un comp
 
 ## 1.5 useEffect for fetching
 
+**You do need Effects to synchronize with external systems.**, Keep in mind that modern frameworks provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.
+
 - json server
 - useEffect for fetching
 - Los tres argumentos para el [] del use effect
@@ -239,6 +241,8 @@ Sacado de chatGPT:
 entonces como en la funcion de post se hace la peticion, que creo yo es una promesa pero el codigo continua ejecutandose asincronamente y no hay interferencia de la promesa ya que los datos ya estan localmente y se pueden manipular o enviar, pero en el fetch inicial el state debe de esperar de alguna forma a tener los datos listos entonces se usa el useEffect para hacer que el componente se re-renderice una vez lleguen los datos asyncronos?, estoy en lo correcto?
 
 ChatGPT dijo que si.
+
+**OJO**: mientras menos useEffect mejor:  When you update the state, React will first call your component functions to calculate what should be on the screen. Then React will “commit” these changes to the DOM, updating the screen. Then React will run your Effects, entonces hay que tener cuidado cuando se utiliza un effect o se crea un side effect.
 
 **
 
