@@ -80,10 +80,20 @@ Esa combinacion es la base de un enrutamiento en Next JS
 
 Como next js es muy opitionanted tiene dos palabras de archivo reservadas para el routing que esta dentro de la carpeta APP que es LAYOUT y PAGE.
 
+![**RESERVED WORDS**](../src/images/nextjs%20diapositivas/001-routing.jpg)
+
 ### 3.1. Dinamic Routes
 
 SI por ejemplo se desea un blog, pero para no tener que hacer un archivo por cada uno de los blogs que se vayan generando, lo que se hace es utilizar los [] en el nombre de la carpeta para indicar a next js que se va a utilizar la misma pagina pero con links a diferentes componentes que den diferente informacion, para esto existe un **props** que next js pasa que se llama **params**, entonces en el componente del post del blog lo que se hace es decir que se utiliza los params.[aqui va lo que esta dentro de esto en el nombre del folder].
 
 ### 3.2. Reserved Words
 
-Hay varias palabras reservadas para nombres de archivo con el fin de crear paginas standard como parte del framework
+Hay varias palabras reservadas para nombres de archivo con el fin de crear paginas standard como parte del framework:
+
+![**RESERVED WORDS**](../src/images/nextjs%20diapositivas/002-reservedRoutingWords.jpg)
+
+### 3.3. Images
+
+A parte del componente Link de next js tambien se tiene el Image componente que lo que hace es tener mas metadata de las imagnes para poder agregar atributos como lazy loading, transformado de las imagenes al formato webm, cargado de diferentes resoluciones dependiendo del viewport entre otros.
+
+- Si se desea desactivar el lazy loading se agrega el atributo priority
