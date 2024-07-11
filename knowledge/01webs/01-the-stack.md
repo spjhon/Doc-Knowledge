@@ -109,6 +109,7 @@ npm is the package manager for Node.js, and it's used to install and manage depe
 - React typical
 - React select
 - React hook form
+- React-use, un monton de custom hooks que son bastante utiles
 - Zod para validar datos
 - React tnakstack table
 - React dropzone

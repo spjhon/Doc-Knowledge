@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # UseEffect
 
+[**AQUI, el link para la documentacion oficial**](https://react.dev/reference/react/useEffect)
+
 - **Un effect es cualquier cosa que necesite ocurrir después de que React haya renderizado el DOM.**
 
 Use effect es un Hook muy importante ya que es el encargado de modificar las fases del ciclo de vida del componente para poder manejar efectos secundarios, los sideEffects son tratados en este documento y a continuacion se explica el ciclo de vida del componente:

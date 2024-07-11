@@ -1600,7 +1600,7 @@ En resumen, las funciones de orden superior en JavaScript ofrecen flexibilidad y
 
 - **Ver el libro en esta seccion para ver tres ejemplos concretos. Pag: 215**
 
-#### Partial Application of Functions
+#### 8.8.3. Partial Application of Functions
 
 - **Ver ejemplo del libro en la pagina 216**
 
@@ -1610,9 +1610,9 @@ La idea es tener una funcion que se le pueda escoger los argumentos que se le pa
 - partialRight
 - partial
 
-#### Memoization
+#### 8.8.4. Memoization
 
-Memoization is a technique used to optimize functions by storing the results of expensive function calls and returning the cached result when the same inputs occur again. In JavaScript, functions are first-class objects, which means they can have properties and methods like any other object. This allows us to store cached data directly on the function itself.
+Memoization, por otro lado, es una técnica de optimización utilizada en programación para acelerar el acceso a resultados de funciones costosas. Memoization almacena los resultados de una función para evitar recalcular los mismos resultados cuando la función se llama con los mismos argumentos.
 
 ```javascript
 function factorial(n) {
