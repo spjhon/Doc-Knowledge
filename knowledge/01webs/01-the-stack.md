@@ -224,6 +224,7 @@ Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, ax
 ### For apis
 
 - Supabase
+- Hasura
 
 ### CMS
 
