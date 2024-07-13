@@ -165,6 +165,7 @@ A nice combination:
 
 - React query + zusand + SWR (replace of redux)
 - Swup (page transition)
+- Swipe js Esta es una libreria para carruseles con el touchpad y disenos
 
 ***
 
