@@ -212,6 +212,14 @@ En react se maneja el sistema de states para poder rastrear el estado de un comp
 - Tener en cuenta que hay procedimientos para add, update, delete etc diferentes tanto para arrays como para objects.
 - Collapsing two handlers into one
 
+- **OJO**:
+
+Actualización del Estado
+El setter (setState) puede recibir dos tipos de argumentos:
+
+- Un nuevo valor para el estado.
+- Una función que recibe el estado anterior y devuelve el nuevo estado.
+
 **
 
 - **Donde encontrar ejemplos?:**
