@@ -113,6 +113,7 @@ npm is the package manager for Node.js, and it's used to install and manage depe
 - Zod para validar datos
 - React tnakstack table
 - React dropzone
+- react-quills es un rich-text editor
 - Sonner
 - DnD kit
 - Frammer Motion for animations
