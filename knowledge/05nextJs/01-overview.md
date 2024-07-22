@@ -97,3 +97,9 @@ Hay varias palabras reservadas para nombres de archivo con el fin de crear pagin
 A parte del componente Link de next js tambien se tiene el Image componente que lo que hace es tener mas metadata de las imagnes para poder agregar atributos como lazy loading, transformado de las imagenes al formato webm, cargado de diferentes resoluciones dependiendo del viewport entre otros.
 
 - Si se desea desactivar el lazy loading se agrega el atributo priority
+
+### 3.4. Client vs Server Components
+
+- **OJO**, recordar que todos los componentes en nextjs por defecto son trabajados en el servidor, si se requiere algo del lado del cliente se debe de especificar el useClient.
+
+- **Cuando utilizar server o client**, si el componente requiere manipulacion del DOM es del client, si requiere poner intervalos, es del cliente, si se desea correr scripts de animacion, en el cliente. Ahora, que va en el server, request, o llamadas post, operaciones de autenticacion.

@@ -61,7 +61,7 @@ Herramientas están en los favoritos de microsoft edge al igual que las referenc
 ### Pre-processors
 
 - SCSS
-- SASS
+- SASS (descontinuado)
 
 ***
 
@@ -167,6 +167,8 @@ A nice combination:
 - React query + zusand + SWR (replace of redux)
 - Swup (page transition)
 - Swipe js Esta es una libreria para carruseles con el touchpad y disenos
+- create t3 app, esta es para crear boilerplate ya listico
+- muy importante saber busquedas indexadas
 
 ***
 
@@ -176,11 +178,19 @@ A nice combination:
 
 ***
 
+### Herramientas de apoyo
+
+- excalidraw, algo parecido a xmind pero en linea y pareciera que no tuviera pricing
+
 ### Component libraries
 
 - Mantine ui
 - Material ui
 - Chakra ui
+- shadcdn
+- Radix radix-ui.com
+- Next ui
+- Refine
 
 ***
 
@@ -213,6 +223,7 @@ Check the expoerted list or check VSCode directly.
 - Express
 - Nustjs (for advanced)
 - Nests js framework build on top of express
+- fastify
 
 ### Databases
 
@@ -265,6 +276,11 @@ Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, ax
 
 ## Web Security
 
+## CD/CI
+
+- jenkins
+- Github actions
+
 ***
 
 ## Module Bundler
@@ -280,6 +296,8 @@ Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, ax
 
 - Tener en cuenta Unit Testing
 - Integration Testing
+- starlight
+- vitest
 
 ***
 

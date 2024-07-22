@@ -78,6 +78,14 @@ function Child2(props: IProps2) {
 
 ***
 
+## Importante articulo sobre HEADless components
+
+[Headless Components](https://martinfowler.com/articles/headless-component.html)
+
+A Headless Component is a design pattern in React where a component - normally inplemented as React hooks - is responsible solely for logic and state management without prescribing any specific UI (User Interface).
+
+***
+
 ## 1. Basics
 
 React es una libreria que posee un DOM virtual con el cual puede renderizar componentes individualmente, al ser una libreria necesita librerias extra para su completa funcionalidad.
