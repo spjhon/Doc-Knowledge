@@ -105,3 +105,78 @@ A parte del componente Link de next js tambien se tiene el Image componente que 
 - **Cuando utilizar server o client**, si el componente requiere manipulacion del DOM es del client, si requiere poner intervalos, es del cliente, si se desea correr scripts de animacion, en el cliente. Ahora, que va en el server, request, o llamadas post, operaciones de autenticacion.
 
 ### 3.5 Fetching Data
+
+Exactamente. En un Server Component, el flujo de trabajo para el fetching de datos y el renderizado es un poco diferente al de los Client Components, y se realiza completamente en el servidor antes de enviar el HTML al cliente. Aquí tienes una explicación más detallada del proceso:
+
+1. **Inicialización y Fetching de Datos:**
+    - Cuando el servidor recibe una solicitud para una página que contiene un Server Component, comienza a ejecutar el componente.
+    - Si el componente es `async`, se ejecuta cualquier lógica asincrónica, como el fetching de datos, antes de continuar con el renderizado.
+
+2. **Esperar la Resolución de Promesas:**
+    - El servidor espera a que se resuelvan todas las promesas antes de continuar. Esto significa que no se envía nada al cliente hasta que todos los datos necesarios estén disponibles.
+    - Mientras espera, el servidor sigue procesando otras solicitudes o tareas.
+
+3. **Renderizado del Componente con Datos:**
+    - Una vez que todas las promesas se han resuelto y los datos están disponibles, el servidor renderiza el componente con los datos obtenidos.
+    - El HTML resultante del renderizado del componente se genera en este punto.
+
+4. **Envío del HTML al Cliente:**
+    - Después de que el componente ha sido completamente renderizado con todos los datos necesarios, el HTML resultante se envía al cliente.
+    - El cliente recibe el HTML ya renderizado, lo que puede mejorar la experiencia del usuario al mostrar una página completamente cargada sin estados de carga intermedios.
+
+#### Ejemplo Desglosado
+
+Supongamos que tienes el siguiente Server Component en Next.js:
+
+```javascript
+// pages/index.js
+import React from 'react';
+
+const HomePage = async () => {
+  // Fetching de datos
+  const response = await fetch('https://api.example.com/data');
+  const data = await response.json();
+
+  // Renderizado del componente con los datos obtenidos
+  return (
+    <div>
+      <h1>Datos desde el servidor</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
+};
+
+export default HomePage;
+```
+
+#### Flujo de Trabajo
+
+1. **Inicialización:**
+   - El servidor recibe una solicitud para `/`.
+   - Comienza a ejecutar `HomePage`, que es una función `async`.
+
+2. **Fetching de Datos:**
+   - La función `await fetch('https://api.example.com/data')` se ejecuta.
+   - El servidor espera a que se resuelva esta promesa.
+
+3. **Esperar la Resolución de la Promesa:**
+   - El servidor no envía nada al cliente hasta que `fetch` y `response.json()` se hayan completado.
+   - Este tiempo de espera puede variar dependiendo del tiempo que tarde en completarse el fetching de datos.
+
+4. **Renderizado con Datos:**
+   - Una vez que los datos están disponibles, el componente se renderiza con esos datos.
+   - El HTML resultante del renderizado del componente se genera en este punto.
+
+5. **Envío del HTML al Cliente:**
+   - El servidor envía el HTML completamente renderizado al cliente.
+   - El cliente recibe una página completamente cargada sin necesidad de realizar fetching adicional ni mostrar estados de carga.
+
+#### Ventajas
+
+- **Performance Mejorada:** El cliente recibe una página completamente renderizada, lo que puede mejorar la performance percibida y la experiencia del usuario.
+- **Seguridad:** Los datos sensibles pueden ser manejados en el servidor, evitando que el cliente tenga acceso directo a ellos.
+- **SEO:** El contenido completamente renderizado en el servidor puede ser mejor indexado por motores de búsqueda.
+
+#### Conclusión
+
+En resumen, en un Server Component de Next.js, el proceso de fetching de datos y renderizado se realiza completamente en el servidor. El servidor espera a que se resuelvan todas las promesas y se renderice el componente con los datos antes de enviar el HTML al cliente, asegurando una experiencia de usuario más rápida y eficiente.
