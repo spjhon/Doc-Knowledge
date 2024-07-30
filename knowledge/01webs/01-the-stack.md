@@ -169,6 +169,7 @@ A nice combination:
 - Swipe js Esta es una libreria para carruseles con el touchpad y disenos
 - create t3 app, esta es para crear boilerplate ya listico
 - muy importante saber busquedas indexadas
+- next-themes
 
 ***
 
@@ -191,6 +192,7 @@ A nice combination:
 - Radix radix-ui.com
 - Next ui
 - Refine
+- tailwind UI
 
 ***
 
@@ -318,3 +320,8 @@ Researching headless components, I found that there are a couple of popular libr
 ## TaskRunners: pm2 nginx gulp grunt
 
 ***
+
+## Servicios
+
+- web3forms
+- mailchimp
