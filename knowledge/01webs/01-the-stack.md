@@ -170,6 +170,7 @@ A nice combination:
 - create t3 app, esta es para crear boilerplate ya listico
 - muy importante saber busquedas indexadas
 - next-themes
+- RECHART
 
 ***
 

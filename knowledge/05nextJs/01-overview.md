@@ -180,3 +180,7 @@ export default HomePage;
 #### Conclusión
 
 En resumen, en un Server Component de Next.js, el proceso de fetching de datos y renderizado se realiza completamente en el servidor. El servidor espera a que se resuelvan todas las promesas y se renderice el componente con los datos antes de enviar el HTML al cliente, asegurando una experiencia de usuario más rápida y eficiente.
+
+## 4
+
+ddd
