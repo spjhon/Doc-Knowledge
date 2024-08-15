@@ -116,6 +116,11 @@ npm is the package manager for Node.js, and it's used to install and manage depe
 - React tnakstack table
 - React dropzone
 - react-quills es un rich-text editor
+- react-swipeable
+- react-icons
+- react-photoswipe-gallery
+- react-vertical-timeline-component
+- react-responsive-modal
 - Sonner
 - DnD kit
 - Frammer Motion for animations
