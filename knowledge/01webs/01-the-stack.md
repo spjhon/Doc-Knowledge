@@ -178,6 +178,9 @@ A nice combination:
 - muy importante saber busquedas indexadas
 - next-themes
 - RECHART
+- Renovate — Dependency update tool
+- Commitlint — Lint commit messages
+- next-seo — Manage SEO easily
 
 ***
 
