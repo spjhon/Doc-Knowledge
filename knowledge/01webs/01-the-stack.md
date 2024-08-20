@@ -8,7 +8,7 @@ Focus on JamStack (JavaScript, Api, Markup)
 
 Tools used in the whole chain to create three types of websites when need it.
 
-**NEXTjs: for Server Sider Rendering (Render the page from the server at request), next also do client side and Static Site Generation (look remix)**
+**NEXTjs: for Server Sider Rendering (Render the page from the server at request), next also do client side and Static Site Generation**
 **REACTjs: for Client Side Rendering (When the whole app is send to the client and the client device do the job), use vite**
 **ASTROjs: Static Site Rendering (When the site is created at build time from the framework).**
 
@@ -48,6 +48,14 @@ Herramientas están en los favoritos de microsoft edge al igual que las referenc
 - Lenguages Web Base: HTML, CSS, JAVASCRIPT (typescript).
 
 - Package Manager: NPM
+
+- **npm**
+
+npm is the package manager for Node.js, and it's used to install and manage dependencies in your project.
+
+- **nvm:** Node virtual manager, to isolate node vertions, tools to set enviroment and isolation
+
+***
 
 ## CSS
 
@@ -90,14 +98,6 @@ Herramientas están en los favoritos de microsoft edge al igual que las referenc
 
 ***
 
-- **npm**
-
-npm is the package manager for Node.js, and it's used to install and manage dependencies in your project.
-
-- **nvm:** Node virtual manager, to isolate node vertions, tools to set enviroment and isolation
-
-***
-
 ## JavaScript FRAMEWORKS
 
 ### React js Libraries
@@ -105,25 +105,36 @@ npm is the package manager for Node.js, and it's used to install and manage depe
 - Vite
 - Tailwind, css modules
 - React-router: If your application involves multiple pages or views, React Router is a common library for adding navigation to your React applications.
+
+#### Sin enasayar
+
 - React spring
 - React typical
 - React select
-- React hook form
 - react-chrono: Para hacer timelines
-- react-vertical-timeline-component: Para hacer timelines
 - React-use, un monton de custom hooks que son bastante utiles
 - Zod para validar datos
 - React tnakstack table
 - React dropzone
 - react-quills es un rich-text editor
+- Sonner
+- DnD kit
+- Formik para validacion de datos como react hook form
+
+#### Ya aplicados a projectos y con ejemplos en storybook
+
+- React hook form
+- react-vertical-timeline-component: Para hacer timelines
 - react-swipeable
 - react-icons
 - react-photoswipe-gallery
 - react-vertical-timeline-component
 - react-responsive-modal
-- Sonner
-- DnD kit
 - Frammer Motion for animations
+- photoswipe
+
+#### State Management
+
 - Redux (big apps), it's mostly deprecated **As November 2023 it's recommended use zusand for state management and react query for data fetching.** RTK and zusand for client state, and SWR and react query for server state.
 - React Hook Form: Para utilizar una aproximacion de tipo no controlada (uncontrolled input forms) para evitar el re-renderizado del componente de tipo form cuando se esta tecleando. tambien se puede utilizar React Server Actions para el manejo de la forms.
 
@@ -139,48 +150,49 @@ A nice combination:
 
 **Authentication:**
 
-- **Auth0:** para autenticación.
-- **Firebase:** autenticación y base de datos
-- **Clerk:** para autenticación
-
-**Forms:**
-
-- **Formik or React Hook Form:** For managing forms and form validation within your application.
+- Auth0: para autenticación.
+- Firebase: autenticación y base de datos
+- Clerk: para autenticación
 
 **Testing:**
 
-- **Jest and React Testing Library:** For testing your React components and ensuring the reliability of your application.
+- Jest and React Testing Library: For testing your React components and ensuring the reliability of your application.
 
 **Internationalization (i18n):**
 
-- **React-Intl or i18next:** If you plan to support multiple languages and need tools for internationalization.
+- React-Intl or i18next: If you plan to support multiple languages and need tools for internationalization.
 
 **Caching:**
 
-- **Redis or Memcached:** For caching frequently accessed data and improving performance.
+- Redis or Memcached: For caching frequently accessed data and improving performance.
 
 **Web Analytics:**
 
-- **Google Analytics or Mixpanel:** To gather insights into user behavior and improve your site based on analytics data.
+- Google Analytics or Mixpanel: To gather insights into user behavior and improve your site based on analytics data.
 
 **SEO Optimization:**
 
-**React Helmet:** For managing the head of your HTML document and optimizing your site for search engines.
+- React Helmet: For managing the head of your HTML document and optimizing your site for search engines.
 
 ***
 
 ### Next js Libraries
+
+#### Sin ensayar
 
 - React query + zusand + SWR (replace of redux)
 - Swup (page transition)
 - Swipe js Esta es una libreria para carruseles con el touchpad y disenos
 - create t3 app, esta es para crear boilerplate ya listico
 - muy importante saber busquedas indexadas
-- next-themes
 - RECHART
 - Renovate — Dependency update tool
 - Commitlint — Lint commit messages
-- next-seo — Manage SEO easily
+
+#### Ya ensayadas
+
+- next-themes
+- http-server (testing after build)
 
 ***
 
