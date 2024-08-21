@@ -188,6 +188,10 @@ A nice combination:
 - RECHART
 - Renovate — Dependency update tool
 - Commitlint — Lint commit messages
+- next-auth, para autenticacion
+- next-i18next, para internacionalizacion
+- next-sitemap
+- next-mdx-remote
 
 #### Ya ensayadas
 
