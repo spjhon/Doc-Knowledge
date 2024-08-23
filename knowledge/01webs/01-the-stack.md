@@ -196,7 +196,9 @@ A nice combination:
 #### Ya ensayadas
 
 - next-themes
-- http-server (testing after build)
+- http-server (testing after build), no es muy buena, mejor utilizar npx serve@latest out
+- Internacionalizacion con funciones nextjs server: [AQUI](https://next-intl-docs.vercel.app/docs/getting-started), la ventaja es que se tiene cambio de rutas dinamicamente en timepo real
+- Internacionalizacion de paginas estaticas y soporte basico multi-idioma: [AQUI](https://medium.com/@ferlat.simon/internationalize-your-next-js-static-site-with-app-router-772f9f16e63)
 
 ***
 
