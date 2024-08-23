@@ -240,7 +240,9 @@ Check the expoerted list or check VSCode directly.
 - DigitalOcean app
 - DigitalOcean Droplets
 - Vercel
-- Cloudfare pages
+- Cloudfare pages (static too)
+- Github Pages (static too)
+- Render (static too)
 - Railway (it's cheaper)
 - Netlify
 
