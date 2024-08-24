@@ -61,3 +61,8 @@ En el ecosistema de npm (Node Package Manager), tanto `npm` como `npx` son herra
    `npx` ayuda a evitar problemas relacionados con la versión de las herramientas que podrían surgir al usar versiones globales o locales de paquetes específicos.
 
 En resumen, la principal diferencia es que `npm` se utiliza para instalar y administrar paquetes de manera global o local en un proyecto, mientras que `npx` se usa para ejecutar paquetes binarios temporales o comandos directamente desde el registro de npm sin necesidad de instalarlos permanentemente.
+
+## Comandos Importantes para iniciar un nuevo projecto
+
+npx server@latest
+npm install --save-dev eslint eslint-plugin-react eslint-plugin-tailwindcss eslint-plugin-import eslint-config-molindo @typescript-eslint/parser @typescript-eslint/eslint-plugin
