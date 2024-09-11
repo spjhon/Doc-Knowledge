@@ -222,6 +222,7 @@ A nice combination:
 - Next ui
 - Refine
 - tailwind UI
+- flowbite
 
 ***
 
@@ -266,7 +267,7 @@ Check the expoerted list or check VSCode directly.
 
 ### ORM
 
-Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, axios.
+Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, axios, drizzle
 
 ### For apis
 
