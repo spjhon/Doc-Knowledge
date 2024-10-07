@@ -284,6 +284,14 @@ Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, ax
 - wisp
 - CraftCmS
 
+#### CMS de pago que son bastante buenos
+
+- prismic
+- countentful
+- sanity
+- storyblock
+- datocms
+
 ### For ecommerce
 
 - Shopify (to build, carts, checkouts, manage clients info)
