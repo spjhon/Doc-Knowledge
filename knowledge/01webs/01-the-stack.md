@@ -303,8 +303,14 @@ Preferiblemente con typescript: Prisma, TypeORM, RESTapi, GraphQL, fetch api, ax
 - Fly.io
 - DigitalOcean Droplet
 - Azure app service for containers
-- Cloudinary: para imagenes
 - Digital Ocean Spaces or AWS S3: para imagenes y videos y pdfs [ver este video de Fazt](https://www.youtube.com/watch?v=7Ycf3FYcF_A)
+
+### Hosting Images
+
+- Cloudinary: para imagenes
+- imgix
+- cloudfare images
+- S3 bucket
 
 ***
 
