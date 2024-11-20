@@ -1435,7 +1435,7 @@ Since functions are objects, they can have properties and methods, just like any
 - The toString() Method
 - The Function() Constructor
 
-#### 8.7.4. The call() and apply() Methods
+#### 8.7.4. The call(), apply() Methods
 
 [**AQUI, mas informacion sobre el apply() en W3Schools**](https://www.w3schools.com/js/js_function_apply.asp)
 [**AQUI, un ejemplo mas detallado de chatGPT**](/02javascript/patterns.md/apply()Patterns)
@@ -1443,11 +1443,23 @@ Since functions are objects, they can have properties and methods, just like any
 
 Pequeña teoria de introduccion en la seccion **8.2.4 Indirect Invocation**.
 
-El método `apply()` en JavaScript se utiliza para invocar una función especificando el valor de `this` y los argumentos como una matriz (array).
-
 Por medio de estos metodos se le pueden aplicar funciones como si fueran metodos de un object en particular y se le puede especificar el `this` a el object, esto es util por ejemplo para Higher order functions.
 
+```javascript
+f.call(o);
+f.apply(o);
+// Este codigo de arriba es equivalente a:
+
+o.m = f; // Make f a temporary method of o y su clave, su nombre clave adentro del object seria m
+o.m(); // Invoke it, passing no arguments, osea que se esta invokando sin argumentos
+delete o.m; // Remove the temporary method, luego se elimina el metodo
+
+//Entonces para no hacer estos pasos, se utiliza el call o el apply sobre el object
+```
+
 El método `apply()` en JavaScript se utiliza para invocar una función especificando el valor de this y los argumentos como una matriz (array).
+
+La diferencia entre apply y call es que los argumentos de call van separados `f.call(o, 1, 2);`, mientras que los de apply entran como array `f.apply(o, [1,2]);`.
 
 Los dos usos principales de apply es para crear **Higher Order Components** y **Convertir un array en argumentos individuales para una funcion**
 
@@ -1459,6 +1471,8 @@ function greet(greeting, punctuation) {
 }
 const person = { name: "Alice" };
 greet.apply(person, ["Hello", "!"]); // 'Hello, Alice!'
+
+//Como apreciamos aqui, person se transforma en this y por tanto al llamar this.name es como si llamaramos person.name lo que por supuesto nos debe de retornar el string Alice que se utiliza dentro de la funcion mas los argumentos que la funcion espera.
 ```
 
 Aquí, `apply` llama a la función `greet` con el objeto `person` como su contexto (`this`), y los argumentos `["Hello", "!"]`.
@@ -1501,11 +1515,195 @@ Si no se utilizara `apply`, la función `greet` no tendría acceso a la propieda
 
    En resumen, sin usar `apply`, `call`, `bind` o asignar la función como un método de un objeto, `this` dentro de la función `greet` no se referirá a `person`, y la función no podrá acceder a la propiedad `name` de `person`.
 
-### Functional Programming
+#### 8.7.5. The bind() method
+
+##### De chatGPT sobre bind()
+
+El método `bind()` en JavaScript es una herramienta poderosa que permite crear una nueva función con un **contexto de ejecución fijo**. Esto significa que puedes establecer explícitamente el valor de `this` dentro de la función. Aquí exploraremos cómo funciona, para qué sirve, y los casos en los que es útil.
+
+---
+
+###### **Sintaxis de `bind()`**
+
+```javascript
+func.bind(thisArg, ...args)
+```
+
+1. **`func`**: Es la función original que deseas enlazar.
+2. **`thisArg`**: Es el valor que será usado como `this` en la nueva función.
+3. **`...args`** *(opcional)*: Son los argumentos que se preestablecen para la nueva función.
+
+El método `bind()` **no ejecuta la función inmediatamente**. En su lugar, devuelve una nueva función con el contexto fijado.
+
+---
+
+###### **Ejemplo Básico**
+
+```javascript
+const obj = { name: "Alice" };
+
+function sayHello() {
+    console.log(`Hello, my name is ${this.name}`);
+}
+
+const boundFunction = sayHello.bind(obj);
+
+boundFunction(); // "Hello, my name is Alice"
+```
+
+En este ejemplo:
+
+  1. La función `sayHello` no tiene un `this` fijo.
+  2. Usamos `bind(obj)` para crear `boundFunction`, donde `this` siempre apuntará a `obj`.
+  3. Cuando llamamos a `boundFunction`, `this` se refiere al objeto `obj`.
+
+---
+
+###### **¿Por Qué Usar `bind()`?**
+
+1. **Preservar el contexto de `this`**
+
+   Cuando pasas una función como callback o manejador de eventos, el valor de `this` puede cambiar dependiendo del contexto en el que se ejecute.
+
+   ```javascript
+   const person = {
+    name: "Bob",
+    greet() {
+        console.log(`Hello, ${this.name}`);
+    },
+   };
+
+   const greetFn = person.greet;
+   greetFn(); // "Hello, undefined" (porque `this` es `undefined` en modo estricto)
+
+   const boundGreetFn = person.greet.bind(person);
+   boundGreetFn(); // "Hello, Bob"
+   ```
+
+   Aquí, `bind()` asegura que `this` siempre apunte al objeto `person`, sin importar dónde se use `boundGreetFn`.
+
+   ---
+
+2. **Establecer argumentos por defecto (Currying)**
+
+    Puedes usar `bind()` para predefinir argumentos que serán usados cuando la nueva función sea llamada.
+  
+    ```javascript
+    function multiply(a, b) {
+        return a * b;
+    }
+    
+    const double = multiply.bind(null, 2); // Predefinimos `a = 2`
+    console.log(double(5)); // 10
+    console.log(double(10)); // 20
+    ```
+  
+    En este ejemplo:
+  
+    - `multiply` toma dos argumentos.
+    - `double` fija el primer argumento (`a = 2`), y espera el segundo.
+  
+    ---
+
+3. **Manejadores de eventos**
+
+Al trabajar con eventos en el DOM, `this` dentro de un manejador de eventos puede referirse al elemento que disparó el evento. `bind()` ayuda a mantener el contexto deseado.
+
+```javascript
+class Button {
+    constructor(label) {
+        this.label = label;
+    }
+
+    handleClick() {
+        console.log(`Button clicked: ${this.label}`);
+    }
+}
+
+const button = new Button("Submit");
+const btnElement = document.querySelector("#myButton");
+
+btnElement.addEventListener("click", button.handleClick.bind(button)); 
+// Sin bind, `this` sería `btnElement`
+```
+
+---
+
+###### **¿Cómo Funciona Internamente?**
+
+Cuando llamas a `bind()`, se crea una nueva función que:
+
+1. Copia el cuerpo y el comportamiento de la función original.
+2. Enlaza el valor de `this` al proporcionado en `thisArg`.
+3. Si se proporcionan argumentos iniciales, los combina con los que se pasen al invocar la función.
+
+```javascript
+function originalFunction() {
+    console.log(this);
+}
+
+const boundFunction = originalFunction.bind({ key: "value" });
+
+boundFunction(); // { key: "value" }
+```
+
+El motor de JavaScript genera una nueva función, pero **no altera la función original**.
+
+---
+
+###### **Consideraciones Importantes**
+
+1. **`bind()` crea una nueva función**:
+   No modifica la función original, sino que devuelve una nueva versión.
+
+2. **No puede ser usado con funciones flecha**:
+   Las funciones flecha tienen un `this` léxico (heredado del contexto donde se definieron) que no puede ser cambiado con `bind()`, `call()`, o `apply()`.
+
+    ```javascript
+    const obj = { value: 42 };
+    
+    const arrowFunc = () => console.log(this);
+    const boundArrowFunc = arrowFunc.bind(obj);
+    
+    boundArrowFunc(); // `this` sigue siendo el del contexto léxico
+    ```
+
+3. **Es útil en programación funcional**:
+
+   `bind()` es clave para técnicas como **currying** y **composición funcional**, permitiendo generar nuevas funciones con datos predefinidos.
+
+---
+
+###### **Alternativas**
+
+- **`call()` y `apply()`**: Ejecutan la función inmediatamente con un `this` específico.
+
+   ```javascript
+   func.call(thisArg, ...args);
+   func.apply(thisArg, [argsArray]);
+   ```
+
+   A diferencia de `bind()`, estos métodos no devuelven una nueva función.
+
+- **Funciones flecha**: En muchos casos, usar una función flecha es suficiente para mantener el contexto de `this`.
+
+```javascript
+btnElement.addEventListener("click", () => button.handleClick());
+```
+
+---
+
+###### **Conclusión**
+
+El método `bind()` es una herramienta esencial para controlar el contexto de `this` en JavaScript. Es especialmente útil cuando trabajas con callbacks, manejadores de eventos, o programación funcional. Comprender `bind()` te ayudará a escribir código más predecible y modular.
+
+**El método bind() no ejecuta la función inmediatamente. En su lugar, devuelve una nueva función con el contexto fijado.**
+
+### 8.8. Functional Programming
 
 - Dos metodos iterantes del dataType array son particularmente utiles para este tipo de programacion map() y reduce().
 
-#### Processing Arrays with Functions
+#### 8.8.1. Processing Arrays with Functions
 
 La idea es no utilizar metodos que digan como se hace la operacion sino tomar ventaja de las formas funcionales (por medio de funciones) y expresar mas bien lo que se necesita hacer con el codigo y de esta forma tambien aprovechar las ventajas de utilizar funciones.
 
