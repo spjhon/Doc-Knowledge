@@ -725,6 +725,10 @@ k = 2;
 
 ## 05 Statements
 
+- A JavaScript program is a sequence of statements. Each statement is an instruction for the computer to do something. 
+- Want to know whether a chunk of JS is an expression or a statement? Try to log it out!. If it runs, the code is an expression. 
+If you get an error, it's a statement (or, possibly, invalid JS).
+
 **JavaScript statements are terminated with semicolons (§2.6). Expressions are evaluated to produce a value, but statements are executed to make something happen.**
 
 - **to “make something happen”**
