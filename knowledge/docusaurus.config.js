@@ -122,7 +122,16 @@ const config = {
         // ... other options
       },
     ],
-    
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'graphql',
+        path: '07graphql',
+        routeBasePath: '07graphql',
+        sidebarPath: './sidebars.js',
+        // ... other options
+      },
+    ],
     
   ],
 
@@ -191,6 +200,13 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Astro'
+          },
+          {
+            type: 'docSidebar',
+            docsPluginId: 'graphql',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'GraphQl'
           },
           
           
