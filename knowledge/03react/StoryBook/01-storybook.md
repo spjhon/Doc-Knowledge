@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Storybook
 
 Toda la informacion se consigue obviamente de los docs, sin embargo Storybook actualiza su api constantemente y hay diferentes formas de crear historias y definir parametros de los componentes.

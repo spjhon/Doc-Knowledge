@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Component Composition
 
 Let's also think about why we added all these conditions in the first place 🤔. It's because we are inside JSX, and inside JSX, we can only write expressions, not statements.

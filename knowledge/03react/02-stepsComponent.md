@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Steps recommended to build a Component
+# 2. Steps recommended to build a Component
 
 ## According the React Docs
 
@@ -65,3 +65,21 @@ Del video 181 State Design Process
 
 - Tipos de State
 ![Tipos de State](../src/images/039%20Types%20of%20State.jpg)
+
+## Grider Graphics
+
+![text for screen reader](../src/images/gridder%20diapositivas/010%20de%20HTML%20a%20JSX.jpg)
+![text for screen reader](../src/images/gridder%20diapositivas/011%20ejemplo%20de%20como%20proveer%20boolean%20props.jpg)
+![text for screen reader](../src/images/gridder%20diapositivas/008%20como%20proveer%20variables%20en%20props.jpg)
+
+- Como react hace basico render desde un html como root
+![text for screen reader](../src/images/gridder%20diapositivas/002%20del%20js%20al%20html.jpg)
+
+- Como crear un componente
+![text for screen reader](../src/images/gridder%20diapositivas/012%20Anatomia%20Creando%20un%20componente.jpg)
+
+- Anatomia de un componente
+![text for screen reader](../src/images/gridder%20diapositivas/007%20anatomia%20basica%20de%20un%20componente.jpg)
+
+- React no renderiza objects
+![text for screen reader](../src/images/gridder%20diapositivas/006%20que%20NO%20hacer%20con%20las%20curlyes.jpg)

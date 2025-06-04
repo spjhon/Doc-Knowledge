@@ -2,79 +2,9 @@
 sidebar_position: 1
 ---
 
-# REACT Overview
+# 1. REACT Overview
 
-La teoria de este documento fue extraida originalmente del curso de **Stephen Grider de Udemy**, luego se completa con el libro **React 18 Design Patterns and Best Practices de Carlos Santana Roldán**, tanto el curso como el libro poseen sus respectivos repositorios.
-
-## Tips del repositorio AMATEUR REACT BEST PRACTICES
-
-- Don't place static values inside functional-components, if you do they'll have to be reinitialized everytime the component state is updated, which could affect performance for large complex applications. Place them at the top of the file under the // **** Variables **** // section (see Typescript best practices).
-- If a function inside a functional-component is large and its logic does not need to change with the component, move it outside the component and put it in the // **** Helper Functions **** // section at the bottom of the file: this is will stop the logic from needing to be reinitialized each time.
-- In complying with TypeScript best practices, use function-declarations for functions at the top scope of a file and arrow-functions if a function is declared inside of another function:
-
-```tsx
-function Parent() {
-  return (
-    <Child
-      onClick={() => doSomething()} // GOOD
-      onMouseDown={function () { ..doSomething }} // BAD
-    />
-  );
-}
-```
-
-### Good Tyescript and bad Typescript en REACT
-
-```ts
-import Box, { BoxProps } from '@mui/material/Box';
-
-function Parent() {
-  return (
-    <Box>
-      <Child1 mb={1}/>
-      <Child2/>
-      <SomeOtherChild/>
-    </Box>
-  );
-}
-
-
-// GOOD
-
-interface IProps1 extends BoxProps {
-  name?: string;
-  posts?: string[];
-}
-
-function Child1(props: IProps1) {
-  const {
-    name = '',
-    posts = [],
-    ...otherProps
-  } = props;
-  return (
-    <Box {...otherProps}>
-      Name: {name} Posts: {posts.length}
-    </Box>
-  );
-}
-
-
-// BAD
-
-interface IProps2 {
-  name?: string;
-  posts?: string[];
-}
-
-function Child2(props: IProps2) {
-  return (
-    <Box mb={2}>
-      Name: {props.name ?? ''} Posts: {props.posts?.length ?? 0}
-    </Box>
-  );
-}
-```
+La teoria de este documento fue extraida originalmente del curso de **Stephen Grider de Udemy**, luego se completa con el libro **React 18 Design Patterns and Best Practices de Carlos Santana Roldán**, tanto el curso como el libro poseen sus respectivos repositorios tips y otras fuentes estan referenciadas a paginas de internet o a paginas de este mismo DOCUSAURIO.
 
 ***
 
@@ -92,6 +22,24 @@ React es una libreria que posee un DOM virtual con el cual puede renderizar comp
 
 React utiliza BABEL y WEBPACK uno para transformar syntax nueva de javascript en syntax vieja y webpack para compilar todo el codigo en uno solo, **VITE no utiliza BABEL**.
 
+En el [**primer ejercicio de Stephen Grider**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/001-Vite-basics) se puede obtener la siguiente informacion:
+
+- Setup basico y creacion de projecto
+- JSX y sus diferencias con HTML
+- Que hay dentro de un projecto react (en este caso creado con vite)
+- Como react hace basico render desde un html como root
+- Que es un componente y sus dos partes principales
+- Como react se importa y se inyecta en el projecto
+- Reglas de como pasar atributos html al componente e introduccion al sistema de props
+
+Los diferentes tipos de patterns en react se pueden encontrar en la seccion React Patterns List - [**React Patterns**](https://reactpatterns.com/).
+
+Los pasos para crear un componente deduciendolo de un diseño en figma. [**Steps recommended to build a Component**](/03react/stepsComponent)
+
+Tips y resumen de la parte que describe lo basico de react extraido de la documentacion. [**Describin the UI**](/03react/FromDocs/describingUI)
+
+***
+
 ### 1.1. Differentiating between declarative and imperative programming
 
 La forma más fácil de abordar esto es pensar en la programación imperativa como una manera de describir cómo funcionan las cosas, y en la programación declarativa como una manera de describir lo que deseas lograr.
@@ -100,53 +48,19 @@ La forma más fácil de abordar esto es pensar en la programación imperativa co
 - React sigue un paradigma declarativo, y no es necesario indicarle cómo interactuar con el DOM; declaras lo que quieres ver en la pantalla.
 - Los elementos son importantes en `React.crateElement()` ya que asi es como crea nuevos elementos que asemejan HTML que son los componentes, sin embargo desde react 17 ya no se utiliza `React.crateElement()` por eso ya no hay que importar REACT en cada componente.
 
+***
+
 ### 1.2. JSX Rules, Commponents Tips
 
 - La finalidad de react es utilizar functions y el sistema de import y exports de javascript para retornar partes de html con extras que se pueden observar en el object al hacer un render (se utiliza `React.crateElement()`) por parte de la libreria REACT.
 
-Los primeros pasos se explican en el primer ejercicio del curso Grider en donde se explica como se manejar las curlyes y el paso de props, tambien la seccion "Describing the UI" from the docs (ejemplos al final de esta seccion en el curso de UDEMY de grider)
-
-- **Dato Curioso**: Sí, en un proyecto React, cuando importas una carpeta, el compilador buscará por defecto un archivo llamado index.ts o index.tsx dentro de esa carpeta para realizar la importación. Esto es una convención que facilita la importación de módulos.
-
-- Setup basico y creacion de projecto se utiliza **VITE** ya que create-react-app es muy lenta y tiene mucho bloatware
-- JSX y sus diferencias con HTML [**AQUI todas las reglas del JSX**](/03react/Patterns/JSXRules)
-![text for screen reader](../src/images/gridder%20diapositivas/010%20de%20HTML%20a%20JSX.jpg)
-![text for screen reader](../src/images/gridder%20diapositivas/011%20ejemplo%20de%20como%20proveer%20boolean%20props.jpg)
-![text for screen reader](../src/images/gridder%20diapositivas/008%20como%20proveer%20variables%20en%20props.jpg)
-- Los componentes en REACT siempre deben de tener una letra mayuscula al principio para diferenciarlos de elementos HTML normales.
-- Como react hace basico render desde un html como root
-![text for screen reader](../src/images/gridder%20diapositivas/002%20del%20js%20al%20html.jpg)
-- Que es un componente y sus dos partes principales [React Basic Patterns](/03react/Patterns/reactPatterns)
-- Como crear un componente
-![text for screen reader](../src/images/gridder%20diapositivas/012%20Anatomia%20Creando%20un%20componente.jpg)
-- Anatomia de un componente
-![text for screen reader](../src/images/gridder%20diapositivas/007%20anatomia%20basica%20de%20un%20componente.jpg)
-- React no renderiza objects
-![text for screen reader](../src/images/gridder%20diapositivas/006%20que%20NO%20hacer%20con%20las%20curlyes.jpg)
-
-- since React 16.2.0, it is possible to return an array directly as follows:
-
-```javascript
-return [
- <li key="1">First item</li>, 
- <li key="2">Second item</li>, 
- <li key="3">Third item</li>
-]
-```
-
-***
-
-- **Ojo cuando se utiliza un componente mas de una vez, cada componente es independiente (es su propia instancia)**
-
-***
-
-- **Donde encontrar ejemplos?:**
-- Exercise 01 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/001-Vite-basics/README.md)
-- [**React Patterns List**](https://reactpatterns.com/)
+JSX y sus diferencias con HTML [**AQUI todas las reglas del JSX**](/03react/Patterns/JSXRules).
 
 ***
 
 ### 1.3. The prop system
+
+- Exercise 02 Grider [**Link al Repositorio**](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/002-Vite-Pads(basic%20components%20and%20pops)/README.md) se puede encontrar a mas profundidad y con ejemplos lo siguiente:
 
 - Reglas de como pasar atributos html al componente e introduccion al sistema de props
 ![text for screen reader](../src/images/gridder%20diapositivas/013%20the%20prop%20system.jpg)
@@ -168,6 +82,15 @@ La destructuración con [] indica que se están destructurando arrays, mientras 
 - En react los on son los eventos html que estan listados en w3schools.
 - For small components that only have one or two state values, using useState directly is fine, but once a component starts to have large numbers of state values, using a custom hook to handle all the state values as a single object will make your code much more readable and easier to manage.
 
+***
+
+- **Donde encontrar ejemplos?:**
+- Exercise 01 and 02 from react examples that comes form the official React Docs [**Link al repositorio de GITHUB**](https://react.dev/learn)
+
+***
+
+## 2. State en React
+
 - Esta es una guia practica de como utilizar un event:
 ![text for screen reader](../src/images/gridder%20diapositivas/015%20Como%20manejar%20eventos%20como%20click.jpg)
 
@@ -176,19 +99,6 @@ La destructuración con [] indica que se están destructurando arrays, mientras 
 
 - Anatomia basica de state:
 ![anatomia basica state](../src/images/gridder%20diapositivas/017%20anatomia%20basica%20de%20useState.jpg)
-
-**
-
-- **Donde encontrar ejemplos?:**
-- Exercise 01 and 02 from react examples that comes form the official React Docs [Link](https://react.dev/learn)
-- Tips from the docs: [Link](/03react/FromDocs/describingUI)
-- Exercise 02 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/002-Vite-Pads(basic%20components%20and%20pops)/README.md)
-
-***
-
-33
-
-### 1.4. State en React
 
 If you want to cutomize, use PORPS, if you want to change something on the screen use STATE
 
