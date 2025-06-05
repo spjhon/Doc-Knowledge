@@ -8,6 +8,213 @@ La teoria de este documento fue extraida originalmente del curso de **Stephen Gr
 
 ***
 
+- **TEMAS**
+
+***
+
+## 1. Basico
+
+### 1.1. [**¿Qué es React?**](/03react/overview#1-basics)
+
+### 1.2. **Componentes**
+
+    - En el [**primer ejercicio de Stephen Grider**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/001-Vite-basics) se puede obtener la siguiente informacion:
+        - Setup basico y creacion de projecto
+        - JSX y sus diferencias con HTML
+        - Que hay dentro de un projecto react (en este caso creado con vite)
+        - Como react hace basico render desde un html como root
+        - Que es un componente y sus dos partes principales
+        - Como react se importa y se inyecta en el projecto
+        - Reglas de como pasar atributos html al componente e introduccion al sistema de props
+
+    - [**Steps recommended to build a Component**](/03react/stepsComponent)
+    - [**Describin the UI**](/03react/FromDocs/describingUI)
+
+### 1.3. **Patterns**
+
+    - [**React Patterns Pagina Web**](https://reactpatterns.com/).
+    - [**Conditional Patterns**](/03react/Patterns/conditionalPatterns)
+    - [**Input Patterns**](/03react/Patterns/controlledInputs)
+
+### 1.4. **JSX**
+
+    - JSX y sus diferencias con HTML [**AQUI todas las reglas del JSX**](/03react/Patterns/JSXRules).
+
+### 1.5. [**Props**](03react/thePropSystem)
+
+    - [**Exercise 02 Grider (Pads)**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/002-Vite-Pads(basic%20components%20and%20pops)) en donde se encontrara:
+
+        - Como reutilizar un componente y que este componente se adapte a la forma que uno desea y estos deseos se comunican a travez del sistema de props.
+        - Como colocar styles basicos al menos los que van in-line
+        - Valores predeterminados en los props en caso de que no llegue ningun prop.
+        - Utilizacion de una libreria para el estilizado llamada Bulma
+        - Se explica la jerarquia de los componente y que es un componente padre y que es un componente children
+        - Introduccion a destructuring
+        - Se explica como el sistema de imports y exports es escencial a la hora de modularizar los componentes
+
+### 1.6. Pure Functions
+
+    - Explicacion en un articulo de medium [**AQUI**](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976)
+
+
+***
+
+## 2. Hooks
+
+React se divide en tres partes
+
+- React: Aplicable incluso para Mobiles Apps por medio de React Native
+- React-DOM: React especifico para el DOM del navegador
+
+Los hooks a continuacion son de REACT:
+
+### 2.2.1 State Hooks
+
+Permite a un componente "recordar informacion" entre renderizados
+
+1. **useState**
+
+    - [**Link to Adding Interactivity (docs)**](/03react/FromDocs/adingInteractivity)
+    - [**Link to useState theory (docs)**](https://react.dev/reference/react/useState)
+    - [**Exercise 03 Grider (Vite-Animals)**](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/003-Vite-Animals(basic%20useState)/README.md) en donde se encontrara la siguiente informacion:
+
+        - Uso basico de useState
+        - Modificar los arrays y objects con el spread sytax ... para no modficar un state sino crear uno nuevo siempre.
+        - Se explica como utilizar el map para mapear componentes
+        - se explica como pasar imagenes a un objeto para ser manipuladas
+        - se explica el sistema de eventos y el sistema de state.
+
+    - [**Exercise 04 Grider (Vite-Pics)**](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/004-Vite-Pics(axios)/README.md) en donde se encontrara la siguiente informacion:
+
+        - fetching con axios
+        - inputs patterns
+        - event object management
+        - props passing
+
+    - Inmutabilidad del state y como hacer un update correcto con el state [**Pagina de VERCEL**](https://state-updates.vercel.app/)
+    - [**How to update state**](/03react/Patterns/stateUpdate)
+    - Se recomienda saber sobre los HTTP (Hypertext Transfer Protocol) status codes and HTTP en general [**AQUI**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
+2. useReducer
+
+### 2.2.2. Context Hooks
+
+Envia informacion a componentes al fondo del tree sin tener que hacer "prop-drilling"
+
+1. useContext
+
+    - [**Exercise 05 Grider (BooksConContext)**](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-Books(add%20render%20elements)/README.md) en donde se encontrara la siguiente informacion
+
+### 2.2.3. Ref Hooks
+
+Permite guardar informacion que no se renderiza en cada ciclo o iteracion
+
+1. useRef
+2. useImperativeHandle
+
+### 2.2.4. Effect Hooks
+
+Permite sincronizar el sistema de states de react con entes externos
+
+1. useEffect
+2. useLayoutEffect
+3. useInsertionEffect
+
+### 2.2.5. Performance Hooks
+
+Para evita re-renderizados inecesarios
+
+1. useMemo
+2. useCallback
+
+### 2.2.6. Other Hooks
+
+1. useActionState
+2. useDebugValue
+3. useDeferredValue
+4. useId
+5. useOptimistic
+6. useSyncExternalStore
+7. useTransition
+
+Los hooks a continuacion son de REACT-DOM:
+
+### 2.2.7. React-Dom Hooks
+
+1. useFormStatus
+
+***
+
+5. **State**
+6. **Eventos en React**
+7. **useState**
+8. **useEffect**
+9. **Renderizado condicional**
+10. **Listas y keys**
+11. **Manejo de formularios**
+12. **Componentes controlados y no controlados**
+13. **Lifting state up**
+14. **Prop drilling**
+15. **useContext**
+16. **useRef**
+17. **useMemo**
+18. **useCallback**
+19. **React Router (navegación)**
+20. **Custom Hooks**
+21. **Fragments**
+22. **Portals**
+23. **Error boundaries**
+24. **Lazy loading y Suspense**
+25. **Ciclo de vida de un componente (componentDidMount, etc. en class components)**
+
+## Intermedio
+
+1. **Custom Hooks**
+2. **useReducer**
+3. **useContext avanzado**
+4. **useImperativeHandle**
+5. **useLayoutEffect**
+6. **Memoización con React.memo**
+7. **Optimización de rendimiento**
+8. **Patrones de renderizado (Render Props, HOC)**
+9. **Manejo de side effects complejos**
+10. **Lazy loading de componentes**
+11. **Code splitting**
+12. **Error boundaries personalizados**
+13. **Portals para modales y tooltips**
+14. **Form libraries (Formik, React Hook Form)**
+15. **React Query / SWR para manejo de datos remotos**
+16. **State management externo (Redux, Zustand, Jotai, Recoil)**
+17. **Testing en React (Jest, React Testing Library)**
+18. **TypeScript con React**
+19. **Animaciones (Framer Motion, React Spring)**
+20. **Internacionalización (i18n)**
+
+## Avanzados
+
+1. **Arquitectura de aplicaciones grandes en React**
+2. **Server Components (Next.js / React 19)**
+3. **Concurrent Rendering**
+4. **React Suspense para data fetching**
+5. **Hydration en aplicaciones SSR**
+6. **State machines con XState**
+7. **Custom renderers con React Reconciler**
+8. **Hooks compuestos y patrones reutilizables**
+9. **Patrones avanzados de composición**
+10. **Micro frontends con React**
+11. **React Performance Profiling**
+12. **SSR y SSG con frameworks como Next.js**
+13. **Incremental Static Regeneration (Next.js)**
+14. **Static site generation optimizado**
+15. **Streaming SSR**
+16. **Manejo avanzado de forms dinámicos**
+17. **Internacionalización multilingüe escalable**
+18. **Pruebas E2E (Cypress, Playwright)**
+19. **Automatización de accesibilidad (a11y)**
+20. **Integración con Web Workers y WebAssembly**
+
+***
+
 ## Importante articulo sobre HEADless components
 
 [Headless Components](https://martinfowler.com/articles/headless-component.html)
@@ -16,31 +223,15 @@ A Headless Component is a design pattern in React where a component - normally i
 
 ***
 
-## 1. Basics
+## Que es React?
 
 React es una libreria que posee un DOM virtual con el cual puede renderizar componentes individualmente, al ser una libreria necesita librerias extra para su completa funcionalidad.
 
 React utiliza BABEL y WEBPACK uno para transformar syntax nueva de javascript en syntax vieja y webpack para compilar todo el codigo en uno solo, **VITE no utiliza BABEL**.
 
-En el [**primer ejercicio de Stephen Grider**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/001-Vite-basics) se puede obtener la siguiente informacion:
-
-- Setup basico y creacion de projecto
-- JSX y sus diferencias con HTML
-- Que hay dentro de un projecto react (en este caso creado con vite)
-- Como react hace basico render desde un html como root
-- Que es un componente y sus dos partes principales
-- Como react se importa y se inyecta en el projecto
-- Reglas de como pasar atributos html al componente e introduccion al sistema de props
-
-Los diferentes tipos de patterns en react se pueden encontrar en la seccion React Patterns List - [**React Patterns**](https://reactpatterns.com/).
-
-Los pasos para crear un componente deduciendolo de un diseño en figma. [**Steps recommended to build a Component**](/03react/stepsComponent)
-
-Tips y resumen de la parte que describe lo basico de react extraido de la documentacion. [**Describin the UI**](/03react/FromDocs/describingUI)
-
 ***
 
-### 1.1. Differentiating between declarative and imperative programming
+### Differentiating between declarative and imperative programming
 
 La forma más fácil de abordar esto es pensar en la programación imperativa como una manera de describir cómo funcionan las cosas, y en la programación declarativa como una manera de describir lo que deseas lograr.
 
@@ -50,103 +241,8 @@ La forma más fácil de abordar esto es pensar en la programación imperativa co
 
 ***
 
-### 1.2. JSX Rules, Commponents Tips
-
-- La finalidad de react es utilizar functions y el sistema de import y exports de javascript para retornar partes de html con extras que se pueden observar en el object al hacer un render (se utiliza `React.crateElement()`) por parte de la libreria REACT.
-
-JSX y sus diferencias con HTML [**AQUI todas las reglas del JSX**](/03react/Patterns/JSXRules).
-
-***
-
-### 1.3. The prop system
-
-- Exercise 02 Grider [**Link al Repositorio**](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/002-Vite-Pads(basic%20components%20and%20pops)/README.md) se puede encontrar a mas profundidad y con ejemplos lo siguiente:
-
-- Reglas de como pasar atributos html al componente e introduccion al sistema de props
-![text for screen reader](../src/images/gridder%20diapositivas/013%20the%20prop%20system.jpg)
-- Como reutilizar un componente y que este componente se adapte a la forma que uno desea y estos deseos se comunican a travez del sistema de props.
-- Como colocar styles basicos al menos los que van in-line
-- Valores predeterminados en los props en caso de que no llegue ningun prop.
-- Utilizacion de una libreria para el estilizado llamada Bulma
-- Se explica la jerarquia de los componente y que es un componente padre y que es un componente children
-- Introduccion a destructuring (ver destructuring en javascript)
-- Se explica como el sistema de imports y exports es escencial a la hora de modularizar los componentes (ver modules en javascript)
-- Ojo con la inmutabilidad cuando se trabaja con los estados (recuerda el .slide() y el ...history en el ejemplo de tick-toc).
-- JavaScript tiene una particularidad, si un object tiene dos llaves con el mismo nombre, una sobre-escribe a la otra (LAS LLAVES EN LOS OBJECTS DEBEN DE SER UNICAS).
-- The **spread** syntax: The dots literally mean “gather the remaining parameters into an array”, cuando se utiliza como parametro
-- Un underline element es un componente que el html que devuelve es el mismo que el nombre de la funcion y el nombre del componente.
-- Un componente no puede retormar mas de un tag, en caso de varios tags envolvelos en un wrapper or a fragment.
-- Se recomienda aplicar (ejemplo en github examples-react) atomic design in order to create the components.
-La destructuración con [] indica que se están destructurando arrays, mientras que si se utiliza {} es que se está destructurando un objects.
-- Se puede utilizar map para mapear todos los elementos que se encuentren en objetos, vengan de funciones, fetch, etc. (siempre agregar un key).
-- En react los on son los eventos html que estan listados en w3schools.
-- For small components that only have one or two state values, using useState directly is fine, but once a component starts to have large numbers of state values, using a custom hook to handle all the state values as a single object will make your code much more readable and easier to manage.
-
-***
-
 - **Donde encontrar ejemplos?:**
 - Exercise 01 and 02 from react examples that comes form the official React Docs [**Link al repositorio de GITHUB**](https://react.dev/learn)
-
-***
-
-## 2. State en React
-
-- Esta es una guia practica de como utilizar un event:
-![text for screen reader](../src/images/gridder%20diapositivas/015%20Como%20manejar%20eventos%20como%20click.jpg)
-
-- Que es state?:
-![anatomia basica state](../src/images/gridder%20diapositivas/003%20que%20es%20useState.jpg)
-
-- Anatomia basica de state:
-![anatomia basica state](../src/images/gridder%20diapositivas/017%20anatomia%20basica%20de%20useState.jpg)
-
-If you want to cutomize, use PORPS, if you want to change something on the screen use STATE
-
-En react se maneja el sistema de states para poder rastrear el estado de un componente en un determinado momento o debido a las acciones de un usuario
-
-- Un set en react es un peticion de hacer un re-render con los nuevos states.
-- Ojo con los objects y los arrays ya que estos son los que mutan.
-- React no renderiza o print bools, nulls o undefined, entonces es util para esconder divs, o decir que no renderizen.
--algo interesante a tener en cuenta cuando al onClick se le pasa el handleclick directamente sin funciones arrow, devuleve el event object.
-- Todo handleClick debe de ser definido en donde esta el state que modificay pasarlo por el sistema de props
-- Si se llama el componente que use useState varias veces, habran varios estados diferentes.
-- Las funciones que utilicen "use" se consideran "hooks" como por ejemplo useState
-- La clave de react es la re-renderizacion de un componente y como sus estados van cambiando.
-- Conditional Rendering
-- Link to Conditional Paterns [Conditional Patterns](/03react/Patterns/conditionalPatterns)
-- Uso basico de useState
-- INMUTABILIDAD DEL STATE Modificar los arrays y objects con el spread sytax ... para no modficar un state sino crear uno nuevo siempre. [How to update state](/03react/Patterns/stateUpdate)
-- Utilizacion del .map para el mapeo de elementos.
-- Como pasar imagenes a un objeto para ser manipuladas
-- Sistema de eventos y el sistema de state
-- Como utilizar y donde poner handleClicks
-- Component lifecicle (look for useEffect)
-- Re-rendering of a component
-- fetching con axios
-- inputs patterns [Input Patterns](/03react/Patterns/controlledInputs)
-- event object management
-- se recomienda saber sobre los HTTP (Hypertext Transfer Protocol) status codes and HTTP en general [Link](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
-- En las diapositivas de grider desde la 23 hasta la 30 del repositorio de grider se explica como modificar arrays y objects cuando estos estan en el state
-- Tener en cuenta que hay procedimientos para add, update, delete etc diferentes tanto para arrays como para objects.
-- Collapsing two handlers into one
-
-- **OJO**:
-
-Actualización del Estado
-El setter (setState) puede recibir dos tipos de argumentos:
-
-- Un nuevo valor para el estado.
-- Una función que recibe el estado anterior y devuelve el nuevo estado.
-
-**
-
-- **Donde encontrar ejemplos?:**
-
-- Link to Adding Interactivity [Link](/03react/FromDocs/adingInteractivity)
-- Exercise 03 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/003-Vite-Animals(basic%20useState)/README.md)
-- Exercise 04 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/004-Vite-Pics(axios)/README.md)
-- Exercise 05 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-Books(add%20render%20elements)/README.md)
-- Inmutabilidad del state y como hacer un update correcto con el state [Link](https://state-updates.vercel.app/)
 
 ***
 

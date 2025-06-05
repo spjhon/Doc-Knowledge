@@ -1,8 +1,8 @@
 {
-  "label": "HOOKS",
+  "label": "Hooks",
   "position": 11,
   "link": {
     "type": "generated-index",
-    "description": "Explicaciones a profundidad y tips de diferentes fuentes de los HOOKS de REACT"
+    "description": "En React, un hook es una función especial que te permite engancharte (hook into) a las características de React desde componentes funcionales. Antes, ciertas cosas como manejar estado o usar ciclos de vida solo se podían hacer en componentes de clase. Desde que llegaron los hooks en React 16.8, ahora se puede hacer todo eso en componentes funcionales."
   }
 }

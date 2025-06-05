@@ -70,12 +70,10 @@ A continuacion se dicta como estudiar un libro y/o un curso de udemy.
 
 #### Como llenar el DOCUSAURO
 
-Cada vez que se realize un curso o se lea un libro, en el docusauro se va a registrar la informacion TEORICA aprendida en forma de index en el overview de cada gran tema, si el tema en especifico es complejo y se requiere mucho en el uso diario como el useEffect de react, se porcede a crear su propia seccion en el docusauro con el fin de recopilar en un solo sito la informacion de interes como por ejemplo los patterns de React.
+Cada vez que se realize un curso o se lea un libro el cual va a ser su propio modulo, en el docusauro se va a registrar la informacion TEORICA aprendida en forma de index en el overview de cada gran tema, si el tema en especifico es complejo y se requiere mucho en el uso diario como el useEffect de react, se porcede a crear su propia seccion en el docusauro con el fin de recopilar en un solo sito la informacion de interes como por ejemplo los patterns de React.
 
 - Cada GRAN TEMA debe de llevar un overview
-- Dentro del **overview** debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index que dirijan a los ejemplos dados en los libros o cursos en sus propios repositorios, la estructura que se recomienda dentro del docusauro en archivos a parte ademas de overview es:
-
-**Definir terminos:** Un glosario para tener a la mano terminos importantes.
+- Dentro del **overview** debe de haber una seccion con el index de sub-temas y los links de los ejemplos de donde encontrar la informacion de los sub-titulos de los index que dirijan a los ejemplos dados en los libros o cursos en sus propios repositorios.
 
 **Patrón (Patterns):**
 

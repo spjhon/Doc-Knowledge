@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # UseEffect
 
 [**AQUI, el link para la documentacion oficial**](https://react.dev/reference/react/useEffect)

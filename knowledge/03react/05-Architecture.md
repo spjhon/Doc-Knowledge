@@ -1,4 +1,4 @@
-# 4. React APPs architecture
+# 5. React APPs architecture
 
 Informacion extraida principalmente del libro:
 
