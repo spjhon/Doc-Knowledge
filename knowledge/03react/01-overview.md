@@ -19,6 +19,7 @@ La teoria de este documento fue extraida originalmente del curso de **Stephen Gr
 ### 1.2. **Componentes**
 
     - En el [**primer ejercicio de Stephen Grider**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/001-Vite-basics) se puede obtener la siguiente informacion:
+
         - Setup basico y creacion de projecto
         - JSX y sus diferencias con HTML
         - Que hay dentro de un projecto react (en este caso creado con vite)
@@ -52,16 +53,15 @@ La teoria de este documento fue extraida originalmente del curso de **Stephen Gr
         - Introduccion a destructuring
         - Se explica como el sistema de imports y exports es escencial a la hora de modularizar los componentes
 
-### 1.6. Pure Functions
+### 1.6. **Pure Functions**
 
     - Explicacion en un articulo de medium [**AQUI**](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976)
-
 
 ***
 
 ## 2. Hooks
 
-React se divide en tres partes
+React se divide en dos partes
 
 - React: Aplicable incluso para Mobiles Apps por medio de React Native
 - React-DOM: React especifico para el DOM del navegador
@@ -95,13 +95,13 @@ Permite a un componente "recordar informacion" entre renderizados
     - [**How to update state**](/03react/Patterns/stateUpdate)
     - Se recomienda saber sobre los HTTP (Hypertext Transfer Protocol) status codes and HTTP en general [**AQUI**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
-2. useReducer
+2. **useReducer**
 
 ### 2.2.2. Context Hooks
 
 Envia informacion a componentes al fondo del tree sin tener que hacer "prop-drilling"
 
-1. useContext
+1. **useContext**
 
     - [**Exercise 05 Grider (BooksConContext)**](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-Books(add%20render%20elements)/README.md) en donde se encontrara la siguiente informacion
 
