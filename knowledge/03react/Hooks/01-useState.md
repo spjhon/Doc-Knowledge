@@ -43,6 +43,7 @@ En react se maneja el sistema de states para poder rastrear el estado de un comp
 - Collapsing two handlers into one
 - Se puede poner una funcion en el inicializador de useState pero no debe aceptar argumentos y debe de devolver un valor para asi asignarlo al state inicial, por supuesto con el datatype adecuado.
 - Los states no retornan un valor, solo se encargan del set y el valor.
+- En cuanto a la inicializacion de states en useState, se pueden pasar funciones que retornen el state inicial pero hay que pasar la funcion solamente (osea el nombre de la funcion sin los parentesis) ya que si se pasa al parametro de useState un funcion con sus parentesis, se estaria llamandno la funcion cada vez que se renderice el componente y seria ineficienrte.
 
 - **OJO**:
 

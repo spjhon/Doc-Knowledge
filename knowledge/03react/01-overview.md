@@ -56,6 +56,7 @@ La teoria de este documento fue extraida originalmente del curso de **Stephen Gr
 ### 1.6. **Pure Functions**
 
 - Explicacion en un articulo de medium [**AQUI**](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976)
+- [**AQUI mas informacion acerca de pure functions**](/03react/PureFunctions)
 
 ***
 
@@ -91,6 +92,11 @@ Permite a un componente "recordar informacion" entre renderizados
         - event object management
         - props passing
 
+    - [**Exercise 05 Grider (005-Vite-Books(add render elements))**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/005-Vite-Books(add%20render%20elements)) en donde se encontrara la siguiente informacion:
+
+        - lifting state up
+        - State inmutability
+
     - Inmutabilidad del state y como hacer un update correcto con el state [**Pagina de VERCEL**](https://state-updates.vercel.app/)
     - [**How to update state**](/03react/Patterns/stateUpdate)
     - Se recomienda saber sobre los HTTP (Hypertext Transfer Protocol) status codes and HTTP en general [**AQUI**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
@@ -116,7 +122,16 @@ Permite guardar informacion que no se renderiza en cada ciclo o iteracion
 
 Permite sincronizar el sistema de states de react con entes externos
 
-1. useEffect
+1. **useEffect**
+
+    - [**AQUI, el link para la documentacion oficial**](https://react.dev/reference/react/useEffect)
+    - [**Exercise 05 Grider 005-Vite-BooksConApi(Persistent Data)**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/005-Vite-Books(add%20render%20elements)) en donde se encontrara la siguiente informacion:
+
+      - useEffect
+      - Basic CRUD (Create, read, update, delete)
+
+    - [**AQUI informacion sobre useEffect**](/03react/Hooks/useEffect).
+
 2. useLayoutEffect
 3. useInsertionEffect
 
@@ -243,35 +258,6 @@ La forma más fácil de abordar esto es pensar en la programación imperativa co
 
 - **Donde encontrar ejemplos?:**
 - Exercise 01 and 02 from react examples that comes form the official React Docs [**Link al repositorio de GITHUB**](https://react.dev/learn)
-
-***
-
-## 1.5 useEffect for fetching
-
-**You do need Effects to synchronize with external systems.**, Keep in mind that modern frameworks provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.
-
-- json server
-- useEffect for fetching
-- Los tres argumentos para el [] del use effect
-- Uso de condicionales &&, ||, or.
-- Basic CRUD
-- Data persistence (with the use of api.html to simulate request and responses)
-- Side Effects
-
-Sacado de chatGPT:
-
-entonces como en la funcion de post se hace la peticion, que creo yo es una promesa pero el codigo continua ejecutandose asincronamente y no hay interferencia de la promesa ya que los datos ya estan localmente y se pueden manipular o enviar, pero en el fetch inicial el state debe de esperar de alguna forma a tener los datos listos entonces se usa el useEffect para hacer que el componente se re-renderice una vez lleguen los datos asyncronos?, estoy en lo correcto?
-
-ChatGPT dijo que si.
-
-**OJO**: mientras menos useEffect mejor:  When you update the state, React will first call your component functions to calculate what should be on the screen. Then React will “commit” these changes to the DOM, updating the screen. Then React will run your Effects, entonces hay que tener cuidado cuando se utiliza un effect o se crea un side effect.
-
-**
-
-- **Donde encontrar ejemplos?:**
-
-- Exercise 05-1 Grider [Link](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-BooksConApi(Persistent%20Data)/README.md)
-- Side Effects and how useEffect helps [Link](/03react/sideEffects)
 
 ***
 
