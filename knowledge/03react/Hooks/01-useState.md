@@ -50,4 +50,4 @@ Actualización del Estado
 El setter (setState) puede recibir dos tipos de argumentos:
 
 - Un nuevo valor para el estado.
-- Una función que recibe el estado anterior y devuelve el nuevo estado.
+- Una función que recibe el estado anterior y devuelve el nuevo estado. (updater function). **Importante** sobre los updaterFunctions que son funciones que entran como argumetno a un setState: Si pasas una función, React SIEMPRE le pasa como primer argumento el valor actual del state.

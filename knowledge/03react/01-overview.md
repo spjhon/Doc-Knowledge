@@ -18,44 +18,44 @@ La teoria de este documento fue extraida originalmente del curso de **Stephen Gr
 
 ### 1.2. **Componentes**
 
-    - En el [**primer ejercicio de Stephen Grider**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/001-Vite-basics) se puede obtener la siguiente informacion:
+- En el [**primer ejercicio de Stephen Grider**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/001-Vite-basics) se puede obtener la siguiente informacion:
 
-        - Setup basico y creacion de projecto
-        - JSX y sus diferencias con HTML
-        - Que hay dentro de un projecto react (en este caso creado con vite)
-        - Como react hace basico render desde un html como root
-        - Que es un componente y sus dos partes principales
-        - Como react se importa y se inyecta en el projecto
-        - Reglas de como pasar atributos html al componente e introduccion al sistema de props
+  - Setup basico y creacion de projecto
+  - JSX y sus diferencias con HTML
+  - Que hay dentro de un projecto react (en este caso creado con vite)
+  - Como react hace basico render desde un html como root
+  - Que es un componente y sus dos partes principales
+  - Como react se importa y se inyecta en el projecto
+  - Reglas de como pasar atributos html al componente e introduccion al sistema de props
 
-    - [**Steps recommended to build a Component**](/03react/stepsComponent)
-    - [**Describin the UI**](/03react/FromDocs/describingUI)
+- [**Steps recommended to build a Component**](/03react/stepsComponent)
+- [**Describin the UI**](/03react/FromDocs/describingUI)
 
 ### 1.3. **Patterns**
 
-    - [**React Patterns Pagina Web**](https://reactpatterns.com/).
-    - [**Conditional Patterns**](/03react/Patterns/conditionalPatterns)
-    - [**Input Patterns**](/03react/Patterns/controlledInputs)
+- [**React Patterns Pagina Web**](https://reactpatterns.com/).
+- [**Conditional Patterns**](/03react/Patterns/conditionalPatterns)
+- [**Input Patterns**](/03react/Patterns/controlledInputs)
 
 ### 1.4. **JSX**
 
-    - JSX y sus diferencias con HTML [**AQUI todas las reglas del JSX**](/03react/Patterns/JSXRules).
+- JSX y sus diferencias con HTML [**AQUI todas las reglas del JSX**](/03react/Patterns/JSXRules).
 
 ### 1.5. [**Props**](03react/thePropSystem)
 
-    - [**Exercise 02 Grider (Pads)**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/002-Vite-Pads(basic%20components%20and%20pops)) en donde se encontrara:
+- [**Exercise 02 Grider (Pads)**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/002-Vite-Pads(basic%20components%20and%20pops)) en donde se encontrara:
 
-        - Como reutilizar un componente y que este componente se adapte a la forma que uno desea y estos deseos se comunican a travez del sistema de props.
-        - Como colocar styles basicos al menos los que van in-line
-        - Valores predeterminados en los props en caso de que no llegue ningun prop.
-        - Utilizacion de una libreria para el estilizado llamada Bulma
-        - Se explica la jerarquia de los componente y que es un componente padre y que es un componente children
-        - Introduccion a destructuring
-        - Se explica como el sistema de imports y exports es escencial a la hora de modularizar los componentes
+  - Como reutilizar un componente y que este componente se adapte a la forma que uno desea y estos deseos se comunican a travez del sistema de props.
+  - Como colocar styles basicos al menos los que van in-line
+  - Valores predeterminados en los props en caso de que no llegue ningun prop.
+  - Utilizacion de una libreria para el estilizado llamada Bulma
+  - Se explica la jerarquia de los componente y que es un componente padre y que es un componente children
+  - Introduccion a destructuring
+  - Se explica como el sistema de imports y exports es escencial a la hora de modularizar los componentes
 
 ### 1.6. **Pure Functions**
 
-    - Explicacion en un articulo de medium [**AQUI**](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976)
+- Explicacion en un articulo de medium [**AQUI**](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976)
 
 ***
 

@@ -24,3 +24,13 @@ Video y audo tags tambien poseen este constructor.
 - In canvas the origin is still the upper-left corner of the window.
 
 - The vertical numbers increase in value moving down the screen. The standard way to write coordinates is to put the horizontal value first, followed by the vertical value.
+
+## Tips de utilizacion de los elementos html
+
+- Javascript tiene unos metodos (por ejemplo getElementsByTagName("")) para convertir elemntos html a elementos guardados en variables que se pueden manipular y transportar.
+
+- Los elementos html tienen metodos y propiedades, unas globales como ["**ESTAS**"](https://www.w3schools.com/tags/ref_standardattributes.asp) y otras que solamente pueden ser aplicadas a ciertos elementos html ["**ESTOS**"](https://www.w3schools.com/tags/ref_attributes.asp).
+
+- Y existen los llamados eventos, lo llamados on (onChange) que se subscriben al elemento para que responda al moneto de que pase ese evento en particular.
+
+- Estos eventos pueden ser incrustados en el elemento html directamente o por medio de metodos en javascript para attach el elemento al html.
