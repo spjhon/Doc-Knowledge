@@ -52,3 +52,10 @@ El setter (setState) puede recibir dos tipos de argumentos:
 
 - Un nuevo valor para el estado.
 - Una función que recibe el estado anterior y devuelve el nuevo estado. (updater function). **Importante** sobre los updaterFunctions que son funciones que entran como argumetno a un setState: Si pasas una función, React SIEMPRE le pasa como primer argumento el valor actual del state.
+
+- **OJO 2**:
+
+Los handlers de un componente en react pueden ser asyncronos y estos funcionaran asyncronamente pero el componente seguira renderizandoce normal, ahora tambien se puede que el handler no sea asyncrono pero la funcion adentro si, eso hace que todo lo de adentro se ejecute y NO va a esperar la funcion asyncrona que ya vera por otros lados como hace syncronia despues de que se ejecute el evento asyncrono.
+
+Si el handler es async y usas await adentro, todo lo que viene después del await espera.
+Si el handler no es async y llama una función async, el handler no espera, ejecuta el resto, y la async sigue en su ritmo.

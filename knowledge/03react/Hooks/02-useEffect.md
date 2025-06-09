@@ -325,12 +325,13 @@ Usar `useEffect` para añadir event listeners es útil para manejar eventos que 
 
 El array de dependencias en `useEffect` es una herramienta poderosa para controlar cuándo un efecto debe ejecutarse, asegurando así un comportamiento eficiente y reactivo en las aplicaciones React. Es crucial colocar las variables adecuadas en este array para garantizar el comportamiento esperado del efecto en respuesta a cambios específicos en el estado, props o variables externas utilizadas dentro del componente.
 
+***
 
-# Side Effects
+## Side Effects
 
 En React, los "side effects" (efectos secundarios) son operaciones que afectan algo fuera del alcance de la función en la que ocurren. Estos pueden incluir operaciones como manipulación del DOM, solicitudes de red, suscripciones, timers, y almacenamiento en caché, entre otros. Los efectos secundarios son importantes porque permiten que la aplicación interactúe con el mundo exterior, pero también deben manejarse cuidadosamente para evitar comportamientos inesperados o problemas de rendimiento.
 
-## Tipos comunes de Side Effects
+### Tipos comunes de Side Effects
 
 1. **Manipulación del DOM**: Directamente cambiar elementos del DOM.
 2. **Solicitudes de red**: Realizar llamadas a APIs para obtener datos.
@@ -339,11 +340,11 @@ En React, los "side effects" (efectos secundarios) son operaciones que afectan a
 5. **Almacenamiento en caché**: Guardar datos en `localStorage`, `sessionStorage`, etc.
 6. **Integraciones de terceros**: Usar bibliotecas externas que interactúan con el DOM o realizan solicitudes de red.
 
-## Cómo manejar los Side Effects en React
+### Cómo manejar los Side Effects en React
 
 En React, los side effects se manejan principalmente mediante el hook `useEffect`. Este hook permite ejecutar código después de que el componente ha sido renderizado. Aquí hay un desglose de cómo usar `useEffect` para manejar efectos secundarios:
 
-### Uso Básico de `useEffect`
+#### Uso Básico de `useEffect`
 
 ```javascript
 import React, { useEffect } from 'react';
@@ -360,7 +361,7 @@ const MyComponent = () => {
 
 En este ejemplo, el código dentro de `useEffect` se ejecuta después de cada renderizado del componente.
 
-### Dependencias en `useEffect`
+#### Dependencias en `useEffect`
 
 Puedes controlar cuándo se ejecuta el efecto secundario pasando un array de dependencias como segundo argumento de `useEffect`. El efecto se ejecutará solo si alguna de las dependencias ha cambiado.
 
@@ -383,7 +384,7 @@ const MyComponent = () => {
 };
 ```
 
-### Limpiar Efectos
+#### Limpiar Efectos
 
 Algunos efectos secundarios, como suscripciones o timers, necesitan ser limpiados para evitar fugas de memoria. `useEffect` puede devolver una función de limpieza que se ejecutará cuando el componente se desmonte o antes de que se vuelva a ejecutar el efecto.
 
@@ -407,18 +408,20 @@ const MyComponent = () => {
 };
 ```
 
-## Buenas Prácticas
+#### Buenas Prácticas
 
 1. **Mantén los efectos simples**: Evita hacer demasiadas cosas dentro de `useEffect`. Si es necesario, divide los efectos en múltiples `useEffect`.
 2. **Cuida las dependencias**: Asegúrate de incluir todas las dependencias necesarias para evitar comportamientos inesperados.
 3. **Limpia los efectos**: Siempre limpia los efectos que requieren limpieza (suscripciones, timers, etc.) para evitar fugas de memoria.
 4. **Usa `useEffect` correctamente**: No uses `useEffect` para lógica que puede ser resuelta con renderizado condicional o memoización.
 
-## Resumen
+#### Resumen 2
 
 Los side effects en React son operaciones que afectan el mundo externo y se manejan principalmente con el hook `useEffect`. Este hook permite ejecutar código después de que el componente se haya renderizado y ofrece mecanismos para controlar cuándo ejecutar los efectos y cómo limpiarlos cuando ya no son necesarios. Seguir buenas prácticas en el manejo de efectos secundarios asegura que las aplicaciones React sean eficientes y libres de errores.
 
 ***
+
+## Usando useEffect para adicionar eventListeners
 
 Here's a brief explanation of why you might use `useEffect` for adding event listeners:
 
