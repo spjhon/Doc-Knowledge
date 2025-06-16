@@ -116,6 +116,10 @@ Envia informacion a componentes al fondo del tree sin tener que hacer "prop-dril
 Permite guardar informacion que no se renderiza en cada ciclo o iteracion
 
 1. useRef
+
+    - [**AQUI, el link para la documentacion oficial**](https://react.dev/reference/react/useRef)
+    - [**AQUI informacion sobre useRef**](/03react/Hooks/useRef).
+
 2. useImperativeHandle
 
 ### 2.2.4. Effect Hooks
