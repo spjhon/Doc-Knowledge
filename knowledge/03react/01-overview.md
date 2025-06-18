@@ -103,13 +103,22 @@ Permite a un componente "recordar informacion" entre renderizados
 
 2. **useReducer**
 
+    - [**Exercise 08 Grider (008-Vite-Reducers)**](https://github.com/spjhon/Udemy-React-StephenGrider/tree/Apps/008-Vite-Reducers) en donde se encontrara la siguiente informacion.
+        - Reducers
+    - [**AQUI, el link para la documentacion oficial de useReducer.**](https://react.dev/reference/react/useReducer)
+    - [**AQUI informacion sobre useReducer.**](/03react/Hooks/useReducer)
+
 ### 2.2.2. Context Hooks
 
 Envia informacion a componentes al fondo del tree sin tener que hacer "prop-drilling"
 
-1. **useContext**
+1. **useContext**v
 
-    - [**Exercise 05 Grider (BooksConContext)**](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-Books(add%20render%20elements)/README.md) en donde se encontrara la siguiente informacion
+    - [**Exercise 05 Grider (BooksConContext)**](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-Books(add%20render%20elements)/README.md) en donde se encontrara la siguiente informacion.
+        - Introduccion al sistema de context
+        - useCallback y su uso dentro de useEffect para hacer fetching
+    - [**AQUI, el link para la documentacion oficial de useContext.**](https://react.dev/reference/react/useContext)
+    - [**AQUI informacion sobre useContext.**](/03react/Hooks/useContext)
 
 ### 2.2.3. Ref Hooks
 
@@ -144,7 +153,11 @@ Permite sincronizar el sistema de states de react con entes externos
 Para evita re-renderizados inecesarios
 
 1. useMemo
+    - [**AQUI, el link para la documentacion oficial**](https://react.dev/reference/react/useMemo)
+    - [**AQUI informacion sobre useMemo**](/03react/Hooks/useMemo).
 2. useCallback
+    - [**AQUI informacion sobre useCallback**](/03react/Hooks/useCallback).
+    - [**AQUI, el link para la documentacion useCallback**](https://react.dev/reference/react/useCallback)
 
 ### 2.2.6. Other Hooks
 

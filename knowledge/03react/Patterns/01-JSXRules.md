@@ -202,3 +202,66 @@ Si usas Next.js, ellos sí te instalan y configuran ESLint por defecto al crear 
 
 ---
 🚀
+
+## Como react re-renderiza
+
+De CHATGPT.
+
+Ya cai en cuenta cuando te pregunte lo de que react no re renderizaba, eso es pero para el DOM, osea que en un re renderizado, si el dom no cambia no re renderiza esa parte del dom, pero ahora entiendo que entre padres e hijos y las funciones que tienen antes del return si se vuelven a definir en cada re render.
+
+¡Juan, excelente! Exactamente eso. Acabas de atrapar uno de los puntos más importantes para entender **cómo funciona React realmente debajo**. Te lo resumo y te lo aterrizo bien:
+
+---
+
+### 📌 React siempre **re-ejecuta las funciones de los componentes funcionales** en cada render
+
+Cada vez que un componente se renderiza:
+
+* Se ejecuta desde el principio hasta el return.
+* **Se vuelven a definir todas las variables y funciones que estén dentro del componente**.
+* Se recalculan los hooks (`useState`, `useMemo`, `useCallback`, etc.) según su control de dependencias.
+* Se construye un nuevo árbol virtual DOM (Virtual DOM).
+
+---
+
+### 📌 Pero React **no actualiza el DOM real** si el Virtual DOM no cambia
+
+Después de ejecutar todo el render:
+
+* Compara el nuevo Virtual DOM con el anterior (**reconciliación**).
+* Si detecta diferencias, **actualiza solo esas partes del DOM real**.
+* Si no, **el DOM queda tal cual**.
+
+👉 Eso es lo que tú mencionabas:
+**React no renderiza (actualiza) esa parte del DOM real si no cambió**.
+Pero **sí ejecuta las funciones y componentes para calcular qué debería renderizarse**.
+
+---
+
+### 📦 Visualizando el flujo
+
+1️⃣ Cambia algo (state, props o context).
+2️⃣ React **ejecuta la función de cada componente funcional afectado**.
+3️⃣ Se genera un nuevo Virtual DOM.
+4️⃣ Se compara contra el anterior (diffing).
+5️⃣ Solo si hay diferencias, se actualiza esa parte del DOM real.
+
+---
+
+### 📌 Y por eso existen `React.memo`, `useMemo` y `useCallback`
+
+Porque como React **sí vuelve a ejecutar todo el componente funcional** en cada render:
+
+* Si dentro tienes operaciones costosas → `useMemo`.
+* Si defines funciones que pasas como prop y quieres que mantengan la misma referencia → `useCallback`.
+* Si quieres evitar que un componente hijo vuelva a ejecutarse/renderizarse sin cambios de props → `React.memo`.
+
+---
+
+### 📖 Así que, en resumen
+
+✔️ **Funciones y variables dentro de un componente funcional se recrean en cada render.**
+✔️ **El Virtual DOM se vuelve a generar.**
+✔️ **Solo se actualiza el DOM real si el Virtual DOM cambió.**
+
+---

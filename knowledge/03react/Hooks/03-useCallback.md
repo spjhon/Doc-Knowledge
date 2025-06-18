@@ -1,4 +1,10 @@
+---
+sidebar_position: 3
+---
+
 # useCallback
+
+En JavaScript, una función `() {}` o `() => {}` siempre crea una función diferente, de manera similar a como un objeto literal `{}` siempre crea un objeto nuevo. Normalmente, esto no sería un problema, pero significa que las props de `ShippingForm` nunca serán las mismas, y tu optimización con `memo` no funcionará. Aquí es donde `useCallback` resulta útil.
 
 ## Ejemplo
 

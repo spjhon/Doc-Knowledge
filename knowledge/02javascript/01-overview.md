@@ -191,7 +191,7 @@ Tambien para cada [**DataType**](https://www.w3schools.com/jsref/default.asp) ex
 
 #### Arithmetic in JavaScript
 
-La **aritmetica** en javascript se hace mas que todo con el method Math [**Link**](https://www.w3schools.com/jsref/jsref_obj_math.asp)
+La **aritmetica** en javascript se hace mas que todo con el method Math [**AQUI**](https://www.w3schools.com/jsref/jsref_obj_math.asp)
 
 - Habla sobre los casos especiales `NaN, Null, -INFINITY, INFINITY`
 - BigInt
@@ -492,7 +492,7 @@ new Date();
 
 ### OPERATOR OVERVIEW
 
-[**LINK**](/javascript/operators-comparators) con la lista de los operadores, comparadores, etc.
+[**AQUI**](/javascript/operators-comparators) con la lista de los operadores, comparadores, etc.
 
 - Operators are used for JavaScript’s arithmetic expressions, comparison expressions, logical expressions, assignment expressions,and more.
 - En la pagina **69** del libro se tiene la tabla **4.1** de todos los operadores en orden de **precedencia**.
@@ -725,8 +725,8 @@ k = 2;
 
 ## 05 Statements
 
-- A JavaScript program is a sequence of statements. Each statement is an instruction for the computer to do something. 
-- Want to know whether a chunk of JS is an expression or a statement? Try to log it out!. If it runs, the code is an expression. 
+- A JavaScript program is a sequence of statements. Each statement is an instruction for the computer to do something.
+- Want to know whether a chunk of JS is an expression or a statement? Try to log it out!. If it runs, the code is an expression.
 If you get an error, it's a statement (or, possibly, invalid JS).
 
 **JavaScript statements are terminated with semicolons (§2.6). Expressions are evaluated to produce a value, but statements are executed to make something happen.**
@@ -1160,7 +1160,7 @@ While reading about these methods, keep in mind that some of them modify the arr
 - `filter()`
 - `find() and findIndex()`
 - `every() and some()`
-- `reduce() and reduceRight()`
+- `reduce() and reduceRight()` (**mas informacion en el la seccion de iterators and generators**)
 
 #### Flattening arrays with flat() and flatMap()
 
@@ -3135,7 +3135,8 @@ In JavaScript, there are several methods and constructs available for iterating 
    console.log(evenNumbers); // Output: [2, 4]
    ```
 
-5. **`Array.prototype.reduce()` Method**: This method applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single output value. It's powerful for aggregating values.
+5. **`Array.prototype.reduce()` Method**: This method applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single output value. It's powerful for aggregating values. Es un método de los arrays en JavaScript que recorre todos los elementos de un array y acumula un valor final. Este valor acumulado puede ser de cualquier tipo: un número, una cadena, un objeto, otro array, etc.
+  👉 Se usa principalmente para reducir (de ahí su nombre) un array a un único valor.
 
    ```javascript
    const array = [1, 2, 3, 4, 5];
@@ -3144,6 +3145,129 @@ In JavaScript, there are several methods and constructs available for iterating 
    }, 0);
    console.log(sum); // Output: 15
    ```
+
+    Sintaxis:
+
+    ```javascript
+    array.reduce(callback(acumulador, valorActual, indice, array), valorInicial)
+    ```
+
+    Explicacion:
+      - **callback**: función que se ejecuta por cada elemento del array.
+      - **acumulador**: valor acumulado que se va actualizando en cada iteración.
+      - **valorActual**: valor del elemento actual del array.
+      - **indice** *(opcional)*: índice del elemento actual.
+      - **array** *(opcional)*: el array sobre el que se llama a `reduce`.
+      - **valorInicial** *(opcional pero recomendable)*: valor inicial del acumulador.
+
+    ---
+
+    📌 Ejemplo Básico:
+      - **Sumar todos los números de un array**
+
+    ```javascript
+    const numeros = [1, 2, 3, 4, 5];
+
+    const suma = numeros.reduce((acumulador, valorActual) => {
+      return acumulador + valorActual;
+    }, 0);
+
+    console.log(suma);  // 15
+    ```
+
+    Explicacion:
+      - **Primera iteración**: acumulador = 0, valorActual = 1 → acumulador = 1
+      - **Segunda iteración**: acumulador = 1, valorActual = 2 → acumulador = 3
+      - … y así hasta llegar al valor final: 15
+
+    ---
+
+    📌 Ejemplo Sin `valorInicial`
+
+    Si no le das un `valorInicial`, el primer elemento del array se usa como acumulador, y el bucle empieza desde el segundo elemento.
+
+    ```javascript
+    const numeros = [1, 2, 3, 4, 5];
+
+    const suma = numeros.reduce((acumulador, valorActual) => {
+      return acumulador + valorActual;
+    });
+
+    console.log(suma);  // 15
+    ```
+
+    **⚠️ Precaución:** No usar `reduce()` sin `valorInicial` en arrays vacíos, porque genera un error.
+
+    ---
+
+    📌 Casos Más Complejos
+
+    ✅ Obtener el mayor número de un array
+
+    ```javascript
+    const numeros = [3, 9, 2, 5, 7];
+
+    const mayor = numeros.reduce((acumulador, valorActual) => {
+      return (valorActual > acumulador) ? valorActual : acumulador;
+    }, 0);
+
+    console.log(mayor);  // 9
+    ```
+
+    ---
+
+    ✅ Transformar un array en un objeto
+
+    ```javascript
+    const personas = [
+      { id: 1, nombre: 'Juan' },
+      { id: 2, nombre: 'Laura' },
+      { id: 3, nombre: 'Pedro' }
+    ];
+
+    const personasPorId = personas.reduce((acumulador, persona) => {
+      acumulador[persona.id] = persona.nombre;
+      return acumulador;
+    }, {});
+
+    console.log(personasPorId);
+    /*
+    {
+      1: 'Juan',
+      2: 'Laura',
+      3: 'Pedro'
+    }
+    */
+    ```
+
+    ---
+
+    📌 Resumen Conceptual
+
+    👉 `reduce()`:
+      - Recorre todos los elementos de un array.
+      - Acumula un valor en cada iteración.
+      - Devuelve ese valor acumulado al final.
+      - Sirve para transformar un array en **otro valor único**.
+
+    ---
+
+    📌 ¿Por qué usar `reduce()`?
+
+    Porque te permite:
+      - Escribir código más **funcional** y **declarativo**.
+      - Reemplazar bucles for/while en ciertas operaciones.
+      - Hacer operaciones complejas de manera limpia y concisa.
+
+    ---
+
+    📌 Consejos
+
+    ✅ Siempre define un `valorInicial`, salvo que estés seguro de no necesitarlo.
+    ✅ Lee bien la lógica de acumulación, porque mal definida puede provocar errores sutiles.
+    ✅ Úsalo cuando realmente necesitas reducir a un valor único. Si solo quieres iterar, `forEach()` o `map()` pueden ser más claros.
+
+    ---
 
 6. **Spread Operator (`...`) with Loops**: The spread operator can be used within loops like `for...of` to iterate over iterable objects and access individual elements.
 
