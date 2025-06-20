@@ -2555,6 +2555,113 @@ console.log(map.get("clave1")); // salida: valor1
 console.log(map.size); // salida: 3
 ```
 
+##### De chatGPT sobre map()
+
+**¡Exactamente Juan!** 🎉👏 Lo entendiste muy bien — te lo detallo con un ejemplo visual y bien claro para que quede 100% sólido.
+
+---
+
+📌 El `.map()` genera un **nuevo array**
+
+No modifica el viejo, sino que:
+
+- Toma **cada elemento del array original**
+- Le aplica la función callback
+- Y lo que **devuelva el `return` de esa función se guarda en el nuevo array en esa misma posición**
+
+---
+
+📊 Ejemplo práctico
+
+Array original
+
+```js
+const numeros = [10, 20, 30];
+```
+
+Si hago
+
+```js
+const resultado = numeros.map(num => {
+  if (num === 20) {
+    return 200; // si num es 20, devuelve 200
+  } else {
+    return num; // si no, deja el mismo número
+  }
+});
+
+console.log(resultado);
+```
+
+**Resultado:**
+
+```js
+[10, 200, 30]
+```
+
+👉 Lo que pasó:
+
+- Cuando `num === 10` → return 10 → se guarda en posición 0
+- Cuando `num === 20` → return 200 → se guarda en posición 1
+- Cuando `num === 30` → return 30 → se guarda en posición 2
+
+**El nuevo array es `[10, 200, 30]`**
+El array viejo `[10, 20, 30]` sigue igual.
+
+---
+
+📌 Relación con tu reducer
+
+En el reducer:
+
+```js
+return tasks.map(t => {
+  if (t.id === action.task.id) {
+    return action.task;
+  } else {
+    return t;
+  }
+});
+```
+
+✅ Lo que devuelve ese `return`:
+
+- **Para la tarea con `id` coincidente** → devuelve `action.task` (la nueva)
+- **Para las demás tareas** → devuelve la misma `t` vieja
+
+👉 Y lo que devuelve se va armando en un **nuevo array**
+Ese array nuevo se convierte en el **nuevo state** que React detecta como diferente, y renderiza otra vez.
+
+---
+
+📌 Dibujo mental:
+
+Array viejo:
+
+```cmd
+[ A, B, C ]
+```
+
+Dispatch cambia `B` por `B*`
+
+Resultado de `.map()`:
+
+```cmd
+[ A, B*, C ]
+```
+
+El `B` viejo **se "descarta" en el array nuevo** (pero sigue existiendo en memoria, no se borra nada del array viejo, solo se crea un nuevo array sin incluirlo).
+
+---
+
+📌 Conclusión
+
+**Tu frase es correcta:**
+
+> *lo que devuelve el return es solo la tarea en específico que reemplaza lo que antes era el array viejo pero quedaría en el array nuevo, deshaciéndose del dato que estaba en esa posición en el array viejo.*
+
+✅ Exactamente así funciona.
+
 ---
 
 #### 11.1.3 WeakMap and WeakSet

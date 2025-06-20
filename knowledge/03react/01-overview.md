@@ -112,7 +112,7 @@ Permite a un componente "recordar informacion" entre renderizados
 
 Envia informacion a componentes al fondo del tree sin tener que hacer "prop-drilling"
 
-1. **useContext**v
+1. **useContext**
 
     - [**Exercise 05 Grider (BooksConContext)**](https://github.com/spjhon/Udemy-React-StephenGrider/blob/Apps/005-Vite-Books(add%20render%20elements)/README.md) en donde se encontrara la siguiente informacion.
         - Introduccion al sistema de context
