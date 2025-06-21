@@ -145,7 +145,7 @@ Permite sincronizar el sistema de states de react con entes externos
 
     - [**AQUI informacion sobre useEffect**](/03react/Hooks/useEffect).
 
-2. useLayoutEffect
+2. useLayoutEffect: Util para tooltips.
 3. useInsertionEffect
 
 ### 2.2.5. Performance Hooks
@@ -177,27 +177,27 @@ Los hooks a continuacion son de REACT-DOM:
 
 ***
 
-5. **State**
-6. **Eventos en React**
-7. **useState**
-8. **useEffect**
-9. **Renderizado condicional**
-10. **Listas y keys**
-11. **Manejo de formularios**
-12. **Componentes controlados y no controlados**
-13. **Lifting state up**
-14. **Prop drilling**
-15. **useContext**
-16. **useRef**
-17. **useMemo**
-18. **useCallback**
-19. **React Router (navegación)**
-20. **Custom Hooks**
-21. **Fragments**
-22. **Portals**
-23. **Error boundaries**
-24. **Lazy loading y Suspense**
-25. **Ciclo de vida de un componente (componentDidMount, etc. en class components)**
+1. **State**
+2. **Eventos en React**
+3. **useState**
+4. **useEffect**
+5. **Renderizado condicional**
+6. **Listas y keys**
+7. **Manejo de formularios**
+8. **Componentes controlados y no controlados**
+9. **Lifting state up**
+10. **Prop drilling**
+11. **useContext**
+12. **useRef**
+13. **useMemo**
+14. **useCallback**
+15. **React Router (navegación)**
+16. **Custom Hooks**
+17. **Fragments**
+18. **Portals**
+19. **Error boundaries**
+20. **Lazy loading y Suspense**
+21. **Ciclo de vida de un componente (componentDidMount, etc. en class components)**
 
 ## Intermedio
 

@@ -66,7 +66,221 @@ Se recomienda el App Router que es el mas reciente
 }
 ```
 
-## 2. Nueva Page (App Router)
+## 2. 📚 Temario de Next.js — Completo y Ordenado
+
+---
+
+### 2.1. 🟢 Básico: Fundamentos de Next.js
+
+1. **¿Qué es Next.js y para qué sirve?**
+
+   - Características principales
+   - Diferencias con React SPA tradicional
+
+2. **App Router vs Pages Router**
+
+   - Qué es el App Router
+   - Qué es el Pages Router
+   - Cuándo usar cada uno (en proyectos legacy vs nuevos)
+
+3. **Estructura de un proyecto Next.js**
+
+   - Carpetas: `/app`, `/pages`, `/public`, `/components`, `/styles`
+   - Convenciones de enrutamiento automático
+   - Archivos especiales: `layout.tsx`, `page.tsx`, `error.tsx`, `not-found.tsx`
+  
+    Mas informacion: [33-ejercicio02 de maximilliam](https://github.com/spjhon/Udemy-Nextjs-Maximilian/tree/main/02-nextjs-essentials/33-ejercicio2)
+
+    En los docs de Next js: [33-ejercicio02 de maximilliam](https://nextjs.org/docs/app/getting-started/layouts-and-pages)
+
+4. **Sistema de Rutas en Next.js**
+
+   - Rutas basadas en archivos
+   - Rutas dinámicas (`[id]`)
+   - Rutas anidadas y catch-all (`[[...slug]]`)
+
+5. **Componentes Server y Client**
+
+   - Cómo y cuándo se declaran (`'use client'`)
+   - Diferencias en su comportamiento y renderizado
+
+6. **Rendering Methods**
+
+   - SSR (Server Side Rendering)
+   - SSG (Static Site Generation)
+   - ISR (Incremental Static Regeneration)
+   - CSR (Client Side Rendering)
+   - Comportamiento por defecto de Next.js
+
+7. **Metadata y SEO básico**
+
+   - Uso de `metadata` en App Router
+   - Etiquetas `<head>`, `<title>`, meta tags
+
+8. **Manejo de imágenes**
+
+   - Componente `<Image />`
+   - Optimización automática
+   - Uso de imágenes locales y remotas
+
+9. **Archivos estáticos**
+
+   - Carpeta `/public`
+   - Acceso a recursos estáticos
+
+10. **Estilos en Next.js**
+
+    - CSS Modules
+    - CSS global
+    - Frameworks como Tailwind CSS
+
+---
+
+### 2.2.  🟡 Intermedio: Profundizando en Next.js
+
+1. **Dynamic Metadata**
+
+   - `generateMetadata` para páginas dinámicas
+   - Metadata async
+
+2. **Dynamic Routes y Nested Layouts**
+
+   - Rutas dinámicas dentro de `app/`
+   - Uso de `layout.tsx` anidados por segmento de ruta
+
+3. **Catch-all y Optional Catch-all Routes**
+
+   - Diferencias entre `[...slug]` y `[[...slug]]`
+
+4. **Loading UI y Suspense**
+
+   - `loading.tsx` por ruta
+   - Uso de `React.Suspense`
+
+5. **Error Handling**
+
+   - `error.tsx` por ruta
+   - Captura de errores en Server y Client components
+
+6. **Middleware**
+
+   - Creación y uso en `middleware.ts`
+   - Casos de uso: autenticación, redirecciones, logs
+
+7. **API Routes**
+
+   - Crear APIs desde `/api`
+   - Métodos y control de peticiones
+   - Middleware en API Routes
+
+8. **Fetching de datos**
+
+   - `fetch` en Server components
+   - `useEffect` en Client components
+   - `useSWR` y React Query (opcional)
+
+9. **Incremental Static Regeneration (ISR)**
+
+   - `revalidate`
+   - Regeneración on-demand (`res.revalidate()` en API Routes)
+
+10. **Redirecciones y Rewrites**
+
+    - Configuración en `next.config.js`
+    - Uso de `redirect()` y `notFound()`
+
+11. **Custom Fonts**
+
+    - Next.js font optimization API
+    - Uso de Google Fonts y locales
+
+12. **Imágenes remotas**
+
+    - Configuración de dominios externos
+    - Optimización de imágenes remotas
+
+13. **Locales e internacionalización (i18n)**
+
+    - Configuración en `next.config.js`
+    - Enrutamiento con sub-path locales
+    - Alternativas como `next-intl`
+
+---
+
+### 2.3. 🔴 Avanzado: Nivel profesional en Next.js
+
+1. **Caching y Render Optimization**
+
+   - `cache: 'force-cache'`, `no-store`
+   - `unstable_noStore()`
+   - Caching por segmentos de layout
+
+2. **Streaming y React Server Components (RSC)**
+
+   - Cómo funcionan internamente
+   - Uso de Server Actions (experimental y estable según versión)
+
+3. **Server Actions**
+
+   - Declaración de acciones server-side desde formularios o botones
+   - Gestión de estado en server actions
+
+4. **Parallel Routes y Intercepting Routes**
+
+   - Uso de slots (`@slot`)
+   - `/(.)`, `(...)`, `..`, `@modal`
+   - Casos de uso: modales en URL, secciones paralelas
+
+5. **Deployment avanzado**
+
+   - Vercel Features: prefetching automático, serverless functions, edge functions
+   - Self-hosted deployment con Docker y PM2
+
+6. **Custom `next.config.js`**
+
+   - Modificación de Webpack
+   - Configuración de headers, rewrites, redirects
+   - Optimización de imágenes avanzada
+
+7. **Edge Functions**
+
+   - Qué son y cuándo usarlas
+   - Diferencia con API Routes tradicionales
+
+8. **NextAuth (Autenticación para Next.js)**
+
+   - Configuración básica y avanzada
+   - Callbacks, JWT, providers OAuth, credenciales personalizadas
+
+9. **Web Vitals y Análisis de rendimiento**
+
+   - Reporte de métricas web
+   - Uso de `next/script` para scripts de analytics
+
+10. **Tests en Next.js**
+
+    - Unit Tests con Jest
+    - E2E Tests con Cypress / Playwright
+    - Tests de Server y Client Components
+
+11. **Dynamic Imports**
+
+    - `dynamic()` para lazy loading de componentes
+    - Suspense para Server Components
+
+12. **Custom Error Pages avanzadas**
+
+    - Uso personalizado de `not-found.tsx`, `error.tsx`
+    - Log de errores en producción
+
+13. **Plugins y Modificaciones de Webpack**
+
+    - Extender el Webpack config
+    - Uso de plugins específicos para optimización
+
+---
+
+## 3. Nueva Page (App Router)
 
 Para agregar rutas se utiliza el sistema de archivos internos como las carpetas(folders) y archivos(files)
 
@@ -76,7 +290,7 @@ Para agregar rutas se utiliza el sistema de archivos internos como las carpetas(
 
 Esa combinacion es la base de un enrutamiento en Next JS
 
-## 3. Routing
+## 4. Routing
 
 Como next js es muy opitionanted tiene dos palabras de archivo reservadas para el routing que esta dentro de la carpeta APP que es LAYOUT y PAGE.
 
@@ -180,7 +394,3 @@ export default HomePage;
 #### Conclusión
 
 En resumen, en un Server Component de Next.js, el proceso de fetching de datos y renderizado se realiza completamente en el servidor. El servidor espera a que se resuelvan todas las promesas y se renderice el componente con los datos antes de enviar el HTML al cliente, asegurando una experiencia de usuario más rápida y eficiente.
-
-## 4
-
-ddd
