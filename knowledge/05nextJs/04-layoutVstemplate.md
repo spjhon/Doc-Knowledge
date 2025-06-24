@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Layout vs Template
 
 entonces, resetea el state que haya en este componente y en los componentes hijos o si un componente hijo tiene su propio state este se reinicia?, aunque ahora que lo pienso ese componente o page si se navega a otro lado por ejempo un hijo del mismo layout, creeria que ese state se borra entonces en layout, este state se reiniciaira si el state esta dentro de layout.

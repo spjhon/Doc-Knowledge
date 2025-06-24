@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Diagramas recomendados para Nextjs
 
 Para visualizar y comprender la arquitectura de una aplicación **Next.js** sin un enfoque orientado a clases, algunos tipos de diagramas que pueden ser muy útiles incluyen:
