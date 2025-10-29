@@ -1,15 +1,10 @@
 ---
-sidebar_position: 1
+sidebar_position: 0
 ---
 
 # Overview
 
 Lenguaje de programacion creado para trabajar en conjunto con los lenguajes HTML y CSS para crear codigo que sea renderizado por medio de un navegador de internet en forma de paginas web que permitan la interactividad del usuario y la transmision y recibimientos de datos de variado tipo desde servidores a nivel mundial.
-
-- Lenguage que evalua el codigo at runtime osea que no hace una compilacion como otros lenguajes.
-- No es tipado lo que quiere decir que los tipos de datos en varialbes y otros aspectos no son tan controlados como en lenguajes fuertemente tipados.
-
-En el siguiente index se describe una referencia a los temas teoricos del lenguaje, no solo el conocimiento del lenguaje base, se deben de tener en cuenta las librerias aplicables, los frameworks aplicables y otros aspectos como el manejo de typos por medio de typescript y javascript en el servidor como lo es con NODE ademas del ambiente del browser en donde se ejecuta normalmente.
 
 - **Este MAPA como base del contenido aprendido dividido principalmente con la misma divicion del libro JavaScript The Definitive Guide y cuando hayan conocimiento de otras fuentes se agregara al final de cada tema**
 
@@ -34,51 +29,16 @@ Javascript es relativamente sencillo, la fuente principal del siguiente mapa es 
 
 ## JavaScript
 
-- Es pobremente tipado, osea que no hay control de las diferentes formas de tipos de datos que puede tomar una variable o cualquier otro ente que guarde tipos de datos.
-- No es compilado osea que se ejecuta en tiempo real linea por linea y si hay un error pues se va a dejar ver ese error solo en el momento que se ejecute esa linea de codigo especifica.
-
 **Nota:** La estructura de este index tiene como base el libro Javascript the definitive guide que esta a mi parecer bien estructurada para aprender el idioma a profundidad. He de resaltar que el libro solo NO es suficiente para alguien que no ha aprendido totalmente nada sobre lenguajes de programacion, recomiendo un crash course como minimo o un curso completo de udemy que enseñe de forma mas generelizada pero que de una enseñanza basica para luego profundizar con este libro.
 
-## 01 Introduccion a Javascript
+## 1 Introduccion a Javascript
 
 (Paginas de 1 a 14 del libro)
 
-- Su potencial se encuentra en combinarlo con los lenguajes CSS y HTML
-- Es high level languaje.
-- Node para el lado del servidor
-- Debilmene Tipado
-- No compilado
-- Su fuerte esta en el entorno web
-
----
-
-- **Core features**
-
-[Sacado de javascript.injo](https://javascript.info/modules-intro)
-
-- Always “use strict”
-- Module-level scope
-- A module code is evaluated only the first time when imported
-- import.meta
-- In a module, “this” is undefined
-
-- **Browser-specific features**
-
-- Module scripts are deferred (aplazados)
-- Async works on inline scripts
-- External scripts: External scripts that have `type="module"` are different in two aspects.
-- No “bare” modules allowed
-
-### Exploring JavaScript
-
-- El codigo es interpretado o "renderizado" por medio del navegador
-
-### Hello World
-
-- Como generar codigo javascript simplemente desde un texto txt.
-- If JavaScript expressions are like phrases, then JavaScript statements are like full sen‐
-  tences.
-- Ejemplo de contador de letras en la pagina 12.
+- Explorando Javascript
+- Hellow world
+- Un tour por javascript
+- En donde se puede correr el lenguaje?
 
 ---
 
@@ -96,59 +56,10 @@ Reglas elementales para comenzar a escribir codigo:
 - Optional semicolons
 - Tambien describe que tipo de line breaks reconoce y como los reconce y como deben de capitalizarcen las keywords
 
-### Comentarios
-
-`// This is a single-line comment.`
-`/* This is also a comment */`
-`// and here is another comment.`
-
-```javascript
-/*
-This is a multi-line comment. The extra * characters at the start of each line are not a required part of the syntax; they just look cool!
- */
-```
-
-### Literals
-
-A literal is a data value that appears directly in a program. The following are all literals
-
-```javascript
-12; // The number twelve
-1.2; // The number one point two
-("hello world"); // A string of text
-("Hi"); // Another string
-true; // A Boolean value
-false; // The other Boolean value
-null; // Absence of an object
-```
-
-### Identifiers and Reserved Words
-
-Para comenzar el nombre de una variable se puede utilizar "\_" y "$"
-
-```javascript
-i;
-my_variable_name;
-v13;
-_dummy;
-$str;
-```
-
-La lista completa de palabras reservadas esta [**AQUI**](/javascript/reservedWords)
-
-### Unicode
-
-The JavaScript type for representing text is the string. A string is an immutable ordered sequence of 16-bit values, each of which typically represents a Unicode character.
-
-#### Unicode Escape Sequences
-
-```javascript
-"😊 represents the “grinning face” emoji.";
-```
 
 ### Optional Semicolons
 
-Tener en cuenta cuando javascript agrega semicolons (;) al romper lineas y otras condiciones a tener en cuenta, por recomendacion es mejor siempre poner el punto y coma en donde debe de ir.
+
 
 ---
 

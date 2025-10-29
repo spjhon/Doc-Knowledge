@@ -132,6 +132,16 @@ const config = {
         // ... other options
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'supabase',
+        path: '08supabase',
+        routeBasePath: '08supabase',
+        sidebarPath: './sidebars.js',
+        // ... other options
+      },
+    ],
     
   ],
 
@@ -207,6 +217,13 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'GraphQl'
+          },
+          {
+            type: 'docSidebar',
+            docsPluginId: 'supabase',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'Supabase'
           },
           
           
