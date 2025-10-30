@@ -56,16 +56,11 @@ Reglas elementales para comenzar a escribir codigo:
 - Optional semicolons
 - Tambien describe que tipo de line breaks reconoce y como los reconce y como deben de capitalizarcen las keywords
 
-
-### Optional Semicolons
-
-
-
 ---
 
 ## 03 Types, Values and Variables
 
-[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_global.asp) Encontrara todos los metodos para aplicar a todos los **DataType**
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_global.asp) Encontrara todos los metodos para aplicar a todos los **DataType** teniendo en cuenta que estos metodos son del window del browser.
 
 (Paginas de 23 a 60 del libro)
 
