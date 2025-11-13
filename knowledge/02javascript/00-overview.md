@@ -20,18 +20,18 @@ Las fuentes principales para tener la referencia del lenguaje son:
 
 - Tambien para cada [**DataType**](https://www.w3schools.com/jsref/default.asp) existe un conjunto de build-in propiedades y metodos que permiten la manipulacion de este tipos de [**DataType**](https://www.w3schools.com/jsref/default.asp) sin necesidad de crear funciones u objects especializados.
 
-Sin embargo los dos libros que recorren la teoria y explica de forma comprensiva los recondijos del lenguaje son los siguientes libros:
+Sin embargo los dos libros que recorren la teoría y explica de forma comprensiva los recondijos del lenguaje son los siguientes libros:
 
-- **JavaScript The Definitive Guide** by David Flanagan Septima Edicion 2020
-- **Secrets of the JavaScript Ninja** by John Resig Segunda Edicion 2016
+- **JavaScript The Definitive Guide** by David Flanagan Séptima Edición 2020
+- **Secrets of the JavaScript Ninja** by John Resig Segunda Edición 2016
 
-Javascript es relativamente sencillo, la fuente principal del siguiente mapa es el libro JavaScript The Definitive Guide que contiene un recorrido teorico acertado y de forma escalada para entender a fondo el lenguaje al menos teoricamente, las paginas de internet es una fuente de referencia ordenada alfabeticamente pero muy desordenada en un orden correcto para el aprendizaje.
+Javascript es relativamente sencillo, la fuente principal del siguiente mapa es el libro JavaScript The Definitive Guide que contiene un recorrido teórico acertado y de forma escalada para entender a fondo el lenguaje al menos teóricamente, las paginas de internet es una fuente de referencia ordenada alfabéticamente pero muy desordenada en un orden correcto para el aprendizaje.
 
 ## JavaScript
 
-**Nota:** La estructura de este index tiene como base el libro Javascript the definitive guide que esta a mi parecer bien estructurada para aprender el idioma a profundidad. He de resaltar que el libro solo NO es suficiente para alguien que no ha aprendido totalmente nada sobre lenguajes de programacion, recomiendo un crash course como minimo o un curso completo de udemy que enseñe de forma mas generelizada pero que de una enseñanza basica para luego profundizar con este libro.
+**Nota:** La estructura de este index tiene como base el libro Javascript the definitive guide que esta a mi parecer bien estructurada para aprender el idioma a profundidad. He de resaltar que el libro solo NO es suficiente para alguien que no ha aprendido totalmente nada sobre lenguajes de programación, recomiendo un crash course como mínimo o un curso completo de udemy que enseñe de forma mas generalizada pero que de una enseñanza básica para luego profundizar con este libro.
 
-## 1 Introduccion a Javascript
+## 01 Introducción a Javascript
 
 (Paginas de 1 a 14 del libro)
 
@@ -46,7 +46,7 @@ Javascript es relativamente sencillo, la fuente principal del siguiente mapa es 
 
 (Paginas de 15 a 21 del libro)
 
-Reglas elementales para comenzar a escribir codigo:
+Reglas elementales para comenzar a escribir código:
 
 - Case sensitivity, spaces, and line breaks
 - Comments
@@ -98,223 +98,20 @@ Reglas elementales para comenzar a escribir codigo:
 
 ## 05 Statements
 
-
-
-
-### Jumps
-
-As the name implies, these cause the JavaScript interpreter to jump to a new location in the source code.
-
-- Labeled Statements
-- break
-- continue: When the continue statement is executed, the current iteration of the enclosing loop is terminated, and the next iteration begins. This means different things for different types of loops
-- return
-- yield
-- throw
-- try/catch/finally
-
-### Miscellaneous Statements
-
-- with: Dont use "with".
-- debugger
-- “use strict”: This means that if all of your JavaScript code is written as modules, then it is all automatically strict, and you will never need to use an explicit "use strict" directive.
-
-### Declarations
-
-The keywords **const, let, var, function, class, import, and export** are not technically statements, but they look a lot like statements, and this book refers informally to them as statements, so they deserve a mention in this chapter.
-
-They don’t make much happen themselves, but by providing names for values they, in an important sense, define the meaning of the other statements in your program.
-
-Loosely, you can think of declarations as the parts of the program that are processed before the code starts running.
-
-JavaScript declarations are used to define constants, variables, functions, and classes and for importing and exporting values between modules.
-
-### JavaScript Statement TABLE
-
-| Statement           | Purpose                                                                  |
-| ------------------- | ------------------------------------------------------------------------ |
-| `break`             | Exit from the innermost loop or switch or from named enclosing statement |
-| `case`              | Label a statement within a switch                                        |
-| `class`             | Declare a class                                                          |
-| `const`             | Declare and initialize one or more constants                             |
-| `continue`          | Begin next iteration of the innermost loop or the named loop             |
-| `debugger`          | Debugger breakpoint                                                      |
-| `default`           | Label the default statement within a switch                              |
-| `do/while`          | An alternative to the while loop                                         |
-| `export`            | Declare values that can be imported into other modules                   |
-| `for`               | An easy-to-use loop                                                      |
-| `for/await`         | Asynchronously iterate the values of an async iterator                   |
-| `for/in`            | Enumerate the property names of an object                                |
-| `for/of`            | Enumerate the values of an iterable object such as an array              |
-| `function`          | Declare a function                                                       |
-| `if/else`           | Execute one statement or another depending on a condition                |
-| `import`            | Declare names for values defined in other modules                        |
-| `label`             | Give statement a name for use with break and continue                    |
-| `let`               | Declare and initialize one or more block-scoped variables (new syntax)   |
-| `return`            | Return a value from a function                                           |
-| `switch`            | Multiway branch to case or default: labels                               |
-| `throw`             | Throw an exception                                                       |
-| `try/catch/finally` | Handle exceptions and code cleanup                                       |
-| `"use strict"`      | Apply strict mode restrictions to script or function                     |
-| `var`               | Declare and initialize one or more variables (old syntax)                |
-| `while`             | A basic loop construct                                                   |
-| `with`              | Extend the scope chain (deprecated and forbidden in strict mode)         |
-| `yield`             | Provide a value to be iterated; only used in generator functions         |
-
-Each statement is accompanied by a brief description of its purpose.
+- Expression Statements
+- Compound and Empty Statements
+- Condicionales
+- Loops
+- Jumps
+- Miscellaneous Statements
+- Declaraciones
 
 ## 06 Objects
 
-- [**AQUI**](/javascript/objects) La lista completa de como definir y como invocar un object
-
-- Objects are JavaScript’s most fundamental datatype
-
-### Introduction to Objects
-
-In addition to maintaining its own set of properties, a JavaScript object also inherits the properties of another object, known as its “prototype.” The methods of an object are typically inherited properties, and this “prototypal inheritance” is a key feature of JavaScript.
-
-Any value in JavaScript that is not a string, a number, a Symbol, or true, false, null,
-or undefined is an object.
-
-Recall from §3.8 that objects are mutable and manipulated by reference rather than by value.
-
-It is sometimes important to be able to distinguish between properties defined directly on an object and those that are inherited from a prototype object. JavaScript uses the term own property to refer to non-inherited properties.
-
-In addition to its name and value, each property has three property attributes:
-
-- The **writable attribute** specifies whether the value of the property can be set.
-- The **enumerable attribute** specifies whether the property name is returned by a for/in loop.
-- The **configurable attribute** specifies whether the property can be deleted and whether its attributes can be altered.
-
-### Creating Objects
-
-- [**AQUI**](/javascript/objects) La lista completa de como definir y como invocar un object
-
-- Object.create() function
-- Object Literals
-- Creating Objects with new
-- Prototypes: Almost every JavaScript object has a second JavaScript object associated with it. This second object is known as a prototype, and the first object inherits properties from the prototype. All objects created by object literals have the same prototype object, and we can refer to this prototype object in JavaScript code as Object.prototype.
-- Object.create()
 
 ### Querying and Setting Properties
 
-```javascript
-//READ a property
-let author = book.author; // Get the "author" property of the book.
-let name = author.surname; // Get the "surname" property of the author.
-let title = book["main title"]; // Get the "main title" property of the book.
 
-//INSERT a property
-book.edition = 7; // Create an "edition" property of book.
-book["main title"] = "ECMAScript"; // Change the "main title" property.
-```
-
-#### Objects As Associative Arrays
-
-This code reads and concatenates the address0, address1, address2, and address3 properties of the customer object.
-
-```javascript
-let addr = "";
-for (let i = 0; i < 4; i++) {
-  addr += customer[`address${i}`] + "\n";
-}
-```
-
-#### Inheritance
-
-JavaScript objects have a set of “own properties,” and they also inherit a set of properties from their prototype object.
-
-- **The examples in this section use the Object.create() function to create objects with specified prototypes.**
-
-```javascript
-let o = {}; // o inherits object methods from Object.prototype
-o.x = 1; // and it now has an own property x.
-let p = Object.create(o); // p inherits properties from o and Object.prototype
-p.y = 2; // and has an own property y.
-let q = Object.create(p); // q inherits properties from p, o, and...
-q.z = 3; // ...Object.prototype and has an own property z.
-let f = q.toString(); // toString is inherited from Object.prototype
-q.x + q.y; // => 3; x and y are inherited from o and p
-```
-
-#### Property Access Errors
-
-```javascript
-// Asi se pueden presentar errores al leer un object
-book.subtitle; // => undefined: property doesn't exist
-let len = book.subtitle.length; // !TypeError: undefined doesn't have length
-
-// Asi se puede resolver
-
-// A verbose and explicit technique
-let surname = undefined;
-if (book) {
-  if (book.author) {
-    surname = book.author.surname;
-  }
-}
-// A concise and idiomatic alternative to get surname or null or undefined
-//  short-circuiting behavior
-surname = book && book.author && book.author.surname;
-```
-
-- Attempting to set a property on null or undefined also causes a TypeError.
-
-### Deleting Properties
-
-**The delete operator only deletes own properties, not inherited ones.** To delete an inherited property, you must delete it from the prototype object in which it is defined. Doing this affects every object that inherits from that prototype.
-
-```javascript
-let o = { x: 1 }; // o has own property x and inherits property toString
-delete o.x; // => true: deletes property x
-delete o.x; // => true: does nothing (x doesn't exist) but true anyway
-delete o.toString; // => true: does nothing (toString isn't an own property)
-delete 1; // => true: nonsense, but true anyway
-```
-
-- delete does not remove properties that have a configurable attribute of false.
-
-### Testing Properties
-
-JavaScript objects can be thought of as sets of properties, and it is often useful to be able to test for membership in the set—to check whether an object has a property with a given name.
-
-You can do this with:
-
-- the `in` operator
-
-```javascript
-let o = { x: 1 };
-"x" in o; // => true: o has an own property "x"
-"y" in o; // => false: o doesn't have a property "y"
-"toString" in o; // => true: o inherits a toString property
-```
-
-- With the `hasOwnProperty()`
-
-```javascript
-let o = { x: 1 };
-o.hasOwnProperty("x"); // => true: o has an own property x
-o.hasOwnProperty("y"); // => false: o doesn't have a property y
-o.hasOwnProperty("toString"); // => false: toString is an inherited property
-```
-
-- and `propertyIsEnumerable()` methods
-
-```javascript
-let o = { x: 1 };
-o.propertyIsEnumerable("x"); // => true: o has an own enumerable property x
-o.propertyIsEnumerable("toString"); // => false: not an own property
-Object.prototype.propertyIsEnumerable("toString"); // => false: not enumerable
-```
-
-- Or simply by querying the property.
-
-```javascript
-let o = { x: 1 };
-o.x !== undefined; // => true: o has a property x
-o.y !== undefined; // => false: o doesn't have a property y
-o.toString !== undefined; // => true: o inherits a toString property
-```
 
 ### Enumerating Properties
 

@@ -228,6 +228,8 @@ for (const fruta of frutas) {
 
 Este recorre **propiedades de un objeto** (ojo: no confundir con `for...of`). Cuando trabajas con **arreglos**, casi siempre deberías usar **`for/of`** en lugar de **`for/in`**.
 
+El bucle **for/in** se explicó en §5.4.5. Ejecuta el cuerpo del bucle una vez por cada propiedad **enumerable** (propia o heredada) del objeto especificado.
+
 ```js
 
 for (variable in object)
@@ -655,3 +657,75 @@ verificarEdad(25);  // Edad válida
 ## 5.6. Miscellaneous Statements
 
 ### 5.6.1. with
+
+La sentencia with ejecuta un bloque de código como si las propiedades de un objeto especificado fueran variables dentro del alcance (scope) de ese código.
+
+### 5.6.2. debugger
+
+Esta sentencia actúa como un punto de interrupción (breakpoint): la ejecución del código JavaScript se detiene, y puedes usar el depurador (debugger) para imprimir los valores de las variables, examinar la pila de llamadas (call stack), y más.
+
+### 5.6.3. "use strict"
+
+Esto significa que, si todo tu código JavaScript está escrito como **módulos**, entonces **todo será automáticamente estricto**, y **nunca necesitarás usar explícitamente** la directiva `"use strict"`.
+
+Se recomienda ver la pagina 123 del libro para ver todas las restricciones de esta directiva.
+
+## 5.7. Declaraciones
+
+Las palabras clave **const, let, var, function, class, import y export** no son técnicamente **sentencias**, pero se parecen mucho a ellas, y este libro se refiere a ellas informalmente como sentencias, por lo que merecen una mención en este capítulo.
+
+Por sí mismas no hacen mucho, pero al **proporcionar nombres para valores**, definen —en un sentido importante— **el significado de las demás sentencias** de tu programa.
+
+De manera general, puedes pensar en las **declaraciones** como las partes del programa que se **procesan antes de que el código comience a ejecutarse**.
+
+Las **declaraciones en JavaScript** se utilizan para **definir constantes, variables, funciones y clases**, así como para **importar y exportar valores entre módulos**.
+
+### 5.7.1. const, let and var
+
+Ver la sección 3.10. para información mas profunda.
+
+### 5.7.2. function
+
+Se recomienda ver el capitulo 8 que habla de funciones para ver sus declaraciones e invocaciones completas y también no olvidar las funciones generadoras function*.
+
+### 5.7.3. class
+
+Las clases son explicadas a profundidad en el capitulo 9.
+
+### 5.7.4. import and export
+
+Para información mas profunda ver el capitulo 10 que se dedica a profundidad a los módulos. Los valores dentro de un **módulo de JavaScript** son **privados** y **no pueden importarse en otros módulos** a menos que hayan sido **exportados explícitamente**.
+
+### 5.7.5. tabla resumen statements
+
+JavaScript Statement TABLE
+
+| Statement           | Purpose                                                                  |
+| ------------------- | ------------------------------------------------------------------------ |
+| `break`             | Exit from the innermost loop or switch or from named enclosing statement |
+| `case`              | Label a statement within a switch                                        |
+| `class`             | Declare a class                                                          |
+| `const`             | Declare and initialize one or more constants                             |
+| `continue`          | Begin next iteration of the innermost loop or the named loop             |
+| `debugger`          | Debugger breakpoint                                                      |
+| `default`           | Label the default statement within a switch                              |
+| `do/while`          | An alternative to the while loop                                         |
+| `export`            | Declare values that can be imported into other modules                   |
+| `for`               | An easy-to-use loop                                                      |
+| `for/await`         | Asynchronously iterate the values of an async iterator                   |
+| `for/in`            | Enumerate the property names of an object                                |
+| `for/of`            | Enumerate the values of an iterable object such as an array              |
+| `function`          | Declare a function                                                       |
+| `if/else`           | Execute one statement or another depending on a condition                |
+| `import`            | Declare names for values defined in other modules                        |
+| `label`             | Give statement a name for use with break and continue                    |
+| `let`               | Declare and initialize one or more block-scoped variables (new syntax)   |
+| `return`            | Return a value from a function                                           |
+| `switch`            | Multiway branch to case or default: labels                               |
+| `throw`             | Throw an exception                                                       |
+| `try/catch/finally` | Handle exceptions and code cleanup                                       |
+| `"use strict"`      | Apply strict mode restrictions to script or function                     |
+| `var`               | Declare and initialize one or more variables (old syntax)                |
+| `while`             | A basic loop construct                                                   |
+| `with`              | Extend the scope chain (deprecated and forbidden in strict mode)         |
+| `yield`             | Provide a value to be iterated; only used in generator functions         |
