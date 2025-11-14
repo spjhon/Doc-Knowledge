@@ -4,21 +4,21 @@ sidebar_position: 0
 
 # Overview
 
-Lenguaje de programacion creado para trabajar en conjunto con los lenguajes HTML y CSS para crear codigo que sea renderizado por medio de un navegador de internet en forma de paginas web que permitan la interactividad del usuario y la transmision y recibimientos de datos de variado tipo desde servidores a nivel mundial.
+Lenguaje de programación creado para trabajar en conjunto con los lenguajes HTML y CSS para crear código que sea renderizado por medio de un navegador de internet en forma de paginas web que permitan la interactividad del usuario y la transmision y recibimientos de datos de variado tipo desde servidores a nivel mundial.
 
-- **Este MAPA como base del contenido aprendido dividido principalmente con la misma divicion del libro JavaScript The Definitive Guide y cuando hayan conocimiento de otras fuentes se agregara al final de cada tema**
+- **Este MAPA como base del contenido aprendido dividido principalmente con la misma division del libro JavaScript The Definitive Guide y cuando hayan conocimiento de otras fuentes se agregara al final de cada tema**
 
-- **La idea es que este lugar sea un MAPA del conocimiento concreto, correcto y completo de todo JAVASCRIPT mas no un resumen ya que eso seria repetir lo que ya esta en otros lados, la idea es que este texto sirve de guia para llegar a ese conocimiento y al mismo timepo tener un panorama completo de todo el lenguaje para poder saber que herramientas hay a la mano desde una perspectiva global y si se necesita saber mas sobre una herramienta particular pues que este MAPA diga donde esta el conocimiento mas completo.**
+- **La idea es que este lugar sea un MAPA del conocimiento concreto, correcto y completo de todo JAVASCRIPT mas no un resumen ya que eso seria repetir lo que ya esta en otros lados, la idea es que este texto sirve de guía para llegar a ese conocimiento y al mismo tiempo tener un panorama completo de todo el lenguaje para poder saber que herramientas hay a la mano desde una perspectiva global y si se necesita saber mas sobre una herramienta particular pues que este MAPA diga donde esta el conocimiento mas completo.**
 
 ## Referencias y origen de conocimiento
 
 Las fuentes principales para tener la referencia del lenguaje son:
 
-- La [**biblioteca de referencia de javascript de Mozilla**](https://developer.mozilla.org/en-US/docs/Web/JavaScript), esta es la principal refencia del lenguaje pero es dificil de entender y navegar pero esta completa.
+- La [**biblioteca de referencia de javascript de Mozilla**](https://developer.mozilla.org/en-US/docs/Web/JavaScript), esta es la principal referencia del lenguaje pero es difícil de entender y navegar pero esta completa.
 - La pagina web de referencia [**w3schools**](https://www.w3schools.com/jsref/default.asp), es una referencia mas amigable pero algo incompleta.
 - La pagina Javascript.info que posee un resumen muy destacado del lenguaje [Javascript.info](https://javascript.info/)
 
-- Tambien para cada [**DataType**](https://www.w3schools.com/jsref/default.asp) existe un conjunto de build-in propiedades y metodos que permiten la manipulacion de este tipos de [**DataType**](https://www.w3schools.com/jsref/default.asp) sin necesidad de crear funciones u objects especializados.
+- También para cada [**DataType**](https://www.w3schools.com/jsref/default.asp) existe un conjunto de build-in propiedades y métodos que permiten la manipulación de este tipos de [**DataType**](https://www.w3schools.com/jsref/default.asp) sin necesidad de crear funciones u objects especializados.
 
 Sin embargo los dos libros que recorren la teoría y explica de forma comprensiva los recondijos del lenguaje son los siguientes libros:
 
@@ -60,7 +60,7 @@ Reglas elementales para comenzar a escribir código:
 
 ## 03 Types, Values and Variables
 
-[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_global.asp) Encontrara todos los metodos para aplicar a todos los **DataType** teniendo en cuenta que estos metodos son del window del browser.
+[**AQUÍ**](https://www.w3schools.com/jsref/jsref_obj_global.asp) Encontrara todos los metodos para aplicar a todos los **DataType** teniendo en cuenta que estos metodos son del window del browser.
 
 (Paginas de 23 a 60 del libro)
 
@@ -108,164 +108,20 @@ Reglas elementales para comenzar a escribir código:
 
 ## 06 Objects
 
-
-### Querying and Setting Properties
-
-
-
-### Enumerating Properties
-
-- `for/in` loop
-- `for/of` loop
-- `Object.keys()`
-- `Object.getOwnPropertyNames()`
-- `Object.getOwnPropertySymbols()`
-- `Reflect.ownKeys()`
-
-Tener en cuenta **Property Enumeration Order**
-
-### Extending Objects
-
-A common operation in JavaScript programs is needing to copy the properties of one object to another object.
-
-```javascript
-let target = { x: 1 },
-  source = { y: 2, z: 3 };
-for (let key of Object.keys(source)) {
-  target[key] = source[key];
-}
-target; // => {x: 1, y: 2, z: 3}
-```
-
-- `Object.assign()`
-- The spread operator
-
-### Serializing Objects
-
-Object serialization is the process of converting an object’s state to a string from
-which it can later be restored.
-
-```javascript
-let o = { x: 1, y: { z: [false, null, ""] } }; // Define a test object
-let s = JSON.stringify(o); // s == '{"x":1,"y":{"z":[false,null,""]}}'
-let p = JSON.parse(s); // p == {x: 1, y: {z: [false, null, ""]}}
-```
-
-### Object Methods
-
-- [**AQUI**](https://www.w3schools.com/jsref/jsref_obj_object.asp) La seccion de **w3Schools** donde muestra todos los metodos que obtiene object al ser un object creado.
-
-- The `toString()` Method
-
-```javascript
-//Debido a que asi funciona el toString
-let s = { x: 1, y: 1 }.toString(); // s == "[object Object]"
-
-// Muchas veces se crea un metodo propio de toString a un object.
-let point = {
-  x: 1,
-  y: 2,
-  toString: function () {
-    return `(${this.x}, ${this.y})`;
-  },
-};
-String(point); // => "(1, 2)": toString() is used for string conversions
-```
-
-- The `toLocaleString()` Method
-
-```javascript
-point.toString(); // => "(1000, 2000)"
-point.toLocaleString(); // => "(1,000, 2,000)": note thousands separators
-```
-
-- The `valueOf()` Method
-
-The valueOf() method is much like the toString() method, but it is called when JavaScript needs to convert an object to some primitive type other than a string, typically, a number.
-
-- The `toJSON()` Method
-
-Object.prototype does not actually define a toJSON() method, but the JSON.stringify() method (see §6.8) looks for a toJSON() method on any object it is asked to serialize.
-
-### Extended Object Literal Syntax
-
-- Shorthand Properties
-- Computed Property Names
-- Symbols as Property Names
-- Spread Operator
-
-```javascript
-let position = { x: 0, y: 0 };
-let dimensions = { width: 100, height: 75 };
-let rect = { ...position, ...dimensions };
-rect.x + rect.y + rect.width + rect.height; // => 175
-```
-
-- Shorthand Methods
-- Property Getters and Setters: JavaScript also supports accessor properties, which do not have a single value but instead have one or two accessor methods: a getter and/or a setter.
+- Introducción a objetos
+- Creando objetos
+- Querying and Setting Properties
+- Deleting Properties
+- Testing Properties
+- Enumerando propiedades
+- Extendiendo objetos
+- Serializing Objects
+- Object Methods
+- Extended Object Literal Syntax
 
 ## 07 Arrays
 
-[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_array.asp) Todos los metodos que se le pueden aplicar a un dataType de tipo ARRAY.
 
-This chapter documents arrays, a fundamental datatype in JavaScript and in most other programming languages. An array is an ordered collection of values. Each value is called an element, and each element has a numeric position in the array, known as its index.
-
-### Creating Arrays
-
-- Array Literals
-- The Spread Operator
-- The Array() Constructor
-- Array.of()
-- Array.from()
-
-### Reading and Writing Array Elements
-
-```javascript
-let a = ["world"]; // Start with a one-element array
-let value = a[0]; // Read element 0
-a[1] = 3.14; // Write element 1
-let i = 2;
-a[i] = 3; // Write element 2
-a[i + 1] = "hello"; // Write element 3
-a[a[i]] = a[0]; // Read elements 0 and 2, write element 3
-```
-
-### Sparse Arrays
-
-A sparse array is one in which the elements do not have contiguous indexes starting at 0.
-
-```javascript
-a[1000] = 0; // Assignment adds one element but sets length to 1001.
-```
-
-### Array Length
-
-```javascript
-[].length[("a", "b", "c")].length; // => 0: the array has no elements // => 3: highest index is 2, length is 3
-```
-
-### Adding and Deleting Array Elements
-
-```javascript
-// We’ve already seen the simplest way to add elements to an array: just assign values to
-new indexes:
-let a = []; // Start with an empty array.
-a[0] = "zero"; // And add elements to it.
-a[1] = "one";
-
-// You can also use the push() method to add one or more values to the end of an array
-let a = []; // Start with an empty array
-a.push("zero"); // Add a value at the end. a = ["zero"]
-a.push("one", "two"); // Add two more values. a = ["zero", "one", "two"]
-
-// You can delete array elements with the delete operator, just as you can delete object properties:
-let a = [1,2,3];
-delete a[2]; // a now has no element at index 2
-2 in a // => false: no array index 2 is defined
-a.length // => 3: delete does not affect array length
-
-// Deleting an array element is similar to (but subtly different than) assigning undefined to that element.
-```
 
 ### Iterating Arrays
 

@@ -476,6 +476,18 @@ console.log(obj.property1); // 'value1'
 console.log(obj.property2); // 'value2'
 ```
 
+### 6.2.11 Usando Getters y Setters
+
+```javascript
+let o = {
+// An ordinary data property
+dataProp: value,
+// An accessor property defined as a pair of functions.
+get accessorProp() { return this.dataProp; },
+set accessorProp(value) { this.dataProp = value; }
+};
+```
+
 ---
 
 ## 6.3. Querying and Setting Properties
@@ -624,7 +636,7 @@ o.toString !== undefined // => true: o inherits a toString property
 
 ## 6.6. Enumerando propiedades
 
-En lugar de comprobar la existencia de propiedades individuales, a veces queremos **iterar** o **obtener una lista de todas las propiedades de un objeto**.
+En lugar de comprobar la existencia de propiedades individuales, a veces queremos **iterar** o **obtener una lista de todas las propiedades de un objeto**. Osea, es la forma de iterar a través de objects ya que los métodos de los arrays no funcionan.
 
 * `for/in` loop
 * `for/of` loop
@@ -632,3 +644,174 @@ En lugar de comprobar la existencia de propiedades individuales, a veces queremo
 * `Object.getOwnPropertyNames()`
 * `Object.getOwnPropertySymbols()`
 * `Reflect.ownKeys()`
+
+### 6.6.1. Property Enumeration Order
+
+* **Las propiedades de tipo string cuyos nombres son enteros no negativos se enumeran primero**, en orden numérico de menor a mayor. Esta regla significa que los arrays y los objetos similares a arrays tendrán sus propiedades enumeradas en orden.
+
+* **Después de enumerar todas las propiedades que parecen índices de arreglo**, se listan todas las propiedades restantes con nombres de tipo string (incluyendo aquellas que parecen números negativos o números de punto flotante). Estas propiedades se listan en el orden en que fueron agregadas al objeto. Para las propiedades definidas en un literal de objeto, este orden coincide con el orden en el que aparecen en dicho literal.
+
+* **Finalmente, las propiedades cuyos nombres son objetos Symbol se listan en el orden en que fueron agregadas al objeto.**
+
+## 6.7. Extendiendo objetos
+
+Una operación común en los programas de JavaScript es la necesidad de **copiar las propiedades de un objeto a otro objeto**, esto ya se hace nativamente con `Object.assign()`.
+
+## 6.8. Serializing Objects
+
+La serialización de objetos es el proceso de convertir el estado de un objeto en una cadena de texto a partir de la cual puede restaurarse posteriormente.
+
+```javascript
+let o = { x: 1, y: { z: [false, null, ""] } }; // Define a test object
+let s = JSON.stringify(o); // s == '{"x":1,"y":{"z":[false,null,""]}}'
+let p = JSON.parse(s); // p == {x: 1, y: {z: [false, null, ""]}}
+```
+
+## 6.9. Object Methods
+
+* [**AQUI**](https://www.w3schools.com/jsref/jsref_obj_object.asp) La seccion de **w3Schools** donde muestra todos los metodos que obtiene object al ser un object creado.
+
+### 6.9.1. The toString() Method
+
+```javascript
+//Debido a que asi funciona el toString
+let s = { x: 1, y: 1 }.toString(); // s == "[object Object]"
+
+// Muchas veces se crea un metodo propio de toString a un object.
+let point = {
+  x: 1,
+  y: 2,
+  toString: function () {
+    return `(${this.x}, ${this.y})`;
+  },
+};
+String(point); // => "(1, 2)": toString() is used for string conversions
+```
+
+### 6.9.2. The toLocaleString() Method
+
+```javascript
+point.toString(); // => "(1000, 2000)"
+point.toLocaleString(); // => "(1,000, 2,000)": note thousands separators
+```
+
+* The `valueOf()` Method
+
+The valueOf() method is much like the toString() method, but it is called when JavaScript needs to convert an object to some primitive type other than a string, typically, a number.
+
+* The `toJSON()` Method
+
+Object.prototype does not actually define a toJSON() method, but the JSON.stringify() method (see §6.8) looks for a toJSON() method on any object it is asked to serialize.
+
+### 6.9.3. The valueOf() Method
+
+El método **valueOf()** es muy similar al método **toString()**, pero se llama cuando JavaScript necesita convertir un objeto a algún tipo primitivo distinto de una cadena, normalmente a un número.
+
+```javascript
+let point = {
+x: 3,
+y: 4,
+valueOf: function() { return Math.hypot(this.x, this.y); }
+};
+Number(point) // => 5: valueOf() is used for conversions to numbers
+point > 4 // => true
+point > 5 // => false
+point < 6 // => true
+```
+
+### 6.9.4. The toJSON() Method
+
+Aquí tienes la traducción:
+
+**Object.prototype** en realidad no define un método **toJSON()**, pero el método **JSON.stringify()** (ver §6.8) busca un método **toJSON()** en cualquier objeto que se le pida serializar.
+
+## 6.10. Extended Object Literal Syntax
+
+Las versiones recientes de JavaScript han ampliado la sintaxis para los literales de objeto de varias maneras útiles. Las siguientes subsecciones explican estas extensiones.
+
+### 6.10.1. Shorthand Properties
+
+```javascript
+let x = 1, y = 2;
+let o = { x, y };
+o.x + o.y // => 3
+```
+
+### 6.10.2. Computed Property Names
+
+En lugar de hacerlo así:
+
+```javascript
+const PROPERTY_NAME = "p1";
+function computePropertyName() { return "p" + 2; }
+let o = {};
+o[PROPERTY_NAME] = 1;
+o[computePropertyName()] = 2;
+```
+
+Se puede hacer así:
+
+```javascript
+const PROPERTY_NAME = "p1";
+function computePropertyName() { return "p" + 2; }
+let p = {
+[PROPERTY_NAME]: 1,
+[computePropertyName()]: 2
+};
+p.p1 + p.p2 // => 3
+```
+
+### 6.10.3. Symbols as Property Names
+
+Dos **Symbol** creados con el mismo argumento de cadena siguen siendo **diferentes entre sí**, son muy útiles para dar nombres a las variables de un object.
+
+Si recibes un objeto de código de terceros que no controlas y necesitas agregarle algunas propiedades propias, pero quieres asegurarte de que tus propiedades no entren en conflicto con ninguna propiedad que ya exista en el objeto, puedes usar **Symbols** de forma segura como nombres de tus propiedades.
+
+### 6.10.4. Spread Operator
+
+Puedes copiar las propiedades de un objeto existente en un nuevo objeto usando el **operador de propagación** (`...`) dentro de un literal de objeto:
+
+```javascript
+let position = { x: 0, y: 0 };
+let dimensions = { width: 100, height: 75 };
+let rect = { ...position, ...dimensions };
+rect.x + rect.y + rect.width + rect.height // => 175
+```
+
+### 6.10.5. Shorthand Methods
+
+Cuando una función se define como una propiedad de un objeto, llamamos a esa función un método.
+
+En lugar de escribirlo así:
+
+```javascript
+let square = {
+area: function() { return this.side * this.side; },
+side: 10
+};
+square.area() // => 100
+```
+
+Mejor se hace así:
+
+```javascript
+let square = {
+area() { return this.side * this.side; },
+side: 10
+};
+square.area() // => 100
+```
+
+### 6.10.6. Property Getters and Setters
+
+Todas las propiedades de objeto que hemos discutido hasta ahora en este capítulo han sido propiedades de datos con un nombre y un valor ordinario. JavaScript también soporta propiedades de acceso, las cuales no tienen un único valor sino que en su lugar tienen uno o dos métodos de acceso: un getter y/o un setter.
+
+```javascript
+let o = {
+// An ordinary data property
+dataProp: value,
+// An accessor property defined as a pair of functions.
+get accessorProp() { return this.dataProp; },
+set accessorProp(value) { this.dataProp = value; }
+};
+```
