@@ -54,13 +54,13 @@ Reglas elementales para comenzar a escribir código:
 - Identifiers and reserved words
 - Unicode
 - Optional semicolons
-- Tambien describe que tipo de line breaks reconoce y como los reconce y como deben de capitalizarcen las keywords
+- También describe que tipo de line breaks reconoce y como los reconoce y como deben de capitalizarse las keywords
 
 ---
 
 ## 03 Types, Values and Variables
 
-[**AQUÍ**](https://www.w3schools.com/jsref/jsref_obj_global.asp) Encontrara todos los metodos para aplicar a todos los **DataType** teniendo en cuenta que estos metodos son del window del browser.
+[**AQUÍ**](https://www.w3schools.com/jsref/jsref_obj_global.asp) Encontrara todos los métodos para aplicar a todos los **DataType** teniendo en cuenta que estos metodos son del window del browser.
 
 (Paginas de 23 a 60 del libro)
 
@@ -121,103 +121,22 @@ Reglas elementales para comenzar a escribir código:
 
 ## 07 Arrays
 
-
-
-### Iterating Arrays
-
-- `for/of` loop
-- `forEach()` loop
-- `for` loop
-
-### Multidimensional Arrays
-
-Se utiliza un loop pero anidado
-
-### Array Methods
-
-While reading about these methods, keep in mind that some of them modify the array they are called on and some of them leave the array unchanged.
-
-#### Array Iterator Methods
-
-- Algo importante en los methods para el dataType array es que soportan un segundo argumento y funciona de tal forma que la funcion que se invoque sera un metodo del segundo argumento de forma que el segundo argumento pasa a ser el valor del "this" en la funcion que es invocada.
-- Estos metodos no modifican el array
-
-- `forEach()`
-- `map()`: map() returns a new array: it does not modify the array it is invoked on.
-- `filter()`
-- `find() and findIndex()`
-- `every() and some()`
-- `reduce() and reduceRight()` (**mas informacion en el la seccion de iterators and generators**)
-
-#### Flattening arrays with flat() and flatMap()
-
-```javascript
-[1, [2, 3]]
-  .flat() // => [1, 2, 3]
-  [(1, [2, [3]])].flat(); // => [1, 2, [3]]
-```
-
-#### Adding arrays with concat()
-
-```javascript
-let a = [1, 2, 3];
-a.concat(4, 5); // => [1,2,3,4,5]
-a.concat([4, 5], [6, 7]); // => [1,2,3,4,5,6,7]; arrays are flattened
-a.concat(4, [5, [6, 7]]); // => [1,2,3,4,5,[6,7]]; but not nested arrays
-a; // => [1,2,3]; the original array is unmodified
-```
-
-#### Stacks and Queues with push(), pop(), shift(), and unshift()
-
-#### Subarrays with slice(), splice(), fill(), and copyWithin()
-
-- `slice()`
-- `splice()`
-- `fill()`
-- `copyWithin()`
-
-#### Array Searching and Sorting Methods
-
-- `indexOf() and lastIndexOf()`
-- `includes()`
-- `sort()`
-- `reverse()`
-
-#### Array to String Conversions
-
-- `join()`
-- `toString()`
-- `toLocaleString()`
-
-#### Static Array Functions
-
-- `Array.of()`
-- `Array.from()`
-- `Array.isArray()`
-
-### Array-Like Objects
-
-In client-side JavaScript, a number of methods for working with HTML documents (such as document.querySelectorAll(), for example) return array-like objects.
-
-### Strings as Arrays
-
-```javascript
-let s = "test";
-s.charAt(0); // => "t"
-s[1]; // => "e"
-```
+- Creating Arrays
+- Reading and Writing Arrays Elements
+- Sparse Arrays
+- Array Length
+- Adding and Deleting Array Elements
+- Iterating Arrays
+- Multidimensional Arrays
+- Arrays Methods
+- Array-Like Objects
+- Strings as Arrays
 
 ## 08 Functions
 
-- [**AQUI**](/javascript/functions) La lista completa de como definir y como invocar una funcion
-
-A function is a block of JavaScript code that is defined once but may be executed, or invoked, any number of times.
-
-- If a function is assigned to a property of an object, it is known as a method of that object.
 
 ### Defining Functions
 
-- [**AQUI**](/javascript/functions) La lista completa de como definir y como invocar una funcion
 
 - Function Declarations:
 

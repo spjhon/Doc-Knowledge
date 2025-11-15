@@ -610,3 +610,362 @@ for await (const v of arr) console.log(v);
 ---
 
 ## 7.7. Multidimensional Arrays
+
+JavaScript no soporta arrays multidimensionales verdaderos, pero puedes aproximarlos con arrays de arrays.
+
+```js
+// Create a multidimensional array
+let table = new Array(10); // 10 rows of the table
+for(let i = 0; i < table.length; i++) {
+table[i] = new Array(10); // Each row has 10 columns
+}
+// Initialize the array
+for(let row = 0; row < table.length; row++) {
+for(let col = 0; col < table[row].length; col++) {
+table[row][col] = row*col;
+}
+}
+// Use the multidimensional array to compute 5*7
+table[5][7] // => 35
+```
+
+## 7.8. Array Methods
+
+Tener en cuenta que hay métodos que retornan un nuevo array y otros que modifican el array que se les inyecta.
+
+### 7.8.1. Array Iterator Methods
+
+Para mas profundidad, ver la sección dedicado a ello, la 7.6. Iterating Arrays ya que ahi están todos.
+
+- forEach()
+- map()
+- filter()
+- find() and findIndex()
+- every() and some()
+- reduce() and reduceRight()
+
+### 7.8.2. Flattening arrays with flat() and flatMap()
+
+El método `flat()` crea y retorna un **nuevo array** que contiene los mismos elementos que el array sobre el cual es llamado, excepto que cualquier elemento que sea en sí mismo un array es **"aplanado"** en el array retornado.
+
+```javascript
+[1, [2, 3]]
+  .flat() // => [1, 2, 3]
+  [(1, [2, [3]])].flat(); // => [1, 2, [3]]
+```
+
+### 7.8.3. Adding arrays with concat()
+
+El método `concat()` crea y retorna un **nuevo array** que contiene los elementos del array original sobre el cual `concat()` fue invocado, seguido de cada uno de los argumentos de `concat()`.
+
+```javascript
+let a = [1,2,3];
+a.concat(4, 5) // => [1,2,3,4,5]
+a.concat([4,5],[6,7]) // => [1,2,3,4,5,6,7]; arrays are flattened
+a.concat(4, [5,[6,7]]) // => [1,2,3,4,5,[6,7]]; but not nested arrays
+a // => [1,2,3]; the original array is unmodified
+```
+
+### 7.8.4. Stacks and Queues with push(), pop(), shift(), and unshift()
+
+1. **`push()`**
+
+    Agrega uno o más elementos al final del array.
+    **Sparse:** No — siempre rellena el array correctamente
+    **Break:** No aplica (no es iteración)
+    **Nuevo array:** No
+    **Modifica array:** Sí
+    **Velocidad:** Rápido (uno de los más rápidos del array)
+
+    ```js
+    arr.push(10);
+    ```
+
+2. **`pop()`**
+
+    Elimina y retorna el último elemento del array.
+    **Sparse:** No — solo afecta el final
+    **Break:** No aplica
+    **Nuevo array:** No
+    **Modifica array:** Sí
+    **Velocidad:** Rápido
+
+    ```js
+    arr.pop();
+    ```
+
+3. **`shift()`**
+
+    Elimina y retorna el primer elemento del array (reindexa todo).
+    **Sparse:** No — remueve el índice 0 y reacomoda
+    **Break:** No aplica
+    **Nuevo array:** No
+    **Modifica array:** Sí
+    **Velocidad:** Lento (el más lento de la lista porque mueve índices).
+
+    ```js
+    arr.shift();
+    ```
+
+4. **`unshift()`**
+
+    Agrega elementos al inicio del array (reindexa todo).
+    **Sparse:** No — garantiza posiciones válidas
+    **Break:** No aplica
+    **Nuevo array:** No
+    **Modifica array:** Sí
+    **Velocidad:** Lento (igual que shift — reindexa todo)
+
+    ```js
+    arr.unshift(5);
+    ```
+
+### 7.8.5. Subarrays with slice(), splice(), fill(), and copyWithin()
+
+Los arrays definen un número de métodos que trabajan en **regiones contiguas**, o **subarrays** o **"rebanadas"** de un array. Las siguientes secciones describen métodos para **extraer, reemplazar, llenar y copiar rebanadas**.
+
+1. **`slice()`**
+
+    Crea un subarray sin modificar el array original.
+    **Sparse:** Sí — preserva huecos tal cual vienen
+    **Break:** No aplica (no es iteración)
+    **Nuevo array:** Sí
+    **Modifica array:** No
+    **Velocidad:** Rápido
+
+    ```js
+    const sub = arr.slice(1, 3);
+    ```
+
+2. **`splice()`**
+
+    Añade, elimina o reemplaza elementos en el array.
+    **Sparse:** Sí — puede crear o eliminar huecos
+    **Break:** No aplica
+    **Nuevo array:** No (pero devuelve los elementos eliminados)
+    **Modifica array:** Sí
+    **Velocidad:** Medio (puede reindexar)
+
+    ```js
+    arr.splice(1, 2); // elimina 2 elementos desde el índice 1
+    ```
+
+3. **`fill()`**
+
+    Rellena parte o todo el array con un valor.
+    **Sparse:** Sí — convierte huecos en valores definidos
+    **Break:** No aplica
+    **Nuevo array:** No
+    **Modifica array:** Sí
+    **Velocidad:** Rápido
+
+    ```js
+    arr.fill(0, 1, 3);
+    ```
+
+4. **`copyWithin()`**
+
+    Copia una sección del array y la pega en otra posición del mismo array.
+    **Sparse:** Sí — copia huecos intactos también
+    **Break:** No aplica
+    **Nuevo array:** No
+    **Modifica array:** Sí
+    **Velocidad:** Rápido a medio (dependiendo del tamaño de copia)
+
+    ```js
+    arr.copyWithin(0, 2, 4); // copia indices 2–4 al índice 0
+    ```
+
+### 7.8.6. Array Searching and Sorting Methods
+
+Los arrays implementan los métodos `indexOf()`, `lastIndexOf()` e `includes()` que son similares a los métodos del mismo nombre de los strings. También hay métodos `sort()` y `reverse()` para **reordenar los elementos de un array**. Estos métodos se describen en las subsecciones que siguen.
+
+1. **`indexOf()`**
+
+    Busca un valor y devuelve su primer índice.
+    **Sparse:** No — salta huecos
+    **Break:** Sí (internamente cuando encuentra el valor)
+    **Nuevo array:** No
+    **Modifica array:** No
+    **Velocidad:** Medio
+
+    ```js
+    arr.indexOf(3);
+    ```
+
+2. **`lastIndexOf()`**
+
+    Busca un valor pero desde el final del array hacia atrás.
+    **Sparse:** No — salta huecos
+    **Break:** Sí (cuando encuentra valor)
+    **Nuevo array:** No
+    **Modifica array:** No
+    **Velocidad:** Medio
+
+    ```js
+    arr.lastIndexOf(3);
+    ```
+
+3. **`includes()`**
+
+    Verifica si un valor existe en el array.
+    **Sparse:** No — salta huecos
+    **Break:** Sí (internamente cuando encuentra el valor)
+    **Nuevo array:** No
+    **Modifica array:** No
+    **Velocidad:** Medio
+
+    ```js
+    arr.includes(3);
+    ```
+
+4. **`sort()`**
+
+    Ordena los elementos del array en su lugar.
+    **Sparse:** Sí — huecos pasan al final
+    **Break:** No aplica
+    **Nuevo array:** No
+    **Modifica array:** Sí (reordena)
+    **Velocidad:** Lento (O(n log n))
+
+    ```js
+    arr.sort();
+    ```
+
+5. **`reverse()`**
+
+    Invierte el orden de los elementos en el array.
+    **Sparse:** Sí — mantiene huecos intactos pero invierte posiciones
+    **Break:** No aplica
+    **Nuevo array:** No
+    **Modifica array:** Yes
+    **Velocidad:** Rápido
+
+    ```js
+    arr.reverse();
+    ```
+
+### 7.8.7. Array to String Conversions
+
+La **clase Array** define **tres métodos** que pueden convertir arrays a strings.
+
+1. **`JSON.stringify()`**
+
+    Convierte el array en una cadena JSON válida.
+    **Sparse:** Sí — los huecos se convierten en `null`
+    **Break:** No aplica
+    **Nuevo array:** No (devuelve string)
+    **Modifica array:** No
+    **Velocidad:** Medio
+
+    ```js
+    JSON.stringify([1, 2, 3]);
+    ```
+
+2. **`join()`**
+
+    Une todos los elementos del array en un string usando un separador.
+    **Sparse:** Sí — los huecos se tratan como `""` (cadena vacía)
+    **Break:** No aplica
+    **Nuevo array:** No (devuelve string)
+    **Modifica array:** No
+    **Velocidad:** Rápido
+
+    ```js
+    arr.join(','); 
+    ```
+
+3. **`toLocaleString()`**
+
+    Convierte cada elemento usando reglas locales y luego une con comas.
+    **Sparse:** Sí — los huecos se tratan como `""`
+    **Break:** No aplica
+    **Nuevo array:** No (devuelve string)
+    **Modifica array:** No
+    **Velocidad:** Medio
+
+    ```js
+    arr.toLocaleString();
+    ```
+
+### 7.8.8. Static Array Functions
+
+1. **`Array.of()`**
+
+    Crea un array usando los valores pasados sin ambigüedades (a diferencia del constructor).
+    **Sparse:** No — siempre crea un array denso
+    **Break:** No aplica
+    **Nuevo array:** Sí
+    **Modifica array:** No
+    **Velocidad:** Rápido
+
+    ```js
+    Array.of(1, 2, 3);
+    ```
+
+2. **`Array.from()`**
+
+    Crea un array a partir de un iterable o array-like.
+    **Sparse:** No — convierte todo en índices reales
+    **Break:** No aplica
+    **Nuevo array:** Sí
+    **Modifica array:** No
+    **Velocidad:** Medio
+
+    ```js
+    Array.from('abc');
+    ```
+
+3. **`Array.isArray()`**
+
+    Determina si un valor es un array.
+    **Sparse:** No aplica (no crea ni itera arrays)
+    **Break:** No aplica
+    **Nuevo array:** No
+    **Modifica array:** No
+    **Velocidad:** Rápido
+
+    ```js
+    Array.isArray([1, 2]); // true
+    ```
+
+## 7.9. Array-Like Objects
+
+Como hemos visto, los **arrays de JavaScript** tienen algunas **características especiales** que otros objetos no tienen:
+
+• La **propiedad length se actualiza automáticamente** a medida que se agregan nuevos elementos a la lista.
+• **Establecer length a un valor menor trunca el array**.
+• Los arrays **heredan métodos útiles** de `Array.prototype`.
+• `Array.isArray()` retorna `true` para arrays.
+
+Pero hay veces que se puede tratar un object como si fuera un array si cumple la condición de que sus claves son numéricas.
+
+```js
+let a = {}; // Start with a regular empty object
+// Add properties to make it "array-like"
+let i = 0;
+while(i < 10) {
+a[i] = i * i;
+i++;
+}
+a.length = i;
+// Now iterate through it as if it were a real array
+let total = 0;
+for(let j = 0; j < a.length; j++) {
+total += a[j];
+}
+```
+
+En **JavaScript del lado del cliente**, varios métodos para trabajar con documentos HTML (como `document.querySelectorAll()`, por ejemplo) retornan **objetos tipo array**.
+
+## 7.10. Strings as Arrays
+
+Los **strings de JavaScript** se comportan como **arrays de solo lectura** de caracteres Unicode UTF-16.
+
+```js
+let s = "test";
+s.charAt(0) // => "t"
+s[1] // => "e"
+```
+
+Métodos de array como `push()`, `sort()`, `reverse()` y `splice()` **modifican un array en el lugar** y **no funcionan en strings**.
