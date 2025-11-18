@@ -138,31 +138,7 @@ Reglas elementales para comenzar a escribir código:
 ### Defining Functions
 
 
-- Function Declarations:
 
-**The return statement causes the function to stop executing and to return the value of its expression (if any) to the caller. If the return statement does not have an associated expression, the return value of the function is undefined.**
-
-- Function Expressions
-
-**functions defined with expressions cannot be invoked before they are defined.**
-
-- Arrow Functions
-
-**Arrow functions differ from functions defined in other ways in one critical way: they inherit the value of the this keyword from the environment in which they are defined rather than defining their own invocation context as functions defined in other ways do.**
-
-- Nested Functions
-
-### 8.2. Invoking Functions
-
-[**AQUI**](/javascript/functions) La lista completa de como definir y como invocar una funcion
-[**AQUI**](/javascript/functions) Una explicacion mas completa de como utilizar el THIS, tambien en la pagina de javascript.info hay informacion completa.
-
-- Recursive functions
-- As functions
-- As methods
-- As constructors
-- Indirectly through their call() and apply() methods
-- Implicit Function Invocation: OJO que aplicando ciertos metodos explicados en la pagina 192 del libro se puede invocar una funcion sin querer.
 
 #### 8.2.4 Indirect Invocation
 
