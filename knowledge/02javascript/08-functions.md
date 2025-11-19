@@ -130,6 +130,24 @@ JavaScript también **soporta propiedades de acceso**, las cuales **no tienen un
    }
    ```
 
+también tenemos los constructores de clase
+
+```javascript
+class Persona {
+  constructor(nombre, edad) {
+    this.nombre = nombre;
+    this.edad = edad;
+  }
+
+  saludar() {
+    console.log("Hola, soy " + this.nombre);
+  }
+}
+
+const juan = new Persona("Juan", 25);
+juan.saludar();
+```
+
 ### 8.1.11. **Static Method in a Class**
 
 ```javascript
@@ -492,3 +510,195 @@ La **palabra clave `this` en JavaScript puede ser un poco difícil de entender**
     ```
 
 Entender el **contexto en el cual `this` es usado** es **crucial para escribir código JavaScript efectivo**, especialmente cuando se trabaja con **programación orientada a objetos** y **entornos basados en eventos**.
+
+## 8.3. Function Arguments and Parameters
+
+Las **definiciones de función de JavaScript no especifican un tipo esperado** para los parámetros de la función, y las **invocaciones de función no realizan ninguna verificación de tipo** en los valores de argumento que pasas. De hecho, las **invocaciones de función de JavaScript ni siquiera verifican el número de argumentos** que están siendo pasados.
+
+### 8.3.1. Optional Parameters and Defaults
+
+- Si hay menos argumentos que parámetros, estos parámetros evalúan a undefined al menos que se especifique un valor por default
+
+- Rest Parameters and Variable-Length Argument Lists
+
+- Esto es lo contrario, cuando hay mas argumentos que parámetros
+
+    ```javascript
+    function max(first = -Infinity, ...rest) {
+      let maxValue = first; // Start by assuming the first arg is biggest
+      // Then loop through the rest of the arguments, looking for bigger
+      for (let n of rest) {
+        if (n > maxValue) {
+          maxValue = n;
+        }
+      }
+      // Return the biggest
+      return maxValue;
+    }
+    max(1, 10, 100, 2, 3, 1000, 4, 5, 6); // => 1000
+
+### 8.3.2. Rest Parameters and Variable-Length Argument Lists
+
+Nos permiten escribir funciones que pueden ser invocadas con arbitrariamente más argumentos que parámetros.
+
+```javascript
+function miFuncion(...muchosArgumentos) {
+  console.log(muchosArgumentos);
+}
+
+miFuncion("a", "b", "c", "d"); 
+// Salida: ["a", "b", "c", "d"]
+```
+
+**Nota clave:** A diferencia del antiguo objeto arguments, los parámetros Rest crean una instancia real de Array, lo que significa que puedes usar métodos como .map(), .sort(), .filter() y .reduce() directamente sobre ellos.
+
+### 8.3.3. The Arguments Object
+
+Antes de ES6 se utilizaba el arguments pero tiene falencias entonces es mejor el ...rest.
+
+### 8.3.4. The Spread Operator for Function Calls
+
+El operador de propagación (spread operator) `...` se utiliza para desempaquetar, o "expandir", los elementos de un array (o cualquier otro objeto iterable, como cadenas de texto) en un contexto donde se esperan valores individuales. Hemos visto el operador de propagación utilizado con literales de array en la sección §7.1.2. El operador se puede utilizar, de la misma manera, en invocaciones de funciones:
+
+```javascript
+let numbers = [5, 2, 10, -1, 9, 100, 1];
+Math.min(...numbers) // => -1
+```
+
+Ten en cuenta que `...` no es un verdadero operador en el sentido de que no puede ser evaluado para producir un valor. En cambio, es una sintaxis especial de JavaScript que se puede utilizar en literales de array e invocaciones de funciones.
+
+Cuando utilizamos la misma sintaxis `...` en una **definición de función** en lugar de una **invocación de función**, tiene el efecto opuesto al operador de propagación.
+
+### 8.3.5. Destructuring Function Arguments into Parameters
+
+Ejemplo:
+
+```javascript
+function vectorAdd(v1, v2) {
+return [v1[0] + v2[0], v1[1] + v2[1]];
+}
+vectorAdd([1,2], [3,4]) // => [4,6]
+```
+
+Con la destructuración seria asi:
+
+```javascript
+function vectorAdd([x1,y1], [x2,y2]) { // Unpack 2 arguments into 4 parameters
+return [x1 + x2, y1 + y2];
+}
+vectorAdd([1,2], [3,4]) // => [4,6]
+```
+
+Entonces se puede apreciar que el argumento v1 se puede convertir en x1 y y1.
+
+### 8.3.6. Argument Types
+
+- Argument Types: JavaScript method parameters have no declared types **USE TYPESCRIPT**
+
+## 8.4. Functions as Values
+
+Sin embargo, en JavaScript, las funciones no son solo sintaxis, sino también valores, lo que significa que pueden asignarse a variables, almacenarse en las propiedades de objetos o en los elementos de arrays, pasarse como argumentos a funciones, y así sucesivamente.
+
+### 8.4.1. Defining Your Own Function Properties
+
+Las funciones no son un tipo primitivo en javascript, mas si son objects especializados, lo que quiere decir que una función puede tener propiedades.
+
+```javascript
+// Initialize the counter property of the function object.
+// Function declarations are hoisted so we really can
+// do this assignment before the function declaration.
+uniqueInteger.counter = 0;
+// This function returns a different integer each time it is called.
+// It uses a property of itself to remember the next value to be returned.
+function uniqueInteger() {
+return uniqueInteger.counter++; // Return and increment counter property
+}
+uniqueInteger() // => 0
+uniqueInteger() // => 1
+```
+
+## 8.5. Functions as Namespaces
+
+Las variables declaradas dentro de una función no son visibles fuera de ella. Por esta razón, a veces resulta útil definir una función simplemente para que actúe como un **espacio de nombres temporal** (*temporary namespace*), en el que puedas definir variables sin saturar el espacio de nombres global.
+
+```javascript
+function chunkNamespace() {
+// Chunk of code goes here
+// Any variables defined in the chunk are local to this function
+// instead of cluttering up the global namespace.
+}
+chunkNamespace(); // But don't forget to invoke the function!
+```
+
+## 8.6. Closures
+
+Los closures es una forma de aprovechar el scope que maneja las funciones para esconder código (mas que todo variables) dentro del ambiente encerrado que produce una función y que desde afuera no se puede leer, en el siguiente ejemplo se puede apreciar como la variables scope (la que esta dentro de la función, la local scope), puede llegar hasta el ámbito global por medio de la invocación de funciones que tienen acceso a esta variable internamente.
+
+```javascript
+let scope = "global scope"; // A global variable
+function checkscope() {let scope = "local scope"; // A local variable
+function f() { return scope; } // Return the value in scope here
+return f();
+}
+checkscope() // => "local scope"
+```
+
+Hasta **ahí** bien, ahora observemos el siguiente ejemplo:
+
+```javascript
+let scope = "global scope"; // A global variable
+function checkscope() {
+let scope = "local scope"; // A local variable
+function f() { return scope; } // Return the value in scope here
+return f;
+}
+let s = checkscope()(); // What does this return?
+```
+
+A primera vista, uno **podría** decir que la variable `s` **devolvería** **"global scope"**, ya que al ejecutar `checkscope()`, la variable `s` se **convertiría** en `s = f() { return scope; }`. Y como `scope` **está** fuera de la función `checkscope` al momento de la invocación final, entonces la función **utilizaría** la variable `scope` global.
+
+**¡PERO\!** Debemos recordar la regla fundamental del **ámbito léxico** (*lexical scoping*): **Las funciones de JavaScript se ejecutan usando el ámbito en el que fueron definidas.**
+
+Entonces, como la función interna `f` se **definió** dentro de `checkscope` (que tiene acceso a la variable **local** `"local scope"`), **esa función conserva ese acceso** a la variable local de `checkscope` a través de un **cierre** (*closure*), sin importar desde dónde se la invoque después. Por lo tanto, `s` **devolverá "local scope"**.
+
+Ahora observemos el siguiente codigo:
+
+```javascript
+let uniqueInteger = (function() { // Define and invoke
+let counter = 0; // Private state of function below
+return function() { return counter++; };
+}());
+uniqueInteger() // => 0
+uniqueInteger() // => 1
+```
+
+Ese código es equivalente a este:
+
+```javascript
+let uniqueIntegerFactory = function() {
+  let counter = 0;
+  return function() { return counter++; };
+};
+
+let uniqueInteger = uniqueIntegerFactory();
+
+console.log(uniqueInteger()); // 0
+console.log(uniqueInteger()); // 1
+```
+
+OJO, que intenté con este codigo y me equivoque horriblemente:
+
+```javascript
+let uniqueInteger = function() { // Define and invoke
+let counter = 0; // Private state of function below
+return function() { return counter++; };
+};
+console.log(uniqueInteger()()) // => 0
+console.log(uniqueInteger()()) // => 1
+```
+
+El error de este código es que en cada console log se crea un closure por cada console log, mientras que en los ejemplos de arriba si es un solo closure y luego las invocaciones extra.
+
+Vale la pena señalar aquí que puedes combinar esta **técnica de cierre (closure)** con los **métodos accesores (getters y setters)** de las propiedades. Este es un concepto clave para lograr la **encapsulación** en JavaScript.
+
+Un closure ocurre cuando una función interna recuerda y puede acceder a las variables del entorno donde fue creada, incluso después de que ese entorno ya no existe.
