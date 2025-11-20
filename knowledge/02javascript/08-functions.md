@@ -702,3 +702,199 @@ El error de este código es que en cada console log se crea un closure por cada 
 Vale la pena señalar aquí que puedes combinar esta **técnica de cierre (closure)** con los **métodos accesores (getters y setters)** de las propiedades. Este es un concepto clave para lograr la **encapsulación** en JavaScript.
 
 Un closure ocurre cuando una función interna recuerda y puede acceder a las variables del entorno donde fue creada, incluso después de que ese entorno ya no existe.
+
+## 8.7. Function Properties, Methods, and Constructor
+
+Recordar que como las funciones son objects, pueden tener propiedades y métodos empotrados.
+
+### 8.7.1. The length Property
+
+La propiedad de solo lectura **`length`** de una función especifica la **aridad** de la función: el número de parámetros que declara en su lista de parámetros, que es generalmente el número de argumentos que espera la función. Si una función tiene un parámetro *rest* (parámetro de propagación), ese parámetro no se cuenta a efectos de esta propiedad **`length`**.
+
+#### 8.7.1.1. ¿Qué es la Aridad?
+
+La **aridad** (del latín *aritas*) es un término proveniente de la lógica y las matemáticas, adoptado en programación para describir la **cantidad de argumentos o parámetros que una función u operación acepta formalmente**.
+
+- **Aridad 1 (Unaria):** Una función que toma un solo argumento (ej: `Math.sin(x)`).
+- **Aridad 2 (Binaria):** Una función que toma dos argumentos (ej: `Math.max(x, y)`).
+- **Aridad N:** Una función que toma N argumentos.
+
+En JavaScript, la propiedad **`length`** te da exactamente este número (la aridad) al contar solo los parámetros fijos definidos. Por eso, si utilizas el operador *rest* (`...args`), este no cuenta, ya que indica que la función puede tomar un número **indefinido** de argumentos.
+
+### 8.7.2. The name Property
+
+La propiedad de solo lectura **`name`** de una función especifica el nombre que se utilizó cuando se definió la función, si fue definida con un nombre, o el nombre de la variable o propiedad a la que se **asignó** una expresión de función **sin nombre** cuando fue creada por primera vez. Esta propiedad es principalmente útil al escribir mensajes de **depuración** o **error**.
+
+### 8.7.3. The prototype Property
+
+Todas las funciones, excepto las **funciones flecha** (*arrow functions*), tienen una propiedad **`prototype`** que hace referencia a un objeto conocido como el **objeto prototipo**. Cada función tiene un objeto prototipo diferente.
+
+Cuando una función se utiliza como constructor, el objeto recién creado **hereda** propiedades del objeto prototipo. Los prototipos y la propiedad **`prototype`** se trataron en la sección §6.2.3 y se cubrirán de nuevo en el Capítulo 9.
+
+### 8.7.4. The call() and apply() Methods
+
+**`call()`** y **`apply()`** te permiten invocar indirectamente (sección §8.2.4) una función como si fuera un **método de algún otro objeto**.
+
+```javascript
+f.call(o);
+f.apply(o);
+```
+
+Este código es similar al siguiente:
+
+```javascript
+o.m = f; // Make f a temporary method of o.
+o.m(); // Invoke it, passing no arguments.
+delete o.m; // Remove the temporary method.
+```
+
+🧠 ¿Qué son `call()` y `apply()`?
+
+Son métodos que **todas las funciones en JavaScript tienen** y sirven para:
+
+1. **Invocar** la función inmediatamente
+2. **Cambiar el valor de `this`** dentro de la función
+3. (Opcionalmente) **pasar argumentos**
+
+La diferencia principal está en **cómo pasas los argumentos**.
+
+**1. `call()` — llama una función con un `this` específico + argumentos normales**
+
+Ejemplo básico:
+
+```js
+function saludar() {
+  console.log(`Hola, soy ${this.nombre}`);
+}
+
+const persona = { nombre: "Juan" };
+
+saludar.call(persona);
+// Hola, soy Juan
+```
+
+👉 Aquí **`this` dentro de `saludar` es `persona`**.
+
+`call()` con argumentos:
+
+```js
+function saludar(saludo, signo) {
+  console.log(`${saludo}, soy ${this.nombre} ${signo}`);
+}
+
+const persona = { nombre: "Juan" };
+
+saludar.call(persona, "Hola", "!");
+// Hola, soy Juan !
+```
+
+---
+
+# ✅ **2. `apply()` — igual que call, pero argumentos como array**
+
+```js
+function saludar(saludo, signo) {
+  console.log(`${saludo}, soy ${this.nombre} ${signo}`);
+}
+
+const persona = { nombre: "Juan" };
+
+saludar.apply(persona, ["Hola", "!"]);
+// Hola, soy Juan !
+```
+
+👉 `apply()` quiere los argumentos **en un array**.
+
+---
+
+# 📌 ¿Cuándo se usa cada uno?
+
+| Método      | Cómo se pasan los argumentos | Cuándo usarlo                               |
+| ----------- | ---------------------------- | ------------------------------------------- |
+| **call()**  | separados por comas          | cuando ya tienes los argumentos sueltos     |
+| **apply()** | en un array                  | cuando ya tienes los argumentos en un array |
+
+---
+
+# ⭐ Ejemplos prácticos (que sí sirven en código real)
+
+---
+
+# ✔ Ejemplo: usar `apply()` para pasar un array a una función que no acepta arrays
+
+```js
+const nums = [5, 10, 50, 3];
+
+const max = Math.max.apply(null, nums);
+console.log(max); // 50
+```
+
+`Math.max` NO acepta arrays.
+`apply()` soluciona eso.
+
+---
+
+# ✔ Ejemplo: reutilizar métodos entre objetos
+
+```js
+const persona = {
+  nombre: "Ana",
+  saludar() { console.log(`Hola, soy ${this.nombre}`); }
+}
+
+const robot = { nombre: "R2D2" };
+
+persona.saludar.call(robot);
+// Hola, soy R2D2
+```
+
+Reusamos la misma función con otro objeto.
+
+---
+
+# ✔ Ejemplo: simulando herencia simple
+
+```js
+function Animal(nombre) {
+  this.nombre = nombre;
+}
+
+function Perro(nombre, raza) {
+  Animal.call(this, nombre); // ejecutar Animal con this = Perro
+  this.raza = raza;
+}
+
+const p = new Perro("Firulais", "Labrador");
+
+console.log(p.nombre); // Firulais
+```
+
+---
+
+# ✔ Ejemplo: bind vs call (qué hacen distinto)
+
+```js
+function hola() {
+  console.log(this.msg);
+}
+
+const obj = { msg: "Hola mundo" };
+
+hola.call(obj); // ejecuta inmediatamente
+```
+
+`bind()` no ejecuta, solo crea una copia con el `this` fijado.
+`call()` y `apply()` ejecutan en el momento.
+
+---
+
+# 🎯 Resumen rápido
+
+| Método      | Ejecuta inmediatamente | Cambia `this` | Cómo pasas args    |
+| ----------- | ---------------------- | ------------- | ------------------ |
+| **call()**  | Sí                     | Sí            | arg1, arg2, arg3   |
+| **apply()** | Sí                     | Sí            | [arg1, arg2, arg3] |
+
+---
+
+Si quieres, te explico ahora **`bind()`**, o cómo se usa esto en **event handlers, clases, o patrones avanzados**.
