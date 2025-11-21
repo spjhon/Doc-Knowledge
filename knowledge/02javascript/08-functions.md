@@ -773,6 +773,22 @@ saludar.call(persona);
 // Hola, soy Juan
 ```
 
+Así seria sin el call():
+
+```js
+function saludar() {
+  console.log(`Hola, soy ${this.nombre}`);
+}
+
+const persona = {
+  nombre: "Juan",
+  saludar: saludar, // añadimos la función como método
+};
+
+persona.saludar();
+// Hola, soy Juan
+```
+
 👉 Aquí **`this` dentro de `saludar` es `persona`**.
 
 `call()` con argumentos:
@@ -788,9 +804,23 @@ saludar.call(persona, "Hola", "!");
 // Hola, soy Juan !
 ```
 
----
+Así seria de forma normal:
 
-# ✅ **2. `apply()` — igual que call, pero argumentos como array**
+```js
+function saludar(saludo, signo) {
+  console.log(`${saludo}, soy ${this.nombre} ${signo}`);
+}
+
+const persona = {
+  nombre: "Juan",
+  saludar: saludar, // agregamos la función como método
+};
+
+persona.saludar("Hola", "!");
+// Hola, soy Juan !
+```
+
+**2. `apply()` — igual que call, pero argumentos como array**
 
 ```js
 function saludar(saludo, signo) {
@@ -805,9 +835,25 @@ saludar.apply(persona, ["Hola", "!"]);
 
 👉 `apply()` quiere los argumentos **en un array**.
 
----
+Asi seria de forma normal:
 
-# 📌 ¿Cuándo se usa cada uno?
+```js
+function saludar(saludo, signo) {
+  console.log(`${saludo}, soy ${this.nombre} ${signo}`);
+}
+
+const persona = {
+  nombre: "Juan",
+  saludar: saludar,
+};
+
+const args = ["Hola", "!"];
+
+persona.saludar(...args);
+// Hola, soy Juan !
+```
+
+📌 ¿Cuándo se usa cada uno?
 
 | Método      | Cómo se pasan los argumentos | Cuándo usarlo                               |
 | ----------- | ---------------------------- | ------------------------------------------- |
@@ -816,11 +862,11 @@ saludar.apply(persona, ["Hola", "!"]);
 
 ---
 
-# ⭐ Ejemplos prácticos (que sí sirven en código real)
+⭐ Ejemplos prácticos (que sí sirven en código real)
 
 ---
 
-# ✔ Ejemplo: usar `apply()` para pasar un array a una función que no acepta arrays
+✔ Ejemplo: usar `apply()` para pasar un array a una función que no acepta arrays
 
 ```js
 const nums = [5, 10, 50, 3];
@@ -834,7 +880,7 @@ console.log(max); // 50
 
 ---
 
-# ✔ Ejemplo: reutilizar métodos entre objetos
+✔ Ejemplo: reutilizar métodos entre objetos
 
 ```js
 const persona = {
@@ -850,9 +896,7 @@ persona.saludar.call(robot);
 
 Reusamos la misma función con otro objeto.
 
----
-
-# ✔ Ejemplo: simulando herencia simple
+✔ Ejemplo: simulando herencia simple
 
 ```js
 function Animal(nombre) {
@@ -869,9 +913,7 @@ const p = new Perro("Firulais", "Labrador");
 console.log(p.nombre); // Firulais
 ```
 
----
-
-# ✔ Ejemplo: bind vs call (qué hacen distinto)
+✔ Ejemplo: bind vs call (qué hacen distinto)
 
 ```js
 function hola() {
@@ -886,15 +928,132 @@ hola.call(obj); // ejecuta inmediatamente
 `bind()` no ejecuta, solo crea una copia con el `this` fijado.
 `call()` y `apply()` ejecutan en el momento.
 
----
-
-# 🎯 Resumen rápido
+🎯 Resumen rápido
 
 | Método      | Ejecuta inmediatamente | Cambia `this` | Cómo pasas args    |
 | ----------- | ---------------------- | ------------- | ------------------ |
 | **call()**  | Sí                     | Sí            | arg1, arg2, arg3   |
 | **apply()** | Sí                     | Sí            | [arg1, arg2, arg3] |
 
----
+### 7.8.5. The bind() Method
 
-Si quieres, te explico ahora **`bind()`**, o cómo se usa esto en **event handlers, clases, o patrones avanzados**.
+El método `bind()` en JavaScript es una herramienta poderosa que permite crear una nueva función con un **contexto de ejecución fijo**. Esto significa que puedes establecer explícitamente el valor de `this` dentro de la función. Aquí exploraremos cómo funciona, para qué sirve, y los casos en los que es útil.
+
+**Sintaxis de `bind()`**
+
+```javascript
+func.bind(thisArg, ...args)
+```
+
+1. **`func`**: Es la función original que deseas enlazar.
+2. **`thisArg`**: Es el valor que será usado como `this` en la nueva función.
+3. **`...args`** *(opcional)*: Son los argumentos que se preestablecen para la nueva función.
+
+El método `bind()` **no ejecuta la función inmediatamente**. En su lugar, devuelve una nueva función con el contexto fijado.
+
+**Ejemplo Básico**:
+
+```javascript
+const obj = { name: "Alice" };
+
+function sayHello() {
+    console.log(`Hello, my name is ${this.name}`);
+}
+
+const boundFunction = sayHello.bind(obj);
+
+boundFunction(); // "Hello, my name is Alice"
+```
+
+En este ejemplo:
+
+  1. La función `sayHello` no tiene un `this` fijo.
+  2. Usamos `bind(obj)` para crear `boundFunction`, donde `this` siempre apuntará a `obj`.
+  3. Cuando llamamos a `boundFunction`, `this` se refiere al objeto `obj`.
+
+Diferencia entre bind y call:
+
+```javascript
+const obj = { nombre: "Leo" };
+
+function saludar() {
+  console.log(`Hola, soy ${this.nombre}`);
+}
+
+// 1. Usando call(): Se ejecuta inmediatamente
+saludar.call(obj); // Salida: Hola, soy Leo
+
+// 2. Usando bind(): Se almacena, no se ejecuta
+const saludarDeLeo = saludar.bind(obj);
+
+// La ejecución debe hacerse después
+saludarDeLeo(); // Salida: Hola, soy Leo
+```
+
+**¿Por Qué Usar `bind()`?**
+
+1. **Preservar el contexto de `this`**
+
+   Cuando pasas una función como callback o manejador de eventos, el valor de `this` puede cambiar dependiendo del contexto en el que se ejecute.
+
+   ```javascript
+   const person = {
+    name: "Bob",
+    greet() {
+        console.log(`Hello, ${this.name}`);
+    },
+   };
+
+   const greetFn = person.greet;
+   greetFn(); // "Hello, undefined" (porque `this` es `undefined` en modo estricto)
+
+   const boundGreetFn = person.greet.bind(person);
+   boundGreetFn(); // "Hello, Bob"
+   ```
+
+   Aquí, `bind()` asegura que `this` siempre apunte al objeto `person`, sin importar dónde se use `boundGreetFn`.
+
+   ---
+
+2. **Establecer argumentos por defecto (Currying)**
+
+    Puedes usar `bind()` para predefinir argumentos que serán usados cuando la nueva función sea llamada.
+  
+    ```javascript
+    function multiply(a, b) {
+        return a * b;
+    }
+    
+    const double = multiply.bind(null, 2); // Predefinimos `a = 2`
+    console.log(double(5)); // 10
+    console.log(double(10)); // 20
+    ```
+  
+    En este ejemplo:
+  
+    - `multiply` toma dos argumentos.
+    - `double` fija el primer argumento (`a = 2`), y espera el segundo.
+  
+    ---
+
+3. **Manejadores de eventos**
+
+Al trabajar con eventos en el DOM, `this` dentro de un manejador de eventos puede referirse al elemento que disparó el evento. `bind()` ayuda a mantener el contexto deseado.
+
+```javascript
+class Button {
+    constructor(label) {
+        this.label = label;
+    }
+
+    handleClick() {
+        console.log(`Button clicked: ${this.label}`);
+    }
+}
+
+const button = new Button("Submit");
+const btnElement = document.querySelector("#myButton");
+
+btnElement.addEventListener("click", button.handleClick.bind(button)); 
+// Sin bind, `this` sería `btnElement`
+```
