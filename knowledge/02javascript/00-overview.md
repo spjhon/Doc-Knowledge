@@ -147,37 +147,11 @@ Reglas elementales para comenzar a escribir código:
 
 ## 09 Classes
 
-“favor composition over inheritance.”
 
-In JavaScript, a class is a set of objects that inherit properties from the same prototype object. The prototype object, therefore, is the central feature of a class.
-
-En JavaScript, una clase no es un objeto en sí, sino una plantilla (o "blueprint") para crear objetos. Las clases en JavaScript definen la estructura y el comportamiento de los objetos que se crean a partir de ellas.
-
-Por que una factory function o una clase son necesarias?:
-
-1. **Encapsulation**: The factory function (`range`) and the methods defined on its prototype (`range.methods`) encapsulate the range logic in a reusable and maintainable way. This helps in organizing the code better, especially as the logic grows more complex.
-
-2. **Reusability**: The methods (`includes`, `toString`, `Symbol.iterator`) are defined once on the prototype and reused across all instances of the range objects. This avoids duplicating code and makes the system more efficient.
-
-3. **Iterable Interface**: By implementing the iterable protocol (`*[Symbol.iterator]()`) within the range object, you can directly use the range object in constructs like `for...of` loops and the spread operator (`...`). This makes the range object very flexible and powerful in different contexts.
-
-4. **Readability and Expressiveness**: Using an object-oriented approach can make the code more readable and expressive. For instance, calling `range(1,3).includes(2)` or `[...range(1,3)]` is more intuitive and self-explanatory than manually handling arrays and indices.
-
-5. **Method Chaining and Fluent API**: The object-oriented approach can be extended to support method chaining, which allows for more fluent and readable code.
-
-6. **Extensibility**: It's easier to extend the functionality by adding more methods to the `range.methods` object. For example, if you later want to add methods like `map`, `filter`, or other utility functions, you can do so without changing the existing function signatures or affecting the existing code that uses the range objects.
-
-- **When to Use Which**
-
-**Constructor Functions:** Use when you need the benefits of prototype inheritance and when you are following a more class-like structure (especially in ES6+ with the class syntax).
-
-**Factory Functions:** Use when you need more flexibility, encapsulation, and when you want to avoid the complexities and potential pitfalls of new.
-
-While both factory functions and constructor functions are used to create objects, they differ significantly in their approach, flexibility, and the way they handle inheritance. Factory functions offer a more flexible and error-proof way to create objects without the need for the new keyword, whereas constructor functions are more suited for scenarios where prototype inheritance and a more class-like structure are required.
 
 ### Classes and Prototypes
 
-El ejemplo 9.1 es una forma de mostrar como funciona una clase de forma rudimentaria ya que lo que hace es utilizar el object.create () para encerrar variables y metodos (metodos que estan en otro object) de forma que cuando se invoque la funcion las varialbes solo se puedan leer a travez de el object creado con Object.create().
+El ejemplo 9.1 es una forma de mostrar como funciona una clase de forma rudimentaria ya que lo que hace es utilizar el object.create () para encerrar variables y métodos (métodos que están en otro object) de forma que cuando se invoque la funcion las varialbes solo se puedan leer a travez de el object creado con Object.create().
 
 **La siguiente es una explicacion de chatGPT de por que las classes son importantes teniendo como base el ejemplo 9.1 del libro.**
 

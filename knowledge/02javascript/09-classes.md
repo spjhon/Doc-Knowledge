@@ -26,9 +26,7 @@ En JavaScript, una clase es realmente **una función especial** cuyo prototipo c
 
 Cuando creas un objeto con `new`, ese objeto **hereda** de `MiClase.prototype`.
 
----
-
-# 🧱 **¿Por qué usar una factory function o una clase?**
+🧱 **¿Por qué usar una factory function o una clase?**
 
 Ambas existen para resolver problemas comunes cuando creas objetos complejos. Tus puntos están muy bien — aquí están traducidos y pulidos:
 
