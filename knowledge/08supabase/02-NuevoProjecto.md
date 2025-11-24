@@ -1,20 +1,20 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # Creando un nuevo projecto
 
-Perfecto, acá tienes **el mejor mapa posible para aprender Supabase de forma profesional**, inspirado en el flujo del libro *Building Production-Grade Web Applications with Supabase* pero actualizado al 2025, y organizado para que no te pierdas ni saltes pasos.
+Perfecto, acá tienes **el mejor mapa posible para aprender Supabase de forma profesional**, inspirado en el flujo del libro **Building Production-Grade Web Applications with Supabase** pero actualizado al 2025, y organizado para que no te pierdas ni saltes pasos.
 
 Lo dividí en **niveles**, **temas**, **orden exacto**, **qué deberías practicar** y **por qué es importante**.
 
 ---
 
-# 🚀 **MAPA COMPLETO DE APRENDIZAJE SUPABASE (VERSIÓN PROFESIONAL 2025)**
+## 🚀 **MAPA COMPLETO DE APRENDIZAJE SUPABASE (VERSIÓN PROFESIONAL 2025)**
 
 ---
 
-# 🟦 **NIVEL 1 — FUNDAMENTOS (Instalación, configuración y cliente)**
+* **NIVEL 1 — FUNDAMENTOS (Instalación, configuración y cliente)**
 
 ## **1. Instalar/Crear un proyecto Supabase**
 
@@ -59,14 +59,14 @@ SUPABASE_SERVICE_ROLE_KEY=
 **Práctica:**
 Crea:
 
-```
+```js
 lib/supabase/client.ts
 lib/supabase/admin.ts
 ```
 
 ---
 
-# 🟩 **NIVEL 2 — AUTENTICACIÓN (lo más importante en RLS)**
+* **NIVEL 2 — AUTENTICACIÓN (lo más importante en RLS)**
 
 ## **4. Usuarios y sesiones**
 
@@ -94,7 +94,7 @@ Aquí aprender:
 * `createServerClient` y `createBrowserClient`
 
 **Práctica:**
-Implementa un navbar con “Hola, {user.email}”.
+Implementa un navbar con `Hola, {user.email}`.
 
 ---
 
@@ -119,7 +119,7 @@ for select using ( auth.uid() = id );
 
 ---
 
-# 🟧 **NIVEL 3 — DISEÑO DE BASE DE DATOS (el alma de Supabase)**
+* **NIVEL 3 — DISEÑO DE BASE DE DATOS (el alma de Supabase)**
 
 ## **7. Tablas y relaciones**
 
@@ -136,7 +136,7 @@ Aprender:
 **Práctica:**
 Crea un esquema tipo:
 
-```
+```js
 usuarios
 propiedades
 imagenes_propiedad
@@ -160,7 +160,7 @@ Modifica columnas usando migraciones en lugar de la UI.
 
 ---
 
-# 🟨 **NIVEL 4 — OPERACIONES AVANZADAS**
+* **NIVEL 4 — OPERACIONES AVANZADAS**
 
 ## **9. Storage**
 
@@ -209,7 +209,7 @@ Haz que un listado de propiedades se actualice en vivo.
 
 ---
 
-# 🟪 **NIVEL 5 — PRODUCCIÓN REAL**
+* **NIVEL 5 — PRODUCCIÓN REAL**
 
 ## **12. Seguridad avanzada**
 
@@ -249,15 +249,15 @@ Aprender:
 
 ---
 
-# 🎯 **RESUMEN EN UNA SOLA LÍNEA**
+🎯 **RESUMEN EN UNA SOLA LÍNEA**
 
-> Primero Supabase → luego env → luego cliente → luego auth → luego RLS → luego tablas → luego storage → luego funciones → luego realtime → luego producción.
+ Primero Supabase → luego env → luego cliente → luego auth → luego RLS → luego tablas → luego storage → luego funciones → luego realtime → luego producción.
 
 Este es exactamente el orden en que se construyen apps profesionales.
 
 ---
 
-# 🚀 **Si quieres te puedo crear:**
+🚀 **Si quieres te puedo crear:**
 
 ✅ Un **roadmap visual**
 ✅ Un checklist imprimible
