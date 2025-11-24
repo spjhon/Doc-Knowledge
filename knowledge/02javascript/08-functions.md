@@ -935,7 +935,7 @@ hola.call(obj); // ejecuta inmediatamente
 | **call()**  | Sí                     | Sí            | arg1, arg2, arg3   |
 | **apply()** | Sí                     | Sí            | [arg1, arg2, arg3] |
 
-### 7.8.5. The bind() Method
+### 8.7.5. The bind() Method
 
 El método `bind()` en JavaScript es una herramienta poderosa que permite crear una nueva función con un **contexto de ejecución fijo**. Esto significa que puedes establecer explícitamente el valor de `this` dentro de la función. Aquí exploraremos cómo funciona, para qué sirve, y los casos en los que es útil.
 
@@ -1056,4 +1056,177 @@ const btnElement = document.querySelector("#myButton");
 
 btnElement.addEventListener("click", button.handleClick.bind(button)); 
 // Sin bind, `this` sería `btnElement`
+```
+
+### 8.7.6. The toString() Method
+
+Al igual que todos los objetos de JavaScript, las funciones tienen un método **`toString()`**. La especificación **ECMAScript** requiere que este método devuelva una cadena que siga la sintaxis de la **declaración de función**. En la práctica, la mayoría (pero no todas) de las implementaciones de este método **`toString()`** devuelven el código fuente completo de la función. Las funciones integradas (*built-in*) típicamente devuelven una cadena que incluye algo como `“[native code]”` como cuerpo de la función.
+
+### 8.7.7. The Function() Constructor
+
+Se puede utilizar el constructor de una función como creadora de objects.
+
+```javascript
+const f = new Function("x", "y", "return x*y;");
+```
+
+Lo cual es similar a esto:
+
+```javascript
+const f = function(x, y) { return x*y; };
+```
+
+Es importante recordar que las funciones constructoras no accedan al local scope, osea que no se pueden hacer closures.
+
+## 8.8. Functional Programming
+
+Javascript no es un lenguaje funcional pero se pueden utilizar algunas técnicas en sus objects. Dos métodos iterantes del dataType array son particularmente útiles para este tipo de programación map() y reduce().
+
+### 8.8.1. Processing Arrays with Functions
+
+La idea es no utilizar métodos que digan como se hace la operación sino tomar ventaja de las formas funcionales (por medio de funciones) y expresar mas bien lo que se necesita hacer con el código y de esta forma también aprovechar las ventajas de utilizar funciones.
+
+Por ejemplo utilizando un "for" se puede iterar un array pero con map se puede hacer lo mismo en caso de necesitar retornar un array y con reduce en caso de que se necesite reducir un array.
+
+El siguiente es un ejemplo claro de una forma funcional, primero se definen dos funciones que exploten la flexibilidad del map() y el reduce() de tal forma que se tengan funciones personalizadas que se puedan ajustar a sus usos mas adelante.
+
+```javascript
+// Con esta primera declaración de constantes estamos creando una función map y reduce personalizada para aplicar mas adelante
+//la idea de esta función es recibir un array, transformarla en el parámetro a y como segundo argumento una serie de args, osea una cantidad de cualquier tipo de funciones que sean el primer argumento de map y reduce y de acuerdo a como funcionan estos iteradores pues los primeros argumentos son las funciones que van a mapear (devuelve un array) o a reducir (devuelve un solo valor)
+const map = function (a, ...args) {
+  return a.map(...args);
+};
+const reduce = function (a, ...args) {
+  return a.reduce(...args);
+};
+
+// With these map() and reduce() functions defined, our code to compute the mean and standard deviation now looks like this:
+const sum = (x, y) => x + y;
+const square = (x) => x * x;
+let data = [1, 1, 3, 5, 5];
+let mean = reduce(data, sum) / data.length;
+let deviations = map(data, (x) => x - mean);
+let stddev = Math.sqrt(
+  reduce(map(deviations, square), sum) / (data.length - 1)
+);
+stddev; // => 2
+```
+
+### 8.8.2. Higher-Order Functions
+
+Funciones como `map`, `filter` y `reduce` son ejemplos comunes de funciones de orden superior en JavaScript. ¿Te gustaría ver un ejemplo de cómo usar **`map()`** como función de orden superior?
+
+Una forma mas entendible es que una función de tipo higher order toma una función custom existente y le adiciona funcionalidades extra con argumentos extra y utilizar la función inicial sin modificarla, solo llamándola, es uno de los principios de la programación funcional, que todo sea un conjunto de funciones iniciales y a partir de ellas crear funcionalidades sobre las ya creadas y fomentar la reutilización de código.
+
+Las funciones de orden superior (higher order functions) en JavaScript son funciones que pueden tomar otras funciones como argumentos o devolver funciones como resultado. Esto es posible porque en JavaScript las funciones son tratadas como ciudadanos de primera clase (first-class citizens).
+
+Aquí tienes algunos conceptos clave sobre las funciones de orden superior en JavaScript:
+
+1. **Funciones como valores**: En JavaScript, puedes asignar funciones a variables y pasarlas como argumentos a otras funciones.
+
+   ```javascript
+   function sayHello() {
+       console.log('Hello!');
+   }
+
+   function executeFunction(func) {
+       func();
+   }
+
+   executeFunction(sayHello); // Salida: Hello!
+   ```
+
+2. **Funciones que devuelven funciones**: Una función puede devolver otra función como resultado.
+
+   ```javascript
+   function createMultiplier(multiplier) {
+       return function (number) {
+           return number * multiplier;
+       };
+   }
+
+   const double = createMultiplier(2);
+   console.log(double(5)); // Salida: 10
+   ```
+
+    lo que se hace es que double es una constante tipo function que ya tiene almacenado y no se puede cambiar la estructura de la función, y el argumento 2 que se convierte en un parámetro (variable) que esta ya definida dentro de double, lo único es que como es función esperaría otros argumentos que se convertirían en la variable number, entonces una higher order function es tener una especie de function template a la que se le agrega funcionalidades de acuerdo a los parámetros establecidos y que retorne otra función con ciertos parámetros ya pre definidos y se le apliquen otros parámetros en una especie de sub-nivel, es correcta mi deducción?, pregunte a chatGPT, la respuesta fue:
+
+    - Tu deducción es bastante acertada. En el código que proporcionaste, `createMultiplier` es una función de orden superior que devuelve otra función. Esta segunda función (en tu ejemplo, `double`) es una función cerrada que "recuerda" el valor del parámetro `multiplier` que se le pasó a `createMultiplier`. Así, cuando llamas a `double(5)`, efectivamente estás aplicando ese `5` al parámetro `number` de la función interna, multiplicando `5` por `2` (el valor de `multiplier` en este caso).
+
+    - Esto es un ejemplo clásico de cómo las funciones de orden superior pueden ser utilizadas para crear funciones más especializadas o configuradas de antemano con ciertos parámetros. En este caso, `double` es una función que multiplica su argumento por `2`, pero podrías crear otras funciones similares usando `createMultiplier` con diferentes valores, como `createMultiplier(3)` para triplicar un número, por ejemplo.
+
+    - En resumen, sí, tu interpretación es correcta. Una función de orden superior permite definir una plantilla de función que puede ser parametrizada con ciertos valores, devolviendo una función más específica que aplica esos parámetros adicionales en un nivel más profundo de la función.
+
+3. **Métodos de Array que utilizan funciones de orden superior**: En JavaScript, los métodos como `map`, `filter`, `reduce`, `forEach`, entre otros, son funciones de orden superior integradas en los arrays que toman funciones como argumentos.
+
+   ```javascript
+   const numbers = [1, 2, 3, 4, 5];
+
+   const squaredNumbers = numbers.map(function (number) {
+       return number * number;
+   });
+
+   console.log(squaredNumbers); // Salida: [1, 4, 9, 16, 25]
+   ```
+
+4. **Abstracción de operaciones**: Las funciones de orden superior permiten abstraer y reutilizar lógica común, lo que mejora la legibilidad y mantenibilidad del código.
+
+5. **Callbacks**: Las funciones que se pasan como argumentos a otras funciones se conocen comúnmente como callbacks. Estos callbacks se ejecutan dentro de la función de orden superior en un momento específico.
+
+En resumen, las funciones de orden superior en JavaScript ofrecen flexibilidad y poder para trabajar con funciones de manera dinámica, lo que es fundamental para técnicas de programación funcional y para escribir código más conciso y modular.
+
+- **Ver el libro en esta sección para ver tres ejemplos concretos. Pag: 215**
+
+### 8.8.3. Partial Application of Functions
+
+- **Ver ejemplo del libro en la pagina 216**
+
+La idea es tener una función que se le pueda escoger los argumentos que se le pasan a una función que entra como argumento a la función parcial y que devuelve la función que esta mas temprano definida con los argumentos correspondientes.
+
+- partialLeft
+- partialRight
+- partial
+
+### 8.8.4. Memoization
+
+Memoization, por otro lado, es una técnica de optimización utilizada en programación para acelerar el acceso a resultados de funciones costosas. Memoization almacena los resultados de una función para evitar recalcular los mismos resultados cuando la función se llama con los mismos argumentos.
+
+```javascript
+function factorial(n) {
+  if (Number.isInteger(n) && n > 0) {
+    // Ensure n is a positive integer
+    if (!(n in factorial)) {
+      // Check if the result is already cached
+      factorial[n] = n * factorial(n - 1); // Compute and cache the result
+    }
+    return factorial[n]; // Return the cached result
+  } else {
+    return NaN; // Handle invalid input
+  }
+}
+
+factorial[1] = 1; // Initialize the base case in the cache
+console.log(factorial(6)); // => 720
+console.log(factorial[5]); // => 120
+```
+
+El cache también puede venir en forma de closure
+
+```javascript
+// Return a memoized version of f.
+// It only works if arguments to f all have distinct string representations.
+function memoize(f) {
+  const cache = new Map(); // Value cache stored in the closure.
+  return function (...args) {
+    // Create a string version of the arguments to use as a cache key.
+    let key = args.length + args.join("+");
+    if (cache.has(key)) {
+      return cache.get(key);
+    } else {
+      let result = f.apply(this, args);
+      cache.set(key, result);
+      return result;
+    }
+  };
+}
 ```
