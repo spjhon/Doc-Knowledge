@@ -143,80 +143,11 @@ Reglas elementales para comenzar a escribir código:
 - Functions Properties, Methods, and Constructor
 - Functional Programming
 
-
-
 ## 09 Classes
 
 
 
-### Classes and Prototypes
 
-El ejemplo 9.1 es una forma de mostrar como funciona una clase de forma rudimentaria ya que lo que hace es utilizar el object.create () para encerrar variables y métodos (métodos que están en otro object) de forma que cuando se invoque la funcion las varialbes solo se puedan leer a travez de el object creado con Object.create().
-
-**La siguiente es una explicacion de chatGPT de por que las classes son importantes teniendo como base el ejemplo 9.1 del libro.**
-
-### Classes and Constructors
-
-- A constructor is a function designed for the initialization of newly created objects.
-- The critical feature of constructor invocations is that the prototype property of the constructor is used as the prototype of the new object.
-- Function objects that have a prototype property.
-- Constructors llevan el nombre con la primera letra en mayuscula
-- Gracias a new.target se puede saber si una invocacion es un constructor o no
-
-Esta es una muestra, el resto del ejercicio esta en la pagina 224
-
-```javascript
-function Range(from, to) {
-  // Store the start and end points (state) of this new range object.
-  // These are noninherited properties that are unique to this object.
-  this.from = from;
-  this.to = to;
-}
-```
-
-- **Constructors, Class Identity, and instanceof**
-
-If we have an object r and want to know if it is a Range object, we can write:
-
-```javascript
-r instanceof Range; // => true: r inherits from Range.prototype
-
-range.methods.isPrototypeOf(r); // range.methods is the prototype object.
-```
-
-- **The constructor Property**
-
-Any regular JavaScript function (excluding arrow functions, generator functions, and async functions) can be used as a constructor, and constructor invocations need a prototype property.
-
-### Classes with the class Keyword
-
-En el libro se muestra el ejemplo del Range en forma de class como tal con la sintaxys moderna y que utiliza la palabra constructor y por supuesto la utilizacion del "this".
-
-Tambien se explica en esta seccion el **super**.
-
-- El **super** es para referirse a la clase padre y que los argumentos que se le asignen a super son los argumentos que le van a entrar a la clase constructora padre (mayor explicacion en la seccion de subclases)
-
-Like function declarations, class declarations have both statement and expression forms. Just as we can write:
-
-```javascript
-let square = function (x) {
-  return x * x;
-};
-square(3); // => 9
-```
-
-We can also write:
-
-```javascript
-let Square = class {
-  constructor(x) {
-    this.area = x * x;
-  }
-};
-new Square(3).area; // => 9
-```
-
-- **Sacado de chatGPT**
 
 Entendiendo mejor los sueper:
 
@@ -291,80 +222,8 @@ In this example, `super.greet()` is used within the `greet` method of the `Child
 
 Understanding how to use `super` effectively is crucial for working with inheritance in ES6 classes, as it helps maintain proper initialization and method chaining between parent and child classes.
 
-#### Static Methods
 
-##### Why Use Static Methods?
 
-Static methods are useful for functions that:
-
-- Perform operations that don't require data from an instance of the class.
-- Are utility functions related to the class.
-
-For example, if you have a class that handles various string operations, you might have some methods that can operate directly on strings without needing any instance-specific data.
-
-```javascript
-class Circle {
-  constructor(radius) {
-    this.radius = radius;
-  }
-
-  // Instance method
-  getArea() {
-    return Math.PI * this.radius * this.radius;
-  }
-
-  // Static method
-  static calculateCircumference(radius) {
-    return 2 * Math.PI * radius;
-  }
-}
-
-// Create an instance of Circle
-const myCircle = new Circle(10);
-
-// Call the instance method
-console.log(myCircle.getArea()); // Outputs: 314.159...
-
-// Call the static method on the class
-console.log(Circle.calculateCircumference(10)); // Outputs: 62.831...
-```
-
-It almost never makes sense to use the this keyword in a static method.
-
-Key Points to Remember
-
-- Static methods are called on the class itself, not on instances of the class.
-- Static methods cannot access instance properties directly, because they do not operate on any specific instance of the class.
-- Static methods are useful for utility functions that are related to the class but do not depend on instance properties.
-
-Comparing Static and Instance Methods
-
-| Feature                     | Static Method                          | Instance Method                         |
-| --------------------------- | -------------------------------------- | --------------------------------------- |
-| **Called On**               | Class itself                           | Instance of the class                   |
-| **Access to Instance Data** | No                                     | Yes                                     |
-| **Common Use Case**         | Utility functions related to the class | Functions that operate on instance data |
-
-- **Explanation**
-
-a. **Static Methods**
-
-- **Definition**: Static methods are defined on the class itself and not on instances of the class.
-- **Usage**: They are called directly on the class.
-- **Access**: They do not have access to instance properties or methods.
-- **Purpose**: Useful for utility functions that do not require any data from class instances.
-
-b. **Instance Methods**
-
-- **Definition**: Instance methods are defined on the prototype of the class and are called on instances of the class.
-- **Usage**: They are called on an instance of the class.
-- **Access**: They have access to the instance's properties and methods.
-- **Purpose**: Useful for operations that need to manipulate or retrieve data from a specific instance of the class.
-
-#### Getters, Setters, and other Method Forms
-
-- Se utilizan las mismas tecnicas explicadas en la seccion de getters and setters en el capitulo de objects.
-- In general, all of the shorthand method definition syntaxes allowed in object literals are also allowed in class bodies.
 
 #### Public, Private, and Static Fields
 
