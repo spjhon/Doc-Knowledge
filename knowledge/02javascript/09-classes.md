@@ -462,7 +462,7 @@ Si deseas definir un **campo** (que es simplemente un sinónimo orientado a obje
 
 Supón que estás escribiendo una clase como esta, con un constructor que inicializa tres campos:
 
-### Sintaxis Tradicional (En el Constructor)
+Sintaxis Tradicional (En el Constructor)
 
 ```javascript
 class Buffer {
@@ -476,7 +476,7 @@ class Buffer {
 
 Con la **nueva sintaxis de campos de instancia** (que probablemente sea estandarizada), podrías escribir en su lugar:
 
-### Nueva Sintaxis de Campos de Instancia (ES Next)
+Nueva Sintaxis de Campos de Instancia (ES Next)
 
 ```javascript
 class Buffer {
@@ -485,3 +485,451 @@ class Buffer {
   buffer = new Uint8Array(this.capacity);
 }
 ```
+
+Un field privado se utiliza el #, por ejemplo:
+
+```javascript
+class Buffer {
+#size = 0;
+get size() { return this.#size; }
+}
+```
+
+Por ejemplo aquí si no queremos que se pueda modificar el size, se utiliza el #.
+
+#### 9.3.3.1. Public fields (propiedades públicas)
+
+Los *public fields* son propiedades que se definen **afuera del constructor**, directamente en la clase.
+
+```js
+class Persona {
+  nombre = "Desconocido"; // Public field
+
+  constructor(nombre) {
+    this.nombre = nombre;
+  }
+}
+
+const p = new Persona("Juan");
+console.log(p.nombre); // "Juan"
+```
+
+**Características:**
+
+- Son **propiedades del objeto** (cada instancia tiene una copia).
+- Son **públicas** → accesibles desde fuera.
+- Son equivalentes a usar `this.nombre` en el constructor, pero más limpias.
+
+#### 9.3.3.2. Private fields (propiedades privadas): `#nombre`
+
+Los *private fields* usan un **#** delante del nombre:
+
+```js
+class Contador {
+  #valor = 0; // Private field
+
+  incrementar() {
+    this.#valor++;
+  }
+
+  get valor() {
+    return this.#valor;
+  }
+}
+
+const c = new Contador();
+c.incrementar();
+console.log(c.valor); // 1
+
+c.#valor; // ❌ ERROR: no es accesible desde fuera
+```
+
+**Características:**
+
+- Son **completamente privados** (ni siquiera se pueden leer accidentalmente).
+- Solo se pueden usar **dentro de la clase** donde están definidos.
+- No son enumerables ni aparecen en `Object.keys()`.
+
+Son como "variables privadas" de OOP real.
+
+#### 9.3.3.3. Static fields y static methods
+
+Los miembros **static** pertenecen a la clase en sí, NO a las instancias.
+
+**Static method:**
+
+```js
+class Utilidades {
+  static sumar(a, b) {
+    return a + b;
+  }
+}
+
+console.log(Utilidades.sumar(2, 3)); // 5
+```
+
+✔ Solo se puede llamar así: `Utilidades.sumar()`
+✖ No funciona desde instancias: `new Utilidades().sumar()` → error
+
+**Static fields:**
+
+```js
+class Contador {
+  static total = 0;
+
+  constructor() {
+    Contador.total++;  // se incrementa sin crear instancia
+  }
+}
+
+new Contador();
+new Contador();
+
+console.log(Contador.total); // 2
+```
+
+✔ Es como una "variable global" del sistema, pero asociada a la clase
+✔ Muy útil para contadores, caches, etc.
+
+#### 9.3.3.4. 🧪 **Combinando todo en un solo ejemplo**
+
+```js
+class Banco {
+  // Static field (global entre todas las cuentas)
+  static totalCuentas = 0;
+
+  // Public field
+  banco = "MiBanco";
+
+  // Private field
+  #saldo = 0;
+
+  constructor(nombre) {
+    this.nombre = nombre;
+    Banco.totalCuentas++;
+  }
+
+  // Método público
+  depositar(cantidad) {
+    this.#saldo += cantidad;
+  }
+
+  // Getter público
+  get saldo() {
+    return this.#saldo;
+  }
+
+  // Método estático
+  static cuentasTotales() {
+    return Banco.totalCuentas;
+  }
+}
+
+const c1 = new Banco("Juan");
+c1.depositar(100);
+
+console.log(c1.saldo); // 100
+console.log(Banco.totalCuentas); // 1
+console.log(Banco.cuentasTotales()); // 1
+
+c1.#saldo; // ❌ ERROR
+```
+
+🎯 **Resumen rápido**
+
+| Tipo          | Sintaxis                | Acceso  | Nivel         | Se guarda en       |
+| ------------- | ----------------------- | ------- | ------------- | ------------------ |
+| Public field  | `nombre = valor`        | público | por instancia | el objeto          |
+| Private field | `#nombre = valor`       | privado | por instancia | el objeto (oculto) |
+| Static field  | `static nombre = valor` | público | por clase     | la función-clase   |
+| Static method | `static método() {}`    | público | por clase     | la función-clase   |
+
+### 9.3.4. Getters y Setters
+
+Son *propiedades especiales* de un objeto/clase que **parecen propiedades**, pero en realidad son **funciones que se ejecutan automáticamente** cuando lees o escribes esa propiedad.
+
+📌 **Getter** → se ejecuta cuando *lees* una propiedad
+📌 **Setter** → se ejecuta cuando *asignas* una propiedad
+
+#### 9.3.4.1. **1. Getters y setters básicos en una clase**
+
+```js
+class Persona {
+  constructor(nombre) {
+    this._nombre = nombre; // propiedad "interna"
+  }
+
+  get nombre() {
+    return this._nombre;
+  }
+
+  set nombre(nuevo) {
+    this._nombre = nuevo.trim();
+  }
+}
+
+const p = new Persona(" Juan ");
+console.log(p.nombre);   // Getter → "Juan"
+p.nombre = "  Carlos ";  // Setter → limpia espacios
+console.log(p.nombre);   // "Carlos"
+```
+
+Observa algo importante:
+
+❗ NO llamas al getter como función
+
+No haces: `p.nombre()`
+Haces: `p.nombre` (parece propiedad pero ejecuta función)
+
+#### 9.3.4.2. **2. Getters y setters con campos privados (`#`)**
+
+Mucho más seguro:
+
+```js
+class Cuenta {
+  #saldo = 0;
+
+  get saldo() {
+    return this.#saldo;
+  }
+
+  set saldo(cantidad) {
+    if (cantidad < 0) throw new Error("Saldo inválido");
+    this.#saldo = cantidad;
+  }
+}
+
+const c = new Cuenta();
+c.saldo = 100;
+console.log(c.saldo); // 100
+
+c.#saldo; // ❌ ERROR: propiedad privada
+```
+
+Esto es muy común:
+
+- campo privado
+- getter/setter públicos para controlar el acceso
+
+#### 9.3.4.3. **3. Getters sin setter (propiedad de solo lectura)**
+
+```js
+class Rectangulo {
+  constructor(base, altura) {
+    this.base = base;
+    this.altura = altura;
+  }
+
+  get area() {
+    return this.base * this.altura; // cálculo dinámico
+  }
+}
+
+const r = new Rectangulo(3, 5);
+console.log(r.area); // 15
+r.area = 20;         // ❌ no tiene setter → no hace nada o error en strict mode
+```
+
+Este patrón es común para propiedades computadas.
+
+#### 9.3.4.4. **4. Setter sin getter (propiedad de solo escritura)**
+
+No es muy común, pero existe:
+
+```js
+class Logger {
+  set mensaje(texto) {
+    console.log("LOG:", texto);
+  }
+}
+
+const log = new Logger();
+log.mensaje = "Hola"; // imprime LOG: Hola
+```
+
+#### 9.3.4.5. **5. Getters y setters estáticos (`static`)**
+
+Sí, también existen en la clase, NO en las instancias:
+
+```js
+class Config {
+  static #modo = "producción";
+
+  static get modo() {
+    return this.#modo;
+  }
+
+  static set modo(nuevo) {
+    this.#modo = nuevo;
+  }
+}
+
+console.log(Config.modo); // "producción"
+Config.modo = "desarrollo";
+console.log(Config.modo); // "desarrollo"
+```
+
+## 9.4. Adding Methods to Existing Classes
+
+Se utiliza una forma de explotación del prototype que es dinámico (osea que se pueden cambiar los métodos y las propiedades a las clases que lo permitan) de forma que se le puede añadir funcionalidades extra a código viejo de javascript.
+
+## 9.5. Subclasses
+
+Una clase puede tener subclases que hereden métodos de la clase principal y también se pueden sobre escribir métodos en la subclase que se encuentran en la clase principal.
+
+### 9.5.1. Subclasses and Prototypes
+
+🏛️ **1. La idea general**
+
+Para crear herencia con funciones constructoras necesitas 3 pasos:
+
+1. **Crear la función constructora padre**
+2. **Crear la función constructora hija**
+3. **Enlazar los prototipos**
+4. **Arreglar el `constructor` del hijo**
+
+Vamos paso a paso.
+
+🔶 **2. Clase base usando constructor y prototype**
+
+```js
+function Animal(nombre) {
+  this.nombre = nombre;
+}
+
+Animal.prototype.hablar = function () {
+  console.log(this.nombre + " hace un sonido.");
+};
+```
+
+✔ `Animal` es la clase base
+✔ Las instancias tienen propiedad `nombre`
+✔ El método `hablar` está en el prototype
+
+🔷 **3. Crear la subclase con herencia**
+
+Queremos una subclase llamada `Perro` que herede de `Animal`.
+
+Primero, la constructor function de la subclase:
+
+```js
+function Perro(nombre, raza) {
+  Animal.call(this, nombre); // Llamamos al constructor padre
+  this.raza = raza;
+}
+```
+
+⚠ Aquí aparece la primera parte importante:
+
+✔ `Animal.call(this, nombre)`
+
+permite que el constructor `Animal` inicialice *este* objeto hijo.
+
+🧰 **4. Herencia del prototype (parte crítica)**
+
+Ahora hacemos que `Perro.prototype` herede del prototype de Animal:
+
+```js
+Perro.prototype = Object.create(Animal.prototype);
+```
+
+Esto crea una *cadena de prototipos* así:
+
+```js
+perro → Perro.prototype → Animal.prototype → Object.prototype
+```
+
+Luego, arreglamos el constructor:
+
+```js
+Perro.prototype.constructor = Perro;
+```
+
+Si no haces esto, el constructor quedaría apuntando a `Animal`.
+
+🐶 **5. Agregar métodos propios de la subclase**
+
+```js
+Perro.prototype.ladrar = function () {
+  console.log(this.nombre + " dice: ¡guau!");
+};
+```
+
+🧪 **6. Probar la subclase**
+
+```js
+const firulais = new Perro("Firulais", "Labrador");
+
+firulais.hablar(); // Firulais hace un sonido.  ← herencia del padre
+firulais.ladrar(); // Firulais dice: ¡guau!    ← método propio
+```
+
+Todo funciona como con clases modernas.
+
+🧱 **Código completo**
+
+```js
+function Animal(nombre) {
+  this.nombre = nombre;
+}
+
+Animal.prototype.hablar = function () {
+  console.log(this.nombre + " hace un sonido.");
+};
+
+function Perro(nombre, raza) {
+  Animal.call(this, nombre); // heredar propiedades
+  this.raza = raza;
+}
+
+Perro.prototype = Object.create(Animal.prototype); // heredar métodos
+Perro.prototype.constructor = Perro; // arreglar constructor
+
+Perro.prototype.ladrar = function () {
+  console.log(this.nombre + " dice: ¡guau!");
+};
+
+const f = new Perro("Firulais", "Labrador");
+f.hablar(); // hereda
+f.ladrar(); // propio
+```
+
+🧠 **Explicación profunda (pero clara)**
+
+✔ `Animal.call(this, ...)`
+
+Esto permite que el constructor padre inicialice las propiedades en la instancia del hijo.
+
+✔ `Perro.prototype = Object.create(Animal.prototype)`
+
+Esto hace la magia:
+`Perro` hereda **todos los métodos** de `Animal`.
+
+✔ `Perro.prototype.constructor = Perro`
+
+Reemplaza el valor por defecto, necesario por convención.
+
+📌 Comparación con `class` moderno
+
+```js
+class Animal {
+  constructor(nombre) { this.nombre = nombre; }
+  hablar() { ... }
+}
+
+class Perro extends Animal {
+  constructor(nombre, raza) {
+    super(nombre);
+    this.raza = raza;
+  }
+  ladrar() { ... }
+}
+```
+
+Debajo del capó, esto usa **exáctamente lo que te acabo de mostrar**:
+
+- `super()` = `Animal.call(this)`
+- `extends` = `Object.create(Animal.prototype)`
+- métodos = se añaden al prototype
+
+Las clases nuevas son solo *azúcar sintáctica* sobre el sistema antiguo.
