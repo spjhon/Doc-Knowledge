@@ -933,3 +933,117 @@ Debajo del capó, esto usa **exáctamente lo que te acabo de mostrar**:
 - métodos = se añaden al prototype
 
 Las clases nuevas son solo *azúcar sintáctica* sobre el sistema antiguo.
+
+### 9.5.2. Subclasses with extends and super
+
+**Siempre favorecer composición en lugar de herencia:**
+
+Reglas con super:
+
+Hay algunas reglas importantes que necesitarás saber sobre el uso de **`super()`** en los constructores:
+
+- Si defines una clase con la palabra clave **`extends`**, el constructor de tu clase debe usar **`super()`** para invocar el constructor de la superclase.
+- Si no defines un constructor en tu subclase, se definirá uno automáticamente. Este constructor definido implícitamente simplemente toma cualquier valor que se le pase y se los pasa a **`super()`**.
+- No puedes usar la palabra clave **`this`** en tu constructor hasta después de haber invocado el constructor de la superclase con **`super()`**. Esto aplica la regla de que las superclases deben inicializarse antes de que lo hagan las subclases.
+- La expresión especial **`new.target`** es `undefined` en las funciones que se invocan sin la palabra clave `new`. Sin embargo, en las funciones constructoras, **`new.target`** es una referencia al constructor que fue invocado. Cuando se invoca un constructor de subclase y este utiliza **`super()`** para invocar el constructor de la superclase, ese constructor de la superclase verá el constructor de la **subclase** como el valor de **`new.target`**. Una superclase bien diseñada no debería necesitar saber si ha sido subdividida, pero podría ser útil poder usar `new.target.name` en mensajes de registro (*logging*), por ejemplo.
+
+Hay dos formas de utilizar super:
+
+1. **`super()`** en el constructor: Para inicializar las propiedades de la clase padre.
+2. **`super.método()`** en un método: Para extender o reutilizar la lógica de un método de la clase padre.
+
+🐶 Ejemplo Completo de Uso de `super`
+
+Este ejemplo define una clase base (`Animal`) y una subclase (`Perro`) que la extiende:
+
+Código JavaScript
+
+```javascript
+// CLASE BASE (Superclase)
+class Animal {
+  constructor(nombre, patas) {
+    this.nombre = nombre; // Inicializado en el constructor de la superclase
+    this.patas = patas;
+  }
+
+  emitirSonido() {
+    return `${this.nombre} hace un sonido genérico.`;
+  }
+}
+
+// SUBCLASE (Clase Derivada)
+class Perro extends Animal {
+  // El constructor de subclase DEBE llamar a super()
+  constructor(nombre, raza) {
+    // 1. LLAMADA A super(): Invoca el constructor de Animal (clase padre)
+    // Inicializa this.nombre y this.patas (fijo en 4)
+    super(nombre, 4); 
+    
+    // Solo después de llamar a super(), puedes usar this.
+    this.raza = raza;
+  }
+
+  // Sobreescribe el método pero extiende la lógica
+  emitirSonido() {
+    // 2. LLAMADA A super.metodo(): Llama al método emitirSonido() de Animal
+    const sonidoBase = super.emitirSonido();
+    
+    // Añade la lógica específica del Perro
+    return `${sonidoBase} De hecho, dice ¡Guau!`;
+  }
+
+  presentarse() {
+    return `Soy ${this.nombre}, un ${this.raza} con ${this.patas} patas.`;
+  }
+}
+
+// CREACIÓN Y USO
+const firulais = new Perro('Firuláis', 'Labrador');
+
+console.log(firulais.presentarse());
+console.log(firulais.emitirSonido());
+```
+
+Explicación del Funcionamiento
+
+1. **`super(nombre, 4)` (En el Constructor):**
+
+      - Cuando se llama a `new Perro('Firuláis', 'Labrador')`, lo primero que debe hacer el constructor de `Perro` es llamar a `super()`.
+      - Al hacerlo, le pasa los argumentos `nombre` y `4` al constructor de la clase **`Animal`**.
+      - El constructor de `Animal` crea las propiedades `this.nombre` y `this.patas` en el nuevo objeto `firulais`. **Sin esta llamada, `this` no existiría en el constructor de `Perro`**.
+
+2. **`super.emitirSonido()` (En el Método):**
+
+      - El método `emitirSonido` en la clase `Perro` **sobreescribe** el método de la clase `Animal`.
+      - Al usar `super.emitirSonido()`, `Perro` ejecuta la implementación original (`"Firuláis hace un sonido genérico."`) y luego le añade la información específica (`" De hecho, dice ¡Guau!"`).
+      - Esto permite **extender** o **modificar** la funcionalidad sin reescribir la lógica de la superclase.
+
+### 9.5.3. Delegation Instead of Inheritance
+
+En la delegaciÓn lo que se hace es utilizar los métodos de la clase propia para delegar a los métodos de la clase a donde se delega lo que se necesita hacer.
+
+El ejemplo 9.7 se puede resumir de la siguiente forma:
+
+entonces en:
+
+```javascript
+constructor() {
+    this.map = new Map();
+}
+```
+
+lo que se hace es pasar una referencia del build-in Map(), de forma que se deleguen a ese método que es de otra clase por medio de los métodos en la clase que delega?
+
+Exactly! In the line:
+
+```javascript
+this.map = new Map();
+```
+
+What happens is that you create a new instance of the built-in `Map` class and assign it to the `map` property of the `Histogram` instance. By doing this, you establish a reference to the `Map` object, allowing the `Histogram` class to delegate operations to methods of this `Map` object.
+
+When methods of the `Histogram` class call methods like `set`, `get`, `delete`, etc., they're actually invoking methods of the `Map` object stored in the `map` property. This is what allows for delegation. Instead of implementing the logic for managing data directly in the `Histogram` class, it leverages the functionality of the `Map` class through delegation. This approach promotes code reusability, maintainability, and readability.
+
+### 9.5.4. Class Hierarchies and Abstract Classes
+
+El Ejemplo 9-6 demostró cómo podemos crear una **subclase** de `Map`. El Ejemplo 9-7 demostró cómo podemos, en su lugar, **delegar** en un objeto `Map` sin crear realmente una subclase. Usar clases de JavaScript para **encapsular** datos y **modularizar** tu código es a menudo una gran técnica, y podrías encontrarte usando la palabra clave **`class`** frecuentemente. Pero quizás prefieras la **composición** a la **herencia** y que rara vez necesites usar **`extends`** (excepto cuando uses una librería o *framework* que requiera que extiendas sus clases base).

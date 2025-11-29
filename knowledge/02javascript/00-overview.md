@@ -145,76 +145,13 @@ Reglas elementales para comenzar a escribir código:
 
 ## 09 Classes
 
-
-
-### Subclasses
-
-“favor composition over inheritance.”
-
-In object-oriented programming, a class B can extend or subclass another class A.
-
-- Next is a subsection about avoiding subclasses and relying on object composition instead of
-  inheritance.
-
-#### Subclasses and Prototypes
-
-Se explica como al ejercicio principal 9-2 de Range que es una clase, se le puede crear una subclase que inherit desde la clase principal y se le puedan agregar metodos y funcionalidades extra, por supuesto se utiliza el Object.create() para crear esta descendencia, por supuesto esto es un antiguo metodo.
-
-#### Subclasses with extends and super
-
-Se tiene un ejemplo llamado TypeMap que agrega una forma de verificar el type de una entrada llamada entries y que sea una extencion de la clase Map() que es build in the javascript.
-
-- Hay una lista especifica de las reglas de **super** en las clases.
-
-#### Delegation Instead of Inheritance (compose other classes)
-
-- **“favor composition over inheritance.”**
-
-En la delegacion lo que se hace es utilizar los metodos de la clase propia para delegar a los metodos de la clase a donde se delega lo que se necesita hacer.
-
-El ejemplo 9.7 se puede resumir de la siguiente forma:
-
-entonces en:
-
-```javascript
-constructor() {
-    this.map = new Map();
-}
-```
-
-lo que se hace es pasar una referencia del build-in Map(), de forma que se deleguen a ese metodo que es de otra clase por medio de los metodos en la clase que delega?
-
-Exactly! In the line:
-
-```javascript
-this.map = new Map();
-```
-
-What happens is that you create a new instance of the built-in `Map` class and assign it to the `map` property of the `Histogram` instance. By doing this, you establish a reference to the `Map` object, allowing the `Histogram` class to delegate operations to methods of this `Map` object.
-
-When methods of the `Histogram` class call methods like `set`, `get`, `delete`, etc., they're actually invoking methods of the `Map` object stored in the `map` property. This is what allows for delegation. Instead of implementing the logic for managing data directly in the `Histogram` class, it leverages the functionality of the `Map` class through delegation. This approach promotes code reusability, maintainability, and readability.
-
-#### Class Hierarchies and Abstract Classes
-
-En la seccion anterior se describe como por medio de una subclase que delega a otra clase, aqui se describe como hacerlo sin declarar una subclase en absoluto.
-
-Se habla del concepto de **abstract classes** y **abstract superclasses**.
-
-Y finalmente se encuentra el ejercicio final sobre clases que se puede observar de forma mas detallada **AQUI**.
-
-Importante entender:
-
-- Implementar un método significa proporcionar una definición concreta para ese método en una clase concreta. En JavaScript, esto generalmente significa definir qué hace ese método y qué valor devuelve (si es un método que devuelve un valor). Entonces un metodo delcarado pero NO implementado es un abstracto.
-
-- Entonces una clase abstracta lo que hace es delcarar metodos que aunque no sirven en la clase padre, obligan a las clases hijas tener ese metodo y que estas definan sus propios metodos como quieran pero que los tengan como estan en la clase padre.
-
-- Una clase abstracta en la programación orientada a objetos establece un conjunto de métodos (y a veces propiedades) que las clases hijas deben implementar. Estos métodos definidos en la clase abstracta pueden tener implementaciones predeterminadas (como en el caso de JavaScript donde a menudo arrojan errores), o simplemente pueden ser declaraciones de método sin cuerpo.
-
-- Cuando una clase hereda de una clase abstracta, se espera que la subclase implemente todos los métodos abstractos definidos en la clase abstracta. Esto se hace para garantizar que todas las subclases proporcionen una implementación para estos métodos, lo que ayuda a evitar errores y proporciona una estructura coherente para el código.
+- Classes and Prototypes
+- Classes and Constructors
+- Clases with the class keyword
+- Adding methods to existing classes
+- Subclasses
 
 ## 10 Modules
-
-Anteriormente el modulaje se hacia por medio de classes, objects and closures ya que import an export son relativamente recientes, por eso el require() se utiliza y quedo adaptado a node.
 
 ### Modules with Classes, Objects, and Closures
 

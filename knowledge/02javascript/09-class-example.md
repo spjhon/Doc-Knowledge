@@ -2,7 +2,7 @@
 sidebar_position: 12
 ---
 
-# Classes in javascript
+# Ejemplo de clases
 
 ## Ejercicio de la pagina 247
 
