@@ -3,29 +3,33 @@
 - Gracias a javascript se le puede agregar datos dinamicos como en el siguiente ejemplo, esto es util cuando se extrae info desde un objeto:
 
 ```jsx
-return (
-  <h1>
-    {user.name}
-  </h1>
-);
+return <h1>{user.name}</h1>;
 ```
 
-***
+---
+
+## Componente con typescript basico
+
+```jsx
+interface TicketsProps {
+  props: string;
+}
+const TicketsPage = (props: TicketsProps) => {
+  return <div> Pagina principal de tickets. </div>;
+};
+
+export default TicketsPage
+```
 
 ## Como pasar atributos
 
 - Este es un ejemplo de como pasar atributos a un JSX tag
 
 ```jsx
-return (
-  <img
-    className="avatar"
-    src={user.imageUrl}
-  />
-);
+return <img className="avatar" src={user.imageUrl} />;
 ```
 
-***
+---
 
 ## Como pasar children
 
@@ -47,7 +51,7 @@ export const Highlight = ({children, color}) => (
 <Highlight color="#25c2a0">Docusaurus green</Highlight> and <Highlight color="#1877F2">Facebook blue</Highlight> are my favorite colors.
 ```
 
-***
+---
 
 ## Ejemplo basico de state con botones
 
@@ -58,24 +62,19 @@ Este primer ejemplo es un solo componente (funcion que retorna jsx) que retorna 
 Este componente va solito:
 
 ```jsx
-import { useState } from 'react';
+import { useState } from "react";
 
 export const MyButton = () => {
-  
   const [count, setCount] = useState(2);
 
-function handleClick() {
+  function handleClick() {
     setCount(count + 1);
   }
 
-  return (
-    <button onClick={handleClick} >
-      esto es un boton {count}
-    </button>
-  );
-}
+  return <button onClick={handleClick}>esto es un boton {count}</button>;
+};
 
-<MyButton />
+<MyButton />;
 ```
 
 Para manejar MDX que es react components en markdown, consultar [MDX Official](https://mdxjs.com/)
@@ -84,11 +83,13 @@ import MyButton from '@site/src/components/react-components/simpleButton.jsx';
 
 ### Este Boton tiene su propio state
 
+```jsx
 <StrictMode>
 <MyButton />
 </StrictMode>
+```
 
-***
+---
 
 ## Ejemplo de botones actualizandosen separadamente (Cada uno con su propio state)
 
@@ -96,44 +97,40 @@ Ahora este ejemplo es un componente (App) que llama el componente de arriba y ut
 
 ```jsx
 export const MyApp = () => {
-
   //Esta funcion es otro componente dentro del componente app
   function MyButton2() {
-  const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
 
-  function handleClick() {
-    setCount(count + 1);
+    function handleClick() {
+      setCount(count + 1);
+    }
+
+    return <button onClick={handleClick}>Clicked {count} times</button>;
   }
-
-  return (
-    <button onClick={handleClick}>
-      Clicked {count} times
-    </button>
-  );
-}
-//Como se observa se utiliza el boton de mas arriba y el nuevo boton en el return.
+  //Como se observa se utiliza el boton de mas arriba y el nuevo boton en el return.
   return (
     <div>
       <h6>Counters that update separately</h6>
       <MyButton />
       <MyButton2 />
-
     </div>
   );
-}
+};
 
-<MyApp />
+<MyApp />;
 ```
 
 import MyButton2 from '@site/src/components/react-components/simpleButton2.jsx';
 
 ### Este Boton tiene states independientes
 
+```jsx
 <StrictMode>
 <MyButton2 />
 </StrictMode>
+```
 
-***
+---
 
 ## Botones actualizandosen al mismo tiempo (Lifting the state up)
 
@@ -145,12 +142,8 @@ Se lleva el state a la app de donde se renderiza y se pasan los props a los comp
 
 ```jsx
 export const MyButton3 = ({ count, onClick }) => {
-  return (
-    <button onClick={onClick}>
-      Clicked {count} times
-    </button>
-  );
-}
+  return <button onClick={onClick}>Clicked {count} times</button>;
+};
 
 export const MyApp2 = () => {
   const [count, setCount] = useState(0);
@@ -166,34 +159,35 @@ export const MyApp2 = () => {
       <MyButton3 count={count} onClick={handleClick} />
     </div>
   );
-}
+};
 
-<MyApp2 />
-
+<MyApp2 />;
 ```
 
 import MyApp2 from '@site/src/components/react-components/liftingState.jsx';
 
 ### Este Boton tiene states sincronizados
 
+```jsx
 <StrictMode>
 <MyApp2 />
 </StrictMode>
+```
 
-***
+---
 
 ## Componente importado externamente
 
 El siguiente es un ejemplo de como importar un componente y utilizarlo en el mdx
 
 ```jsx
-import Game from '@site/src/components/tick-toc.js';
+import Game from "@site/src/components/tick-toc.js";
 
 import { StrictMode } from "react";
 
 <StrictMode>
-<Game />
-</StrictMode>
+  <Game />
+</StrictMode>;
 ```
 
 El codigo se encuentra en tick-toc.js y es importado gracias a un feature de mdx (el @site)
@@ -201,18 +195,22 @@ El codigo se encuentra en tick-toc.js y es importado gracias a un feature de mdx
 
 import Game from '@site/src/components/tick-toc.jsx';
 
+```jsx
 <StrictMode>
 <Game />
 </StrictMode>
+```
 
-***
+---
 
 Este codigo de abajo es el principio del tutorial de react el cual muestra un ejemplo basico de como asignar props y children ademas de una muestra de validacion de props que recomendo el eslint de react.
 
 import Board from '@site/src/components/tick-toc-build.jsx';
 
+```jsx
 <StrictMode>
 <Board />
 </StrictMode>
+```
 
-***
+---
