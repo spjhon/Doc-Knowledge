@@ -1179,3 +1179,132 @@ Ojo con los DATES, al traerlos de vuelta a javascript desde un json, hay errores
         return value;
         });
         ```
+
+## 11.7. The Internationalization API
+
+La **API de Internacionalización** de JavaScript (**`Intl`**) consiste en tres clases principales: **`Intl.NumberFormat`**, **`Intl.DateTimeFormat`** y **`Intl.Collator`**. Estas clases nos permiten dar formato a números (incluyendo cantidades monetarias y porcentajes), fechas y horas de manera apropiada para la **configuración regional** (*locale*) y comparar cadenas de forma sensible a dicha configuración.
+
+- Una de las partes más importantes de la **internacionalización** es mostrar texto que ha sido traducido al idioma del usuario.
+
+### 11.7.1. Formatting Numbers
+
+Aqui se maneja el problema por ejemplo de como se utilizan los signos decimales en diferentes paises, utilizar **Intl.NumberFormat**
+
+- Un par de ejemplos:
+
+        ```javascript
+        let euros = Intl.NumberFormat("es", { style: "currency", currency: "EUR" });
+        euros.format(10); // => "10,00 €": ten euros, Spanish formatting
+        let pounds = Intl.NumberFormat("en", { style: "currency", currency: "GBP" });
+        pounds.format(1000); // => "£1,000.00": One thousand pounds, English formatting
+        ```
+
+- Una forma de aplicar formato a un array
+
+        ```javascript
+        let data = [0.05, 0.75, 1];
+        let formatData = Intl.NumberFormat(undefined, {
+        style: "percent",
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+        }).format;
+        data.map(formatData); // => ["5.0%", "75.0%", "100.0%"]: in en-US locale
+
+        let arabic = Intl.NumberFormat("ar", { useGrouping: false }).format;
+        arabic(1234567890); // => "١٢٣٤٥٦٧٨٩٠"
+        ```
+
+### 11.7.2. Formatting Dates and Times
+
+El **Intl.DateTimeFormat** es usado para este proposito (el de convertir el Date object a string)
+
+Ejemplos de uso
+
+        ```javascript
+        let d = new Date("2020-01-02T13:14:15Z"); // January 2nd, 2020, 13:14:15 UTC
+        // With no options, we get a basic numeric date format
+        Intl.DateTimeFormat("en-US").format(d); // => "1/2/2020"
+
+        Intl.DateTimeFormat("fr-FR").format(d); // => "02/01/2020"
+        // Spelled out weekday and month
+        let opts = { weekday: "long", month: "long", year: "numeric", day: "numeric" };
+        Intl.DateTimeFormat("en-US", opts).format(d); // => "Thursday, January 2, 2020"
+        Intl.DateTimeFormat("es-ES", opts).format(d); // => "jueves, 2 de enero de 2020"
+        // The time in New York, for a French-speaking Canadian
+        opts = { hour: "numeric", minute: "2-digit", timeZone: "America/New_York" };
+        Intl.DateTimeFormat("fr-CA", opts).format(d); // => "8 h 14"
+        ```
+
+### 11.7.3. Comparing Strings
+
+Hay que tener cuidado al hacer un re-ordenamiento (sort()) alfabético ya que en ingles hay un orden de letras que va perfecto con la nomenclatura ASCII pero en otros idiomas no, para eso se tiene un compare() que se adiciona al sort() y asi poder hacer un re-ordenamiento acorde.
+
+## 11.8. The Console API
+
+[**AQUI**](https://www.w3schools.com/jsref/api_console.asp) mas informacion acerca de la API console
+
+### 11.8.1. Formatted Output with Console
+
+Poco conocido pero se le puede dar formato a la consola, basico, pero se puede.
+
+## 11.9. URL APIs
+
+The URL class parses URLs and also allows modification (adding search parameters or altering paths, for example) of existing URLs.
+
+Como utilizarla:
+
+        ```javascript
+        //Create a URL object with the URL() constructor
+        let url = new URL("https://example.com:8000/path/name?q=term#fragment");
+        url.href; // => "https://example.com:8000/path/name?q=term#fragment"
+        url.origin; // => "https://example.com:8000"
+        url.protocol; // => "https:"
+        url.host; // => "example.com:8000"
+        url.hostname; // => "example.com"
+        url.port; // => "8000"
+        url.pathname; // => "/path/name"
+        url.search; // => "?q=term"
+        url.hash; // => "#fragment"
+        ```
+
+### 11.9.1. Legacy URL Functions
+
+Antes de la definición de la API **`URL`** descrita anteriormente, hubo múltiples intentos de admitir el escape y desescape de URL en el núcleo del lenguaje JavaScript. El primer intento fueron las funciones definidas globalmente **`escape()`** y **`unescape()`**, que ahora están **obsoletas** (*deprecated*) pero todavía están ampliamente implementadas. **No deben utilizarse**.
+
+## 11.10. Timers
+
+Since the earliest days of JavaScript, web browsers have defined two functions, setTimeout() and setInterval().
+
+El primer argumento de **`setTimeout()`** es una función, y el segundo argumento es un número que especifica cuántos **milisegundos** deben transcurrir antes de que se invoque la función.
+
+Después de la cantidad de tiempo especificada (y quizás un poco más si el sistema está ocupado), la función se invocará sin argumentos. Aquí, por ejemplo, hay tres llamadas a `setTimeout()` que imprimen mensajes en la consola después de uno, dos y tres segundos:
+
+        ```javascript
+        setTimeout(() => { console.log("Ready..."); }, 1000);
+        setTimeout(() => { console.log("set..."); }, 2000);
+        setTimeout(() => { console.log("go!"); }, 3000);
+        ```
+Tanto **`setTimeout()`** como **`setInterval()`** devuelven un valor. Si guardas este valor en una variable, puedes usarlo más tarde para **cancelar la ejecución** de la función pasándolo a **`clearTimeout()`** o **`clearInterval()`**.
+
+El valor devuelto es típicamente un número en los navegadores web y un objeto en Node. El tipo real no importa, y debes tratarlo como un **valor opaco** (solo utilizable para la cancelación).
+
+Lo único que puedes hacer con este valor es pasarlo a **`clearTimeout()`** para cancelar la ejecución de una función registrada con `setTimeout()` (asumiendo que aún no se haya invocado) o para detener la ejecución repetida de una función registrada con **`setInterval()`**.
+
+⏰ Ejemplo de Cancelación (Reloj Digital)
+
+Aquí hay un ejemplo que demuestra el uso de `setTimeout()`, `setInterval()` y `clearInterval()` para mostrar un reloj digital simple con la API de la Consola:
+
+    ```javascript
+    // Una vez por segundo: limpia la consola e imprime la hora actual
+    let clock = setInterval(() => {
+        console.clear();
+        console.log(new Date().toLocaleTimeString());
+    }, 1000);
+
+    // Después de 10 segundos: detiene el código repetitivo anterior.
+    setTimeout(() => { 
+        clearInterval(clock); 
+    }, 10000);
+    ```
+
+La principal diferencia entre estas dos funciones es que **`setTimeout()`** ejecuta una función una sola vez, mientras que **`setInterval()`** la ejecuta repetidamente.
