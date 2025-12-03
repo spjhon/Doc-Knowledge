@@ -1,6 +1,5 @@
-let uniqueInteger = function() { // Define and invoke
-let counter = 0; // Private state of function below
-return function() { return counter++; };
-};
-console.log(uniqueInteger()()) // => 0
-console.log(uniqueInteger()()) // => 1
+let iterable = [99];
+let iterator = iterable[Symbol.iterator]();
+for(let result = iterator.next(); !result.done; result = iterator.next()) {
+console.log(result.value) // result.value == 99
+}
