@@ -31,6 +31,23 @@ Tipos de iterables en JavaScript
 - **NodeLists**
 - **Typed Arrays (Uint8Array, Int32Array, etc.)**
 - **Generators**
+- `new URLSearchParams()`
+- `new FormData()`
+
+❌ **COSAS QUE NO SON ITERABLES EN JAVASCRIPT**
+
+- Object literal
+- Instancias de clases comunes
+- Funciones
+- Números
+- Booleanos
+- Null
+- Undefined
+- Objetos creados con Object.create(null)
+- WeakMap
+- WeakSet
+- RegExp
+- Date
 
 Ejemplos
 
@@ -336,6 +353,243 @@ Si nuestro hipotético iterador de "palabras-en-un-archivo" nunca llega hasta el
 
 Por esta razón, los objetos iteradores pueden implementar un método **`return()`** que acompaña al método **`next()`**. Este método se utiliza para realizar la **limpieza de recursos** cuando la iteración se detiene antes de alcanzar el final natural.
 
+### 12.2.2. Para que sirven los Generators?
+
+Es **muy común** preguntarse esto cuando uno aprende generators, iterators y Symbol.iterator:
+
+> “Esto suena interesante, pero… ¿cuándo *realmente* se usa en la práctica?”
+
+La respuesta es que **sí se usan**, pero NO tanto para recorrer datos de APIs JSON (como tú dices).
+Se usan para **otras cosas**, más avanzadas y poderosas.
+
+Vamos a ver los **usos reales**, modernos, y relevantes para React/Next.js.
+
+🧠 **PRIMERO: aclaración importante**
+
+En código moderno (React, Next.js), **no necesitas clases para usar generadores**.
+Los generadores son solo *funciones especiales*.
+
+```js
+function* gen() { ... }
+```
+
+Los puedes usar en cualquier proyecto, sin clases ni OOP.
+
+🚀 **LOS 6 USOS REALES DE LAS FUNCIONES GENERADORAS**
+
+1️⃣**Lazy evaluation (generar datos bajo demanda)**
+
+Esto es común en procesamiento de:
+
+- grandes listas
+- archivos grandes
+- streams
+- datos que llegan poco a poco
+
+Ejemplo: generar 1 millón de números sin usar 1 millón de posiciones en RAM:
+
+```js
+function* range(start, end) {
+  for (let i = start; i <= end; i++) {
+    yield i;
+  }
+}
+
+for (let n of range(1, 1_000_000)) {
+  // No explota la RAM
+}
+```
+
+JSON no sirve para esto, porque debes cargar todo el json completo en memoria.
+
+2️⃣**Algoritmos que requieren “pausas”**
+
+Generators permiten **pausar** una función y luego continuar.
+
+Ejemplos reales:
+
+- Máquinas de estados
+- Parsers
+- Motores de juegos
+- Lógica por pasos
+- Animaciones / simulaciones
+
+Ejemplo simplificado:
+
+```js
+function* processSteps() {
+  console.log("Paso 1");
+  yield;
+  console.log("Paso 2");
+  yield;
+  console.log("Paso 3");
+}
+```
+
+Esto NO puede hacerse con funciones normales.
+
+3️⃣**Consumir streams “por piezas” (muy útil en Next.js RSC)**
+
+Next.js con React Server Components usa **streaming** (HTML y payloads)
+
+Para parsear streams y manejar contenido chunk-by-chunk, los generadores son perfectos.
+
+Ejemplo:
+
+```js
+async function* fetchLines(url) {
+  const res = await fetch(url);
+  const reader = res.body.getReader();
+  let decoder = new TextDecoder();
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) return;
+    yield decoder.decode(value);
+  }
+}
+```
+
+Esto es clave en:
+
+- SSR streaming
+- edge functions
+- colas de mensajes
+- streaming de audio/video
+
+4️⃣* Pipe/Composición de datos (similar a Unix)**
+
+```js
+function* filter(iter, fn) {
+  for (let x of iter) if (fn(x)) yield x;
+}
+
+function* map(iter, fn) {
+  for (let x of iter) yield fn(x);
+}
+
+const result = [...map(
+  filter([1,2,3,4,5], x => x > 2),
+  x => x * 10
+)];
+
+console.log(result); // [30, 40, 50]
+```
+
+Esto es una **tubería (pipeline) sin crear arrays intermedios**.
+
+5️⃣ **Implementar iteradores personalizados sin boilerplate**
+
+Una función generadora hace que un objeto pueda ser iterable **en 1 línea**:
+
+```js
+const obj = {
+  *[Symbol.iterator]() {
+    yield 1;
+    yield 2;
+    yield 3;
+  }
+};
+
+[...obj]; // [1,2,3]
+```
+
+Sin generadores, tendrías que crear un objeto con una función next() a mano.
+Los generadores evitan ese trabajo.
+
+6️⃣ **Async generators → streams asincrónicos**
+
+En Next, Node, APIs modernas (Web Streams) se usan MUCHÍSIMO.
+
+```js
+async function* readChunks(stream) {
+  const reader = stream.getReader();
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) return;
+    yield value;
+  }
+}
+```
+
+Esto es lo que usan:
+
+- ChatGPT APIs (OpenAI)
+- APIs de streaming
+- fetch() en streaming
+- colas como Kafka / RabbitMQ
+- archivos grandes
+- video/audio streaming
+
+Esto SÍ es muy práctico hoy en día.
+
+🧩 **Entonces… si recibo JSON, no necesito generators, cierto?**
+
+Correcto.
+
+Cuando llamas una API REST y te llega un JSON, eso es:
+
+- un objeto completo
+- en memoria
+- no necesita lazy evaluation
+
+Allí no necesitas generators.
+
+🧩 **Entonces, ¿para qué aprender todo este rollo?**
+
+Porque los generadores NO son para datos simples JSON.
+Son para:
+
+- flujos (streams)
+- datasets masivos
+- lógica pausada
+- parsers
+- animaciones
+- pipelines de datos
+- herramientas de backend
+- algoritmos avanzados
+- procesamiento chunk-by-chunk
+
+Y sobre todo:
+
+🔥 **Son parte fundamental del protocolo de iteración del lenguaje.**
+
+Incluso si tú no escribes generators muy seguido, **entenderlos te hace entender cómo funcionan:**
+
+- `for…of`
+- los arrays
+- las strings
+- los Maps/Sets
+- los iteradores
+- el spread `...`
+- los async iterators (`for await`)
+- streams
+
+🎯 **Resumen final (claro y práctico)**
+
+Los generadores **sí tienen uso real**, pero no para JSONs.
+
+Sirven para:
+✔ Lazy evaluation
+✔ Streams
+✔ Procesamiento chunk-by-chunk
+✔ Lógica que se pausa y continúa
+✔ Pipelines de datos
+✔ Iteradores personalizados sin boilerplate
+✔ Async iterators (muy usados hoy en streaming APIs)
+
+No necesitas clases ni OOP para usarlos.
+Sí son relevantes en React/Next cuando trabajas con streaming, edge, RSC y backend moderno.
+
+Si quieres, puedo darte:
+
+- Ejemplos reales de generadores usados en Next.js
+- Un ejemplo con fetch() streaming
+- Un ejemplo con un iterador infinito útil
+- Un ejemplo de pipeline estilo Unix usando generators
+
+Dime cuál quieres.
+
 ## 12.3. Generators
 
 Un **generador** es un tipo de **iterador** definido con una potente sintaxis nueva de **ES6**; es particularmente útil cuando los valores a iterar no son los elementos de una estructura de datos, sino el resultado de un **cálculo** (*computation*).
@@ -381,3 +635,194 @@ sum // => 17
 En este ejemplo, utilizamos una sentencia **`function*`** para definir un generador.
 
 ### 12.3.1. Generator Examples
+
+```javascript
+//Secuencia infinita de Fibonacci
+
+function* fibonacciSequence() {
+ let x = 0, y = 1;
+ for(;;) {
+ yield y;
+ [x, y] = [y, x+y]; // Note: destructuring assignment
+ }
+}
+```
+
+### 12.3.2. yield* and Recursive Generators
+
+Esta generator function recibe varios iterables (strings, arrays, sets, etc.) y produce una secuencia continua de todos sus valores.
+
+```javascript
+function* sequence(...iterables) {
+  for (let iterable of iterables) {
+    yield* iterable;
+  }
+}
+
+[...sequence("abc", oneDigitPrimes())] //["a", "b", "c", 2, 3, 5, 7]
+
+```
+
+¿Qué significa exactamente yield*?:
+
+- yield* = "itera otro iterable por mí"
+- yield → produce un solo valor.
+
+yield* → produce todos los valores de un iterable, delegando la iteración en él.
+
+En otras palabras:
+
+```javascript
+yield* iterable;
+```
+
+es equivalente a:
+
+```javascript
+for (const value of iterable) {
+  yield value;
+}
+```
+
+pero mucho más corto y más claro.
+
+Una forma de verlo mas claro:
+
+```javascript
+function* foo() {
+  yield* "hola";
+  yield* [1,2,3];
+}
+```
+
+es equivalente a:
+
+```javascript
+function* foo() {
+  for (const c of "hola") yield c;
+  for (const n of [1,2,3]) yield n;
+}
+```
+
+## 12.4. Advanced Generator Features
+
+El uso más común de las funciones generadoras es crear iteradores, pero la característica fundamental de los generadores es que nos permiten **pausar un cálculo**, **producir resultados intermedios** (*yield intermediate results*) y luego **reanudar el cálculo** más tarde.
+
+Esto significa que los generadores tienen funcionalidades que van más allá de las de los iteradores.
+
+La capacidad de **pausa y reanudación** es lo que hace a los generadores únicos. Una de estas funcionalidades avanzadas es la capacidad de **enviar un valor** de vuelta al generador cuando se llama a **`next()`**.
+
+### 14.4.1. The Return Value of a Generator Function
+
+Una curiosidad es que un generator retorna una pareja final que es el valor que retorna la funcion y el "done", no se deja ver con el yield pero si utilizando el next()
+
+Ejemplo:
+
+```javascript
+function* oneAndDone() {
+  yield 1;
+  return "done";
+}
+// The return value does not appear in normal iteration.
+[...oneAndDone()]; // => [1]
+
+// But it is available if you explicitly call next()
+let generator = oneAndDone();
+generator.next(); // => { value: 1, done: false}
+generator.next(); // => { value: "done", done: true }
+// If the generator is already done, the return value is not returned again
+generator.next(); // => { value: undefined, done: true }
+```
+
+### 14.4.2. The Value of a yield Expression
+
+En la discusión anterior, hemos tratado a **`yield`** como una sentencia que toma un valor pero que no tiene un valor propio. Sin embargo, en realidad, **`yield`** es una **expresión** y puede tener un valor.
+
+Cuando se invoca el método **`next()`** de un generador, la función generadora se ejecuta hasta que llega a una expresión **`yield`**. La expresión que sigue a la palabra clave `yield` se evalúa, y ese valor se convierte en el valor de retorno de la invocación de `next()`. En este punto, la función generadora detiene su ejecución justo en medio de la evaluación de la expresión `yield`.
+
+La próxima vez que se llame al método **`next()`** del generador, el **argumento pasado a `next()`** se convierte en el **valor de la expresión `yield`** que estaba en pausa.
+
+Así, el generador devuelve valores a quien lo llama con **`yield`**, y quien lo llama pasa valores **al generador** con **`next()`**. El generador y quien lo llama son dos flujos de ejecución separados que intercambian valores (y control) de un lado a otro. El siguiente código lo ilustra:
+
+```javascript
+function* smallNumbers() {
+console.log("next() invoked the first time; argument discarded");
+let y1 = yield 1; // y1 == "b"
+console.log("next() invoked a second time with argument", y1);
+let y2 = yield 2; // y2 == "c"
+console.log("next() invoked a third time with argument", y2);
+let y3 = yield 3; // y3 == "d"
+console.log("next() invoked a fourth time with argument", y3);
+return 4;
+}
+let g = smallNumbers();
+console.log("generator created; no code runs yet");
+let n1 = g.next("a"); // n1.value == 1
+console.log("generator yielded", n1.value);
+let n2 = g.next("b"); // n2.value == 2
+console.log("generator yielded", n2.value);
+let n3 = g.next("c"); // n3.value == 3
+console.log("generator yielded", n3.value);
+let n4 = g.next("d"); // n4 == { value: 4, done: true }
+console.log("generator returned", n4.value);
+```
+
+Asi funciona:
+
+generator created; no code runs yet
+next() invoked the first time; argument discarded
+generator yielded 1
+next() invoked a second time with argument b
+generator yielded 2
+next() invoked a third time with argument c
+generator yielded 3
+next() invoked a fourth time with argument d
+generator returned 4
+
+### 12.4.3. The return() and throw() Methods of a Generator
+
+Hemos visto que puedes recibir valores producidos (*yielded*) o devueltos por una función generadora. Y puedes pasar valores a un generador en ejecución pasándolos cuando llamas al método **`next()`** del generador.
+
+Además de proporcionar entrada a un generador con `next()`, también puedes **alterar el flujo de control** dentro del generador llamando a sus métodos **`return()`** y **`throw()`**.
+
+↩️ Control del Flujo con `return()` y `throw()`
+
+🛑 Método `return()` (Terminación Forzada y Limpieza)
+
+Como sugiere el nombre, llamar a **`generator.return()`** provoca que el generador **devuelva un valor** de inmediato, como si la siguiente sentencia dentro del generador fuera un `return`.
+
+Para el manejo de la limpieza (*cleanup*):
+
+- En el caso de los generadores, no defines un método `return()` personalizado; en su lugar, el código del generador debe usar una sentencia **`try/finally`**.
+- El método `return()` incorporado del generador garantiza que el bloque **`finally`** se ejecute cuando el generador es forzado a devolver, asegurando que se realice la limpieza necesaria (como cerrar archivos).
+
+💥 Método `throw()` (Inyección de Excepciones)
+
+Llamar a **`generator.throw(exception)`** nos da una manera de **enviar señales arbitrarias** (en forma de excepciones) a un generador en ejecución.
+
+- Llamar a `throw()` siempre provoca una excepción *dentro* del generador, justo en el punto donde estaba en pausa.
+- Si la función generadora está escrita con código de manejo de excepciones (`try/catch`), la excepción no tiene por qué ser fatal, sino que puede ser un medio para **alterar el comportamiento** del generador (por ejemplo, restablecer un contador).
+
+🔗 Delegación con `yield*`
+
+Cuando un generador utiliza **`yield*`** para producir valores de otro objeto iterable (delegando la iteración), los métodos **`next()`**, **`return()`** y **`throw()`** llamados en el generador delegador se pasan a su vez al iterador del objeto iterable subyacente.
+
+Resumen del Protocolo del Iterador
+
+- Todos los iteradores deben tener un método **`next()`**.
+- Los iteradores que necesitan limpiar después de una iteración incompleta deben definir un método **`return()`**.
+- Cualquier iterador puede definir un método **`throw()`**.
+
+Para garantizar la limpieza, es vital el uso de `try/finally` dentro de los generadores.
+
+### 12.4.4. Final Note About Generators
+
+Los generadores son una **estructura de control generalizada** muy poderosa. Nos dan la capacidad de **pausar** un cálculo con **`yield`** y **reiniciarlo** más tarde en algún momento arbitrario con un valor de entrada arbitrario.
+
+Es posible usar generadores para crear una especie de sistema de **hilos cooperativos** (*cooperative threading*) dentro del código JavaScript de un solo hilo. Y es posible usar generadores para **enmascarar partes asíncronas** de tu programa para que tu código parezca secuencial y sincrónico, aunque algunas de tus llamadas a funciones sean realmente asíncronas y dependan de eventos de la red.
+
+🚨 Advertencia y Solución Moderna
+
+Intentar hacer estas cosas con generadores conduce a un código que es **sorprendentemente difícil de entender** o de explicar.
+
+Sin embargo, se ha hecho, y el único caso de uso realmente práctico ha sido la gestión de código asíncrono. Sin embargo, JavaScript ahora tiene las palabras clave **`async`** y **`await`** (consulta el Capítulo 13) precisamente para este propósito, y **ya no hay ninguna razón** para abusar de los generadores de esta manera.
