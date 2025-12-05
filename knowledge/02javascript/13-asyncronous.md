@@ -112,7 +112,7 @@ Cuando se habla de Promesas en JavaScript, los términos equivalentes son "fulfi
 
 La razón por la que quiero ser preciso con la **terminología de las Promesas** es que las Promesas también pueden ser **resueltas** (*resolved*).
 
-Es fácil confundir este estado *resuelto* con el estado de **cumplida** (*fulfilled*) o con el estado de **establecida** (*settled*), pero no es precisamente lo mismo que ninguno de ellos. 
+Es fácil confundir este estado *resuelto* con el estado de **cumplida** (*fulfilled*) o con el estado de **establecida** (*settled*), pero no es precisamente lo mismo que ninguno de ellos.
 
 Comprender el estado **resuelto** es una de las claves para una comprensión profunda de las Promesas, y volveré a él después de que discutamos las **cadenas de Promesas** (*Promise chains*) más adelante.
 
