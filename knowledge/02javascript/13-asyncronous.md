@@ -128,12 +128,159 @@ One of the most important benefits of Promises is that they provide a natural wa
 
 La idea de las promesas es evitar la anidamiento de callbacks entonces no es bueno anidar nada, sino utilizar el `then()`
 
-Let’s return to a simplified form of the original fetch() chain above. If we define the
-functions passed to the `then()` invocations elsewhere, we might refactor the code to
-look like this:
+Let’s return to a simplified form of the original fetch() chain above. If we define the functions passed to the `then()` invocations elsewhere, we might refactor the code to look like this:
 
 ```javascript
 fetch(theURL) // task 1; returns promise 1
   .then(callback1) // task 2; returns promise 2
   .then(callback2); // task 3; returns promise 3
+```
+
+### 13.2.3 Resolving Promises
+
+entonces lo que hace el `then()` es que primero invoca el primer callback con el response pero se espera a que se resuelva haciendo de esto una operación asyncrona y cuando esta se resuelve sigue con el siguiente `then()` y asi sucesivamente a travez de todas las funciones que necesiten de un response para ejecutarse.
+
+Un **resolve** que es diferente a un **settled** es que en el "resolve" es el valor del ultimo callback en una cadena de callbacks y que hace que la promesa pase finalmente a estado resolve.
+
+En a pagina 355 hay un diagrama que detalla visualmente una forma mas didáctica de entender las promesas y el encadenamiento `then()`
+
+Algo para entender de la devolución de una cadena de promesas:
+
+- El primer .then() recibe el valor con el que se resolvió la promesa inicial. Su fulfillment handler (o rejection handler) se ejecuta y puede devolver un valor. Si ese handler no devuelve nada, el siguiente .then() recibirá undefined. Cada .then() únicamente recibe el valor devuelto por el handler del .then() anterior, y así sucesivamente.
+
+### 13.2.4 More on Promises and Errors
+
+Con código sincrónico (synchronous), si omites el manejo de errores (error-handling), al menos obtendrás una excepción (exception) y un seguimiento de pila (stack trace) que puedes usar para averiguar qué está fallando. Con código asincrónico (asynchronous), las excepciones (exceptions) no manejadas a menudo no se reportarán, y los errores pueden ocurrir silenciosamente, lo que los hace mucho más difíciles de depurar (debug). La buena noticia es que el método `.catch()` facilita el manejo de errores cuando se trabaja con Promesas (Promises).
+
+Tanto los navegadores como Node.js ofrecen mecanismos para detectar promesas rechazadas que no cuentan con un manejador de errores. En el navegador, puedes usar el evento global unhandledrejection, el cual se dispara cuando una promesa es rechazada y no existe ningún handler .catch() asociado. En Node.js ocurre lo mismo mediante el evento unhandledRejection del objeto process. Estos eventos permiten registrar una función de escucha que actúa como una red de seguridad, capturando cualquier error no manejado en promesas y facilitando su rastreo, logging o análisis, evitando que errores silenciosos pasen desapercibidos.
+
+El método **`.catch()`** de una Promesa es simplemente una forma abreviada (un *shorthand*) de llamar a **`.then()`** con `null` como primer argumento y una función *callback* de manejo de errores como segundo argumento.
+
+```javascript
+p.then(null, c);
+p.catch(c);
+```
+
+- Ambos manejadores (then(null, errorHandler) y catch(errorHandler)) funcionarán de la misma manera: manejarán el error que ocurre en la Promesa. No están creando un error artificial; simplemente están proporcionando una manera de manejar los errores que ocurren en la Promesa.
+- If you add a `.finally()` invocation to your Promise chain, then the callback you pass to `.finally()` will be invoked when the Promise you called it on settles.
+- If you need to run some kind of cleanup code
+  (such as closing open files or network connections) in either case, a `.finally()` call‐
+  back is the ideal way to do that.
+- En la pagina 356 hay un buen y realista ejemplo de como hacer un HTTP request con un minimo de manejo de errores.
+- Sometimes, in complex network environments, errors can occur more or less at random, and it can be appropriate to handle those errors by simply retrying the asynchronous request.
+
+```javascript
+queryDatabase()
+  .catch((e) => wait(500).then(queryDatabase)) // On failure, wait and retry
+  .then(displayTable)
+  .catch(displayDatabaseError);
+```
+
+### 13.2.5. Promises in Parallel
+
+A veces, sin embargo, queremos ejecutar varias operaciones asíncronas en paralelo. La función **`Promise.all()`** puede hacer esto.
+
+1. `Promise.all()`
+
+    - La Promesa devuelta por **`Promise.all()`** se **rechaza** (*rejects*) cuando **cualquiera** de las Promesas de entrada es rechazada.
+    - Si todas se cumplen (*fulfill*), la Promesa resultante se cumple con un *array* de los valores de cumplimiento.
+
+2. `Promise.allSettled()`
+
+    - **`Promise.allSettled()`** toma un *array* de Promesas de entrada y devuelve una Promesa.
+    - **Nunca rechaza** la Promesa devuelta.
+    - No cumple esa Promesa hasta que **todas** las Promesas de entrada se hayan **establecido** (*settled*, es decir, ya estén cumplidas o rechazadas).
+    - La Promesa resultante se cumple con un *array* de objetos que describen el estado y el valor/razón de cada Promesa de entrada.
+
+### 13.2.6. Making Promises
+
+You use the `Promise()` constructor to create a new Promise object that you have complete control over.
+
+El código que has proporcionado define una función wait que devuelve una promesa que se resuelve después de una cierta cantidad de tiempo (especificada en milisegundos).
+
+```javascript
+function wait(duration) {
+  // Crear y devolver una nueva Promesa
+  return new Promise((resolve, reject) => {
+    // Estos controlan la Promesa
+    // Si el argumento es inválido, rechazar la Promesa
+    if (duration < 0) {
+      reject(new Error("Time travel not yet implemented"));
+    }
+
+    // De lo contrario, esperar asincrónicamente y luego resolver la Promesa.
+    // setTimeout invocará resolve() sin argumentos, lo que significa
+    // que la Promesa se cumplirá con el valor undefined.
+    setTimeout(resolve, duration);
+  });
+}
+```
+
+Como usar la promesa
+
+```javascript
+wait(1000)
+  .then(() => {
+    console.log("1 second has passed");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+Promises based on synchronous values:
+
+Es simple, el valor pasa de inmediato a la resolución ya sea que se invoke con resolve(42) o rejected(42)
+
+Promises from scratch:
+
+Recordar que se crea con el famoso EXECUTOR.
+
+### 13.2.7. Promises in Sequence
+
+Hay un ejemplo en la pagina 366 que explica como se hace una secuencia de fetchs que se debe de hacer uno y luego otro y que toca utilizar ese patron con promesas puras ya que con loops no funciona. Con async await el loop si funciona.
+
+## 13.3 async and await
+
+**async and await** son keywords in javascript desde ES2017
+
+**Párrafo resumen:**
+La diferencia fundamental entre usar `.then()` y `await` es que con `.then()` el valor resultante de una promesa solo existe dentro del callback del propio `then`, lo que fragmenta la lógica y obliga a anidar o encadenar funciones. En cambio, `await` detiene la función async hasta que la promesa se resuelve y te entrega el resultado en una variable normal, permitiendo usarla libremente en el resto del código de forma secuencial y mucho más clara.
+
+---
+
+### **Ejemplo con `.then()`**
+
+```js
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+  .then(response => {
+    // Aquí tengo acceso a response
+    return response.json(); // Devuelve otra promesa
+  })
+  .then(data => {
+    // Aquí tengo acceso a los datos transformados
+    console.log("Título:", data.title);
+    // Pero fuera de este callback ya no puedo usar data
+  });
+
+// ❌ Aquí no tengo acceso a "data"
+```
+
+---
+
+### **Ejemplo con `await`**
+
+```js
+async function demo() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+  // Aquí ya tengo el response disponible
+
+  const data = await response.json();
+  // "data" es un valor normal, no una promesa
+
+  console.log("Título:", data.title);
+  // ✔ Puedo seguir usando data donde quiera dentro de la función
+}
+
+demo();
 ```

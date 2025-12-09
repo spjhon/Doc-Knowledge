@@ -181,96 +181,9 @@ Reglas elementales para comenzar a escribir código:
 
 
 
-
-#### 13.2.3 Resolving Promises
-
-entonces lo que hace el `then()` es que primero invoca el primer callback con el response pero se espera a que se resuelva haciendo de esto una operacion asyncrona y cuando esta se resuelve sigue con el siguiente `then()` y asi sucesivamente a travez de todas las funciones que necesiten de un response para ejecutarse.
-
-Un **resolve** que es diferente a un **settled** es que en el "resolve" es el valor del ultimo callback en una cadena de callbacks y que hace que la promesa pase finalmente a estado resolve.
-
-En a pagina 355 hay un diagrama que detalla visualmente una forma mas didatica de entender las promesas y el encadenamiento `then()`
-
-#### 13.2.4 More on Promises and Errors
-
-Con código sincrónico (synchronous), si omites el manejo de errores (error-handling), al menos obtendrás una excepción (exception) y un seguimiento de pila (stack trace) que puedes usar para averiguar qué está fallando. Con código asincrónico (asynchronous), las excepciones (exceptions) no manejadas a menudo no se reportarán, y los errores pueden ocurrir silenciosamente, lo que los hace mucho más difíciles de depurar (debug). La buena noticia es que el método `.catch()` facilita el manejo de errores cuando se trabaja con Promesas (Promises).
-
-##### 13.2.4.1. The catch and finally methods
-
-- Ambos manejadores (then(null, errorHandler) y catch(errorHandler)) funcionarán de la misma manera: manejarán el error que ocurre en la Promesa. No están creando un error artificial; simplemente están proporcionando una manera de manejar los errores que ocurren en la Promesa.
-- If you add a `.finally()` invocation to your Promise chain, then the callback you pass to `.finally()` will be invoked when the Promise you called it on settles.
-- If you need to run some kind of cleanup code
-  (such as closing open files or network connections) in either case, a `.finally()` call‐
-  back is the ideal way to do that.
-- En la pagina 356 hay un buen y realista ejemplo de como hacer un HTTP request con un minimo de manejo de errores.
-- Sometimes, in complex network environments, errors can occur more or less at random, and it can be appropriate to handle those errors by simply retrying the asynchronous request.
-
-```javascript
-queryDatabase()
-  .catch((e) => wait(500).then(queryDatabase)) // On failure, wait and retry
-  .then(displayTable)
-  .catch(displayDatabaseError);
-```
-
-#### 13.2.5 Promises in Parallel
-
-Sometimes, though, we want to execute a number of asynchronous operations in parallel. The function `Promise.all()` can do this.
-
-- The Promise returned by `Promise.all()` rejects when any of the input Promises is rejected.
-- `Promise.allSettled()` takes an array of input Promises and returns a Promise, just like `Promise.all()` does. But `Promise.allSettled()` never rejects the returned Promise, and it does not fulfill that Promise until all of the input Promises have settled.
-
-#### 13.2.6 Making Promises
-
-##### 13.2.6.1 Promises based on other Promises
-
-Se puede tener una funcion que retorne una Promesa por ejemplo alutilizar dentro de esa funcion un metodo que retorne una promesa.
-
-##### 13.2.6.2 Promises based on synchronous values
-
-Sometimes, you may need to implement an existing Promise-based API and return a Promise from a function, even though the computation to be performed does not actually require any asynchronous operations. In that case, the static methods `Promise.resolve()` and `Promise.reject()` will do what you want.
-
-##### 13.2.6.3 Promises from scratch
-
-You use the `Promise()` constructor to create a new Promise object that you have complete control over.
-
-El código que has proporcionado define una función wait que devuelve una promesa que se resuelve después de una cierta cantidad de tiempo (especificada en milisegundos).
-
-```javascript
-function wait(duration) {
-  // Crear y devolver una nueva Promesa
-  return new Promise((resolve, reject) => {
-    // Estos controlan la Promesa
-    // Si el argumento es inválido, rechazar la Promesa
-    if (duration < 0) {
-      reject(new Error("Time travel not yet implemented"));
-    }
-
-    // De lo contrario, esperar asincrónicamente y luego resolver la Promesa.
-    // setTimeout invocará resolve() sin argumentos, lo que significa
-    // que la Promesa se cumplirá con el valor undefined.
-    setTimeout(resolve, duration);
-  });
-}
-```
-
-Como usar la promesa
-
-```javascript
-wait(1000)
-  .then(() => {
-    console.log("1 second has passed");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-```
-
-#### 13.2.7 Promises in Sequence
-
-Promise.all() makes it easy to run an arbitrary number of Promises in parallel. And Promise chains make it easy to express a sequence of a fixed number of Promises.
-
 ### 13.3 async and await
 
-**async and await** son keywords in javascript desde ES2017
+
 
 #### 13.3.1 await Expressions
 
