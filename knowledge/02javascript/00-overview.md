@@ -181,49 +181,6 @@ Reglas elementales para comenzar a escribir código:
 
 
 
-### 13.3 async and await
-
-
-
-#### 13.3.1 await Expressions
-
-La keyword await en JavaScript se utiliza dentro de funciones declaradas con async para esperar a que una promesa sea resuelta. Su propósito principal es simplificar el manejo de promesas y hacer el código asincrónico más legible y fácil de escribir, similar al código síncrono.
-
-- We use it before the invocation of a function that returns a Promise.
-- Todo lo que va despues del await debe de ser una promesa, sino es una promesa lo tomara como una promesa resuelta y devolvera valor que contiene.
-
-#### 13.3.2 async Functions
-
-- **you can only use the await keyword within functions that have been declared with the async keyword.**
-
-```javascript
-async function getHighScore() {
-  let response = await fetch("/api/user/profile");
-  let profile = await response.json();
-  return profile.highScore;
-}
-```
-
-Flujo de Ejecución
-
-Vamos a desglosar el flujo de ejecución cuando se usa async/await:
-
-1. Código síncrono: Todo el código fuera de la función async se ejecuta primero de manera síncrona.
-
-2. Iniciar función async: Cuando se llama a una función async, esta se ejecuta hasta que encuentra un await.
-
-3. Esperar promesa: El await pausa la ejecución de la función async hasta que la promesa que sigue se resuelve o se rechaza. Mientras tanto, el event loop puede continuar ejecutando otro código.
-
-4. Continuar ejecución: Una vez que la promesa se resuelve, la ejecución de la función async se reanuda desde el punto donde se pausó.
-
-#### 13.3.3 Awaiting Multiple Promises
-
-Como el codigo es asyncrono para poner a esperar varias promesas o varios awaits se puede hacer al mismo tiempo en lugar de hacer una secuencia de llamados.
-
-`let [value1, value2] = await Promise.all([getJSON(url1), getJSON(url2)]);`
-
-#### 13.3.4 Implementation Details
-
 ### 13.4 Asynchronous Iteration
 
 Promises do not work for sequences of asynchronous events, we also cannot use regular async functions and the await statements for these things.

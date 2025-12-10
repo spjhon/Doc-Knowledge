@@ -245,11 +245,10 @@ Hay un ejemplo en la pagina 366 que explica como se hace una secuencia de fetchs
 **async and await** son keywords in javascript desde ES2017
 
 **Párrafo resumen:**
+
 La diferencia fundamental entre usar `.then()` y `await` es que con `.then()` el valor resultante de una promesa solo existe dentro del callback del propio `then`, lo que fragmenta la lógica y obliga a anidar o encadenar funciones. En cambio, `await` detiene la función async hasta que la promesa se resuelve y te entrega el resultado en una variable normal, permitiendo usarla libremente en el resto del código de forma secuencial y mucho más clara.
 
----
-
-### **Ejemplo con `.then()`**
+**Ejemplo con `.then()`**
 
 ```js
 fetch("https://jsonplaceholder.typicode.com/todos/1")
@@ -284,3 +283,44 @@ async function demo() {
 
 demo();
 ```
+
+### 13.3.1. await Expressions
+
+Esta expresion lo que hace es resolver la promesa y de una vez guardar el valor retornado por la promesa.
+
+Por ejemplo `fetch()` devuelve una promesa que se resuelve en un objeto `Response`, y este objeto llega completamente disponible para leer sus propiedades inmediatas, como `headers`, `status` u `ok`, sin necesidad de esperar más porque esos datos ya vienen incluidos en la respuesta inicial del servidor. Sin embargo, el contenido del cuerpo no está listo todavía: métodos como `response.json()` o `response.text()` leen ese cuerpo y por su naturaleza asíncrona devuelven una nueva promesa, lo que requiere usar `await` o `.then()` para obtener finalmente los datos procesados. En resumen, el `Response` llega listo, pero cualquier operación que implique consumir el body genera otra promesa que debe esperarse.
+
+### 13.3.2. Async Functions
+
+La palabra clave `async` le indica a JavaScript que la función devolverá automáticamente una promesa y que dentro de ella se podrá usar `await` para pausar la ejecución *solo dentro de ese mismo cuerpo*, mientras el resto del programa continúa normalmente. Esto significa que cualquier valor obtenido mediante `await` estará disponible únicamente después de que la operación asíncrona termine, y por eso el código externo a la función no puede leer esas variables de inmediato ni depender de ellas sin usar promesas. El código que está fuera de una función `async` nunca “espera” su resultado a menos que también trabaje con promesas, usando `.then()`, `await`, o callbacks que se ejecutan cuando la operación asíncrona finaliza o cuando ocurre un error.
+
+### 13.3.3. Awaiting Multiple Promises
+
+Esta es una forma de hacer que se trabajen las promesas de forma todas al mismo tiempo y no secuencial por medio de un await, por supuesto este código debe de estar dentro de una función async.
+
+let [value1, value2] = await Promise.all([getJSON(url1), getJSON(url2)]);
+
+### 13.3.4. Implementation Details
+
+Esto:
+
+```js
+async function f(x) { /* body */ }
+```
+
+Es equivalente a esto:
+
+```js
+function f(x) {
+return new Promise(function(resolve, reject) {
+try {
+resolve((function(x) { /* body */ })(x));
+}
+catch(e) {
+reject(e);
+}
+});
+}
+```
+
+## 13.4. Asynchronous Iteration
