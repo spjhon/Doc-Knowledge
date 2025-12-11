@@ -179,42 +179,16 @@ Reglas elementales para comenzar a escribir código:
 
 ## 13 Asynchronous JavaScript
 
+- Asynchronous Programming with callbacks
+- Promises
+- async and await
+- Asynchronous Iteration
 
 
-### 13.4 Asynchronous Iteration
-
-Promises do not work for sequences of asynchronous events, we also cannot use regular async functions and the await statements for these things.
-
-La solucion es el for/await loop
-
-#### 13.4.1 The for/await Loop
-
-Node 12 makes its readable streams asynchronously iterable.
-
-```javascript
-const fs = require("fs");
-async function parseFile(filename) {
-  let stream = fs.createReadStream(filename, { encoding: "utf-8" });
-  for await (let chunk of stream) {
-    parseChunk(chunk); // Assume parseChunk() is defined elsewhere
-    //Like a regular await expression, the for/await loop is Promise-based.
-  }
-}
-```
-
-#### 13.4.2 Asynchronous Iterators
-
-Tener en cuenta como funciona un iterador y las dos diferencias clave entre un iterador y un iterador asincrono.
-
-#### 13.4.3 Asynchronous Generators
-
-#### 13.4.4 Implementing Asynchronous Iterators
-
-Ver y entender ejemplos, colocar algo aca una vez termine de entender.
 
 ## 14. Metaprogramming
 
-No muy usados pero aun asi utiles.
+No muy usados pero aun asi útiles.
 
 - **metaprogramming is writing code to manipulate other code.**
 

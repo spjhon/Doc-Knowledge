@@ -324,3 +324,120 @@ reject(e);
 ```
 
 ## 13.4. Asynchronous Iteration
+
+Tenemos el for/await ya que con promesas comunes no se pueden hacer un loop debido a que la promesa es algo puntual y la cadena de thens no esta diseñada para loops en constante iteración.
+
+### 13.4.1 The for/await Loop
+
+Node 12 hace que sus *streams* legibles (*readable streams*) sean **asíncronamente iterables**.
+
+Esto significa que puedes leer fragmentos sucesivos de datos de un *stream* con un bucle **`for await...of`** como este:
+
+```javascript
+const fs = require("fs");
+
+async function parseFile(filename) {
+    let stream = fs.createReadStream(filename, { encoding: "utf-8"});
+    
+    // El bucle pausa y espera a que cada 'chunk' esté disponible de forma asíncrona
+    for await (let chunk of stream) {
+        parseChunk(chunk); // Asumimos que parseChunk() está definida en otro lugar
+    }
+}
+```
+
+Aquí se observa que cada vuelta en el loop es una espera que se resuelve bien o mal o de acuerdo a como se desee.
+
+```javascript
+const urls = [url1, url2, url3];
+
+const promises = urls.map(url => fetch(url));
+
+for(const promise of promises) {
+response = await promise;
+handle(response);
+}
+```
+
+Aqui observamos como se puede hacer fetch a todo un array de urls de forma secuencial.
+
+### 13.4.2 Asynchronous Iterators
+
+Un objeto **asíncronamente iterable** (*asynchronously iterable*) implementa un método con el nombre simbólico **`Symbol.asyncIterator`** en lugar de `Symbol.iterator`.
+
+(Como vimos anteriormente, `for await...of` es compatible con los objetos iterables regulares, pero prefiere los objetos asíncronamente iterables e intenta usar el método `Symbol.asyncIterator` antes de intentar usar el método `Symbol.iterator`).
+
+En segundo lugar, el método **`next()`** de un iterador asíncrono devuelve una **Promesa que se resuelve** en un objeto de resultado de iteración, en lugar de devolver un objeto de resultado de iteración directamente.
+
+📝 Resumen de la Diferencia Clave
+
+La diferencia fundamental entre la iteración síncrona y la asíncrona radica en la expectativa de **tiempo**:
+
+| Característica | Iteración Síncrona (`for...of`) | Iteración Asíncrona (`for await...of`) |
+| :--- | :--- | :--- |
+| **Símbolo clave** | `Symbol.iterator` | **`Symbol.asyncIterator`** |
+| **Retorno de `.next()`** | Devuelve el objeto de resultado (`{ value, done }`) **directamente**. | Devuelve una **Promesa** que se resuelve en el objeto de resultado. |
+
+Esto permite que el bucle `for await...of` **pause** en cada paso, esperando la llegada asíncrona del siguiente elemento.
+
+### 13.4.3 Asynchronous Generators
+
+Los generadores asyncoronos son poderosos gracias a que no solamente son asyncronos en donde se necesite esperar, sino tambien que con los generators, se puede generar procesos async que vayan en secuencia hasta que el ultimo proceso async termine dadas instruciones externas:
+
+```javascript
+// A Promise-based wrapper around setTimeout() that we can use await with.
+// Returns a Promise that fulfills in the specified number of milliseconds
+function elapsedTime(ms) {
+return new Promise(resolve => setTimeout(resolve, ms));
+}
+// An async generator function that increments a counter and yields it
+// a specified (or infinite) number of times at a specified interval.
+async function* clock(interval, max=Infinity) {
+for(let count = 1; count <= max; count++) { // regular for loop
+await elapsedTime(interval); // wait for time to pass
+yield count; // yield the counter
+}
+}
+
+// A test function that uses the async generator with for/await
+async function test() { // Async so we can use for/await
+for await (let tick of clock(300, 100)) { // Loop 100 times every 300ms
+console.log(tick);
+}
+}
+```
+
+### 13.4.4 Implementing Asynchronous Iterators
+
+Un **iterador asíncrono** es un objeto que implementa el método `next()`, donde **cada llamada a `next()` devuelve una Promesa**. Esto permite que cada paso de la iteración pueda realizar operaciones asíncronas antes de producir el siguiente valor.
+
+En otras palabras:
+**el `next()` es el punto donde se ejecuta la lógica asíncrona**, y gracias a que devuelve una Promesa, el iterador puede “pausar” entre iteraciones y reanudar cuando la operación asíncrona termina. Así, el iterador puede producir valores de forma secuencial, tantas veces como se llame a `next()`.
+
+```javascript
+function clock(interval, max=Infinity) {
+// A Promise-ified version of setTimeout that we can use await with.
+// Note that this takes an absolute time instead of an interval.
+function until(time) {
+return new Promise(resolve => setTimeout(resolve, time - Date.now()));
+}
+// Return an asynchronously iterable object
+return {
+startTime: Date.now(), // Remember when we started
+count: 1, // Remember which iteration we're on
+async next() { // The next() method makes this an iterator
+if (this.count > max) { // Are we done?
+return { done: true }; // Iteration result indicating done
+}
+// Figure out when the next iteration should begin,
+let targetTime = this.startTime + this.count * interval;
+// wait until that time,
+await until(targetTime);
+// and return the count value in an iteration result object.
+return { value: this.count++ };
+},
+// This method means that this iterator object is also an iterable.
+[Symbol.asyncIterator]() { return this; }
+};
+}
+```
