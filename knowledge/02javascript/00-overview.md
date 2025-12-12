@@ -184,25 +184,9 @@ Reglas elementales para comenzar a escribir código:
 - async and await
 - Asynchronous Iteration
 
-
-
 ## 14. Metaprogramming
 
-No muy usados pero aun asi útiles.
 
-- **metaprogramming is writing code to manipulate other code.**
-
-Debido a falta de tiempo este capitulo sera omitido y este es el resumen de las caracteristicas que se explican en este capitulo.
-
-- §14.1 Controlling the enumerability, deleteability, and configurability of object
-  properties
-- §14.2 Controlling the extensibility of objects, and creating “sealed” and “frozen”
-  objects
-- §14.3 Querying and setting the prototypes of objects
-- §14.4 Fine-tuning the behavior of your types with well-known Symbols
-- §14.5 Creating DSLs (domain-specific languages) with template tag functions
-- §14.6 Probing objects with reflect methods
-- §14.7 Controlling object behavior with Proxy
 
 ## 15. JavaScript in Web Browsers
 

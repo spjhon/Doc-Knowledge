@@ -1,17 +1,19 @@
+function getAllProperties(obj: Object) {
+  let props = new Set();
 
+  while (obj) {
+    for (const prop of Object.getOwnPropertyNames(obj)) {
+      props.add(prop);
+    }
+    for (const sym of Object.getOwnPropertySymbols(obj)) {
+      props.add(sym);
+    }
+    obj = Object.getPrototypeOf(obj);
+  }
 
-function* clock( max=Infinity) {
-for(let count = 1; count <= max; count++) { // regular for loop
-
-yield count; // yield the counter
+  return [...props];
 }
-}
 
-let intervalo = clock(3)
+const obj = {}
 
-console.log(intervalo.next().value)
-console.log(intervalo.next().value)
-console.log(intervalo.next().value)
-console.log(intervalo.next().value)
-console.log(intervalo.next().value)
-console.log(intervalo.next().value)
+console.log(getAllProperties(obj));
