@@ -186,29 +186,20 @@ Reglas elementales para comenzar a escribir código:
 
 ## 14. Metaprogramming
 
-
+- Property Attributes
+- Object Extensibility
+- The prototype Attribute
+- Well-Known Symbols
+- Template Tags
+- The Reflect API
+- Proxy Objects
 
 ## 15. JavaScript in Web Browsers
 
-Manipulacion del navegador, el ultimate propuse de javascript:
 
-- Control document content (§15.3) and style (§15.4)
-- Determine the on-screen position of document elements (§15.5)
-- Create reusable user interface components (§15.6)
-- Draw graphics (§15.7 and §15.8)
-- Play and generate sounds (§15.9)
-- Manage browser navigation and history (§15.10)
-- Exchange data over the network (§15.11)
-- Store data on the user’s computer (§15.12)
-- Perform concurrent computation with threads (§15.13)
 
-### 15.1 Web Programming Basics
 
-#### 15.1.1 JavaScript in HTML `<script>` Tags
 
-[**AQUI**](https://www.w3schools.com/tags/tag_script.asp) informacion mas completa del `<script>` tag.
-
-Se muestra un ejemplo basico de un documento HTML y como utilizar javascript dentro de ese documetno HTML.
 
 #### 15.1.2 The Document Object Model
 

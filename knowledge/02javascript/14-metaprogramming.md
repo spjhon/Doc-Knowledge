@@ -1021,3 +1021,21 @@ La **Reflect API**:
 * permite hacer metaprogramación más clara.
 
 Es la capa “meta” de JS para manipular objetos y comportamiento interno del lenguaje.
+
+## 14.7. Proxy Objects
+
+La clase **`Proxy`**, disponible en ES6 y versiones posteriores, es la característica de metaprogramación **más poderosa** de JavaScript.
+
+Nos permite escribir código que **altera el comportamiento fundamental** de los objetos JavaScript.
+
+-🛡️ Sobre `Proxy`
+
+`Proxy` esencialmente actúa como un "interceptador" o "intermediario" para un objeto. Permite definir *handlers* (manejadores) que pueden interceptar operaciones fundamentales realizadas en el objeto, como:
+
+* Obtener el valor de una propiedad (`get`).
+* Establecer el valor de una propiedad (`set`).
+* Eliminar una propiedad (`deleteProperty`).
+* Llamar a una función (`apply`).
+* Usar el operador `new` (`construct`).
+
+### 14.7.1 Proxy Invariants

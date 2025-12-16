@@ -4,6 +4,73 @@ sidebar_position: 1
 
 # The Stack
 
+***
+
+## Final Stack
+
+### Font-End
+
+- **UI, UX:** ShadCN
+- **Framework:** React
+- **Meta-framework:** Next js
+- **Design System:** Tailwind CSS
+- **Build Tools:** Turbopack
+- **Accesibility Standards:** ShadCN
+- **Metodology:** BEM, CSS Module, Atomic Design Components
+- **State Management:** Zustand-react-query-SWR
+- **Testing:** Jest
+
+### Back-End
+
+- **APIs:** Supabase
+- **Authentication Flow:** Coockie Session
+- **Autorization model:** Supabase RLS
+- **Loggin, recover los password, OTP:** Supabase
+- **Database:** PostgreSQL
+- **Cashing:** Redis
+- **Email service:** Resend
+- **Background Jobs:** Supabase
+- **Message Qeues:** Supabase functions
+- **Rate Limiting:** Supabase
+- **Observability:**
+- **Metrics:**
+- **Security:**
+- **Runtime** Node js, Bun
+- **CMS:** Strapi, Payload, Wisp CMS
+- **E-commerce Backend:** Medusa js
+- **Payment Prosesor:** Wompy Bancolombia Colombia
+- **Image Optimization:** Cloudinary
+- **File Bucket:** AWS S3
+
+### Cloud Infraestructure
+
+- **Cloud Services:** Cloudfare
+- **Domain:** Cloudfare Domains
+- **Containers:** Docker
+- **CI/CD pipelines:** Github Actions
+- **VPSs:** Herzner, Digital Ocean, Railway
+- **Backups:** Supabase
+- **Time Uptime:** Cloudfare Tunnels
+- **Monitoring:** PM2, others
+- **Orchestration and load balancing:** Kubernetes
+
+### Tools
+
+- **Version Control:** Semver
+- **Git control:** Git
+- **Component Factory:** Storybook
+- **Comunication Toos:**
+- **Ticket tools:**
+- **Design:** Figma
+- **Documentation:** Docusaurus, JSDocs
+- **Package Manager:** NPM
+
+### Mobile
+
+- **Framwork:** React Native
+
+***
+
 Focus on JamStack (JavaScript, Api, Markup)
 
 Tools used in the whole chain to create three types of websites when need it.
@@ -20,7 +87,7 @@ Tool to the client:
 
 ***
 
-## Tools
+## Tools2
 
 Tools used for web dev in general.
 
@@ -233,7 +300,7 @@ Check the expoerted list or check VSCode directly.
 
 ***
 
-## Back-End
+## Back-Ends
 
 ### Hosting
 
@@ -373,4 +440,3 @@ Researching headless components, I found that there are a couple of popular libr
 ## Servicios
 
 - web3forms
-- mailchimp
