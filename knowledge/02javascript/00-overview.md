@@ -199,46 +199,6 @@ Reglas elementales para comenzar a escribir código:
 
 
 
-
-
-#### 15.1.2 The Document Object Model
-
-El famoso DOM, es el arbol que se forma al ejecutarse un documento html y que es manipulable a travez de javascript.
-
-- [Document](https://www.w3schools.com/jsref/dom_obj_document.asp) Document Object
-- [Element](https://www.w3schools.com/jsref/dom_obj_all.asp) HTML DOM Elements
-- [Attributes](https://www.w3schools.com/jsref/dom_obj_attributes.asp) HTML DOM Attributes
-- [Events](https://www.w3schools.com/jsref/dom_obj_event.asp) HTML DOM Events
-- [Event Objects](https://www.w3schools.com/jsref/obj_events.asp) HTML DOM Event Objects
-- [HTMLCollection](https://www.w3schools.com/jsref/dom_obj_htmlcollection.asp) DOM HTMLCollection
-- [Style](https://www.w3schools.com/jsref/dom_obj_style.asp) HTML DOM Style Object (CSS)
-
-- For each HTML tag in the document, there is a corresponding JavaScript Element object.
-- And for each run of text in the document, there is a corresponding Text object.
-- Una muestra de como funciona desde javascript el DOM es que cada elemento HTML es una subclase: The `<body>` tag, for example, is represented by an instance of HTMLBodyElement, and a `<table>` tag is represented by an instance of HTMLTableElement.
-
-#### 15.1.3 The Global Object in Web Browsers
-
-[**AQUI**] informacion mas detallada de las propiedades y metodos que se encuentran en el GLOBAL.
-
-- There is one global object per browser window or tab (§3.7).
-- The global object is where JavaScript’s standard library is defined
-- The global object also contains the main entry points of various web APIs.
-- The document property represents the currently displayed document.
-
-#### 15.1.4 Scripts Share a Namespace
-
-Ojo con las variables, funciones, clases y todo tipo de declaraciones fuera de modulos u otras funciones, esto acarrea conflictos en el global object al momento de definirse en una pestaña del navegador.
-
-#### 15.1.5 Execution of JavaScript Programs
-
-Two faces:
-
-- In the first phase: The document content is loaded, and the code from `<script>` elements (both inline scripts and external scripts) is run.
-- The second phase: This phase is asynchronous and event-driven. If a script is going to participate in this second phase, then one of the things it must have done during the first phase is to register at least one event handler or other callback function that will be invoked asynchronously.
-  - During this event-driven second phase, the web browser invokes event handler functions and other callbacks in response to events that occur asynchronously.
-- Some of the first events to occur during the event-driven phase are the “DOMContentLoaded” and “load” events.
-
 ##### 15.1.5.1 Client-side JavaScript threading model
 
 The web platform defines a controlled form of concurrency called a “web worker.”
