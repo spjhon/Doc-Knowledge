@@ -199,77 +199,33 @@ Reglas elementales para comenzar a escribir código:
 
 
 
-##### 15.1.5.1 Client-side JavaScript threading model
-
-The web platform defines a controlled form of concurrency called a “web worker.”
-
-##### 15.1.5.2 Client-side JavaScript timeline
-
-We’ve already seen that JavaScript programs begin in a script-execution phase and then transition to an event-handling phase.
-
-- The document.readyState property has the value “loading” at this stage.
-- When the document is completely parsed, the document.readyState property changes to “interactive.”
-
-#### 15.1.6 Program Input and Output
-
-Hay varias formas de input:
-
-- The content of the document itself
-- User input, in the form of events
-- The URL of the document being displayed is available to client-side JavaScript as document.URL y listo para manipulacion.
-- The content of the HTTP “Cookie” request header is available to client-side code as document.cookie listo para manipulacion.
-- The global navigator property provides access to information about the web browser para poder identificar datos del navegador que se esta utilizando
-
-El output es mas que todo desde los propios elementos del DOM y por medio de la consola o por medio de envios a travez de la red.
-
 #### 15.1.7 Program Errors
 
 Si no hay un catch que agarre errores, los erroes van directo a la consola.
 
-- Existe una propiedad en el global en donde se puede registrar una funcion onerror que lo que hace es tomar un error que haya transversado todo el DOM sin encontrar un catch.
+
 
 #### 15.1.8 The Web Security Model
 
-The subsections that follow give a quick overview of the security restrictions and issues that you, as a JavaScript programmer, should to be aware of:
 
-##### 15.1.8.1 What JavaScript can’t do
 
-- No puede manipular archivos del sistema
-- client-side JavaScript does not have general-purpose networking capabilities.
+#
 
-##### 15.1.8.2 The same-origin policy
+#
 
-It typically comes into play when a web page includes `<iframe>` elements.
 
-- A script can read only the properties of windows and documents that have the same origin as the document that contains the script.
-
-#### 15.1.8.3 Cross-site scripting
-
-Cross-site scripting, or XSS, is a term for a category of security issues in which an attacker injects HTML tags or scripts into a target website.
-
-- In general, the way to prevent XSS attacks is to remove HTML tags from any untrusted data before using it to create dynamic document content.
 
 ### 15.2 Events
 
-[**AQUI**](https://www.w3schools.com/jsref/dom_obj_event.asp) informacion mas detallada de todos los eventos presentes en el browser
+
 
 Client-side JavaScript programs use an asynchronous event-driven programming model.
 
-Anatomia de un evento:
 
-- event type
-- event target
-- event handler, or event listener
-- event object
-- event propagation
 
 #### 15.2.1 Event Categories
 
-- Device-dependent input events
-- Device-independent input events
-- User interface events
-- State-change events
-- API-specific events
+
 
 #### 15.2.2 Registering Event Handlers
 

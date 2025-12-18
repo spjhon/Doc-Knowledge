@@ -380,26 +380,24 @@ El ciclo de vida de un programa en el navegador se divide en dos etapas principa
 
 1. Primera Fase: La Carga y Ejecución Inicial
 
-* En esta fase, se **carga el contenido del documento** (el HTML se transforma en el árbol de Nodos que ya conocemos).
-* Se ejecuta el código de los elementos `<script>` (tanto los que están escritos directamente en el HTML como los que vienen de archivos externos).
-* **Es el momento de preparación:** Aquí es donde el código suele buscar elementos en el DOM y prepararse para lo que viene.
+    * En esta fase, se **carga el contenido del documento** (el HTML se transforma en el árbol de Nodos que ya conocemos).
+    * Se ejecuta el código de los elementos `<script>` (tanto los que están escritos directamente en el HTML como los que vienen de archivos externos).
+    * **Es el momento de preparación:** Aquí es donde el código suele buscar elementos en el DOM y prepararse para lo que viene.
 
-#### 2. Segunda Fase: Asíncrona y Dirigida por Eventos
+2. Segunda Fase: Asíncrona y Dirigida por Eventos
 
-* Esta fase es **asíncrona** (no ocurre en un orden lineal fijo) y se basa en **eventos**.
-* **Requisito de participación:** Si un script quiere participar en esta segunda fase, debe haber hecho algo importante durante la primera: **registrar al menos un manejador de eventos** (*event handler*) o una función de *callback*.
-* Durante esta etapa, el navegador web invoca (llama) a esas funciones en respuesta a cosas que pasan de forma asíncrona (clics, movimientos del ratón, respuestas de red, etc.).
+    * Esta fase es **asíncrona** (no ocurre en un orden lineal fijo) y se basa en **eventos**.
+    * **Requisito de participación:** Si un script quiere participar en esta segunda fase, debe haber hecho algo importante durante la primera: **registrar al menos un manejador de eventos** (*event handler*) o una función de *callback*.
+    * Durante esta etapa, el navegador web invoca (llama) a esas funciones en respuesta a cosas que pasan de forma asíncrona (clics, movimientos del ratón, respuestas de red, etc.).
 
-#### 🏁 Eventos Iniciales de la Segunda Fase
+🏁 Eventos Iniciales de la Segunda Fase
 
 Algunos de los primeros eventos que disparan esta fase son:
 
 * **`DOMContentLoaded`**: El navegador ya terminó de construir el árbol de Nodos (DOM) a partir del HTML.
 * **`load`**: Todo el contenido de la página, incluyendo imágenes y estilos externos, se ha cargado completamente.
 
----
-
-### 💡 ¿Cómo se conecta esto con lo que hemos hablado?
+💡 ¿Cómo se conecta esto con lo que hemos hablado?
 
 ¡Todo encaja! Mira:
 
@@ -412,3 +410,133 @@ Algunos de los primeros eventos que disparan esta fase son:
 **Sin la Fase 2**, la página sería una foto estática; nada reaccionaría al usuario.
 
 ¿Te gustaría que viéramos un ejemplo de código real donde se vea exactamente el momento en que pasamos de la Fase 1 a la Fase 2 usando el evento `DOMContentLoaded`?
+
+#### 15.1.5.1 Client-side JavaScript threading model
+
+The web platform defines a controlled form of concurrency called a “web worker.”
+
+#### 15.1.5.2. Client-side JavaScript timeline
+
+Ya hemos visto que los programas en JavaScript comienzan en una **fase de ejecución de scripts** y luego pasan a una **fase de manejo de eventos**. Estas dos fases pueden descomponerse en los siguientes pasos:
+
+1. El navegador web crea un objeto `Document` y comienza a analizar (parsear) la página web, añadiendo objetos `Element` y nodos `Text` al documento a medida que va interpretando los elementos HTML y su contenido textual. En esta etapa, la propiedad `document.readyState` tiene el valor `"loading"`.
+
+2. Cuando el parser de HTML encuentra una etiqueta `<script>` que **no** tiene los atributos `async`, `defer` ni `type="module"`, añade esa etiqueta `<script>` al documento y luego ejecuta el script.
+   El script se ejecuta de forma **sincrónica**, y el parser de HTML se detiene mientras el script se descarga (si es necesario) y se ejecuta.
+   Un script de este tipo puede usar `document.write()` para insertar texto en el flujo de entrada, y ese texto pasará a formar parte del documento cuando el parser se reanude.
+   Este tipo de script suele limitarse a definir funciones y registrar manejadores de eventos para usarlos más adelante, pero también puede recorrer y manipular el árbol del documento tal como existe en ese momento.
+   Es decir, los scripts no modulares que no tienen los atributos `async` o `defer` pueden ver su propia etiqueta `<script>` y el contenido del documento que aparece antes de ella.
+
+3. Cuando el parser encuentra un elemento `<script>` que tiene el atributo `async`, comienza a descargar el código del script (y si el script es un módulo, también descarga recursivamente todas sus dependencias) y continúa parseando el documento.
+   El script se ejecutará tan pronto como sea posible después de haberse descargado, pero el parser **no se detiene** para esperar a que termine la descarga.
+   Los scripts asíncronos no deben usar el método `document.write()`.
+   Estos scripts pueden ver su propia etiqueta `<script>` y todo el contenido del documento que aparece antes de ella, y pueden o no tener acceso a contenido adicional del documento.
+
+4. Cuando el documento ha sido completamente parseado, la propiedad `document.readyState` cambia a `"interactive"`.
+
+5. Cualquier script que tenga el atributo `defer` (junto con los scripts de tipo módulo que no tengan el atributo `async`) se ejecuta en el orden en el que aparecen en el documento. Los scripts `async` también pueden ejecutarse en este momento.
+   Los scripts diferidos (`defer`) tienen acceso al documento completo y no deben usar el método `document.write()`.
+
+6. El navegador dispara el evento `"DOMContentLoaded"` sobre el objeto `Document`.
+   Esto marca la transición desde la fase de ejecución sincrónica de scripts hacia la fase asíncrona y dirigida por eventos del programa.
+   Sin embargo, hay que tener en cuenta que aún pueden existir scripts `async` que no se hayan ejecutado en este punto.
+
+7. En este momento el documento ya está completamente parseado, pero el navegador aún puede estar esperando que se cargue contenido adicional, como imágenes.
+   Cuando todo ese contenido termina de cargarse y cuando todos los scripts `async` se han descargado y ejecutado, la propiedad `document.readyState` cambia a `"complete"` y el navegador dispara el evento `"load"` sobre el objeto `Window`.
+
+8. A partir de este punto, los manejadores de eventos se invocan de forma **asíncrona** en respuesta a eventos de entrada del usuario, eventos de red, expiraciones de temporizadores, y otros eventos similares.
+
+### 15.1.6 Program Input and Output
+
+Como cualquier programa, los programas de JavaScript del lado del cliente procesan **datos de entrada** para producir **datos de salida**. Existen diversas fuentes de entrada disponibles:
+
+* **El contenido del propio documento**, al cual el código JavaScript puede acceder mediante la API del DOM (§15.3).
+
+* **La entrada del usuario**, en forma de eventos, como clics del mouse (o toques en pantallas táctiles) sobre elementos HTML `<button>`, o texto ingresado en elementos HTML `<textarea>`, por ejemplo.
+  La sección §15.2 muestra cómo los programas JavaScript pueden responder a este tipo de eventos de usuario.
+
+* **La URL del documento que se está mostrando**, que está disponible para JavaScript del lado del cliente como `document.URL`.
+  Si se pasa esta cadena al constructor `URL()` (§11.9), se puede acceder fácilmente a las secciones de ruta (path), consulta (query) y fragmento (hash) de la URL.
+
+* **El contenido del encabezado de solicitud HTTP “Cookie”**, que está disponible para el código del lado del cliente como `document.cookie`.
+  Las cookies suelen ser utilizadas por código del lado del servidor para mantener sesiones de usuario, pero el código del lado del cliente también puede leerlas (y escribirlas) si es necesario.
+  Para más detalles, véase §15.12.2.
+
+* **La propiedad global `navigator`**, que proporciona acceso a información sobre el navegador web, el sistema operativo sobre el cual se está ejecutando y las capacidades de ambos.
+  Por ejemplo, `navigator.userAgent` es una cadena que identifica el navegador web, `navigator.language` indica el idioma preferido del usuario, y `navigator.hardwareConcurrency` devuelve el número de CPUs lógicos disponibles para el navegador.
+  De manera similar, la propiedad global `screen` proporciona acceso al tamaño de la pantalla del usuario a través de las propiedades `screen.width` y `screen.height`.
+  En cierto sentido, los objetos `navigator` y `screen` son para los navegadores web lo que las variables de entorno son para los programas en Node.js.
+
+El JavaScript del lado del cliente normalmente produce **salida**, cuando lo necesita, manipulando el documento HTML mediante la API del DOM (§15.3) o utilizando un framework de nivel superior como React o Angular para modificar el documento.
+El código del lado del cliente también puede usar `console.log()` y métodos relacionados (§11.8) para generar salida. Sin embargo, esta salida solo es visible en la consola de desarrollo del navegador, por lo que resulta útil para depuración, pero no para mostrar información visible al usuario.
+
+### 15.1.7 Program Errors
+
+* Se recomienda que se prevean todos los errores que se puedan presenar y manejarlos con gracia, no de pender de lo que bote el navegador.
+* Utilizar el catch con las promesas para manejar con gracia todos los errores posibles.
+* Existe una propiedad en el global en donde se puede registrar una funcion onerror que lo que hace es tomar un error que haya transversado todo el DOM sin encontrar un catch.
+
+### 15.1.8. The Web Security Model
+
+The subsections that follow give a quick overview of the security restrictions and issues that you, as a JavaScript programmer, should to be aware of:
+
+#### 15.1.8.1 What JavaScript can’t do
+
+* No puede manipular archivos del sistema
+* client-side JavaScript does not have general-purpose networking capabilities.
+
+#### 15.1.8.2 The same-origin policy
+
+It typically comes into play when a web page includes `<iframe>` elements.
+
+* A script can read only the properties of windows and documents that have the same origin as the document that contains the script.
+
+#### 15.1.8.3 Cross-site scripting
+
+Cross-site scripting, or XSS, is a term for a category of security issues in which an attacker injects HTML tags or scripts into a target website.
+
+* In general, the way to prevent XSS attacks is to remove HTML tags from any untrusted data before using it to create dynamic document content.
+
+## 15.2. Events
+
+[**AQUI**](https://www.w3schools.com/jsref/dom_obj_event.asp) informacion mas detallada de todos los eventos presentes en el browser
+
+Los programas de JavaScript del lado del cliente utilizan un **modelo de programación asíncrona dirigida por eventos**.
+
+En este estilo de programación, el navegador web genera un **evento** cada vez que sucede algo "interesante" en el documento, en el propio navegador o en algún elemento u objeto asociado a ellos.
+
+🔍 ¿Qué significa esto en la práctica?
+
+Para que lo veas con la lógica que ya construimos:
+
+1. **"Algo interesante"**: Es cualquier cambio de estado. Por ejemplo:
+    * El usuario hace clic en un botón (**elemento**).
+    * La página termina de cargar (**documento**).
+    * Se cambia el tamaño de la ventana (**navegador/window**).
+    * Un temporizador llega a cero (**objeto asociado**).
+
+2. **El Navegador como Vigilante**: El navegador está constantemente "escuchando". Cuando detecta ese "suceso interesante", crea un objeto de evento y lo envía al sistema.
+3. **La conexión con `EventTarget**`: ¿Recuerdas que dijimos que `window`, `document` y los elementos como el `button` heredan de `EventTarget`?
+    * Gracias a esa herencia, todos ellos tienen el método `.addEventListener()`.
+    * Este método es como decirle al navegador: *"Si ocurre ese evento interesante en este objeto específico, avísame y ejecuta mi función"*.
+
+💡 ¿Por qué es "Asíncrono"?
+
+Es asíncrono porque el código no se queda "congelado" esperando a que hagas clic. El programa sigue corriendo la Fase 1 (que tradujimos antes) y, **solo cuando ocurre el evento** (Fase 2), el navegador interrumpe lo que está haciendo para ejecutar tu función.
+
+**Anatomia de un evento:**
+
+* event type
+* event target
+* event handler, or event listener
+* **event object**
+* event propagation
+* prevent default
+
+### 15.2.1. Event Categories
+
+* Device-dependent input events
+* Device-independent input events
+* User interface events
+* State-change events
+* API-specific events
