@@ -152,12 +152,12 @@ Caso de uso ideal
 
 4️⃣ Comparación clara
 
-| Característica    | normal | defer | async |
-| ----------------- | ------ | ----- | ----- |
-| Bloquea HTML      | ✅      | ❌     | ❌     |
-| Descarga paralela | ❌      | ✅     | ✅     |
-| Espera DOM        | ❌      | ✅     | ❌     |
-| Respeta orden     | ✅      | ✅     | ❌     |
+| Característica    | normal | defer  | async|
+| ----------------- | ------    -----  | -----   |
+| Bloquea HTML      | ✅      | ❌     | ❌    |
+| Descarga paralela | ❌      | ✅     | ✅    |
+| Espera DOM        | ❌      | ✅     | ❌    |
+| Respeta orden     | ✅      | ✅     | ❌    |
 
 5️⃣ ¿De dónde salen `async` y `defer`?
 
@@ -524,7 +524,7 @@ Para que lo veas con la lógica que ya construimos:
 
 Es asíncrono porque el código no se queda "congelado" esperando a que hagas clic. El programa sigue corriendo la Fase 1 (que tradujimos antes) y, **solo cuando ocurre el evento** (Fase 2), el navegador interrumpe lo que está haciendo para ejecutar tu función.
 
-**Anatomia de un evento:**
+**Anatomía de un evento:**
 
 * event type
 * event target
@@ -540,3 +540,283 @@ Es asíncrono porque el código no se queda "congelado" esperando a que hagas cl
 * User interface events
 * State-change events
 * API-specific events
+
+### 15.2.2 Registering Event Handlers
+
+"Hay dos formas básicas de registrar **manejadores de eventos**. La primera, de los inicios de la web, consiste en establecer una propiedad en el objeto o elemento del documento que es el **objetivo del evento**. La segunda técnica (más nueva y más general) consiste en pasar el manejador al método **`addEventListener()`** del objeto o elemento."
+
+#### 12.5.2.1. addEventListener()
+
+"Cualquier objeto que pueda ser un **objetivo de evento** —esto incluye los objetos `Window` y `Document` y todos los elementos del documento— define un método llamado **`addEventListener()`** que puedes usar para registrar un manejador de eventos para ese objetivo. `addEventListener()` recibe tres argumentos. El primero es el **tipo de evento** para el cual se está registrando el manejador; el tipo de evento (o nombre) es una cadena que **no incluye el prefijo “on”** utilizado al establecer propiedades de manejadores de eventos. El segundo argumento de `addEventListener()` es la **función** que debe invocarse cuando ocurre el tipo de evento especificado."
+
+Resumen de los parámetros mencionados:
+
+* **Argumento 1:** El nombre del evento (ej. `'click'`, no `'onclick'`).
+* **Argumento 2:** La función que se ejecutará (el *callback*).
+* **Argumento 3:** (Mencionado pero no detallado en tu texto) Suele ser un objeto de opciones o un valor booleano para el *capture phase*.
+
+* Tener en cuenta que utiliza el on ya sea en html o en un object (b.onclick) va a sobre-escribir los eventos registrados, mientras que con el adEventListener() se le pueden asignar varios eventos al mismo elemento, inclusive repetir el evento para diferentes outcomes.
+
+### 15.2.3 Event Handler Invocation
+
+Una cosa es registrarlos, otra cosa es cuando se disparan y se invoka el callback.
+
+#### 15.2.3.1. Event handler argument
+
+Cuando se invoca, hay que tener en cuenta que:
+
+* el browser asigna automáticamente el elemento HTML a this en el contexto de la función callback del evento.
+* Se entrega un object event con muchos datos sobre el evento que acaba de ocurrir.
+
+#### 12.2.3.2. Event handler context
+
+"Cuando registras un manejador de eventos estableciendo una propiedad, parece como si estuvieras definiendo un nuevo método en el objeto objetivo:
+
+`target.onclick = function() { /* código del manejador */ };`
+
+Por lo tanto, no es de extrañar que los manejadores de eventos se invoquen como métodos del objeto en el que están definidos. Es decir, dentro del cuerpo de un manejador de eventos, la palabra clave **`this`** se refiere al objeto en el que se registró el manejador de eventos."
+
+#### 15.2.3.1. Handler return value
+
+La idea es que no retornen nada.
+
+#### 15.2.3.2. Invocation order
+
+"Un **objetivo de evento** puede tener más de un manejador de eventos registrado para un tipo de evento en particular. Cuando ocurre un evento de ese tipo, el navegador invoca todos los manejadores en el **orden en el que fueron registrados**. Curiosamente, esto es cierto incluso si mezclas manejadores registrados con `addEventListener()` con un manejador de eventos registrado en una propiedad de objeto como `onclick`."
+
+### 15.2.4 Event Propagation
+
+La burbuja de invokacion es que si se le da click a un elemento, se va a mirar si los elementos ancestros tambien tiene un click y se van a disparar también.
+
+"La **propagación de eventos** (o *event bubbling*) proporciona una alternativa a registrar manejadores en muchos elementos individuales del documento: en su lugar, puedes registrar un único manejador en un elemento ancestro común y gestionar los eventos allí. Por ejemplo, podrías registrar un manejador 'change' en un elemento `<form>`, en lugar de registrar un manejador 'change' para cada elemento dentro del formulario."
+
+“focus,” “blur,” and “scroll” events no entran en esta burbuja.
+
+* Tambien se tiene event capturing que es diferente a event propagation y diferente a bubble up event.
+
+Hay tres faces en la propagacion de eventos
+
+* "Capturing" fase
+* invocation of the event handlers of the target object itself
+* Event bubbling
+
+### 15.2.5 Event Cancellation
+
+El preventDefault() evita que muchos eventos que el navegador dispara automaticamente, no se disparen. tambien esta el stopPropaga
+tion().
+
+### 15.2.6 Dispatching Custom Events
+
+```javascript
+// Dispatch a custom event so the UI knows we are busy
+document.dispatchEvent(new CustomEvent("busy", { detail: true }));
+// Perform a network operation
+fetch(url)
+.then(handleNetworkResponse)
+.catch(handleNetworkError)
+.finally(() => {
+// After the network request has succeeded or failed, dispatch
+// another event to let the UI know that we are no longer busy.
+document.dispatchEvent(new CustomEvent("busy", { detail: false }));
+});
+// Elsewhere, in your program you can register a handler for "busy" events
+// and use it to show or hide the spinner to let the user know.
+document.addEventListener("busy", (e) => {
+if (e.detail) {
+showSpinner();
+} else {
+hideSpinner();
+}
+});
+```
+
+## 15.3 Scripting Documents
+
+"Cada objeto **Window** tiene una propiedad `document` que hace referencia a un objeto **Document**.
+
+La manipulación del DOM se trata en este capítulo:
+
+* **Cómo consultar o seleccionar** elementos individuales de un documento.
+* **Cómo recorrer** un documento y cómo encontrar los **ancestros, hermanos y descendientes** de cualquier elemento del documento.
+* **Cómo consultar y establecer** los atributos de los elementos del documento.
+* **Cómo consultar, establecer y modificar** el contenido de un documento.
+* **Cómo modificar la estructura** de un documento creando, insertando y eliminando nodos."
+
+Conceptos clave de esta sección:
+
+Para entender mejor el segundo punto (recorrer el documento), recuerda que el DOM se organiza como un árbol genealógico:
+
+* **Ancestros:** Elementos que contienen al elemento actual (padres, abuelos).
+* **Hermanos (Siblings):** Elementos que comparten el mismo padre.
+* **Descendientes:** Elementos contenidos dentro del actual (hijos, nietos).
+
+### 15.3.1 Selecting Document Elements
+
+Como seleccionar los elementos dentro del document que sale de Document.
+
+#### 15.3.1.1. Selecting elements with CSS selectors
+
+El método `querySelector()` es extremadamente potente porque utiliza la misma sintaxis que los **selectores de CSS**. Aquí tienes un ejemplo de cada tipo principal que puedes usar como argumento:
+
+1. Selector de Etiqueta (Tipo)
+
+    Selecciona el primer elemento que sea de ese tipo de etiqueta HTML.
+
+    ```javascript
+    // Selecciona el primer párrafo (<p>) que encuentre
+    const primerParrafo = document.querySelector("p");
+    ```
+
+2. Selector de Clase
+
+    Busca elementos que tengan una clase específica (usa el punto `.`).
+
+    ```javascript
+    // Selecciona el primer elemento con la clase "menu-item"
+    const item = document.querySelector(".menu-item");
+    ```
+
+3. Selector de ID
+
+    Busca el elemento único con ese ID (usa el hash `#`).
+
+    ```javascript
+    // Selecciona el elemento con id="main-header"
+    const header = document.querySelector("#main-header");
+    ```
+
+4. Selector de Atributo
+
+    Selecciona elementos basados en sus atributos (como `type`, `name`, `href`, etc.).
+
+    ```javascript
+    // Selecciona el primer input de tipo "email"
+    const inputEmail = document.querySelector('input[type="email"]');
+    ```
+
+5. Selectores Combinados (Descendientes e Hijos)
+
+    * **Descendiente (espacio):** Busca cualquier nivel de profundidad.
+    * **Hijo directo (`>`):** Solo busca inmediatamente dentro del padre.
+
+    ```javascript
+    // Cualquier <span> que esté dentro de un <div>
+    const spanInterno = document.querySelector("div span");
+
+    // Solo el <li> que sea hijo directo de un <ul>
+    const itemLista = document.querySelector("ul > li");
+    ```
+
+6. Pseudo-clases
+
+    Permiten seleccionar elementos basados en su estado o posición.
+
+    ```javascript
+    // Selecciona el primer elemento de una lista
+    const primero = document.querySelector("li:first-child");
+
+    // Selecciona un input que esté deshabilitado
+    const deshabilitado = document.querySelector("input:disabled");
+    ```
+
+7. Selector Múltiple (Grupo)
+
+    Puedes buscar varios tipos a la vez y te devolverá el primero que encuentre de cualquiera de ellos.
+
+    ```javascript
+    // Selecciona el primer <h1> o el primer <h2> que aparezca en el DOM
+    const titulo = document.querySelector("h1, h2");
+    ```
+
+**Nota importante:** Recuerda que `querySelector()` solo devuelve el **primer** elemento que coincida. Si necesitas obtener todos los que coincidan, debes usar `querySelectorAll()`, que devuelve una lista (NodeList).
+
+#### 12.3.1.2. querySelectorAll()
+
+El detalle clave con `querySelectorAll()` es que, a diferencia de `querySelector()` que te da un solo elemento, este te entrega una **colección**. Esa colección es un **NodeList**.
+
+Aquí tienes lo esencial que debes saber sobre este objeto:
+
+¿Qué es un NodeList?
+
+Es un objeto que representa una **colección de nodos**. Aunque parece un Array (arreglo) porque tiene índices y una propiedad `.length`, **no es un Array de JavaScript**. Se le conoce como un objeto "Array-like" (similar a un arreglo).
+
+Características fundamentales
+
+* **Es Estático (Static):** Esta es la característica más importante. El NodeList que devuelve `querySelectorAll` es una "foto" del DOM en el momento de la consulta. Si después de hacer la búsqueda borras o añades elementos al documento, el NodeList **no se actualizará**; seguirá teniendo los mismos elementos que cuando lo creaste.
+* **Es Iterable:** Puedes recorrerlo directamente usando el método `.forEach()`, lo cual es muy cómodo:
+
+```javascript
+const botones = document.querySelectorAll("button");
+botones.forEach(boton => {
+    boton.style.backgroundColor = "blue";
+});
+
+```
+
+* **Acceso por índice:** Puedes acceder a los elementos usando corchetes, igual que en un arreglo: `lista[0]`, `lista[1]`, etc.
+
+NodeList vs. Array (Diferencias clave)
+
+| Característica | NodeList | Array (`[]`) |
+| --- | --- | --- |
+| **`.length`** | Sí | Sí |
+| **`.forEach()`** | Sí (en navegadores modernos) | Sí |
+| **Métodos como `.map()`, `.filter()`, `.reduce()**` | **No** (debes convertirlo primero) | Sí |
+
+> **Tip Pro:** Si necesitas usar métodos de array potentes (como `.filter()` o `.map()`), puedes convertir tu NodeList en un Array real muy fácil usando el operador spread:
+> `const arrayReal = [...miNodeList];`
+
+¿Por qué importa que sea un NodeList?
+
+A diferencia de otros métodos antiguos como `getElementsByTagName` (que devuelven un `HTMLCollection` que es "vivo" y cambia solo), el NodeList estático de `querySelectorAll` es **más seguro y predecible** para programar, porque los elementos no desaparecen de tu variable "mágicamente" mientras trabajas con ellos.
+
+#### 15.3.1.3. Other element selection methods
+
+"Además de `querySelector()` y `querySelectorAll()`, el DOM también define una serie de métodos de selección de elementos más antiguos que están más o menos obsoletos en la actualidad. Sin embargo, es posible que todavía veas algunos de estos métodos en uso (especialmente `getElementById()`):
+
+```javascript
+// Busca un elemento por id. El argumento es solo el id, sin
+// el prefijo de selector CSS #. Similar a document.querySelector("#sect1")
+let sect1 = document.getElementById("sect1");
+
+// Busca todos los elementos (como casillas de verificación de formularios) que tengan un
+// atributo name="color". Similar a document.querySelectorAll('*[name="color"]');
+let colors = document.getElementsByName("color");
+
+// Busca todos los elementos <h1> en el documento.
+// Similar a document.querySelectorAll("h1")
+let headings = document.getElementsByTagName("h1");
+
+// getElementsByTagName() también está definido en los elementos.
+// Obtiene todos los elementos <h2> dentro del elemento sect1.
+let subheads = sect1.getElementsByTagName("h2");
+
+// Busca todos los elementos que tengan la clase "tooltip."
+// Similar a document.querySelectorAll(".tooltip")
+let tooltips = document.getElementsByClassName("tooltip");
+
+// Busca todos los descendientes de sect1 que tengan la clase "sidebar"
+// Similar a sect1.querySelectorAll(".sidebar")
+let sidebars = sect1.getElementsByClassName("sidebar");
+
+```
+
+Al igual que `querySelectorAll()`, los métodos en este código devuelven un **NodeList** (excepto `getElementById()`, que devuelve un único objeto **Element**). Sin embargo, a diferencia de `querySelectorAll()`, los NodeLists devueltos por estos métodos de selección más antiguos son **"vivos" (live)**, lo que significa que la longitud y el contenido de la lista pueden cambiar si el contenido o la estructura del documento cambian."
+
+Un detalle importante:
+
+Como mencionamos antes, el **NodeList** de `querySelectorAll` es una "foto" (estático), pero los que devuelven estos métodos antiguos (`getElementsBy...`) están conectados directamente al DOM. Si añades un nuevo `<h1>` al documento, la variable `headings` del ejemplo se actualizará sola automáticamente.
+
+#### 15.3.1.4. Preselected elements
+
+"Por razones históricas, la clase `Document` define propiedades de acceso directo (shortcuts) para acceder a ciertos tipos de nodos. Las propiedades `images`, `forms` y `links`, por ejemplo, proporcionan un acceso fácil a los elementos `<img>`, `<form>` y `<a>` (pero solo a las etiquetas `<a>` que tienen un atributo `href`) de un documento. Estas propiedades hacen referencia a objetos **HTMLCollection**, que son muy similares a los objetos **NodeList**, pero que adicionalmente pueden indexarse por el **ID** o el **nombre (name)** del elemento. Con la propiedad `document.forms`, por ejemplo, puedes acceder a la etiqueta `<form id="address">` de la siguiente manera:
+
+`document.forms.address;`"
+
+Nota rápida sobre la `HTMLCollection`:
+
+A diferencia del `NodeList` que vimos antes, la **HTMLCollection** tiene una característica especial: permite el **acceso con nombre**.
+
+Si tienes un formulario con `name="login"`, puedes llegar a él simplemente escribiendo `document.forms.login`. Esto es lo que el texto llama "indexar por nombre", algo que no se puede hacer directamente con un NodeList estándar de `querySelectorAll`.
+
+¿Deseas que sigamos con el siguiente fragmento del capítulo? Podríamos ver ahora cómo **recorrer el árbol de nodos** (ancestros y descendientes).
