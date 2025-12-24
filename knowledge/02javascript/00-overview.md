@@ -198,17 +198,6 @@ Reglas elementales para comenzar a escribir código:
 
 
 
-##### 15.3.1.1 Selecting elements with CSS selectors
-
-Informacion acerca de los selectores css, mas informacion en la seccion css de este docuaurio
-
-#### 15.3.2 Document Structure and Traversal
-
-there is a traversal API that allows us to treat a document as a tree of Element objects, ignoring Text nodes that are also part of the document.
-
-- Este ser se puede ver en w3schools ya que sonparte de los metodos del document.
-- Documents as trees of nodes.
-
 #### 15.3.3 Attributes
 
 Son los HTML atributes

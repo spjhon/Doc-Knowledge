@@ -820,3 +820,111 @@ A diferencia del `NodeList` que vimos antes, la **HTMLCollection** tiene una car
 Si tienes un formulario con `name="login"`, puedes llegar a él simplemente escribiendo `document.forms.login`. Esto es lo que el texto llama "indexar por nombre", algo que no se puede hacer directamente con un NodeList estándar de `querySelectorAll`.
 
 ¿Deseas que sigamos con el siguiente fragmento del capítulo? Podríamos ver ahora cómo **recorrer el árbol de nodos** (ancestros y descendientes).
+
+### 15.3.2 Document Structure and Traversal
+
+Despues de programaticamente seleccionar un elemento, se tiene a disposicion un set de propiedades para seleccionar padres o hijos.
+
+Propiedades de Navegación de Elementos
+
+* **`parentNode`**
+Esta propiedad de un elemento hace referencia al padre del elemento, el cual será otro objeto `Element` o un objeto `Document`.
+* **`children`**
+Esta `NodeList` contiene los elementos hijos de un elemento, pero excluye a los hijos que no son elementos, como los nodos de texto (nodos `Text`) y los de comentario (nodos `Comment`).
+* **`childElementCount`**
+El número de hijos que son elementos. Devuelve el mismo valor que `children.length`.
+* **`firstElementChild`, `lastElementChild**`
+Estas propiedades hacen referencia al primer y último elemento hijo de un elemento. Valen `null` si el elemento no tiene hijos que sean elementos.
+* **`nextElementSibling`, `previousElementSibling**`
+Estas propiedades hacen referencia a los elementos hermanos inmediatamente anteriores o posteriores a un elemento, o `null` si no existe tal hermano.
+
+Un pequeño recordatorio:
+
+Es importante notar que estas propiedades tienen la palabra **"Element"** en su nombre. Esto es clave porque te aseguran que solo estás saltando entre etiquetas HTML (como `<div>`, `<h1>`, etc.), ignorando los espacios en blanco o saltos de línea que el navegador interpreta como "nodos de texto".
+
+#### 15.3.2.1. Documents as trees of nodes
+
+Aquí tienes la traducción de estas propiedades que pertenecen a todos los objetos **Node** (nodos).
+
+Es importante notar que, a diferencia del fragmento anterior que hablaba solo de "Elements" (etiquetas HTML), este habla de "Nodes", lo que incluye también texto, comentarios y el documento mismo.
+
+Propiedades de todos los objetos Node
+
+* **`parentNode`**
+El nodo que es el padre de este, o `null` para nodos como el objeto `Document` que no tienen padre.
+* **`childNodes`**
+Una `NodeList` de solo lectura que contiene **todos** los hijos (no solo los hijos de tipo Element) del nodo.
+* **`firstChild`, `lastChild**`
+El primer y último nodo hijo de un nodo, o `null` si el nodo no tiene hijos.
+* **`nextSibling`, `previousSibling**`
+Los nodos hermanos siguiente y anterior de un nodo. Estas propiedades conectan los nodos en una **lista doblemente enlazada**.
+* **`nodeType`**
+Un número que especifica qué tipo de nodo es este. Los nodos `Document` tienen el valor **9**. Los nodos `Element` tienen el valor **1**. Los nodos `Text` tienen el valor **3**. Los nodos `Comment` tienen el valor **8**.
+* **`nodeValue`**
+El contenido textual de un nodo de tipo `Text` (texto) o `Comment` (comentario).
+* **`nodeName`**
+El nombre de la etiqueta HTML de un `Element`, convertido a mayúsculas (por ejemplo: "DIV", "P", "SECTION").
+
+¡Ojo con la diferencia!
+
+Es muy común confundirse entre las propiedades del mensaje anterior y estas:
+
+* `children` (del mensaje anterior) solo te da las **etiquetas HTML**.
+* `childNodes` (de este mensaje) te da **todo**, incluyendo los espacios en blanco y saltos de línea que hay en tu código HTML, los cuales interpreta como nodos de tipo `Text`.
+
+### 15.3.3 Attributes
+
+Los atributos en html es un set de claves=valor que se pueden adiconar a elementos html con el fin de darles datos de configuracion del html.
+
+Aquí tienes la traducción:
+
+"La clase `Element` define los métodos generales **`getAttribute()`**, **`setAttribute()`**, **`hasAttribute()`** y **`removeAttribute()`** para consultar, establecer, probar y eliminar los atributos de un elemento. Sin embargo, los valores de los atributos de los elementos HTML (para todos los atributos estándar de los elementos HTML estándar) están disponibles como **propiedades** de los objetos `HTMLElement` que representan a esos elementos, y generalmente es mucho más fácil trabajar con ellos como propiedades de JavaScript que llamar a `getAttribute()` y sus métodos relacionados."
+
+Ejemplo rápido para aclarar el texto:
+
+El texto te dice que tienes dos caminos para hacer lo mismo:
+
+1. **Usando métodos (Más formal):**
+`element.setAttribute("id", "mi-id");`
+2. **Usando propiedades (Más fácil/común):**
+`element.id = "mi-id";`
+
+Un par de excepciones importantes:
+
+Aunque el texto dice que es "más fácil", hay dos casos donde suelen usarse los métodos:
+
+* **Atributos personalizados:** Si creas un atributo que no existe en HTML (ej. `<div mi-dato="123">`), JavaScript no lo creará automáticamente como propiedad, así que tendrías que usar `getAttribute("mi-dato")`.
+* **El atributo `class`:** Como `class` es una palabra reservada en JS, la propiedad se llama `className` (aunque hoy en día usamos más `classList`).
+
+#### 15.3.3.1. HTML attributes as element properties
+
+No solo se pueden inyectar estos atributos directamente en el html, tambien en javascipt en forma de propiedades de objeto:
+
+```js
+let image = document.querySelector("#main_image");
+let url = image.src; // The src attribute is the URL of the image
+image.id === "main_image" // => true; we looked up the image by id
+```
+
+```js
+let f = document.querySelector("form"); // First <form> in the document
+f.action = "https://www.example.com/submit"; // Set the URL to submit it to.
+f.method = "POST"; // Set the HTTP request type.
+```
+
+#### 15.3.3.2. The class attribute
+
+El el que inyecta el css en el html
+
+De la siguiente forma es que se puede hacer en javascript:
+
+```js
+// When we want to let the user know that we are busy, we display
+// a spinner. To do this we have to remove the "hidden" class and add the
+// "animated" class (assuming the stylesheets are configured correctly).
+let spinner = document.querySelector("#spinner");
+spinner.classList.remove("hidden");
+spinner.classList.add("animated");
+```
+
+#### 15.3.3.3. Dataset attributes
