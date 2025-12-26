@@ -928,3 +928,469 @@ spinner.classList.add("animated");
 ```
 
 #### 15.3.3.3. Dataset attributes
+
+"A veces es útil adjuntar información adicional a los elementos HTML, normalmente cuando el código JavaScript seleccionará esos elementos y los manipulará de alguna forma. En HTML, cualquier atributo cuyo nombre esté en minúsculas y comience con el prefijo **'data-'** se considera válido, y puedes usarlos para cualquier propósito. Estos **'atributos dataset'** no afectarán la presentación de los elementos en los que aparecen, y definen una forma estándar de adjuntar datos adicionales sin comprometer la validez del documento."
+
+¿Cómo se usan en JavaScript?
+
+Aunque puedes acceder a ellos con `getAttribute('data-algo')`, JavaScript ofrece una propiedad especial mucho más limpia llamada **`dataset`**.
+
+**Ejemplo práctico:**
+
+Si tienes este HTML:
+
+```html
+<div id="usuario" data-id="12345" data-rol="admin"> ... </div>
+
+```
+
+Puedes acceder a esos valores así:
+
+```javascript
+const user = document.querySelector("#usuario");
+
+console.log(user.dataset.id);  // "12345"
+console.log(user.dataset.rol); // "admin"
+
+// También puedes cambiarlos:
+user.dataset.rol = "editor"; 
+
+```
+
+Regla de oro del nombre:
+
+Si el atributo en HTML tiene guiones, como `data-fecha-nacimiento`, JavaScript lo convierte automáticamente a **camelCase**: `user.dataset.fechaNacimiento`.
+
+### 15.3.4 Element Content
+
+Lo que esta dentro de un elemento puede ser otro elemento html o un nodo de string.
+
+#### 15.3.4.1. Element content as HTML
+
+Retorna el elemento html en forma de string y reconvertido a html una vez se asigne a un elemento del Document.
+
+#### 15.3.4.2. Element content as plain text
+
+Cuando retorna un string tambien se puede ya manipular a voluntad
+
+```javascript
+let para = document.querySelector("p"); // First <p> in the document
+let text = para.textContent; // Get the text of the paragraph
+para.textContent = "Hello World!"; // Alter the text of the paragraph
+```
+
+### 15.3.5 Creating, Inserting, and Deleting Nodes
+
+* Para crear un nuevo elemento: createElement()
+* Para adicionarle elementos: append() o prepend() o after() o before()
+
+```javascript
+let paragraph = document.createElement("p"); // Create an empty <p> element
+let emphasis = document.createElement("em"); // Create an empty <em> element
+emphasis.append("World"); // Add text to the <em> element
+paragraph.append("Hello ", emphasis, "!"); // Add text and <em> to <p>
+paragraph.prepend("¡"); // Add more text at start of <p>
+paragraph.innerHTML // => "¡Hello <em>World</em>!"
+```
+
+* Para quitar tenemos el replaceWith() y el remove()
+
+### 15.3.6 Example: Generating a Table of Contents
+
+Hay un moderadamente grande ejemplo que lo que hace es tomar un documento y manupular, indagar y crear nodos que permita crear una tabla de contenido a partir del texto en HTML tags.
+
+## 15.4 Scripting CSS
+
+Se pueden cambiar, inyectar y editar el css desde javascript a un elemento html
+
+### 15.4.1 CSS Classes
+
+Se utiliza el classList para manipular las clases de un elemento html
+
+Definir la clase:
+
+```css
+.hidden {
+display:none;
+}
+```
+
+With this style defined, you can hide (and then show) an element with code like this:
+
+```javascript
+// Assume that this "tooltip" element has class="hidden" in the HTML file.
+// We can make it visible like this:
+document.querySelector("#tooltip").classList.remove("hidden");
+// And we can hide it again like this:
+document.querySelector("#tooltip").classList.add("hidden");
+```
+
+### 15.4.2 Inline Styles
+
+1️⃣ `element.style` (estilos en línea)
+
+Cuando usas `style`, **modificas directamente el atributo `style` del HTML**:
+
+```js
+const box = document.querySelector('.box');
+
+box.style.backgroundColor = 'red';
+box.style.width = '200px';
+```
+
+Esto genera algo así en el DOM:
+
+```html
+<div class="box" style="background-color: red; width: 200px;"></div>
+```
+
+✅ Ventajas
+
+* Rápido y directo
+* Útil para valores **dinámicos** (pixeles, porcentajes, cálculos)
+* Bueno para animaciones manuales o valores calculados en JS
+
+❌ Desventajas
+
+* Mezcla **lógica (JS)** con **presentación (CSS)**
+* Difícil de mantener si el diseño crece
+* Prioridad alta → puede romper tu CSS
+* No puedes usar:
+
+  * `:hover`
+  * `:focus`
+  * `@media`
+  * `@keyframes`
+
+📌 **Regla mental**:
+
+> `style` = “quiero cambiar una propiedad específica ahora mismo”
+
+2️⃣ `element.classList` (clases CSS)
+
+Con `classList`, **agregas, quitas o alternas clases definidas en tu CSS**:
+
+```js
+const box = document.querySelector('.box');
+
+box.classList.add('active');
+box.classList.remove('active');
+box.classList.toggle('active');
+```
+
+CSS:
+
+```css
+.box {
+  background: blue;
+  transition: background 0.3s;
+}
+
+.box.active {
+  background: red;
+}
+```
+
+✅ Ventajas
+
+* Separación correcta de responsabilidades
+* Código más limpio y mantenible
+* Aprovecha TODO CSS:
+
+  * transiciones
+  * animaciones
+  * media queries
+  * pseudo-clases
+* Ideal para estados (`active`, `open`, `error`, `loading`)
+
+❌ Desventajas
+
+* Menos flexible para valores ultra dinámicos
+* Necesitas definir clases previamente
+
+📌 **Regla mental**:
+
+> `classList` = “el elemento cambió de estado”
+
+3️⃣ Comparación directa
+
+| Caso                          | `style` | `classList` |
+| ----------------------------- | ------- | ----------- |
+| Cambio rápido puntual         | ✅      | ❌          |
+| Estados (open, active, error) | ❌      | ✅          |
+| Responsive / media queries    | ❌      | ✅          |
+| Animaciones CSS               | ❌      | ✅          |
+| Código escalable              | ❌      | ✅          |
+| Valores calculados (px, %)    | ✅      | ❌          |
+
+4️⃣ Ejemplo típico (❌ mal vs ✅ bien)
+
+❌ Mal uso de `style`
+
+```js
+modal.style.display = 'block';
+modal.style.opacity = '1';
+modal.style.transform = 'scale(1)';
+```
+
+✅ Buen uso con `classList`
+
+```js
+modal.classList.add('open');
+```
+
+```css
+.modal {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.modal.open {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+```
+
+5️⃣ ¿Cuándo usar cada uno? (regla profesional)
+
+👉 **Usa `classList` por defecto**
+👉 **Usa `style` solo cuando:**
+
+* El valor es calculado (`x + 20 + 'px'`)
+* Depende del tamaño de pantalla, scroll, mouse, etc.
+* Es algo puntual y no un “estado visual”
+
+6️⃣ Patrón recomendado (mixto, el más usado)
+
+```js
+card.classList.add('visible');
+card.style.top = `${y}px`;
+card.style.left = `${x}px`;
+```
+
+CSS maneja el **cómo se ve**, JS maneja el **dónde y cuándo**.
+
+🧠 Frase para que no se te olvide
+
+> **JS decide el estado, CSS decide la apariencia**
+
+Si quieres, en el próximo mensaje te muestro **ejemplos reales** tipo:
+
+* dropdown
+* modal
+* loading spinner
+* error states
+  como los usarías en una app en Next.js (como la que tú estás construyendo 😉).
+
+### 15.4.3 Computed Styles
+
+1️⃣ ¿Qué es `getComputedStyle()`?
+
+`getComputedStyle(element)` te devuelve **el estilo FINAL que el navegador está aplicando a un elemento**, después de resolver:
+
+* CSS externo
+* CSS interno
+* Clases
+* Herencia
+* Media queries
+* Valores por defecto del navegador
+
+👉 **No lo que tú escribiste**, sino **lo que realmente se está usando**.
+
+```js
+const box = document.querySelector('.box');
+const styles = getComputedStyle(box);
+
+console.log(styles.backgroundColor);
+console.log(styles.width);
+```
+
+2️⃣ Diferencia clave: `style` vs `getComputedStyle`
+
+`element.style`
+
+```js
+box.style.color = 'red';
+console.log(box.style.color); // "red"
+```
+
+📌 Solo devuelve **estilos en línea** (`style=""`).
+
+`getComputedStyle(element)`
+
+```css
+.box {
+  color: blue;
+}
+```
+
+```js
+console.log(getComputedStyle(box).color); 
+// "rgb(0, 0, 255)"
+```
+
+📌 Devuelve **el valor computado final**, incluso si viene del CSS.
+
+3️⃣ ¿Por qué es tan importante?
+
+Porque **JS no puede “ver” el CSS directamente**.
+Si quieres saber:
+
+* ¿Está visible?
+* ¿Qué ancho REAL tiene?
+* ¿Qué color terminó aplicándose?
+* ¿Qué `display` tiene ahora mismo?
+
+👉 necesitas `getComputedStyle()`.
+
+4️⃣ Ejemplos prácticos reales
+
+🔹 1. Saber si un elemento está visible
+
+```js
+const el = document.querySelector('.modal');
+const styles = getComputedStyle(el);
+
+if (styles.display === 'none') {
+  console.log('No está visible');
+}
+```
+
+⚠️ Ojo: `display: none` **no aparece en `style`** si viene del CSS.
+
+🔹 2. Leer tamaños reales (no inline)
+
+```css
+.card {
+  width: 300px;
+}
+```
+
+```js
+const card = document.querySelector('.card');
+const width = getComputedStyle(card).width;
+
+console.log(width); // "300px"
+```
+
+🔹 3. Animaciones / transiciones (muy común)
+
+```js
+const box = document.querySelector('.box');
+const opacity = parseFloat(getComputedStyle(box).opacity);
+
+if (opacity < 1) {
+  box.classList.add('visible');
+}
+```
+
+🔹 4. Calcular cosas dinámicas
+
+```js
+const el = document.querySelector('.tooltip');
+const styles = getComputedStyle(el);
+
+const padding =
+  parseFloat(styles.paddingTop) +
+  parseFloat(styles.paddingBottom);
+
+console.log(padding);
+```
+
+5️⃣ ¿Qué devuelve exactamente?
+
+Devuelve un objeto tipo `CSSStyleDeclaration`:
+
+```js
+const styles = getComputedStyle(el);
+
+styles.color;
+styles.marginTop;
+styles.fontSize;
+styles.display;
+```
+
+📌 Detalles importantes:
+
+* Todos los valores son **strings**
+* Todos los valores están **resueltos**
+* Colores vienen como `rgb(...)`
+* Unidades ya están calculadas (`px`)
+
+6️⃣ Diferencia con `getBoundingClientRect()`
+
+Esto confunde mucho 👇
+
+| Método                    | ¿Qué mide?                         |
+| ------------------------- | ---------------------------------- |
+| `getComputedStyle()`      | Valores CSS finales                |
+| `getBoundingClientRect()` | Tamaño y posición real en pantalla |
+
+```js
+el.getBoundingClientRect().width; // número
+getComputedStyle(el).width;       // string "300px"
+```
+
+👉 **Layout y posición → `getBoundingClientRect()`**
+👉 **Estilos CSS → `getComputedStyle()`**
+
+7️⃣ Buenas prácticas (MUY importante)
+
+❌ No lo llames en loops grandes
+
+```js
+// MAL
+elements.forEach(el => {
+  const w = getComputedStyle(el).width;
+});
+```
+
+📌 Puede causar **reflow** (problemas de performance).
+
+✅ Guárdalo una vez
+
+```js
+const styles = getComputedStyle(el);
+const width = styles.width;
+const height = styles.height;
+```
+
+8️⃣ Cuándo SÍ usarlo
+
+✔ Saber el estado visual actual
+✔ Leer estilos definidos en CSS
+✔ Lógica basada en apariencia
+✔ Debug visual
+✔ Interacción avanzada (drag, resize, scroll)
+
+9️⃣ Cuándo NO usarlo
+
+❌ Para decidir estados (`open`, `active`, etc.)
+❌ Como fuente de verdad de la UI
+❌ Para reemplazar clases
+
+📌 **Los estados deben vivir en JS / clases**, no en CSS.
+
+🧠 Frase definitiva
+
+> **`style` escribe, `classList` cambia estados, `getComputedStyle` observa**
+
+### 15.4.4 Scripting Stylesheets
+
+Gracias al `<link rel="stylesheet">`, se puede manipular directament el stylesheet
+
+### 15.4.5 CSS Animations and Events
+
+"JavaScript también se puede utilizar para monitorear el progreso de una transición CSS porque el navegador web dispara eventos al inicio y al final de una transición."
+
+Datos clave sobre estos eventos:
+
+Aunque el texto menciona el inicio y el fin, en JavaScript solemos trabajar principalmente con estos nombres de eventos:
+
+* **`transitionstart`**: Se dispara cuando la transición comienza realmente (después de cualquier retraso o `delay`).
+* **`transitionend`**: Es el más utilizado; se dispara cuando la animación de CSS ha terminado por completo. Es perfecto para eliminar elementos del DOM o encadenar otra animación después de que algo desaparezca.
+* **`transitioncancel`**: Se dispara si la transición se interrumpe (por ejemplo, si cambias la propiedad CSS antes de que termine).
+
+## 15.5 Document Geometry and Scrolling

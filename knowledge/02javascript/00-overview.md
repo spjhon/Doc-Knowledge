@@ -198,39 +198,6 @@ Reglas elementales para comenzar a escribir código:
 
 
 
-#### 15.3.3 Attributes
-
-Son los HTML atributes
-
-- HTML attributes as element properties
-- The class attribute
-- Dataset attributes
-
-#### 15.3.4 Element Content
-
-- Element content as HTML
-- Element content as plain text
-
-#### 15.3.5 Creating, Inserting, and Deleting Nodes
-
-#### 15.3.6 Example: Generating a Table of Contents
-
-Hay un moderadamente grande ejemplo que lo que hace es tomar un documento y manupular, indagar y crear nodos que permita crear una tabla de contenido a partir del texto en HTML tags.
-
-### 15.4 Scripting CSS
-
-#### 15.4.1 CSS Classes
-
-#### 15.4.2 Inline Styles
-
-#### 15.4.3 Computed Styles
-
-#### 15.4.4 Scripting Stylesheets
-
-#### 15.4.5 CSS Animations and Events
-
-JavaScript can also be used to monitor the progress of a CSS transition because the web browser fires events at the start and end of a transition.
-
 ### 15.5 Document Geometry and Scrolling
 
 The following subsections explain how you can go back and forth between the abstract, tree-based model of a document and the geometrical, coordinate-based view of the document as it is laid out in a browser window.
