@@ -150,7 +150,7 @@ function crearContador() {
 | Enfoque                 | Usa `new` | Tiene prototipo                  | Tiene `this`   | Tiene privacidad            |
 | ----------------------- | --------- | -------------------------------- | -------------- | --------------------------- |
 | **Constructor / Class** | ✔️ Sí     | ✔️ Sí                            | ✔️ Sí          | 🔸 Con `#private` solamente |
-| **Factory Function**    | ❌ No      | ❌ No (a menos que tú lo asignes) | ❌ No necesario | ✔️ Con closure              |
+| **Factory Function**    | ❌ No     | ❌ No (a menos que tú lo asignes)| ❌ No necesario| ✔️ Con closure              |
 
 🎯 En resumen final
 

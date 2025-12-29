@@ -23,6 +23,22 @@ Las secciones de este capítulo son independientes entre sí y puedes leerlas en
 
 ### 11.1.1. The Set Class
 
+Los conjuntos (sets) son una de las estructuras de datos más fundamentales. La idea de un conjunto es simple: es un grupo de objetos definidos y distintos. En términos sencillos, en programación, un conjunto es un grupo de elementos únicos (sin duplicados) y no ordenados. Por ejemplo, un conjunto de números enteros puede ser {1,2,3,4}. Dentro de este, sus subconjuntos son ∅ (el conjunto vacío), {1},{2},{3},{4},{1,2},{1,3},{1,4},{2,3},{2,4},{3,4},{1,2,3},{1,2,4},{1,3,4} y {2,3,4}. Los conjuntos son importantes para verificar y añadir un elemento único en un tiempo constante O(1).
+
+Conceptos clave de los Conjuntos:
+
+- Unicidad: Si intentas añadir el número 2 a un conjunto que ya contiene {1, 2, 3}, el conjunto no cambiará. No permite duplicados.
+
+- Sin orden: A diferencia de un Array (donde el primer elemento siempre es el índice 0), en un conjunto no importa el orden. No puedes acceder a un elemento diciendo "dame el que está en la posición 2".
+
+- Eficiencia O(1): Esta es su mayor ventaja. En un Array, para saber si un número existe, el ordenador a veces tiene que revisar cada elemento uno por uno (O(n)). En un Conjunto, gracias a una técnica llamada hashing, el ordenador sabe instantáneamente si el elemento está o no (O(1)).
+
+        ```javascript
+        const miConjunto = new Set([1, 2, 3, 4]);
+        miConjunto.add(2); // No hace nada, el 2 ya existe.
+        console.log(miConjunto.has(3)); // true (en tiempo constante)
+        ```
+
 Un **conjunto** (*set*) es una colección de valores, al igual que un *array*. Sin embargo, a diferencia de los *arrays*, los conjuntos no están **ordenados** ni **indexados**, y no permiten **duplicados**: un valor es miembro de un conjunto o no lo es; no es posible preguntar cuántas veces aparece un valor en un conjunto.
 
 Crea un objeto **`Set`** con el constructor **`Set()`**:
