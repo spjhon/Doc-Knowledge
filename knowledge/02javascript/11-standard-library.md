@@ -23,6 +23,8 @@ Las secciones de este capítulo son independientes entre sí y puedes leerlas en
 
 ### 11.1.1. The Set Class
 
+[**AQUÍ**](https://www.w3schools.com/jsref/jsref_obj_set.asp) Metodos aplicados a los sets
+
 Los conjuntos (sets) son una de las estructuras de datos más fundamentales. La idea de un conjunto es simple: es un grupo de objetos definidos y distintos. En términos sencillos, en programación, un conjunto es un grupo de elementos únicos (sin duplicados) y no ordenados. Por ejemplo, un conjunto de números enteros puede ser {1,2,3,4}. Dentro de este, sus subconjuntos son ∅ (el conjunto vacío), {1},{2},{3},{4},{1,2},{1,3},{1,4},{2,3},{2,4},{3,4},{1,2,3},{1,2,4},{1,3,4} y {2,3,4}. Los conjuntos son importantes para verificar y añadir un elemento único en un tiempo constante O(1).
 
 Conceptos clave de los Conjuntos:
@@ -204,6 +206,8 @@ Los Sets son iterables.
 | **[Symbol.iterator]** | Permite iterar con for...of |
 
 ### 11.1.2. The Map Class
+
+[**AQUÍ**](https://www.w3schools.com/jsref/jsref_obj_map.asp) Todos los métodos del map class.
 
 Un `Map` en JavaScript es una colección de elementos donde cada elemento está compuesto por una clave y un valor. A diferencia de los objetos ordinarios en JavaScript, las claves en un `Map` pueden ser de cualquier tipo, incluyendo objetos, funciones y tipos primitivos. Esto ofrece una gran flexibilidad y permite un mapeo más complejo de claves a valores.
 
@@ -994,6 +998,8 @@ Y los metodos
 - **exec()**
 
 ## 11.4. Dates and Times
+
+[**AQUÍ**](https://www.w3schools.com/jsref/jsref_obj_date.asp) Todos los métodos que se le pueden aplicar a un DATE.
 
 La clase **`Date`** es la API de JavaScript para trabajar con fechas y horas. Crea un objeto **`Date`** con el constructor **`Date()`**. Sin argumentos, devuelve un objeto `Date` que representa la fecha y hora actuales:
 

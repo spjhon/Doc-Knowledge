@@ -130,6 +130,14 @@ new Date();
 
 ## 4.7. Operators Overview
 
+[**AQUÍ**](https://www.w3schools.com/jsref/jsref_operators.asp) Resumen de operadores en javascript.
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_oper_arithmetic.asp) Encontrara todos los operadores aritmeticos
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_oper_comparison.asp) Encontrara todos los operadores de comparacion
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_oper_misc.asp) Otros operadores
+
 - Operators are used for JavaScript’s arithmetic expressions, comparison expressions, logical expressions, assignment expressions,and more.
 - En la pagina **69** del libro se tiene la tabla **4.1** de todos los operadores en orden de **precedencia**.
 - JavaScript operators usually convert the type (see §3.9) of their operands as needed.

@@ -290,7 +290,7 @@ console.log(a.hasOwnProperty(0)); // false
 | Tipo       | Ejemplo       | ¿Índice existe? | ¿`map()` lo ejecuta? |
 | ---------- | ------------- | --------------- | -------------------- |
 | **Dense**  | `[undefined]` | ✔️ Sí           | ✔️ Sí                |
-| **Sparse** | `[ , ]`       | ❌ No            | ❌ No                 |
+| **Sparse** | `[ , ]`       | ❌ No           | ❌ No                |
 
 ---
 

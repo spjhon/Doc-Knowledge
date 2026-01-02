@@ -77,6 +77,8 @@ The Node.js server-side JavaScript environment is deeply asynchronous and define
 
 ## 13.2. Promises
 
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_promise.asp) Encontrara un resumen de los metodos de las promesas
+
 A Promise is an object that represents the result of an asynchronous computation. That result may or may not be ready yet.
 
 ### 13.2.1. Using Promises

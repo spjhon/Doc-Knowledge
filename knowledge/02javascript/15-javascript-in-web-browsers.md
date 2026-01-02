@@ -342,7 +342,9 @@ Porque gracias a esta jerarquía:
 * Un **Texto** tiene la propiedad `.data` (porque la hereda de `CharacterData`).
 * Un **Elemento** tiene la propiedad `.innerHTML` (porque la define `Element`).
 
-### 12.1.3. The Global Object in Web Browsers
+### 15.1.3. The Global Object in Web Browsers
+
+[**AQUÍ**](https://www.w3schools.com/jsref/jsref_obj_global.asp) Todos los métodos del global object.
 
 🌍 El Objeto Global en el Navegador
 

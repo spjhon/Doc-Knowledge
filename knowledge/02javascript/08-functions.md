@@ -1230,3 +1230,245 @@ function memoize(f) {
   };
 }
 ```
+
+## 8.9. Recursion
+
+**Libro recomendado:** THE RECURSIVE BOOK OF RECURSION
+
+Esta informacion no se encuentra en el libro fundamental de javascript que es la ultimate guide.
+
+Perfecto 👍. La **recursión** es un concepto clave y, bien entendido, te aclara muchas cosas de algoritmos, Big-O y estructuras de datos. Te lo explico **desde cero**, con **ejemplos en JavaScript** y con enfoque práctico.
+
+1️⃣ ¿Qué es una función recursiva?
+
+Una **función recursiva** es una función que **se llama a sí misma** para resolver un problema dividiéndolo en versiones **más pequeñas** del mismo problema.
+
+👉 Es como decir:
+
+> “No sé resolver el problema grande, pero sé resolver uno más pequeño”.
+
+2️⃣ Las 2 reglas OBLIGATORIAS de la recursión
+
+✅ 1. Caso base (base case)
+
+Es la condición que **detiene la recursión**.
+
+❌ Sin caso base → **stack overflow** (bucle infinito).
+
+```js
+if (condición) {
+  return resultado;
+}
+```
+
+✅ 2. Caso recursivo
+
+La función se llama a sí misma **acercándose al caso base**.
+
+```js
+return f(problema_más_pequeño);
+```
+
+3️⃣ Ejemplo clásico: factorial
+
+Definición matemática
+
+```js
+5! = 5 × 4 × 3 × 2 × 1
+0! = 1
+```
+
+Implementación en JavaScript
+
+```js
+function factorial(n) {
+  if (n === 0) {
+    return 1;          // caso base
+  }
+
+  return n * factorial(n - 1); // caso recursivo
+}
+```
+
+¿Qué pasa internamente?
+
+```txt
+factorial(3)
+→ 3 * factorial(2)
+→ 3 * (2 * factorial(1))
+→ 3 * (2 * (1 * factorial(0)))
+→ 3 * 2 * 1 * 1
+```
+
+4️⃣ Ejemplo visual: conteo regresivo
+
+```js
+function countdown(n) {
+  if (n === 0) {
+    console.log("¡Despegue!");
+    return;
+  }
+
+  console.log(n);
+  countdown(n - 1);
+}
+```
+
+5️⃣ Recursión vs loops (MUY importante)
+
+❌ Esto es MALO (no se acerca al caso base)
+
+```js
+function bad(n) {
+  return bad(n);
+}
+```
+
+❌ Esto también es malo
+
+```js
+function bad(n) {
+  if (n > 0) {
+    return bad(n + 1);
+  }
+}
+```
+
+👉 El valor debe **moverse hacia el caso base**, no alejarse.
+
+6️⃣ Ejemplo útil: suma de un array
+
+Recursivo
+
+```js
+function sum(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+
+  return arr[0] + sum(arr.slice(1));
+}
+```
+
+Iterativo (loop)
+
+```js
+function sum(arr) {
+  let total = 0;
+
+  for (const n of arr) {
+    total += n;
+  }
+
+  return total;
+}
+```
+
+👉 **Ambos hacen lo mismo**, pero:
+
+- Loop → más eficiente
+- Recursión → más expresiva
+
+7️⃣ Stack de llamadas (call stack)
+
+Cada llamada recursiva se guarda en el **call stack**.
+
+```js
+factorial(3)
+factorial(2)
+factorial(1)
+factorial(0)
+```
+
+⚠️ JavaScript **NO optimiza bien tail recursion** (en la práctica), así que:
+
+```js
+RangeError: Maximum call stack size exceeded
+```
+
+8️⃣ Complejidad (Big-O) en recursión
+
+Factorial
+
+- Tiempo: **O(n)**
+- Espacio: **O(n)** (por el stack)
+
+Loop equivalente
+
+- Tiempo: **O(n)**
+- Espacio: **O(1)**
+
+👉 Por eso **loops suelen ser preferibles** en JS.
+
+9️⃣ Ejemplo importante: Fibonacci (mal vs bien)
+
+❌ Mala recursión
+
+```js
+function fib(n) {
+  if (n <= 1) return n;
+  return fib(n - 1) + fib(n - 2);
+}
+```
+
+- Tiempo: **O(2ⁿ)** 😱
+
+✅ Mejor con memoización
+
+```js
+function fib(n, memo = {}) {
+  if (n in memo) return memo[n];
+  if (n <= 1) return n;
+
+  memo[n] = fib(n - 1, memo) + fib(n - 2, memo);
+  return memo[n];
+}
+```
+
+- Tiempo: **O(n)**
+- Espacio: **O(n)**
+
+🔑 Regla mental para saber si usar recursión
+
+Usa recursión cuando:
+
+- El problema es **naturalmente recursivo**
+- Árboles (DOM, JSON, carpetas)
+- Grafos
+- Backtracking
+- Divide & Conquer
+
+Evítala cuando:
+
+- Es solo un loop simple
+- Datos muy grandes
+- Performance crítica
+
+10️⃣ Ejemplo real (muy común en frontend)
+
+Recorrer un árbol (DOM / categorías)
+
+```js
+function findNode(tree, id) {
+  if (tree.id === id) return tree;
+
+  for (const child of tree.children) {
+    const found = findNode(child, id);
+    if (found) return found;
+  }
+
+  return null;
+}
+```
+
+🧠 Resumen corto
+
+- Recursión = función que se llama a sí misma
+- Siempre necesita:
+
+  1. Caso base
+  2. Progreso hacia el caso base
+- Es elegante pero consume stack
+- En JS: usarla con cuidado
+
+### 8.9.1. Big-O for recursion

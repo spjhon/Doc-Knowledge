@@ -4,6 +4,8 @@ sidebar_position: 7
 
 # 6. Objetos
 
+[**AQUÍ**](https://www.w3schools.com/jsref/jsref_obj_object.asp) Objetos globales para un object comun.
+
 Los **objetos** son el **tipo de dato más fundamental** de **JavaScript**.
 
 ## 6.1. Introducción a los objetos

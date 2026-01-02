@@ -4,6 +4,8 @@ sidebar_position: 6
 
 # 5. Statements (Sentencias)
 
+[**AQUI**](https://www.w3schools.com/jsref/jsref_statements.asp) Encontrara un listado de las sentencias en javascript
+
 * Un programa de JavaScript es una **secuencia de sentencias**. Cada sentencia es una instrucción para que el computador haga algo.
 * ¿Quieres saber si un fragmento de código JS es una **expresión** o una **sentencia**? Intenta imprimirlo con `console.log()`.
 
@@ -671,6 +673,8 @@ Esto significa que, si todo tu código JavaScript está escrito como **módulos*
 Se recomienda ver la pagina 123 del libro para ver todas las restricciones de esta directiva.
 
 ## 5.7. Declaraciones
+
+[**AQUÍ**](https://www.w3schools.com/jsref/jsref_oper_assignment.asp) Resumen de los operadores de asignacion en javascript
 
 Las palabras clave **const, let, var, function, class, import y export** no son técnicamente **sentencias**, pero se parecen mucho a ellas, y este libro se refiere a ellas informalmente como sentencias, por lo que merecen una mención en este capítulo.
 

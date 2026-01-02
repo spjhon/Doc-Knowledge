@@ -867,6 +867,8 @@ Son una herramienta superpoderosa para crear APIs elegantes basadas en strings.
 
 ## 14.6 The Reflect API
 
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_reflect.asp) Encontrara los metodos de la api reflect
+
 🔍 ¿Qué es la Reflect API?
 
 `Reflect` es un **objeto estático** introducido en ES6 cuya misión es:
@@ -1023,6 +1025,8 @@ La **Reflect API**:
 Es la capa “meta” de JS para manipular objetos y comportamiento interno del lenguaje.
 
 ## 14.7. Proxy Objects
+
+[**AQUI**](https://www.w3schools.com/jsref/jsref_obj_proxy.asp) Encontrara todos los metodos aplicados a proxys
 
 La clase **`Proxy`**, disponible en ES6 y versiones posteriores, es la característica de metaprogramación **más poderosa** de JavaScript.
 

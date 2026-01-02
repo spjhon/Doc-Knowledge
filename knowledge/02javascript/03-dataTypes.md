@@ -155,6 +155,8 @@ These are the basic syntax examples for each of the mentioned TypeScript data ty
 
 [**AQUI**](https://www.w3schools.com/jsref/jsref_obj_date.asp) Encontrara todos los metodos para aplicar al DataType **Date**
 
+[**AQUI**](https://www.w3schools.com/jsref/jsref_oper_arithmetic.asp) Encontrara todos los operadores aritmeticos
+
 - JavaScript represents numbers using the 64-bit floating point format.
 - Javascript reconoce en sus literales (literals)
 

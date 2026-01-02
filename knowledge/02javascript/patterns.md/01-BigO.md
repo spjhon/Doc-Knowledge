@@ -4,27 +4,44 @@ sidebar_position: 1
 
 # The big O
 
+**The O stands for Order:**
+
+Todas las estructuras de datos tienen siempre algún parámetro básico del cual depende la eficiencia de todos los algoritmos. Por ejemplo, si estás buscando en un diccionario, el número de claves en el diccionario probablemente afectará la velocidad de búsqueda; a más claves, más tiempo. Si se ordena un conjunto de valores, tener más valores significa una ordenación más lenta; por ejemplo, ordenar las 5 cartas de una mano de póker se puede hacer muy rápido, pero ordenar un mazo completo de 52 cartas toma más tiempo.
+
+En todos los casos, llamaremos a ese parámetro de entrada , y expresarás la complejidad de tiempo del algoritmo como una función de esa entrada; esto es el **análisis de algoritmos**. Un algoritmo será más eficiente cuando los valores de esa función sean pequeños o, al menos, cuando crezca lentamente en comparación con el crecimiento del tamaño de la entrada.
+
+En algunos casos, el rendimiento de un algoritmo puede estar directamente vinculado a los datos en sí; por ejemplo, ordenar una secuencia que está casi en orden es probablemente más rápido que ordenar una secuencia de valores completamente desordenada y aleatoria. Esto significa que consideraremos el rendimiento en el **mejor caso** (*best-case*), en el **peor caso** (*worst-case*), así como el **rendimiento promedio** (*average performance*). Si no se especifica nada, buscaremos un **límite superior** (*upper bound*) para la complejidad del algoritmo, por lo que en este libro analizaremos la complejidad en el peor de los casos, a menos que se indique lo contrario.
+
+Puntos clave para recordar:
+
+* **La variable :** Siempre representa el tamaño de lo que estás procesando (elementos en un array, caracteres en un texto, nodos en un árbol).
+* **¿Por qué el "peor caso"?** En ingeniería de software, preferimos saber qué es lo más lento que podría llegar a ser un programa para garantizar que el sistema no colapse bajo presión. Es como planificar un viaje: te preparas para el tiempo que tardarías si hay mucho tráfico, no si todas las luces están en verde.
+
 Información extraída mas que todo del libro: **JavaScript Data Structures and Algorithms An Introduction to Understanding and Implementing Core Data Structure and Algorithm Fundamentals. Por, Sammie Bae**
 
 Mide el peor caso para un algoritmo que involucra tiempo y memoria.
 
 n representa el numero de inputs y la pregunta es cuando ese n tiende al infinito, que se hace?
 
-* O(n^n) Este es el peor caso en donde con poquitos data input se demora mucho
-* O(n^3) Este es menos malo
-* O(n^2) Menos malo
+Claro 👍 Aquí tienes la **tabla traducida al español**, **bien formateada** y con los conceptos claros.
 
-Este es que es un loop dentro de un loop, por cada nivel se va aumentando el exponencial de n
+**Tabla 4-2: Órdenes de complejidad más comunes:**
 
-* O(n) este es bueno por que se demora igual por cada input
+| Orden          | Nombre      | Ejemplo                                                                                                                      |
+| -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **O(1)**       | Constante   | Acceder al primer elemento de una lista y hacer `pop` al tope de una pila (Capítulo 10)                                      |
+| **O(log n)**   | Logarítmico | Buscar en un arreglo ordenado usando búsqueda binaria (Capítulo 9) y la altura promedio de un árbol binario (Capítulo 12)    |
+| **O(n)**       | Lineal      | Buscar en un arreglo no ordenado (Capítulo 9) y recorrido **inorder** de un árbol (Capítulo 12)                              |
+| **O(n log n)** | Log-lineal  | Ordenar un arreglo con **heapsort** y el comportamiento promedio de **quicksort** (Capítulo 6)                               |
+| **O(n²)**      | Cuadrática  | Ordenar un arreglo con **bubble sort** y el peor caso de **quicksort** (Capítulo 6)                                          |
+| **O(kⁿ)**      | Exponencial | Verificar si una fórmula binaria es una tautología (k = 2) y una implementación ingenua de la serie de Fibonacci (k ≈ 1.618) |
+| **O(n!)**      | Factorial   | Encontrar la solución óptima del problema del **viajero (TSP)** y ordenar mediante permutaciones aleatorias (Capítulo 6)     |
 
-Este indica que tiene que hacer una operacion por cada input asi que si se meten muchos imputs va a tener que hacer muchas operaciones
+📌 Nota rápida para entenderla mejor
 
-* O(1) este es el ideal por que se demora igual sin importar el tamaño de n
-
-Un ejemplo de este es cuando se accesa un array con un index, solo hace la operacion una vez y ya sin importar el tamaño del array
-
-* O(log n) Este es cuando la operacion hace que los loops sean menos que la cantidad de inputs
+* De **O(1)** a **O(n log n)** → generalmente **aceptable**
+* **O(n²)** → puede ser lento con datos grandes
+* **O(kⁿ)** y **O(n!)** → **impracticables** para tamaños grandes
 
 ## 1. Rules
 
@@ -164,7 +181,7 @@ Regla polinómica: Si f(n) es un polinomio de grado k, entonces f(n) es O(nk). I
 
 In this example, f(n) = nˆ2 because line 4 runs n*n iterations.
 
-### 1.4. Otras reglas
+### 1.5. Otras reglas
 
 * Regla transitiva: Si f(n) es O(g(n)) y g(n) es O(h(n)), entonces f(n) es O(h(n)). Es una forma sencilla de decir que la misma complejidad de tiempo tiene la misma Big-O.
 
