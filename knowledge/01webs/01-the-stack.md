@@ -8,24 +8,73 @@ sidebar_position: 1
 
 ## Final Stack
 
+### Main Language Javascript
+
+#### Libraries
+
+- **three.js:** para animaciones 3d
+- **prism, Highlight.js:** para highlight codigo en la pagina web
+- **markdown-it:** para administrar contenido markdown-it, a parte esta markdown-it hightlight y markdown-it-attrs para atributos.
+- **lodash:** funciones varias dentro de javascript.
+- **moment js:** todo para con el tiempo y fechas
+- **d3js, chartjs:** para graficas
+- **fuse:** para búsquedas
+- **pdfjs:** para crear pdfs
+- **pixi.js** PixiJS is an open source, web-based rendering system that provides blazing fast performance for games, data visualization, and other graphics intensive projects.
+- **Lax.js:** para animaciones scroll
+- **Fontfaceobserver:** Control when render fonts on the browser.
+- **Gsap.js:** for animation (pricing)
+- **fabricjs** for and writing
+
 ### Font-End
 
 - **UI, UX:** ShadCN
 - **Framework:** React
+        - **Libraries:**
+                - React spring
+                - React typical
+                - React select
+                - react-chrono: Para hacer timelines
+                - React-use, un monton de custom hooks que son bastante utiles
+                - Zod para validar datos
+                - React tnakstack table
+                - React dropzone
+                - react-quills es un rich-text editor
+                - Sonner
+                - DnD kit
+                - Formik para validacion de datos como react hook form
+                - React hook form
+                - react-vertical-timeline-component: Para hacer timelines
+                - react-swipeable
+                - react-icons
+                - react-photoswipe-gallery
+                - react-vertical-timeline-component
+                - react-responsive-modal
+                - photoswipe
+                - react three fiber
+                - react virtual
+                - rechart, chart js
 - **Meta-framework:** Next js
+        - **Libraries:**
+                - Next Int
+                - Next themes
 - **Design System:** Tailwind CSS
 - **Build Tools:** Turbopack
 - **Accesibility Standards:** ShadCN
 - **Metodology:** BEM, CSS Module, Atomic Design Components
 - **State Management:** Zustand-react-query-SWR
 - **Testing:** Jest
+        - Unit Testing
+        - Component testing
+        - End to end testing
+- **Animtaions:** Framer motion, framer, gsap
 
 ### Back-End
 
 - **APIs:** Supabase
 - **Authentication Flow:** Coockie Session
 - **Autorization model:** Supabase RLS
-- **Loggin, recover los password, OTP:** Supabase
+- **Loggin, recover lost password, OTP:** Supabase
 - **Database:** PostgreSQL
 - **Cashing:** Redis
 - **Email service:** Resend
@@ -35,7 +84,7 @@ sidebar_position: 1
 - **Observability:**
 - **Metrics:**
 - **Security:**
-- **Runtime** Node js, Bun
+- **Runtime** Node js, Bun, deno
 - **CMS:** Strapi, Payload, Wisp CMS
 - **E-commerce Backend:** Medusa js
 - **Payment Prosesor:** Wompy Bancolombia Colombia
@@ -64,6 +113,7 @@ sidebar_position: 1
 - **Design:** Figma
 - **Documentation:** Docusaurus, JSDocs
 - **Package Manager:** NPM
+- **Web Design:** Figma
 
 ### Mobile
 
