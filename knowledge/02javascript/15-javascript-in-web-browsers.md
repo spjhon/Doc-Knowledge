@@ -259,11 +259,20 @@ Imagina que este botón es un profesional que ha ido acumulando títulos y habil
 2. **`EventTarget`** (La Capacidad de Interacción)
 
     Es el primer nivel especializado para el navegador. Aquí es donde el objeto deja de ser "estático" y empieza a "escuchar".
-
+        - La interfaz `EventTarget` es la base de la cual heredan los objetos que pueden recibir eventos y tener listeners.
     * **Habilidad ganada:** Gestión de eventos.
     * **Ejemplo en el botón:** Gracias a este nivel, puedes hacer `boton.addEventListener('click', ...)` para que pase algo cuando lo presionan.
 
 3. **`Node`** (El Sentido de Familia)
+
+      * La interfaz `Node` hereda de `EventTarget` y es una clase base para todos los nodos del DOM.
+
+          * Tipos de `Node`:
+            * `Element` (Hereda de `Node`)
+            * `Text` (Hereda de `Node`)
+            * `Comment` (Hereda de `Node`)
+            * `Document` (Hereda de `Node`)
+            * `DocumentFragment` (Hereda de `Node`)
 
     Aquí el objeto se integra en el "árbol" del documento. Deja de ser un ente solitario para tener parientes.
 
@@ -272,12 +281,21 @@ Imagina que este botón es un profesional que ha ido acumulando títulos y habil
 
 4. **`Element`** (La Identidad de Etiqueta)
 
+    * La interfaz `Element` hereda de `Node` y es la clase base para todos los elementos del DOM.
+        * Tipos de `Element`:
+          * `HTMLElement` (Hereda de `Element`)
+          * `SVGElement` (Hereda de `Element`)
+          * `MathMLElement` (Hereda de `Element`)
+
     En este nivel, el objeto entiende que es una etiqueta HTML (o SVG) con propiedades externas.
 
     * **Habilidad ganada:** Manejo de atributos y búsqueda interna.
     * **Ejemplos en el botón:** Aquí gana el uso de clases (`.classList`), atributos personalizados (`.getAttribute()`) y la capacidad de buscar cosas dentro de sí mismo con `.querySelector()`.
 
 5. **`HTMLElement`** (La Presencia Visual en la Web)
+
+    * La interfaz `HTMLElement` hereda de `Element` y es la clase base para todos los elementos HTML específicos.
+        * Cada elemento HTML específico hereda de `HTMLElement`.
 
     Este nivel le da al objeto su "cuerpo" web. Es lo que lo hace visible y configurable para el usuario.
 
@@ -341,6 +359,76 @@ Porque gracias a esta jerarquía:
 * Un **Comentario** tiene la propiedad `.nodeName` (porque la hereda de `Node`).
 * Un **Texto** tiene la propiedad `.data` (porque la hereda de `CharacterData`).
 * Un **Elemento** tiene la propiedad `.innerHTML` (porque la define `Element`).
+
+##### 15.1.2.1.1. Tabla de Jerarquía
+
+Aquí hay una tabla que muestra la jerarquía completa desde `EventTarget` hasta los elementos HTML específicos:
+
+```markdown
+| API Level | Interface/Element       | Description                                                |
+| --------- | ----------------------- | ---------------------------------------------------------- |
+| 1         | EventTarget             | Base interface for objects that can receive events.        |
+| 2         | Node                    | Base class for all DOM nodes.                              |
+| 3         | Element                 | Base class for all element nodes.                          |
+| 4         | HTMLElement             | Base class for all HTML elements.                          |
+| 5         | HTMLAnchorElement       | Represents `<a>` elements.                                 |
+| 5         | HTMLAreaElement         | Represents `<area>` elements.                              |
+| 5         | HTMLAudioElement        | Represents `<audio>` elements.                             |
+| 5         | HTMLBRElement           | Represents `<br>` elements.                                |
+| 5         | HTMLBaseElement         | Represents `<base>` elements.                              |
+| 5         | HTMLBodyElement         | Represents `<body>` elements.                              |
+| 5         | HTMLButtonElement       | Represents `<button>` elements.                            |
+| 5         | HTMLCanvasElement       | Represents `<canvas>` elements.                            |
+| 5         | HTMLDataElement         | Represents `<data>` elements.                              |
+| 5         | HTMLDataListElement     | Represents `<datalist>` elements.                          |
+| 5         | HTMLDialogElement       | Represents `<dialog>` elements.                            |
+| 5         | HTMLDivElement          | Represents `<div>` elements.                               |
+| 5         | HTMLDListElement        | Represents `<dl>` elements.                                |
+| 5         | HTMLEmbedElement        | Represents `<embed>` elements.                             |
+| 5         | HTMLFieldSetElement     | Represents `<fieldset>` elements.                          |
+| 5         | HTMLFormElement         | Represents `<form>` elements.                              |
+| 5         | HTMLHeadingElement      | Represents `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`. |
+| 5         | HTMLHeadElement         | Represents `<head>` elements.                              |
+| 5         | HTMLHRElement           | Represents `<hr>` elements.                                |
+| 5         | HTMLHtmlElement         | Represents `<html>` elements.                              |
+| 5         | HTMLIFrameElement       | Represents `<iframe>` elements.                            |
+| 5         | HTMLImageElement        | Represents `<img>` elements.                               |
+| 5         | HTMLInputElement        | Represents `<input>` elements.                             |
+| 5         | HTMLLabelElement        | Represents `<label>` elements.                             |
+| 5         | HTMLLegendElement       | Represents `<legend>` elements.                            |
+| 5         | HTMLLIElement           | Represents `<li>` elements.                                |
+| 5         | HTMLLinkElement         | Represents `<link>` elements.                              |
+| 5         | HTMLMapElement          | Represents `<map>` elements.                               |
+| 5         | HTMLMetaElement         | Represents `<meta>` elements.                              |
+| 5         | HTMLMeterElement        | Represents `<meter>` elements.                             |
+| 5         | HTMLModElement          | Represents `<ins>` and `<del>` elements.                   |
+| 5         | HTMLOListElement        | Represents `<ol>` elements.                                |
+| 5         | HTMLOptGroupElement     | Represents `<optgroup>` elements.                          |
+| 5         | HTMLOptionElement       | Represents `<option>` elements.                            |
+| 5         | HTMLOutputElement       | Represents `<output>` elements.                            |
+| 5         | HTMLParagraphElement    | Represents `<p>` elements.                                 |
+| 5         | HTMLParamElement        | Represents `<param>` elements.                             |
+| 5         | HTMLPictureElement      | Represents `<picture>` elements.                           |
+| 5         | HTMLPreElement          | Represents `<pre>` elements.                               |
+| 5         | HTMLProgressElement     | Represents `<progress>` elements.                          |
+| 5         | HTMLQuoteElement        | Represents `<blockquote>` and `<q>` elements.              |
+| 5         | HTMLScriptElement       | Represents `<script>` elements.                            |
+| 5         | HTMLSelectElement       | Represents `<select>` elements.                            |
+| 5         | HTMLSourceElement       | Represents `<source>` elements.                            |
+| 5         | HTMLSpanElement         | Represents `<span>` elements.                              |
+| 5         | HTMLStyleElement        | Represents `<style>` elements.                             |
+| 5         | HTMLTableElement        | Represents `<table>` elements.                             |
+| 5         | HTMLTableCellElement    | Represents `<td>` and `<th>` elements.                     |
+| 5         | HTMLTableColElement     | Represents `<col>` and `<colgroup>` elements.              |
+| 5         | HTMLTableSectionElement | Represents `<thead>`, `<tbody>`, and `<tfoot>` elements.   |
+| 5         | HTMLTemplateElement     | Represents `<template>` elements.                          |
+| 5         | HTMLTextAreaElement     | Represents `<textarea>` elements.                          |
+| 5         | HTMLTimeElement         | Represents `<time>` elements.                              |
+| 5         | HTMLTitleElement        | Represents `<title>` elements.                             |
+| 5         | HTMLTrackElement        | Represents `<track>` elements.                             |
+| 5         | HTMLUListElement        | Represents `<ul>` elements.                                |
+| 5         | HTMLVideoElement        | Represents `<video>` elements.                             |
+```
 
 ### 15.1.3. The Global Object in Web Browsers
 
