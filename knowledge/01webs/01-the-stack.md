@@ -90,6 +90,7 @@ sidebar_position: 1
 - **Payment Prosesor:** Wompy Bancolombia Colombia
 - **Image Optimization:** Cloudinary
 - **File Bucket:** AWS S3
+- **ORM:** drizzle ORM
 
 ### Cloud Infraestructure
 
