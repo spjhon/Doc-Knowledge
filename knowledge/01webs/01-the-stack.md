@@ -54,10 +54,12 @@ sidebar_position: 1
                 - react three fiber
                 - react virtual
                 - rechart, chart js
+                - react-admin
 - **Meta-framework:** Next js
         - **Libraries:**
                 - Next Int
                 - Next themes
+                - uploadThing
 - **Design System:** Tailwind CSS
 - **Build Tools:** Turbopack
 - **Accesibility Standards:** ShadCN
