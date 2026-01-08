@@ -1,4 +1,8 @@
-# Testing
+---
+sidebar_position: 20
+---
+
+# 18. Testing
 
 Jest is a popular JavaScript testing library primarily used for testing JavaScript code, including React applications. Jest supports various types of tests to ensure that your code functions correctly and maintains its integrity. Here are the most common types of tests you can write with Jest:
 
@@ -89,27 +93,27 @@ Existen varios tipos de pruebas que se pueden realizar en un código. Aquí te d
 
 10. **Pruebas de Compatibilidad (Compatibility Testing):**
 
-- **Descripción:** Verifican que el software funcione correctamente en diferentes navegadores, dispositivos y sistemas operativos.
-- **Herramientas:** BrowserStack, Sauce Labs.
+      - **Descripción:** Verifican que el software funcione correctamente en diferentes navegadores, dispositivos y sistemas operativos.
+      - **Herramientas:** BrowserStack, Sauce Labs.
 
 11. **Pruebas de Exploración (Exploratory Testing):**
 
-- **Descripción:** Implican una exploración ad-hoc del sistema por parte de los testers para descubrir defectos no previstos por otros tipos de pruebas.
-- **Herramientas:** Pruebas manuales.
+      - **Descripción:** Implican una exploración ad-hoc del sistema por parte de los testers para descubrir defectos no previstos por otros tipos de pruebas.
+      - **Herramientas:** Pruebas manuales.
 
 12. **Pruebas de Humo (Smoke Testing):**
 
-- **Descripción:** Conjunto básico de pruebas que aseguran que las funciones más críticas del sistema funcionan correctamente después de una nueva compilación.
-- **Herramientas:** Pruebas manuales, scripts automatizados sencillos.
+      - **Descripción:** Conjunto básico de pruebas que aseguran que las funciones más críticas del sistema funcionan correctamente después de una nueva compilación.
+      - **Herramientas:** Pruebas manuales, scripts automatizados sencillos.
 
 13. **Pruebas de Caja Negra (Black Box Testing):**
 
-- **Descripción:** Prueban la funcionalidad del software sin conocer la estructura interna del código.
-- **Herramientas:** Diversas, dependiendo del enfoque.
+      - **Descripción:** Prueban la funcionalidad del software sin conocer la estructura interna del código.
+      - **Herramientas:** Diversas, dependiendo del enfoque.
 
 14. **Pruebas de Caja Blanca (White Box Testing):**
 
-- **Descripción:** Prueban las estructuras internas y el funcionamiento del código, asegurando la cobertura de las rutas lógicas.
-- **Herramientas:** Herramientas de análisis estático, cobertura de código.
+      - **Descripción:** Prueban las estructuras internas y el funcionamiento del código, asegurando la cobertura de las rutas lógicas.
+      - **Herramientas:** Herramientas de análisis estático, cobertura de código.
 
 Cada tipo de prueba tiene su propósito y uso específico, y en un proyecto de desarrollo de software robusto, se suelen utilizar múltiples tipos de pruebas para asegurar la calidad y confiabilidad del software.

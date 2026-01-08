@@ -3,7 +3,7 @@ sidebar_position: 14
 ---
 
 
-# Import/Export Features
+# Import/Export CheatSheet
 
 Different ways and usage of import/export statements.
 

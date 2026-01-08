@@ -1,5 +1,5 @@
 ---
-sidebar_position: 16
+sidebar_position: 19
 ---
 
 # 15. JavaScript in Web Browsers

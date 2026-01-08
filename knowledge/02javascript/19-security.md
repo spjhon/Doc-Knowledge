@@ -1,4 +1,8 @@
-# JavaScript Security
+---
+sidebar_position: 21
+---
+
+# 19. JavaScript Security
 
 ## [Articulo sobre Javascript y Seguridad](https://www.ifourtechnolab.com/blog/how-to-use-javascript-to-enhance-web-security-and-accessibility)
 

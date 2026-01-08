@@ -1,4 +1,8 @@
-# Notas Git
+---
+sidebar_position: 23
+---
+
+# 21. Notas Git
 
 Para probar que la clave local funciona, escriba ssh -T `git@github.com` en el terminal:
 

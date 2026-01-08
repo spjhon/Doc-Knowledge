@@ -1,8 +1,8 @@
 ---
-sidebar_position: 94
+sidebar_position: 22
 ---
 
-# Notas NPM (Node Package Manager)
+# 20. Notas NPM (Node Package Manager)
 
 Use this in the CMD of windows
 
