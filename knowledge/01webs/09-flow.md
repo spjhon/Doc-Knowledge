@@ -90,6 +90,14 @@ Despues de instalar next js, se debe:
 
 ## 6. Building
 
+Diagramas recomendados:
+
+- Diagrama UML para types [AQUI!](https://conwy.co/articles/diagramming-ts)
+- Diagrama UML para la estructura de next js [AQUI!](https://dev.to/conw_y/diagramming-react-code-48m7) adiconal a este diagrama, utilizar enlaces de context.
+- Diagrama ER para la base de datos.
+- La documentacion del codigo como funciones y codigo puro va a estar sustentada en los comentarios jsdoc del mismo projecto
+- Diagrama que muestre la conexion entre el front y el back, como un diagrama o documentacion de apis.
+
 En la fase de desarrollo tener en cuenta en cuanto a componentes react:
 
 - **Be reusable:** the same button component must work in different contexts: a table, a card, a modal, a sidebar.
@@ -112,4 +120,9 @@ La estructuracion del projecto es que cada feature tenga sus respectivos compone
 
 ## 8. Mantenimiento
 
+- Git
+- Npm update
+
 ## 9. Seguridad
+
+- Todo lo que ofrezca cludfare y configuraciones adiconales en la VPS
