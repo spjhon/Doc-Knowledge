@@ -35,6 +35,8 @@ Utilizando supabase hacer el setup y la creacion inicial del projecto en modo de
 - Modelado de datos
 - Normalizacion
 
+- Una metodologia mas detallada se encuentra en la seccion de bases de datos bajo la tutoria del libro Databases for mere mortals
+
 ## 4. Deficinion del ambiente de trabajo
 
 **Para next js:**
@@ -97,6 +99,7 @@ Diagramas recomendados:
 - Diagrama ER para la base de datos.
 - La documentacion del codigo como funciones y codigo puro va a estar sustentada en los comentarios jsdoc del mismo projecto
 - Diagrama que muestre la conexion entre el front y el back, como un diagrama o documentacion de apis.
+- utilizar semver
 
 En la fase de desarrollo tener en cuenta en cuanto a componentes react:
 

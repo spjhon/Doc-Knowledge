@@ -325,3 +325,15 @@ Regla práctica para ti
 
 > **Si dudas → 3NF es suficiente**
 > Optimiza después con índices o desnormalización controlada.
+
+## 3. Diseño
+
+**Definir:**
+
+* Analisis de requerimientos
+* Modelado de datos
+* Normalizacion
+
+Un aspecto **importante** es que el punto de vista ofrecido por el libro databases for mere mortals es primero tener definidas las caracteristicas que hacen de una base de datos tenga un buen diseño al final y que pase todas las pruebas de normalizacion y teniendo en cuenta domains, subtypes, relationships, data integrity, and referential integrity.
+
+* **Data is what you store; information is what you retrieve.**
