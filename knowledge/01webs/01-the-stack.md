@@ -28,7 +28,7 @@ sidebar_position: 1
 
 ### Font-End
 
-- **UI, UX:** ShadCN
+- **UI, UX:** ShadCN, react bits
 - **Framework:** React
         - **Libraries:**
                 - React spring
